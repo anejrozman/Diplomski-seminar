@@ -1,0 +1,211 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage{float}
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
+\newcommand{\imeavtorja}{Anej Rozman} % ime avtorja
+\newcommand{\imementorja}{~doc.~dr. Martin Raič} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Sestavljen Poissonov proces in njegova uporaba v financah} % naslov dela
+\newcommand{\letnica}{2024} % letnica diplome
+
+% Moji ukazi
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\1}{\mathds{1}}
+\newcommand{\Pois}[1]{\text{Pois}(#1)}
+
+
+
+
+
+\begin{document}
+
+% od tod do povzetka ne spreminjaj nicesar
+\thispagestyle{empty}
+\noindent{\large
+UNIVERZA V LJUBLJANI\\[1mm]
+FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
+\program\ -- 1.~stopnja}
+\vfill
+
+\begin{center}{\large
+\imeavtorja\\[2mm]
+{\bf \naslovdela}\\[10mm]
+Delo diplomskega seminarja\\[1cm]
+Mentor: \imementorja}
+\end{center}
+\vfill
+
+\noindent{\large
+Ljubljana, \letnica}
+\pagebreak
+
+\thispagestyle{empty}
+\tableofcontents
+\pagebreak
+
+\thispagestyle{empty}
+\begin{center}
+{\bf \naslovdela}\\[3mm]
+{\sc Povzetek}
+\end{center}
+% tekst povzetka v slovenscini
+
+\vfill
+\begin{center}
+{\bf Compound Poisson process and its application in finance}\\[3mm] % angleski naslov
+{\sc Abstract}
+\end{center}
+% tekst povzetka v anglescini
+Prevod zgornjega povzetka v angle"s"cino.
+
+\vfill\noindent
+{\bf Math. Subj. Class. (2010):} 91G10 60G00 60G01  \\[1mm]
+{\bf Klju"cne besede:} Slu"cajni procesi, Sestavljen Poissonov proces  \\[1mm]
+{\bf Keywords:} Stochastic processes, Lévy processes
+\pagebreak
+
+
+
+% tu se zacne besedilo seminarja
+\section{Uvod}
+
+    Poissonov proces "steje "stevilo prihodov v danem "casovnem intervalu, kjer narava prihodov 
+    sledi dolo"cenim omejitvam. Sestavljen Poissonov proces, je podoben 
+    Poissonovemu procesu, razen da je vsak prihod ute"zen glede na porazdelitev. Na primer, stranke, 
+    ki gredo v trgovino, sledijo Poissonovemu procesu, znesek denarja, ki ga porabijo, pa lahko 
+    sledi sestavljenemu Poissonovemu procesu. Hitro vidimo, da je to zelo zanimiv a ideja slu"cajnega
+    procesa, ki ima veliko potencialnih uporab. V delu se bomo osredoto"cili na njegovo uporabo v 
+    financah. Za za"cetek definirajmo osnovne pojme ter Sestavljen Poissonov proces.
+
+    \begin{definicija}
+        Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$
+        neprazna indeksna množica ter $(S, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, 
+        parametriziran s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to S$,
+         ki so $(\mathcal{F}, \Sigma)$-merljive za vsak $t \in T$.
+    \end{definicija}
+
+    \begin{opomba}
+        Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$.
+        V tem primeru govorimo o zveznem slu"cnem procesu.
+    \end{opomba}
+
+    \begin{definicija}
+        Za fiksen $\omega \in \Omega$ je preslikava 
+        $[0, \infty) \rightarrow \mathbb{R}; \ t \mapsto X_t(\omega)$ 
+        \textit{trajektorija} oziroma \textit{realizacija} slučajnega procesa $(X_t)_{t\geq0}$.
+    \end{definicija}
+
+    \begin{opomba}
+        Na slu"cajni proces lahko gledamo tudi kot na predpis, ki nam iz vor"cnega prostora 
+        $\Omega$ priredi slu"cajno funkcijo
+        $(X_t(\omega))_{t\geq0}: [0, \infty) \rightarrow \mathbb{R}$.
+    \end{opomba}
+
+    \begin{definicija}
+        Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ definiramo
+        \textit{prirastek procesa} $X_t - X_s$ na intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima 
+        \textit{neodvisne prirastke}, če so za vsak nabor realnih "stevil
+        $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ prirastki (slučajne spremenljivke)
+        $$
+            X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \ldots, \ X_{t_n} - X_{t_{n-1}}
+        $$
+        med seboj neodvisni.
+    \end{definicija}
+
+    \begin{definicija}
+        Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem pravimo, da ima proces
+        \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, 
+        da ima $X_{t+h} - X_{s+h}$ enako porazdelitev kot $X_t - X_s$.
+    \end{definicija}
+
+    \begin{definicija}
+        Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$ definiranem na verjetnostnem 
+        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\mathbb{R}$ pravimo 
+        \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
+        \begin{enumerate}
+            \item $B_0 = 0$ skoraj gotovo,
+            \item proces ima neodvisne prirastke,
+            \item prirastki so porazdeljeni $\Pois{\lambda t}$,
+            \item proces ima stacionarne prirastke.
+        \end{enumerate}
+    \end{definicija}
+
+    \begin{definicija}
+        Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
+        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih in enako porazdeljenih slučajnih spremenljivk 
+        z vrednostmi v $\mathbb{R}$. Potem je \textit{sestavljen Poissonov proces} 
+        $(S_t)_{t\geq0}$ definiran kot
+        $$
+            S_t = \sum_{i=1}^{N_t} X_i.
+        $$
+    \end{definicija}
+
+
+\section*{Slovar strokovnih izrazov}
+
+%\geslo{}{}
+%
+%\geslo{}{}
+%
+
+
+% seznam uporabljene literature
+\begin{thebibliography}{99}
+
+%\bibitem{}
+
+\end{thebibliography}
+
+\end{document}
