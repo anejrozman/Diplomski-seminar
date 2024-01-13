@@ -2,67 +2,67 @@
 # Financna matematika, diplomsko delo
 # Code for generating graphs 
 
-library(simmer)
 library(ggplot2)
 
 set.seed(42)
 
 #----------------------------------------------------------------------------------#
 
-# Slika 1
+# Slika 1 (Poisson process and compound Poisson process trajectory)
 
-# Function for simulating compound Poisson process
-compound_poisson_process <- function(lambda, distribution_function, max_time) {
-  env <- simmer()
-  
-  # Add generator for arrivals
-  env %>% add_generator("arrivals", 
-                        trajectory() %>% timeout(function() rexp(1, lambda)),
-                        function() rpois(1, lambda))
-  
-  # Add generator for amounts
-  env %>% add_generator("amounts",
-                        trajectory() %>% set_attribute("amount", function() distribution_function()),
-                        function() 1)  # En prihod za vsako vrednost v distribution_function
-  
-  # Link generators
-  env %>% add_resource("server", capacity = Inf) %>%
-    seize_selected(resources = "server", rule = "smallest") %>%
-    timeout_from_attribute("amount") %>%
-    release_selected(resources = "server")
-  
-  # Run simulation
-  env %>% run(until = max_time)
-  
-  # Get data
-  arrivals_data <- get_mon_arrivals(env)
-  amounts_data <- get_mon_attributes(env, "amount", filter = "amounts")
-  
-  return(list(arrivals = arrivals_data, amounts = amounts_data))
-}
+# Parameters
+nSteps = 150
+lambda = 0.1  # Intensity
 
-# Set parameters
-lambda <- 5  
-max_time <- 100  
+# Generate sample path of HPP and CPP
+jumpsHpp = rpois(nSteps, lambda)
+samplePath = data.frame(time = 1:nSteps,
+                        jumpTimes = jumpsHpp, 
+                        gamma = rgamma(nSteps, shape = 20, rate = 1))
 
-# Distribution of claim amounts
-amount_distribution <- function() {rexp(1, rate = 0.2)}
+samplePath$value = cumsum(samplePath$gamma*samplePath$jumpTimes)
 
-# Simulate compound Poisson process
-sim_data <- compound_poisson_process(lambda, amount_distribution, max_time)
+# Create an origin
+new = data.frame(
+  time = c(0, 1),
+  jumpTimes = c(0, 0),
+  gamma = c(0, 0),
+  value = c(0, 0))
 
-# Plot results
-ggplot(sim_data$arrivals, aes(x = time)) +
-  geom_point(aes(y = from_resource("arrivals")), color = "blue") +
-  geom_point(aes(y = from_resource("amounts")), color = "red") +
-  labs(title = "Sestavljen Poissonov proces",
+samplePath <- rbind(new, samplePath[-1, , drop = FALSE])
+
+# Create ggplot
+g1 = ggplot() +
+  geom_step(data = samplePath,
+            aes(x = time, y = value),
+            size = 1,
+            color = "red") +
+  geom_point(aes(x = samplePath$jumpTimes * 0:nSteps, y = -0.8),
+             shape = "x",
+             size = 3,
+             color = "black") +
+  geom_segment(data = data.frame(x = samplePath$jumpTimes * 0:nSteps,
+                                 yend = samplePath$value) %>% 
+                 filter(x != 0),
+               aes(x = x, xend = x, y = 0, yend = yend), 
+               linetype = "dashed",
+               color = "black") +
+  coord_cartesian(clip = 'off') +
+  labs(title = lambda == 0.1~""~alpha == 20~" število korakov: 150",
        x = "Čas",
-       y = "Število prihodov") +
-  theme_minimal()
+       y = "Vrednost")
+
+g1
+
+# Saving graph to pdf
+ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GrapsAndPhotos/slika1.pdf",
+       g1,
+       device = "pdf",
+       width = 8,
+       height = 5)
 
 #----------------------------------------------------------------------------------#
 
 # Slika 2
-
 
 #----------------------------------------------------------------------------------#

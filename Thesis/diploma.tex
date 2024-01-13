@@ -14,6 +14,7 @@
 \usepackage{subcaption}
 \usepackage{bm}
 \usepackage{float}
+\allowdisplaybreaks
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -53,7 +54,7 @@
 \newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
 \newcommand{\imeavtorja}{Anej Rozman} % ime avtorja
 \newcommand{\imementorja}{~doc.~dr. Martin Raič} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Sestavljen Poissonov proces in njegova uporaba v financah} % naslov dela
+\newcommand{\naslovdela}{Potencialni naslov:Sestavljen Poissonov proces in njegova uporaba v financah} % naslov dela
 \newcommand{\letnica}{2024} % letnica diplome
 
 % Moji ukazi
@@ -64,6 +65,7 @@
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\1}{\mathds{1}}
 \newcommand{\Pois}[1]{\text{Pois}(#1)}
+\newcommand{\Var}[1]{\text{Var}\left[#1\right]}
 
 
 
@@ -112,7 +114,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} 91G10 60G00 60G01  \\[1mm]
-{\bf Klju"cne besede:} Slu"cajni procesi, Sestavljen Poissonov proces  \\[1mm]
+{\bf Klju"cne besede:} slu"cajni procesi, sestavljen Poissonov proces  \\[1mm]
 {\bf Keywords:} Stochastic processes, Lévy processes
 \pagebreak
 
@@ -123,10 +125,21 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     Poissonov proces "steje "stevilo prihodov v danem "casovnem intervalu, kjer narava prihodov 
     sledi dolo"cenim omejitvam. Sestavljen Poissonov proces, je podoben 
-    Poissonovemu procesu, razen da je vsak prihod ute"zen glede na porazdelitev. Na primer, stranke, 
+    Poissonovemu, razen da je vsak prihod ute"zen z neko slu"cajno spremenljivko. Na primer, stranke, 
     ki gredo v trgovino, sledijo Poissonovemu procesu, znesek denarja, ki ga porabijo, pa lahko 
-    sledi sestavljenemu Poissonovemu procesu. Hitro vidimo, da je to zelo zanimiv a ideja slu"cajnega
-    procesa, ki ima veliko potencialnih uporab. V delu se bomo osredoto"cili na njegovo uporabo v 
+    sledi sestavljenemu Poissonovemu procesu. Slika \ref{fig:slika1} prikazuje primer trajktorije. 
+    Na osi $x$ je "cas, na osi $y$ pa kumulativna vsota vseh prihodov do tega "casovnega trenutka.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GrapsAndPhotos/slika1.pdf}
+        \caption{Primer trajektroije sestavljenega Poissonovega procesa}
+        \label{fig:slika1}
+    \end{figure}
+    
+    \noindent
+    Hitro vidimo, da je to zelo zanimiva ideja slu"cajnega
+    procesa, ki ima veliko potencialnih uporab. Mogoce:V delu se bomo osredoto"cili na njegovo uporabo v 
     financah. Za za"cetek definirajmo osnovne pojme ter Sestavljen Poissonov proces.
 
     \begin{definicija}
@@ -134,63 +147,174 @@ Prevod zgornjega povzetka v angle"s"cino.
         neprazna indeksna množica ter $(S, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, 
         parametriziran s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to S$,
          ki so $(\mathcal{F}, \Sigma)$-merljive za vsak $t \in T$.
+        \label{def:slucProc}
     \end{definicija}
 
     \begin{opomba}
         Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$.
         V tem primeru govorimo o zveznem slu"cnem procesu.
+        \label{op:TCas}
     \end{opomba}
 
     \begin{definicija}
         Za fiksen $\omega \in \Omega$ je preslikava 
         $[0, \infty) \rightarrow \mathbb{R}; \ t \mapsto X_t(\omega)$ 
         \textit{trajektorija} oziroma \textit{realizacija} slučajnega procesa $(X_t)_{t\geq0}$.
+        \label{def:realizac}
     \end{definicija}
 
     \begin{opomba}
         Na slu"cajni proces lahko gledamo tudi kot na predpis, ki nam iz vor"cnega prostora 
         $\Omega$ priredi slu"cajno funkcijo
         $(X_t(\omega))_{t\geq0}: [0, \infty) \rightarrow \mathbb{R}$.
+        \label{op:slucFunkc}
     \end{opomba}
 
     \begin{definicija}
         Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ definiramo
         \textit{prirastek procesa} $X_t - X_s$ na intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima 
         \textit{neodvisne prirastke}, če so za vsak nabor realnih "stevil
-        $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ prirastki (slučajne spremenljivke)
+        $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ prirastki
         $$
             X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \ldots, \ X_{t_n} - X_{t_{n-1}}
         $$
         med seboj neodvisni.
+        \label{def:prirastek}
     \end{definicija}
 
     \begin{definicija}
         Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem pravimo, da ima proces
         \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, 
         da ima $X_{t+h} - X_{s+h}$ enako porazdelitev kot $X_t - X_s$.
+        \label{def:stacPrir}
     \end{definicija}
 
     \begin{definicija}
         Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$ definiranem na verjetnostnem 
-        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\mathbb{R}$ pravimo 
+        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$ pravimo 
         \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
         \begin{enumerate}
-            \item $B_0 = 0$ skoraj gotovo,
-            \item proces ima neodvisne prirastke,
-            \item prirastki so porazdeljeni $\Pois{\lambda t}$,
-            \item proces ima stacionarne prirastke.
+            \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
+            \item $(N_t)_{t\geq 0}$ ima neodvisne in stacionarne prirastke,
+            \item Za $0 \leq s < t$ velja $ N_t - N_s \sim\Pois{\lambda(t - s)}$,
         \end{enumerate}
+        \label{def:HPP}
     \end{definicija}
+
+    \begin{opomba}
+        Vidimo, da v definiciji ne zahtevamo, da so skoki procesa le +1... 
+        \label{op:skoki}
+    \end{opomba}
 
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
-        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih in enako porazdeljenih slučajnih spremenljivk 
+        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $N_t$) in enako porazdeljenih slučajnih spremenljivk 
         z vrednostmi v $\mathbb{R}$. Potem je \textit{sestavljen Poissonov proces} 
         $(S_t)_{t\geq0}$ definiran kot
         $$
             S_t = \sum_{i=1}^{N_t} X_i.
         $$
+        \label{def:CPP}
     \end{definicija}
+
+    \begin{opomba}
+        Vidimo, da je Poissonov proces le poseben primer sestavljenega Poissonovega procesa, ko za
+        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$. Bolj v splo"snem, "ce za $X_i$ 
+        postavimo $X_i = \alpha$, potem velja $S_t = \alpha N_t$.
+        \label{op:CPPHPPPovezava}
+    \end{opomba}
+
+    V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in 
+    sestavljenemu Poissonovemu procesu CPP (angl. Compound Poisson Process).
+
+\section{Lastnosti sestavljenega Poissonovega procesa}
+
+    V tem poglavju si bomo ogledali osnovne lastnosti sestavljenega Poissonovega procesa. Pogledali
+    si bomo... 
+    \begin{trditev}
+        CPP ima neodvisne in stacionarne prirastke.
+        \label{trd:neodvPrirCPP}
+    \end{trditev}
+
+    \begin{proof}
+        Za nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ lahko slu"cajne
+        spremeljivke $S_{t_i} - S_{t_{i-1}}$ zapi"semo kot
+        \begin{align*}
+            S_{t_i} - S_{t_{i-1}} &= \sum_{j=N_{t_{i-1}}+1}^{N_{t_i}} X_j. 
+        \end{align*}
+        Neodvisnost prirastkov sledi po neodvisnosti $X_i$ od $X_j$ za $i\neq j$ in $N_t$. 
+        Naj bo $h > 0$ in $s < t$. Potem velja
+        \begin{align*}
+            S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
+        \end{align*}
+        Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za HPP velja 
+        $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
+        \begin{align*}
+            \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
+        \end{align*}
+    \end{proof}
+
+    \begin{definicija}
+        neki
+    \end{definicija}
+
+    Izra"cunajmo pri"cakovano vrednost in varianco CPP. Naj bo $(N_t)_{t\geq 0}$ HPP z 
+    intenzivnostjo $\lambda$ in naj bo $\theta = \E\left[X_i\right]$ pri"cakovana vrednost 
+    slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
+    $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
+
+    \begin{align*}
+        \E\left[S_t\right] &= \sum_{k=0}^{\infty} \E\left[S_t | N_t = k\right] \Prob\left(N_t = k\right)\\
+                           &= \sum_{k=0}^{\infty} \E\left[\sum_{i=1}^{k} X_i\right] \Prob\left(N_t = k\right)\\
+                           &= \sum_{k=0}^{\infty}k\E\left[X_i\right]\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+                           &= \theta\lambda te^{-\lambda t}\sum_{k=1}^{\infty}\frac{(\lambda t)^{k-1}}{(k-1)!}\\
+                           &= \theta\lambda t.
+    \end{align*}
+
+    \noindent
+    Za izra"cun variance potrebujemo dodatno predpostavko, da imajo slu"cajne spremenljivke $X_i$ 
+    drugi moment. V tem primeru ozna"cimo $\Var{X_i} = neki$. Potem velja
+
+    \begin{align*}
+        pisi.
+    \end{align*}
+
+    \noindent
+    Inzra"cunajmo "se momentno rodovno funckijo CPP. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
+    s.s $X_i$ za vsak $i$ in z $M_{S_t}$ momentno rodovno funkcijo CPP.
+    \begin{align*}
+        M_{S_t}(u) &= \E\left[\exp\left[uS_t\right]\right] =
+                     \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right]\\
+                   &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
+                       \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right)\\ 
+                   &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
+                       \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right)\\
+                   &= e^{-\lambda t} + \sum_{k=1}^{\infty}
+                       \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\ 
+                   &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!}\\
+                   &= e^{\lambda t\left(M_X(u) - 1\right)}    
+    \end{align*}
+
+    Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
+    $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija HPP enaka 
+    $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta rodovna in
+    karakteristi"cna funkcija CPP enaki
+
+    \begin{align*}
+        \varphi_{S_t}(u) &= e^{\lambda t\left(e^{iu} - 1\right)} \ \text{in} \\
+        G_{S_t}(u) &= e^{\lambda t\left(e^{iu} - 1\right)}.
+    \end{align*} 
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section*{Slovar strokovnih izrazov}
@@ -204,8 +328,8 @@ Prevod zgornjega povzetka v angle"s"cino.
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
-%\bibitem{}
-
+\bibitem{1}S.E. Shreve, Stochastic Calculus for Finance II: Continuous-Time Models, Springer, (2004).
+\bibitem{2}S.M. Ross, Stochatic Processes: Second Edition, Wiley, (1996).
 \end{thebibliography}
 
 \end{document}
