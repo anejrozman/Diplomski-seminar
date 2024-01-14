@@ -210,9 +210,9 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
-        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $N_t$) in enako porazdeljenih slučajnih spremenljivk 
-        z vrednostmi v $\mathbb{R}$. Potem je \textit{sestavljen Poissonov proces} 
-        $(S_t)_{t\geq0}$ definiran kot
+        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $N_t$) in enako 
+        porazdeljenih slučajnih spremenljivk z vrednostmi v $\mathbb{R}$. Potem je 
+        \textit{sestavljen Poissonov proces} $(S_t)_{t\geq0}$ definiran kot
         $$
             S_t = \sum_{i=1}^{N_t} X_i.
         $$
@@ -261,7 +261,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{definicija}
 
     Izra"cunajmo pri"cakovano vrednost in varianco CPP. Naj bo $(N_t)_{t\geq 0}$ HPP z 
-    intenzivnostjo $\lambda$ in naj bo $\theta = \E\left[X_i\right]$ pri"cakovana vrednost 
+    intenzivnostjo $\lambda$ in naj bo $\mu = \E\left[X_i\right]$ pri"cakovana vrednost 
     slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
     $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
 
@@ -269,43 +269,130 @@ Prevod zgornjega povzetka v angle"s"cino.
         \E\left[S_t\right] &= \sum_{k=0}^{\infty} \E\left[S_t | N_t = k\right] \Prob\left(N_t = k\right)\\
                            &= \sum_{k=0}^{\infty} \E\left[\sum_{i=1}^{k} X_i\right] \Prob\left(N_t = k\right)\\
                            &= \sum_{k=0}^{\infty}k\E\left[X_i\right]\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-                           &= \theta\lambda te^{-\lambda t}\sum_{k=1}^{\infty}\frac{(\lambda t)^{k-1}}{(k-1)!}\\
-                           &= \theta\lambda t.
+                           &= \mu\lambda te^{-\lambda t}\sum_{k=1}^{\infty}\frac{(\lambda t)^{k-1}}{(k-1)!}\\
+                           &= \mu\lambda t.
     \end{align*}
 
     \noindent
     Za izra"cun variance potrebujemo dodatno predpostavko, da imajo slu"cajne spremenljivke $X_i$ 
-    drugi moment. V tem primeru ozna"cimo $\Var{X_i} = neki$. Potem velja
-
+    drugi moment. V tem primeru ozna"cimo $\Var{X_i} = \sigma^2$. Velja 
+    $\Var{S_t} = \E\left[S_t^2\right] - \E\left[S_t\right]^2$, torej potrebujemo izra"cunati se 
+    drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost
     \begin{align*}
-        pisi.
+        \E\left[S_t^2\right] 
+                &= \sum_{k=0}^\infty\E\left[S_t^2\mid N_t = k\right]\Prob\left(N_t=k\right) \\
+                &= \sum_{k=0}^\infty\E\left[\left(\sum_{i=1}^kX_i\right)^2\right]\Prob\left(N_t=k\right)\\
+                &= \sum_{k=0}^\infty\E\left[\sum_{i=1}^kX_i^2 + \sum_{i\neq j}X_iX_j\right]\Prob\left(N_t=k\right)\\
+                &= \sum_{k=0}^\infty\left(kE\left[X_i^2\right] 
+                    +k(k-1)\E\left[X_i\right]\E\left[X_j\right]\right)\Prob\left(N_t=k\right)\\
+    \end{align*}
+    Prek formule $\Var{X_i} = \E\left[X_i^2\right] - \E\left[X_i\right]^2$ dobimo
+    \begin{align*}
+        \E\left[X_i^2\right] = \sigma^2 + \mu^2.
+    \end{align*}
+    Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se poenostavi v 
+    $k\sigma^2 + k^2\mu^2$, torej 
+    \begin{align*}
+        \E\left[S_t^2\right] 
+                &= \sum_{k=0}^\infty\left(k\sigma^2 + k^2\mu^2\right)\Prob\left(N_t=k\right)\\
+                &= \sigma^2\E\left[N_t\right] + \mu^2\E\left[N_t^2\right]\\
+                &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2),
+    \end{align*}
+    kjer upo"stevamo, da $N_t \sim \Pois{\lambda t}$. Tako dobimo
+    \begin{align*}
+        \Var{S_t} 
+                &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2) - (\mu\lambda t)^2 \\
+                &= \sigma^2\lambda t + \mu^2\lambda t + \mu^2\lambda^2t^2 - \mu^2\lambda^2t^2\\
+                &= \lambda t\left(\sigma^2 + \mu^2\right).
     \end{align*}
 
     \noindent
     Inzra"cunajmo "se momentno rodovno funckijo CPP. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
     s.s $X_i$ za vsak $i$ in z $M_{S_t}$ momentno rodovno funkcijo CPP.
     \begin{align*}
-        M_{S_t}(u) &= \E\left[\exp\left[uS_t\right]\right] =
-                     \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right]\\
-                   &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
-                       \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right)\\ 
-                   &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
-                       \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right)\\
-                   &= e^{-\lambda t} + \sum_{k=1}^{\infty}
-                       \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\ 
-                   &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!}\\
-                   &= e^{\lambda t\left(M_X(u) - 1\right)}    
+        M_{S_t}(u) 
+                &= \E\left[\exp\left[uS_t\right]\right] =
+                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right]\\
+                &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
+                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right)\\ 
+                &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
+                    \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right)\\
+                &= e^{-\lambda t} + \sum_{k=1}^{\infty}
+                    \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\ 
+                &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!}\\
+                &= e^{\lambda t\left(M_X(u) - 1\right)}    
     \end{align*}
 
     Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
     $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija HPP enaka 
-    $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta rodovna in
-    karakteristi"cna funkcija CPP enaki
+    $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta 
+    karakteristi"cna in rodovna funkcija CPP enaki
 
-    \begin{align*}
-        \varphi_{S_t}(u) &= e^{\lambda t\left(e^{iu} - 1\right)} \ \text{in} \\
-        G_{S_t}(u) &= e^{\lambda t\left(e^{iu} - 1\right)}.
-    \end{align*} 
+    \begin{equation*}
+        \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)} \qquad \text{in} \qquad 
+        G_{S_t}(u) = e^{\lambda t\left(G_X(u) - 1\right)}.
+    \end{equation*} 
+
+    \subsection{Martingalska lastnost in kvdrati"cna variacija}
+        Spomnimo se, da je slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
+        martingal, "ce velja 
+        $$
+            \E\left[X_t\mid\F_s\right] = X_s
+        $$
+        za vsak $0\leq s \leq t$. Poka"zimo, da v splo"snem CPP ni martingal.
+
+        \begin{trditev}
+            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
+            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
+            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
+            \label{trd:CPPnimartingal}
+        \end{trditev}
+
+        \begin{proof}
+            Naj bo $0\leq s\leq t$. Potem velja
+            \begin{align*}
+                \E\left[S_t\mid\F_s\right] 
+                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
+                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
+                        &= \mu\lambda(t-s) + S_s
+            \end{align*}
+           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
+        \end{proof}
+
+
+        \begin{trditev}
+            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
+            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
+            Potem je proces 
+            $$
+                S_t - \mu\lambda t
+            $$
+            martingal.
+            \label{trd:CPPpostanemartingal}
+        \end{trditev}
+
+        \begin{proof}
+            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
+            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
+            \begin{align*}
+                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
+                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
+                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
+                        &= S_s - \mu\lambda s.
+            \end{align*}
+        \end{proof}
+
+        "Ce v nadaljevanju predpostavimo, da $\mu \neq 0$, lahko govorimo o kvadrati"cni 
+        variaciji CPP. 
+        \begin{definicija}
+            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. \textit{Kvadrati"cna variacija} procesa 
+            $(X_t)_{t\geq0}$ je definirana kot 
+            $$
+                \left<X\right>_t = \lim_{n\to\infty}\sum_{i=1}^{n}\left(X_{t_i} - X_{t_{i-1}}\right)^2,
+            $$
+            kjer je $0 = t_0 < t_1 < \ldots < t_n$ zaporedje "casovnih to"ck.
+            \label{def:kvadrVariacija}
+        \end{definicija}
 
 
 

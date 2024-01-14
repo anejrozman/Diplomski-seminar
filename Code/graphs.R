@@ -3,6 +3,7 @@
 # Code for generating graphs 
 
 library(ggplot2)
+library(dplyr)
 
 set.seed(42)
 
@@ -37,25 +38,26 @@ g1 = ggplot() +
             aes(x = time, y = value),
             size = 1,
             color = "red") +
-  geom_point(aes(x = samplePath$jumpTimes * 0:nSteps, y = -0.8),
+  geom_point(aes(x = samplePath$jumpTimes * 0:nSteps, y = -0.8,
+                 size = ifelse(samplePath$jumpTimes * 0:nSteps == 0 & -0.8 == -0.8, 0, 3)),
              shape = "x",
-             size = 3,
              color = "black") +
   geom_segment(data = data.frame(x = samplePath$jumpTimes * 0:nSteps,
                                  yend = samplePath$value) %>% 
-                 filter(x != 0),
+                 dplyr::filter(x != 0),
                aes(x = x, xend = x, y = 0, yend = yend), 
                linetype = "dashed",
                color = "black") +
   coord_cartesian(clip = 'off') +
   labs(title = lambda == 0.1~""~alpha == 20~" število korakov: 150",
        x = "Čas",
-       y = "Vrednost")
+       y = "Vrednost") +
+  scale_size_identity()
 
 g1
 
 # Saving graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GrapsAndPhotos/slika1.pdf",
+ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika1.pdf",
        g1,
        device = "pdf",
        width = 8,
