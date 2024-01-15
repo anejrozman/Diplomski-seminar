@@ -113,9 +113,9 @@ Ljubljana, \letnica}
 Prevod zgornjega povzetka v angle"s"cino.
 
 \vfill\noindent
-{\bf Math. Subj. Class. (2010):} 91G10 60G00 60G01  \\[1mm]
+{\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
 {\bf Klju"cne besede:} slu"cajni procesi, sestavljen Poissonov proces  \\[1mm]
-{\bf Keywords:} Stochastic processes, Lévy processes
+{\bf Keywords:} stochastic processes, compound Poisson process
 \pagebreak
 
 
@@ -334,12 +334,18 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{equation*} 
 
     \subsection{Martingalska lastnost in kvdrati"cna variacija}
-        Spomnimo se, da je slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
-        martingal, "ce velja 
-        $$
-            \E\left[X_t\mid\F_s\right] = X_s
-        $$
-        za vsak $0\leq s \leq t$. Poka"zimo, da v splo"snem CPP ni martingal.
+        
+        \begin{definicija}
+            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
+            martingal, "ce velja 
+            $$
+                \E\left[X_t\mid\F_s\right] = X_s
+            $$
+            a vsak $0\leq s \leq t$.
+            \label{def:martingal}
+        \end{definicija}
+
+        Poka"zimo, da v splo"snem CPP ni martingal.
 
         \begin{trditev}
             Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
@@ -393,6 +399,18 @@ Prevod zgornjega povzetka v angle"s"cino.
             kjer je $0 = t_0 < t_1 < \ldots < t_n$ zaporedje "casovnih to"ck.
             \label{def:kvadrVariacija}
         \end{definicija}
+
+        \subsection{"Cas prvega prehoda}
+        Postavimo si vpra"sanje, kdaj bo CPP prvi"c dosegel nek $a\in\R$. Seveda v primeru, "ce
+        so $X_i$ zvezno porazdeljene, je ta vrednost $0$. Lahko pa govorimo o tem, kadaj bo to
+        vrednost presegel. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ "cas prvega prehoda CPP. 
+        V tem poglavju bomo izra"cunali porazdelitev $T_a$.
+
+        "Ce pogledamo dogodek $\{T_a \leq t\}$, vidimo, da je to enako dogodku 
+        $\cup_{n = 1}^\infty\{S_{\tfrac{t}{n}} \geq a\}$.
+
+
+
 
 
 
