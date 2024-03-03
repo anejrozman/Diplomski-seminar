@@ -30,7 +30,7 @@ new = data.frame(
   gamma = c(0, 0),
   value = c(0, 0))
 
-samplePath <- rbind(new, samplePath[-1, , drop = FALSE])
+samplePath = rbind(new, samplePath[-1, , drop = FALSE])
 
 # Create ggplot
 g1 = ggplot() +
@@ -66,5 +66,7 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #----------------------------------------------------------------------------------#
 
 # Slika 2
+
+
 
 #----------------------------------------------------------------------------------#

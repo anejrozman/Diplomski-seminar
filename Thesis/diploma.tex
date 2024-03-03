@@ -14,6 +14,7 @@
 \usepackage{subcaption}
 \usepackage{bm}
 \usepackage{float}
+\usepackage{xcolor}
 \allowdisplaybreaks
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
@@ -62,6 +63,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\1}{\mathds{1}}
 \newcommand{\Pois}[1]{\text{Pois}(#1)}
@@ -125,10 +127,14 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     Poissonov proces "steje "stevilo prihodov v danem "casovnem intervalu, kjer narava prihodov 
     sledi dolo"cenim omejitvam. Sestavljen Poissonov proces, je podoben 
-    Poissonovemu, razen da je vsak prihod ute"zen z neko slu"cajno spremenljivko. Na primer, stranke, 
-    ki gredo v trgovino, sledijo Poissonovemu procesu, znesek denarja, ki ga porabijo, pa lahko 
-    sledi sestavljenemu Poissonovemu procesu. Slika \ref{fig:slika1} prikazuje primer trajktorije. 
-    Na osi $x$ je "cas, na osi $y$ pa kumulativna vsota vseh prihodov do tega "casovnega trenutka.
+    Poissonovemu, razen da je vsak prihod ute"zen z neko slu"cajno spremenljivko. Kot standarden
+    primer si lahko predstavljamo stranke, ki gredo v trgovino. Njihovi prihodi sledijo Poissonovemu 
+    procesu, znesek denarja, ki ga porabijo, pa sledi sestavljenemu Poissonovemu procesu.  
+    Predpostavimo, da strake, ki prihajajo v trgovino, sledijo Poissonovemu procesu z intenzivnostjo 
+    $\lambda = 0.1$ in da je koli"cina denarja, ki ga porabijo, porazdeljena eksponentno s parametrom 
+    $\alpha = 20$, torej na"sa trgovina ne omogo"ca vra"cil. Slika \ref{fig:slika1} prikazuje primer 
+    zaslu"zka dneva poslovanja. Na osi $x$ je "cas, na osi $y$ pa kumulativna vsota vseh prihodov do nekega 
+    trenutka v "casu.
 
     \begin{figure}[H]
         \centering
@@ -140,38 +146,47 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{figure}
     
     \noindent
-    Hitro vidimo, da je to zelo zanimiva ideja slu"cajnega
-    procesa, ki ima veliko potencialnih uporab. Mogoce:V delu se bomo osredoto"cili na njegovo uporabo v 
-    financah. Za za"cetek definirajmo osnovne pojme ter Sestavljen Poissonov proces.
+\textcolor{red}{
+    Vidimo, da je to zelo zanimiva ideja slu"cajnega
+    procesa, ki ima veliko potencialnih uporab za modeliranje razli"cnih dogodkov. Na primer zahtevke 
+    v zavarovalnici, "stevilo poivedb, ki jih prejema stre"znik, "spremembo v ceni nekega finan"cnega 
+    instrumenta in mnoge druge. V delu bomo izpeljali osnovne lastnosti procesa ter se osredoto"cili 
+    na njegovo uporabo v financah. Za za"cetek definirajmo osnovne pojme ter Sestavljen Poissonov proces.
+}
 
     \begin{definicija}
         Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$
-        neprazna indeksna množica ter $(S, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, 
-        parametriziran s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to S$,
+        neprazna indeksna množica ter $(E, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, 
+        parametriziran s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to E$,
          ki so $(\mathcal{F}, \Sigma)$-merljive za vsak $t \in T$.
         \label{def:slucProc}
     \end{definicija}
 
     \begin{opomba}
-        Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$.
-        V tem primeru govorimo o zveznem slu"cnem procesu.
-        \label{op:TCas}
+        Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$ in da s.s.\
+        zavzemajo vrednosti v realnih "stevili, torej $(E, \Sigma) = (\R, \B_{\R})$, kjer $\B_\R$ 
+        predstavlja Borelovo $\sigma-$algebro na $\R$. Od tu dalje, "ce ni druga"ce navedeno, bomo 
+        privzeli, da so s.s.\ definirane na nekem verjetnostnem prostoru 
+        $(\Omega, \mathcal{F}, \mathbb{P})$ in zavzemajo vrednosti v $(\R, \B_{\R})$.
+        \label{op:Konvencije}
     \end{opomba}
 
+\textcolor{red}{
     \begin{definicija}
         Za fiksen $\omega \in \Omega$ je preslikava 
         $[0, \infty) \rightarrow \mathbb{R}; \ t \mapsto X_t(\omega)$ 
         \textit{trajektorija} oziroma \textit{realizacija} slučajnega procesa $(X_t)_{t\geq0}$.
         \label{def:realizac}
     \end{definicija}
-
+}
+\textcolor{red}{
     \begin{opomba}
         Na slu"cajni proces lahko gledamo tudi kot na predpis, ki nam iz vor"cnega prostora 
         $\Omega$ priredi slu"cajno funkcijo
         $(X_t(\omega))_{t\geq0}: [0, \infty) \rightarrow \mathbb{R}$.
         \label{op:slucFunkc}
     \end{opomba}
-
+}
     \begin{definicija}
         Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ definiramo
         \textit{prirastek procesa} $X_t - X_s$ na intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima 
@@ -202,12 +217,12 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{enumerate}
         \label{def:HPP}
     \end{definicija}
-
+\textcolor{red}{
     \begin{opomba}
-        Vidimo, da v definiciji ne zahtevamo, da so skoki procesa le +1... 
+        Vidimo, da v definiciji ne zahtevamo, da so skoki procesa le +1. To sledi iz...
         \label{op:skoki}
     \end{opomba}
-
+}
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
         Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $N_t$) in enako 
@@ -226,8 +241,9 @@ Prevod zgornjega povzetka v angle"s"cino.
         \label{op:CPPHPPPovezava}
     \end{opomba}
 
-    V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in 
-    sestavljenemu Poissonovemu procesu CPP (angl. Compound Poisson Process).
+    V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in ga
+    ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa CPP (angl. Compound Poisson 
+    Process) in ga ozna"cevali z $(S_t)_{t\geq0}$.
 
 \section{Lastnosti sestavljenega Poissonovega procesa}
 
@@ -256,10 +272,6 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{align*}
     \end{proof}
 
-    \begin{definicija}
-        neki
-    \end{definicija}
-
     Izra"cunajmo pri"cakovano vrednost in varianco CPP. Naj bo $(N_t)_{t\geq 0}$ HPP z 
     intenzivnostjo $\lambda$ in naj bo $\mu = \E\left[X_i\right]$ pri"cakovana vrednost 
     slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
@@ -277,7 +289,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     Za izra"cun variance potrebujemo dodatno predpostavko, da imajo slu"cajne spremenljivke $X_i$ 
     drugi moment. V tem primeru ozna"cimo $\Var{X_i} = \sigma^2$. Velja 
     $\Var{S_t} = \E\left[S_t^2\right] - \E\left[S_t\right]^2$, torej potrebujemo izra"cunati se 
-    drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost
+    drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost.
     \begin{align*}
         \E\left[S_t^2\right] 
                 &= \sum_{k=0}^\infty\E\left[S_t^2\mid N_t = k\right]\Prob\left(N_t=k\right) \\
@@ -290,7 +302,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \begin{align*}
         \E\left[X_i^2\right] = \sigma^2 + \mu^2.
     \end{align*}
-    Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se poenostavi v 
+    Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se tako poenostavi v 
     $k\sigma^2 + k^2\mu^2$, torej 
     \begin{align*}
         \E\left[S_t^2\right] 
@@ -341,7 +353,7 @@ Prevod zgornjega povzetka v angle"s"cino.
             $$
                 \E\left[X_t\mid\F_s\right] = X_s
             $$
-            a vsak $0\leq s \leq t$.
+            za vsak $0\leq s \leq t$.
             \label{def:martingal}
         \end{definicija}
 
@@ -388,8 +400,9 @@ Prevod zgornjega povzetka v angle"s"cino.
             \end{align*}
         \end{proof}
 
-        "Ce v nadaljevanju predpostavimo, da $\mu \neq 0$, lahko govorimo o kvadrati"cni 
-        variaciji CPP. 
+        "Ce v nadaljevanju predpostavimo, da imajo $X_i$ kon"cen drugi moment, lahko govorimo o 
+        kvadrati"cni variaciji CPP.
+\textcolor{red}{
         \begin{definicija}
             Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. \textit{Kvadrati"cna variacija} procesa 
             $(X_t)_{t\geq0}$ je definirana kot 
@@ -399,17 +412,16 @@ Prevod zgornjega povzetka v angle"s"cino.
             kjer je $0 = t_0 < t_1 < \ldots < t_n$ zaporedje "casovnih to"ck.
             \label{def:kvadrVariacija}
         \end{definicija}
-
+}
+\textcolor{red}{
         \subsection{"Cas prvega prehoda}
-        Postavimo si vpra"sanje, kdaj bo CPP prvi"c dosegel nek $a\in\R$. Seveda v primeru, "ce
-        so $X_i$ zvezno porazdeljene, je ta vrednost $0$. Lahko pa govorimo o tem, kadaj bo to
+        Postavimo si vpra"sanje, kdaj bo CPP prvi"c dosegel nek $a\in\R$. Seveda je v primeru, ko
+        so $X_i$ zvezno porazdeljene, ta vrednost enaka $0$. Lahko pa govorimo o tem, kadaj bo to
         vrednost presegel. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ "cas prvega prehoda CPP. 
         V tem poglavju bomo izra"cunali porazdelitev $T_a$.
-
         "Ce pogledamo dogodek $\{T_a \leq t\}$, vidimo, da je enak dogodku 
         $\cup_{n = 1}^\infty\{S_{\tfrac{t}{n}} \geq a\}$. Ker vemo 
-
-
+}
 
 
 
