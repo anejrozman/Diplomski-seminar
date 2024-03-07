@@ -55,7 +55,7 @@
 \newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
 \newcommand{\imeavtorja}{Anej Rozman} % ime avtorja
 \newcommand{\imementorja}{~doc.~dr. Martin Raič} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Potencialni naslov:Sestavljen Poissonov proces in njegova uporaba v financah} % naslov dela
+\newcommand{\naslovdela}{Sestavljeni Poissonov proces in njegova uporaba v financah} % naslov dela
 \newcommand{\letnica}{2024} % letnica diplome
 
 % Moji ukazi
@@ -75,7 +75,6 @@
 
 \begin{document}
 
-% od tod do povzetka ne spreminjaj nicesar
 \thispagestyle{empty}
 \noindent{\large
 UNIVERZA V LJUBLJANI\\[1mm]
@@ -126,11 +125,11 @@ Prevod zgornjega povzetka v angle"s"cino.
 \section{Uvod}
 
     Poissonov proces "steje "stevilo prihodov v danem "casovnem intervalu, kjer narava prihodov 
-    sledi dolo"cenim omejitvam. Sestavljen Poissonov proces, je podoben 
+    sledi dolo"cenim omejitvam. Sestavljeni Poissonov proces je podoben 
     Poissonovemu, razen da je vsak prihod ute"zen z neko slu"cajno spremenljivko. Kot standarden
     primer si lahko predstavljamo stranke, ki gredo v trgovino. Njihovi prihodi sledijo Poissonovemu 
     procesu, znesek denarja, ki ga porabijo, pa sledi sestavljenemu Poissonovemu procesu.  
-    Predpostavimo, da strake, ki prihajajo v trgovino, sledijo Poissonovemu procesu z intenzivnostjo 
+    Predpostavimo, da stranke, ki prihajajo v trgovino, sledijo Poissonovemu procesu z intenzivnostjo 
     $\lambda = 0.1$ in da je koli"cina denarja, ki ga porabijo, porazdeljena eksponentno s parametrom 
     $\alpha = 20$, torej na"sa trgovina ne omogo"ca vra"cil. Slika \ref{fig:slika1} prikazuje primer 
     zaslu"zka dneva poslovanja. Na osi $x$ je "cas, na osi $y$ pa kumulativna vsota vseh prihodov do nekega 
@@ -171,14 +170,14 @@ Prevod zgornjega povzetka v angle"s"cino.
         \label{op:Konvencije}
     \end{opomba}
 
-\textcolor{red}{
+
     \begin{definicija}
         Za fiksen $\omega \in \Omega$ je preslikava 
         $[0, \infty) \rightarrow \mathbb{R}; \ t \mapsto X_t(\omega)$ 
         \textit{trajektorija} oziroma \textit{realizacija} slučajnega procesa $(X_t)_{t\geq0}$.
         \label{def:realizac}
     \end{definicija}
-}
+
 \textcolor{red}{
     \begin{opomba}
         Na slu"cajni proces lahko gledamo tudi kot na predpis, ki nam iz vor"cnega prostora 
@@ -319,8 +318,10 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{align*}
 
     \noindent
-    Inzra"cunajmo "se momentno rodovno funckijo CPP. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
-    s.s $X_i$ za vsak $i$ in z $M_{S_t}$ momentno rodovno funkcijo CPP.
+    Pojavi se vpra"sanje, kako pa je $S_t$ porazdeljena? Na to bomo odgovorili s pomo"cjo karakteristi"cne
+    funkcije. Naj bodo $X_1, X_2, \dots$ n.e.p. s.s.  z enako porazdelitvijo kot $X$.
+    Izra"cunajmo momentno rodovno funckijo CPP. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
+    s.s $X$ in z $M_{S_t}$ momentno rodovno funkcijo CPP.
     \begin{align*}
         M_{S_t}(u) 
                 &= \E\left[\exp\left[uS_t\right]\right] =
@@ -345,8 +346,34 @@ Prevod zgornjega povzetka v angle"s"cino.
         G_{S_t}(u) = e^{\lambda t\left(G_X(u) - 1\right)}.
     \end{equation*} 
 
+    \noindent
+    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo CPP, saj je ta vedno definirana 
+    za vsak $u\in\R$.
+
+    Poka"zimo, da lahko CPP alternativno zapi"semo kot linearno kombinacijo neodvisnih Poissonovih
+    slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$ neodvisne s.s. porazdeljene 
+    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo z $\varphi_{\Delta}(u)$ 
+    karakteristi"cno funkcijo slu"cajne spremenljivke $\Delta = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$.
+    Potem po neodvisnosti velja
+    \begin{align*}
+        \varphi_{\Delta}(u) 
+                &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
+                &= \prod_{j=1}^{n}e^{\lambda_j\left(e^{a_j i u} - 1\right)} \\
+                &= e^{\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)}.
+    \end{align*}
+
+    \noindent
+    "Ce sedaj zapi"semo $\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)$ kot 
+    $\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)$, za neko ustrezno mero $\nu$, dobimo 
+    \begin{align*}
+        \varphi_{\Delta}(u)
+            &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
+            &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
+    \end{align*}
+\textcolor{red}{
     \subsection{Martingalska lastnost in kvdrati"cna variacija}
-        
+}
+\textcolor{red}{  
         \begin{definicija}
             Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
             martingal, "ce velja 
@@ -356,16 +383,19 @@ Prevod zgornjega povzetka v angle"s"cino.
             za vsak $0\leq s \leq t$.
             \label{def:martingal}
         \end{definicija}
-
+}
+\textcolor{red}{
         Poka"zimo, da v splo"snem CPP ni martingal.
-
+}
+\textcolor{red}{
         \begin{trditev}
             Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
             in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
             Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
             \label{trd:CPPnimartingal}
         \end{trditev}
-
+}
+\textcolor{red}{
         \begin{proof}
             Naj bo $0\leq s\leq t$. Potem velja
             \begin{align*}
@@ -376,8 +406,8 @@ Prevod zgornjega povzetka v angle"s"cino.
             \end{align*}
            Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
         \end{proof}
-
-
+}
+\textcolor{red}{
         \begin{trditev}
             Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
             in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
@@ -388,7 +418,8 @@ Prevod zgornjega povzetka v angle"s"cino.
             martingal.
             \label{trd:CPPpostanemartingal}
         \end{trditev}
-
+}
+\textcolor{red}{
         \begin{proof}
             Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
             pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
@@ -399,9 +430,11 @@ Prevod zgornjega povzetka v angle"s"cino.
                         &= S_s - \mu\lambda s.
             \end{align*}
         \end{proof}
-
+}
+\textcolor{red}{
         "Ce v nadaljevanju predpostavimo, da imajo $X_i$ kon"cen drugi moment, lahko govorimo o 
         kvadrati"cni variaciji CPP.
+}
 \textcolor{red}{
         \begin{definicija}
             Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. \textit{Kvadrati"cna variacija} procesa 
