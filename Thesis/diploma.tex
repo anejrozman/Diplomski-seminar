@@ -31,10 +31,10 @@
 % ukazi za matematicna okolja
 \theoremstyle{definition} % tekst napisan pokoncno
 \newtheorem{definicija}{Definicija}[section]
-\newtheorem{primer}[definicija]{Primer}
+\newtheorem{zgled}[definicija]{Zgled}
 \newtheorem{opomba}[definicija]{Opomba}
 
-\renewcommand\endprimer{\hfill$\diamondsuit$}
+\renewcommand\endzgled{\hfill$\diamondsuit$}
 
 
 \theoremstyle{plain} % tekst napisan posevno
@@ -242,7 +242,8 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in ga
     ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa CPP (angl. Compound Poisson 
-    Process) in ga ozna"cevali z $(S_t)_{t\geq0}$.
+    Process) in ga ozna"cevali s $(S_t)_{t\geq0}$. "Ce ni druga"ce navedeno, bo $\lambda$ ozna"cevala
+    njuno intenzivnost.
 
 \section{Lastnosti sestavljenega Poissonovega procesa}
 
@@ -350,13 +351,30 @@ Prevod zgornjega povzetka v angle"s"cino.
     V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo CPP, saj je ta vedno definirana 
     za vsak $u\in\R$.
 
-    Poka"zimo, da lahko CPP alternativno zapi"semo kot linearno kombinacijo neodvisnih Poissonovih
-    slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$ neodvisne s.s. porazdeljene 
-    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo z $\varphi_{\Delta}(u)$ 
-    karakteristi"cno funkcijo slu"cajne spremenljivke $\Delta = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$.
-    Potem po neodvisnosti velja
+    \noindent
+    Sedaj se posvetimo vpra"sanju, kako je porazdeljena $S_t$? Iz definicije HPP vemo, da je 
+    $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna spremenljivka z intenzivnostjo 
+    $\lambda t$. Fiksiramo $t\geq0$ in ra"cunamo
+
     \begin{align*}
-        \varphi_{\Delta}(u) 
+        F_{S_t}(x) = \Prob(S_t \leq x) 
+        &= \sum_{k=0}^\infty \Prob(S_t \leq x \mid N_t = k)\Prob(N_t = k) \\
+        & = \sum_{k=0}^\infty \Prob(\sum_{i=1}^k X_i \leq x)\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
+        & = \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
+    \end{align*}
+
+    \noindent
+    kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
+    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv. 
+    Poka"zimo, da je CPP v resnici porazdeljena, kot limita linearne kombinacije neodvisnih Poissonovih
+    slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$ neodvisne s.s. porazdeljene 
+    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo s $\varphi_{Y}(u)$ 
+    karakteristi"cno funkcijo slu"cajne spremenljivke $Y = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$.
+    Potem po neodvisnosti velja
+
+
+    \begin{align*}
+        \varphi_{Y}(u) 
                 &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
                 &= \prod_{j=1}^{n}e^{\lambda_j\left(e^{a_j i u} - 1\right)} \\
                 &= e^{\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)}.
@@ -366,10 +384,24 @@ Prevod zgornjega povzetka v angle"s"cino.
     "Ce sedaj zapi"semo $\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)$ kot 
     $\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)$, za neko ustrezno mero $\nu$, dobimo 
     \begin{align*}
-        \varphi_{\Delta}(u)
+        \varphi_{Y}(u)
             &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
             &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
     \end{align*}
+
+
+
+    \begin{zgled}
+        "Ce pogledamo konkreten primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
+        s parametrom $\alpha$, lahko eksplicitno izra"cunamo porazdelitev $S_t$. Za $t\geq 0$
+        in $x \geq 0$ velja
+        \begin{align*}
+            F_{S_t}(x) = \Prob(S_t \leq x)
+        \end{align*}
+    \end{zgled}
+
+
+
 \textcolor{red}{
     \subsection{Martingalska lastnost in kvdrati"cna variacija}
 }
