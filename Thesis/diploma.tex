@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{amsart}
+\documentclass[12pt, a4paper, reqno]{amsart}
 % ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
 \usepackage[slovene]{babel}
 \usepackage[T1]{fontenc}
@@ -241,7 +241,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{opomba}
 
     V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in ga
-    ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa CPP (angl. Compound Poisson 
+    ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa $CPP$ (angl. Compound Poisson 
     Process) in ga ozna"cevali s $(S_t)_{t\geq0}$. "Ce ni druga"ce navedeno, bo $\lambda$ ozna"cevala
     njuno intenzivnost.
 
@@ -250,7 +250,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     V tem poglavju si bomo ogledali osnovne lastnosti sestavljenega Poissonovega procesa. Pogledali
     si bomo... 
     \begin{trditev}
-        CPP ima neodvisne in stacionarne prirastke.
+        $CPP$ ima neodvisne in stacionarne prirastke.
         \label{trd:neodvPrirCPP}
     \end{trditev}
 
@@ -272,7 +272,7 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{align*}
     \end{proof}
 
-    Izra"cunajmo pri"cakovano vrednost in varianco CPP. Naj bo $(N_t)_{t\geq 0}$ HPP z 
+    Izra"cunajmo pri"cakovano vrednost in varianco $CPP$. Naj bo $(N_t)_{t\geq 0}$ HPP z 
     intenzivnostjo $\lambda$ in naj bo $\mu = \E\left[X_i\right]$ pri"cakovana vrednost 
     slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
     $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
@@ -319,10 +319,10 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{align*}
 
     \noindent
-    Pojavi se vpra"sanje, kako pa je $S_t$ porazdeljena? Na to bomo odgovorili s pomo"cjo karakteristi"cne
-    funkcije. Naj bodo $X_1, X_2, \dots$ n.e.p. s.s.  z enako porazdelitvijo kot $X$.
-    Izra"cunajmo momentno rodovno funckijo CPP. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
-    s.s $X$ in z $M_{S_t}$ momentno rodovno funkcijo CPP.
+    Pojavi se vpra"sanje, kako pa je $S_t$ porazdeljena? Na to bomo odgovorili s pomo"cjo rodovnih
+    funkcij. Naj bodo $X_1, X_2, \dots$ n.e.p. s.s.  z enako porazdelitvijo kot $X$.
+    Izra"cunajmo momentno rodovno funckijo $CPP$. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
+    s.s $X$ in z $M_{S_t}$ momentno rodovno funkcijo $CPP$.
     \begin{align*}
         M_{S_t}(u) 
                 &= \E\left[\exp\left[uS_t\right]\right] =
@@ -340,7 +340,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
     $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija HPP enaka 
     $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta 
-    karakteristi"cna in rodovna funkcija CPP enaki
+    karakteristi"cna in rodovna funkcija $CPP$ enaki
 
     \begin{equation*}
         \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)} \qquad \text{in} \qquad 
@@ -348,7 +348,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{equation*} 
 
     \noindent
-    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo CPP, saj je ta vedno definirana 
+    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
     za vsak $u\in\R$.
 
     \noindent
@@ -366,30 +366,55 @@ Prevod zgornjega povzetka v angle"s"cino.
     \noindent
     kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
     posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv. 
-    Poka"zimo, da je CPP v resnici porazdeljena, kot limita linearne kombinacije neodvisnih Poissonovih
+    Poka"zimo, da je $CPP$ v resnici porazdeljena, kot limita linearne kombinacije neodvisnih Poissonovih
     slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$ neodvisne s.s. porazdeljene 
-    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo s $\varphi_{Y}(u)$ 
-    karakteristi"cno funkcijo slu"cajne spremenljivke $Y = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$.
+    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo s $\varphi_{Z_n}(u)$ 
+    karakteristi"cno funkcijo slu"cajne spremenljivke $Z_n = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za neke 
+    $a_1, a_2, \dots, a_n \in \R$.
     Potem po neodvisnosti velja
 
 
     \begin{align*}
-        \varphi_{Y}(u) 
+        \varphi_{Z_n}(u) 
                 &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
                 &= \prod_{j=1}^{n}e^{\lambda_j\left(e^{a_j i u} - 1\right)} \\
                 &= e^{\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)}.
     \end{align*}
 
     \noindent
-    "Ce sedaj zapi"semo $\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)$ kot 
-    $\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)$, za neko ustrezno mero $\nu$, dobimo 
+    "Ce sedaj po"sljemo $n \to \infty$, dobimo
+    \begin{align}
+        \varphi_{Z}(u) := \lim_{n\to\infty}\varphi_{Z_n}(u) = e^{\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)}.
+        \label{eq:karFunkcVrste}
+    \end{align}
+
+    \noindent
+    Kot smo izpeljali zgoraj je karakteristi"cna funkcija $CPP$ podana s predpisom
+
     \begin{align*}
-        \varphi_{Y}(u)
-            &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
-            &= e^{\int_{\R}(\lambda_j\left(e^{i u}-1\right)) \nu(du)}\\
+        \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)}, 
     \end{align*}
 
+    \noindent
+    kar lahko zapi"semo kot 
 
+    \begin{align*}
+        \varphi_{S_t}(u) = e^{\lambda t\int_{\R}\left(e^{i u z} - 1\right) \mu(dz)},
+    \end{align*}
+
+    \noindent
+    kjer je $\mu := X*\Prob$ potisk mere naprej po s.s.\ $X$. Prav tako lahko \ref{eq:karFunkcVrste} zapi"semo
+    kot 
+
+    \begin{align*}
+        \varphi_{Z}(u) = e^{\int_{\R}\left(e^{i u x} - 1\right)\nu(dx)},
+    \end{align*}
+
+    \noindent
+    Za neko ustrezno mero $\nu$. Vidimo, da ko po"sljemo $n\to \infty$, za ustrezen izbor 
+    $a_1, a_2, \dots$ in $\lambda_1, \lambda_2, \dots$ karakteristi"cna funkcija 
+    vrste $Z_n$ konvergira h karakteristi"cni funkciji $S_t$. Torej po Lévijevem izreku o zveznosti 
+    sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
 
     \begin{zgled}
         "Ce pogledamo konkreten primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
@@ -402,10 +427,9 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 
 
-\textcolor{red}{
-    \subsection{Martingalska lastnost in kvdrati"cna variacija}
-}
-\textcolor{red}{  
+
+    \subsection{$CPP$ kot martingal}
+
         \begin{definicija}
             Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
             martingal, "ce velja 
@@ -415,19 +439,16 @@ Prevod zgornjega povzetka v angle"s"cino.
             za vsak $0\leq s \leq t$.
             \label{def:martingal}
         \end{definicija}
-}
-\textcolor{red}{
-        Poka"zimo, da v splo"snem CPP ni martingal.
-}
-\textcolor{red}{
+
+        Poka"zimo, da v splo"snem $CPP$ ni martingal.
+
         \begin{trditev}
-            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
+            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
             in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
             Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
             \label{trd:CPPnimartingal}
         \end{trditev}
-}
-\textcolor{red}{
+
         \begin{proof}
             Naj bo $0\leq s\leq t$. Potem velja
             \begin{align*}
@@ -438,8 +459,12 @@ Prevod zgornjega povzetka v angle"s"cino.
             \end{align*}
            Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
         \end{proof}
-}
-\textcolor{red}{
+
+        \begin{opomba}
+            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
+            $S_t$ supermartingal.
+        \end{opomba}
+
         \begin{trditev}
             Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
             in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
@@ -450,8 +475,7 @@ Prevod zgornjega povzetka v angle"s"cino.
             martingal.
             \label{trd:CPPpostanemartingal}
         \end{trditev}
-}
-\textcolor{red}{
+
         \begin{proof}
             Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
             pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
@@ -462,31 +486,43 @@ Prevod zgornjega povzetka v angle"s"cino.
                         &= S_s - \mu\lambda s.
             \end{align*}
         \end{proof}
-}
-\textcolor{red}{
-        "Ce v nadaljevanju predpostavimo, da imajo $X_i$ kon"cen drugi moment, lahko govorimo o 
-        kvadrati"cni variaciji CPP.
-}
-\textcolor{red}{
-        \begin{definicija}
-            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. \textit{Kvadrati"cna variacija} procesa 
-            $(X_t)_{t\geq0}$ je definirana kot 
-            $$
-                \left<X\right>_t = \lim_{n\to\infty}\sum_{i=1}^{n}\left(X_{t_i} - X_{t_{i-1}}\right)^2,
-            $$
-            kjer je $0 = t_0 < t_1 < \ldots < t_n$ zaporedje "casovnih to"ck.
-            \label{def:kvadrVariacija}
-        \end{definicija}
-}
-\textcolor{red}{
+
         \subsection{"Cas prvega prehoda}
-        Postavimo si vpra"sanje, kdaj bo CPP prvi"c dosegel nek $a\in\R$. Seveda je v primeru, ko
-        so $X_i$ zvezno porazdeljene, ta vrednost enaka $0$. Lahko pa govorimo o tem, kadaj bo to
-        vrednost presegel. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ "cas prvega prehoda CPP. 
-        V tem poglavju bomo izra"cunali porazdelitev $T_a$.
-        "Ce pogledamo dogodek $\{T_a \leq t\}$, vidimo, da je enak dogodku 
-        $\cup_{n = 1}^\infty\{S_{\tfrac{t}{n}} \geq a\}$. Ker vemo 
-}
+        Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
+        $a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
+        "cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
+        "Ce pogledamo dogodek $\{T_a \leq t\}$.
+
+\section{Cramér-Lundbergov model}
+    V nadaljevanju se bomo usmerili v Cramér-Ludenbergov model. Ta osnovni model za zavarovalni"ska
+    tveganja je v svoji disretaciji leta 1903 prvi predstavil Fillip Lundeberg in tako postavil temelje
+    za teorijo zavarovalni"stva. Kasneje je model je v tridesetih letih prej"snjega stoletja dopolnil 
+    Harald Cramér. Osredoto"cili se bomo na koncept verjetnosti propada in njeno izražanje ali približevanje,
+    ki se obravnava kot orodje za ocenjevanje tveganosti zavarovalniškega posla.
+
+    \begin{definicija}
+        Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ n.e.p. s.s.
+        z enako porazdelitvijo kot $X$ in $\E\left[X\right] = \mu$ ter $\Var{X} = \sigma^2$. Potem 
+        \textit{proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
+        \begin{align*}
+            U_t = u + ct - S_t,
+        \end{align*}
+        kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $c>0$ stopnja prihodkov iz premij. 
+        \label{def:procesTveganja}
+    \end{definicija}
+
+    Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
+
+    \begin{definicija}
+        \textit{Verjetnost propada} v Cramér-Lundbergovem modelu je definirana kot
+        \begin{align*}
+            \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0).
+        \end{align*}
+        \label{def:verjetnostPropada}
+    \end{definicija}
+
+
+
 
 
 
