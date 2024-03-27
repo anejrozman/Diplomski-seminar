@@ -373,7 +373,6 @@ Prevod zgornjega povzetka v angle"s"cino.
     $a_1, a_2, \dots, a_n \in \R$.
     Potem po neodvisnosti velja
 
-
     \begin{align*}
         \varphi_{Z_n}(u) 
                 &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
@@ -422,6 +421,8 @@ Prevod zgornjega povzetka v angle"s"cino.
         in $x \geq 0$ velja
         \begin{align*}
             F_{S_t}(x) = \Prob(S_t \leq x)
+            &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+            &= \sum_{k=0}^\infty \frac{\alpha^kx^{k-1}e^{-\alpha x}}{(k-2)!}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
         \end{align*}
     \end{zgled}
 
@@ -514,12 +515,27 @@ Prevod zgornjega povzetka v angle"s"cino.
     Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
 
     \begin{definicija}
-        \textit{Verjetnost propada} v Cramér-Lundbergovem modelu je definirana kot
+        Za $0<T\leq\infty$ je \textit{Verjetnost propada} v Cramér-Lundbergovem modelu definirana kot
         \begin{align*}
-            \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0).
+            \psi(u, T) = \Prob(U_t < 0 \text{ za nek } T \geq t > 0), 
         \end{align*}
-        \label{def:verjetnostPropada}
+        "ce gledamo proces na kon"cnem intervalu in kot
+        \begin{align*}
+            \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0),
+        \end{align*}
+        "ce gledamo proces na neskon"cnem intervalu. Ozna"cimo "se 
+        \begin{align*}
+            \tau(T)=\inf\{t\mid T\geq t\geq, U_t <0 0\}, 
+        \end{align*}
+        kot \textit{"cas propada}, kjer se dr"zimo konvencije, da je $\inf\emptyset = \infty$ in 
+        pi"semo $\tau = \tau(\infty)$ za "cas propada na neskon"cnem intervalu.
+        \label{def:verjetnostPropadaInCasiPropada}   
     \end{definicija}
+
+    Seveda takoj lahko opazimo, da je $\E\left[U_t\right] = u + ct - \E\left[S_t\right] = u + ct - \mu\lambda t$.
+    Kar nam da prvo intuicijo o stopnji prihodkov premij $c$.
+
+
 
 
 
