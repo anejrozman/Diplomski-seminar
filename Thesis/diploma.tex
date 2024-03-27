@@ -323,19 +323,19 @@ Prevod zgornjega povzetka v angle"s"cino.
     funkcij. Naj bodo $X_1, X_2, \dots$ n.e.p. s.s.  z enako porazdelitvijo kot $X$.
     Izra"cunajmo momentno rodovno funckijo $CPP$. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
     s.s $X$ in z $M_{S_t}$ momentno rodovno funkcijo $CPP$.
-    \begin{align*}
+    \begin{align}
         M_{S_t}(u) 
-                &= \E\left[\exp\left[uS_t\right]\right] =
-                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right]\\
-                &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
-                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right)\\ 
-                &= \Prob\left(N_t = 0\right) + \sum_{k=1}^{\infty}
-                    \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right)\\
-                &= e^{-\lambda t} + \sum_{k=1}^{\infty}
-                    \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\ 
-                &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!}\\
-                &= e^{\lambda t\left(M_X(u) - 1\right)}    
-    \end{align*}
+                &= \E\left[\exp\left[uS_t\right]\right] = \nonumber
+                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right] \nonumber\\
+                &= \sum_{k=0}^{\infty}
+                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right) \nonumber \\ 
+                &= \sum_{k=0}^{\infty}
+                    \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right) \nonumber \\
+                &= \sum_{k=0}^{\infty}
+                    \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS_t}\\ 
+                &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!} \nonumber \\
+                &= e^{\lambda t\left(M_X(u) - 1\right)} \nonumber
+    \end{align}
 
     Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
     $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija HPP enaka 
@@ -348,8 +348,30 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{equation*} 
 
     \noindent
+    Saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
+    njeni momentno rodovni funkciji izvrednoteni v $iu$, torej $\varphi_Y(u) = G_Y(iu)$. Rodovna pa 
+    izverdnotena v $\ln(u)$, torej $G_Y(u) = M_Y(\ln(u))$, "ce obstajata.
     V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
-    za vsak $u\in\R$.
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med njimi.
+
+    \begin{trditev}
+        Naj bodo $X_1, X_2, \dots$ n.e.p. s.s. z enako porazdelitvijo kot $X$ in
+         $(S_t)_{t\geq 0}\ CPP$ ter $(N_t)_{t\geq 0}\ HPP$ z intenzivnostjo $\lambda$ neodvisna.
+        Potem za fiksen $t\geq0$ velja
+        \begin{align*}
+            \varphi_{S_t}(u) = G_{N_t}\left(\varphi_{X}(u)\right).
+        \end{align*}
+        \label{trd:povezavaRodovneKarkateristicne}
+    \end{trditev}
+
+    \begin{proof}
+        Po ena"cbi (\ref{eq:MomentS_t}) velja, da je $\varphi_{S_t}(u)$ enaka
+        \begin{align*}
+            \varphi_{S_t}(u) &= \sum_{k=0}^{\infty}
+            \varphi_X(u)^n\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
+            &= G_{N_t}\left(\varphi_X(u)\right).
+        \end{align*}
+    \end{proof}
 
     \noindent
     Sedaj se posvetimo vpra"sanju, kako je porazdeljena $S_t$? Iz definicije HPP vemo, da je 
@@ -365,56 +387,111 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \noindent
     kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
-    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv. 
-    Poka"zimo, da je $CPP$ v resnici porazdeljena, kot limita linearne kombinacije neodvisnih Poissonovih
-    slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$ neodvisne s.s. porazdeljene 
-    $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$. Ozna"cimo s $\varphi_{Z_n}(u)$ 
-    karakteristi"cno funkcijo slu"cajne spremenljivke $Z_n = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za neke 
-    $a_1, a_2, \dots, a_n \in \R$.
+    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam da intuicije o 
+    porazdelitvi $S_t$. Poka"zimo pa, da je $CPP$ v resnici porazdeljena, kot limita linearne 
+    kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$
+    neodvisne s.s. porazdeljene $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$ za 
+    poljubne $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. 
+    Ozna"cimo s $\varphi_{Z_n}(u)$ karakteristi"cno funkcijo slu"cajne spremenljivke 
+    $Z_n = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$.
     Potem po neodvisnosti velja
-
     \begin{align*}
         \varphi_{Z_n}(u) 
                 &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
-                &= \prod_{j=1}^{n}e^{\lambda_j\left(e^{a_j i u} - 1\right)} \\
-                &= e^{\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)}.
+                &= \prod_{j=1}^{n}\exp\left[\lambda_j\left(e^{a_j i u} - 1\right)\right] \\
+                &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right].
     \end{align*}
 
     \noindent
-    "Ce sedaj po"sljemo $n \to \infty$, dobimo
-    \begin{align}
-        \varphi_{Z}(u) := \lim_{n\to\infty}\varphi_{Z_n}(u) = e^{\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)}.
-        \label{eq:karFunkcVrste}
-    \end{align}
+    Naj bo sedaj $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ neodvisne s.s. (neodvisne 
+    med sabo in od $N$) enako porazdeljene kot
+
+    $$ X\sim
+    \begin{pmatrix}
+        a_1 & a_2 &  \dots & a_n \\
+        \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots & \tfrac{\lambda_n}{\lambda}
+    \end{pmatrix}.
+    $$
 
     \noindent
-    Kot smo izpeljali zgoraj je karakteristi"cna funkcija $CPP$ podana s predpisom
-
+    Definiramo $Z_n'=\sum_{j=1}^{N}X_j$. Poka"zimo, da sta $Z_n$ in $Z_n'$ enako porazdeljeni.
+    Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
     \begin{align*}
-        \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)}, 
+        \varphi_{Z_n'}(u) 
+                &= G_N\left(\varphi_X(u)\right) \\
+                &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
+                & = \exp\left[\lambda\left(\sum_j^n\frac{\lambda_j}{\lambda}e^{iua_j} - 1\right)\right]\\
+                &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right] = \varphi_{Z_n}(u).
     \end{align*}
 
+    \noindent 
+    Ker se karakteristi"cni funkciji $\varphi_{Z_n}$ in $\varphi_{Z_n'}$ ujemata za vsak $u\in\R$,
+    po Lévijevem izreku o zveznosti sledi, da sta $Z_n$ in $Z_n'$ enako porazdeljeni. Tako smo pokazali, 
+    da je za ustrezno izbiro zaporedij $(a_n)_{n\geq1}$ in $(\lambda_n)_{n\geq1}$ $Z_n'$ enako 
+    porazdeljena kot linearna kombinacija neodvisnih poissonovih s.s., "ce se"stevamo diskretne 
+    n.e.p. s.s. $X_i$. Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
+    Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
+    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n'$ in 
+    $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
+
+    \begin{center}
+        \begin{tikzpicture}
+            % coordinate system
+            \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
+            \draw[->] (2,0) -- (2,4.5) node[above] {$F_{S_t}(x)$};
+            \draw (1.95, 3.2) -- (2.05, 3.2) node[left] {$1$};
+
+            % CDF of continuous random variable
+
+            % CDF of F_n 
+            
+
+        \label{fig:slika2}
+        \end{tikzpicture}
+    \end{center}
+
     \noindent
-    kar lahko zapi"semo kot 
+    Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
+    porazdelitveno funkcijo $F(x)$.
 
-    \begin{align*}
-        \varphi_{S_t}(u) = e^{\lambda t\int_{\R}\left(e^{i u z} - 1\right) \mu(dz)},
-    \end{align*}
 
-    \noindent
-    kjer je $\mu := X*\Prob$ potisk mere naprej po s.s.\ $X$. Prav tako lahko \ref{eq:karFunkcVrste} zapi"semo
-    kot 
 
-    \begin{align*}
-        \varphi_{Z}(u) = e^{\int_{\R}\left(e^{i u x} - 1\right)\nu(dx)},
-    \end{align*}
 
-    \noindent
-    Za neko ustrezno mero $\nu$. Vidimo, da ko po"sljemo $n\to \infty$, za ustrezen izbor 
-    $a_1, a_2, \dots$ in $\lambda_1, \lambda_2, \dots$ karakteristi"cna funkcija 
-    vrste $Z_n$ konvergira h karakteristi"cni funkciji $S_t$. Torej po Lévijevem izreku o zveznosti 
-    sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
-
+    %\noindent
+    %"Ce sedaj po"sljemo $n \to \infty$, dobimo
+    %\begin{align}
+    %    \varphi_{Z}(u) := \lim_{n\to\infty}\varphi_{Z_n}(u) = e^{\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)}.
+    %    \label{eq:karFunkcVrste}
+    %\end{align}
+%
+    %\noindent
+    %Kot smo izpeljali zgoraj je karakteristi"cna funkcija $CPP$ podana s predpisom
+%
+    %\begin{align*}
+    %    \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)}, 
+    %\end{align*}
+%
+    %\noindent
+    %kar lahko zapi"semo kot 
+%
+    %\begin{align*}
+    %    \varphi_{S_t}(u) = e^{\lambda t\int_{\R}\left(e^{i u z} - 1\right) \mu(dz)},
+    %\end{align*}
+%
+    %\noindent
+    %kjer je $\mu := X*\Prob$ potisk mere naprej po s.s.\ $X$. Prav tako lahko (\ref{eq:karFunkcVrste}) zapi"semo
+    %kot 
+%
+    %\begin{align*}
+    %    \varphi_{Z}(u) = e^{\int_{\R}\left(e^{i u x} - 1\right)\nu(dx)},
+    %\end{align*}
+%
+    %\noindent
+    %Za neko ustrezno mero $\nu$. Vidimo, da ko po"sljemo $n\to \infty$, za ustrezen izbor 
+    %$a_1, a_2, \dots$ in $\lambda_1, \lambda_2, \dots$ karakteristi"cna funkcija 
+    %vrste $Z_n$ konvergira h karakteristi"cni funkciji $S_t$. Torej po Lévijevem izreku o zveznosti 
+    %sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
+%
     \begin{zgled}
         "Ce pogledamo konkreten primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
         s parametrom $\alpha$, lahko eksplicitno izra"cunamo porazdelitev $S_t$. Za $t\geq 0$
@@ -423,13 +500,14 @@ Prevod zgornjega povzetka v angle"s"cino.
             F_{S_t}(x) = \Prob(S_t \leq x)
             &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
             &= \sum_{k=0}^\infty \frac{\alpha^kx^{k-1}e^{-\alpha x}}{(k-2)!}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+            &= \sum_{k=0}^\infty
         \end{align*}
     \end{zgled}
 
 
 
 
-    \subsection{$CPP$ kot martingal}
+    \subsection{CPP kot martingal}
 
         \begin{definicija}
             Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
@@ -566,6 +644,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 \bibitem{1}S.E. Shreve, Stochastic Calculus for Finance II: Continuous-Time Models, Springer, (2004).
 \bibitem{2}S.M. Ross, Stochatic Processes: Second Edition, Wiley, (1996).
+\bibitem{3}P. Embrechts, C. Klüppelberg, T. Mikosch, Modelling Extremal Events: For Insurance and Finance, Springer, (1997).
 \end{thebibliography}
 
 \end{document}
