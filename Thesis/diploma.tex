@@ -115,8 +115,8 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
-{\bf Klju"cne besede:} slu"cajni procesi, sestavljen Poissonov proces  \\[1mm]
-{\bf Keywords:} stochastic processes, compound Poisson process
+{\bf Klju"cne besede:} slu"cajni procesi, sestavljeni Poissonov proces, Cramér-Lundbergov model\\[1mm]
+{\bf Keywords:} stochastic processes, compound Poisson process, Cramér-Lundberg model
 \pagebreak
 
 
@@ -145,13 +145,8 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{figure}
     
     \noindent
-\textcolor{red}{
-    Vidimo, da je to zelo zanimiva ideja slu"cajnega
-    procesa, ki ima veliko potencialnih uporab za modeliranje razli"cnih dogodkov. Na primer zahtevke 
-    v zavarovalnici, "stevilo poivedb, ki jih prejema stre"znik, "spremembo v ceni nekega finan"cnega 
-    instrumenta in mnoge druge. V delu bomo izpeljali osnovne lastnosti procesa ter se osredoto"cili 
-    na njegovo uporabo v financah. Za za"cetek definirajmo osnovne pojme ter Sestavljen Poissonov proces.
-}
+    Sestavljeni Poissonov proces je uporabljen 
+
 
     \begin{definicija}
         Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$
@@ -240,7 +235,7 @@ Prevod zgornjega povzetka v angle"s"cino.
         \label{op:CPPHPPPovezava}
     \end{opomba}
 
-    V nadaljevanju bomo Poissonovemu procesu rekli HPP (angl. Homogeneous Poisson Process) in ga
+    V nadaljevanju bomo Poissonovemu procesu rekli $HPP$ (angl. Homogeneous Poisson Process) in ga
     ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa $CPP$ (angl. Compound Poisson 
     Process) in ga ozna"cevali s $(S_t)_{t\geq0}$. "Ce ni druga"ce navedeno, bo $\lambda$ ozna"cevala
     njuno intenzivnost.
@@ -265,14 +260,14 @@ Prevod zgornjega povzetka v angle"s"cino.
         \begin{align*}
             S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
         \end{align*}
-        Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za HPP velja 
+        Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP$ velja 
         $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
         \begin{align*}
             \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
         \end{align*}
     \end{proof}
 
-    Izra"cunajmo pri"cakovano vrednost in varianco $CPP$. Naj bo $(N_t)_{t\geq 0}$ HPP z 
+    Izra"cunajmo pri"cakovano vrednost in varianco $CPP$. Naj bo $(N_t)_{t\geq 0}$ $HPP$ z 
     intenzivnostjo $\lambda$ in naj bo $\mu = \E\left[X_i\right]$ pri"cakovana vrednost 
     slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
     $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
@@ -338,7 +333,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{align}
 
     Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
-    $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija HPP enaka 
+    $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija $HPP$ enaka 
     $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta 
     karakteristi"cna in rodovna funkcija $CPP$ enaki
 
@@ -374,7 +369,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{proof}
 
     \noindent
-    Sedaj se posvetimo vpra"sanju, kako je porazdeljena $S_t$? Iz definicije HPP vemo, da je 
+    Sedaj se posvetimo vpra"sanju, kako je porazdeljena $S_t$? Iz definicije $HPP$ vemo, da je 
     $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna spremenljivka z intenzivnostjo 
     $\lambda t$. Fiksiramo $t\geq0$ in ra"cunamo
 
@@ -387,8 +382,25 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \noindent
     kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
-    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam da intuicije o 
-    porazdelitvi $S_t$. Poka"zimo pa, da je $CPP$ v resnici porazdeljena, kot limita linearne 
+    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam ne pove veliko o 
+    porazdelitvi $S_t$. 
+    
+    \begin{zgled}
+        "Ce pogledamo poseben primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
+        s parametrom $\alpha$, lahko eksplicitno izra"cunamo porazdelitev $S_t$. Za $t\geq 0$
+        in $x \geq 0$ velja
+        \begin{align*}
+            F_{S_t}(x) = \Prob(S_t \leq x)
+            &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+            &= \sum_{k=0}^\infty \frac{\alpha^kx^{k-1}e^{-\alpha x}}{(k-2)!}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+            &= \sum_{k=0}^\infty
+        \end{align*}
+
+        To je tudi prakti"cno edini primer, ko lahko pridemo do eksplicitne formule.
+
+    \end{zgled}
+    
+    Poka"zimo, da je $CPP$ v resnici porazdeljen, kot limita linearne 
     kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$
     neodvisne s.s. porazdeljene $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$ za 
     poljubne $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. 
@@ -403,7 +415,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{align*}
 
     \noindent
-    Naj bo sedaj $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ neodvisne s.s. (neodvisne 
+    Naj bo sedaj $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
     med sabo in od $N$) enako porazdeljene kot
 
     $$ X\sim
@@ -428,32 +440,61 @@ Prevod zgornjega povzetka v angle"s"cino.
     Ker se karakteristi"cni funkciji $\varphi_{Z_n}$ in $\varphi_{Z_n'}$ ujemata za vsak $u\in\R$,
     po Lévijevem izreku o zveznosti sledi, da sta $Z_n$ in $Z_n'$ enako porazdeljeni. Tako smo pokazali, 
     da je za ustrezno izbiro zaporedij $(a_n)_{n\geq1}$ in $(\lambda_n)_{n\geq1}$ $Z_n'$ enako 
-    porazdeljena kot linearna kombinacija neodvisnih poissonovih s.s., "ce se"stevamo diskretne 
-    n.e.p. s.s. $X_i$. Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
+    porazdeljena kot linearna kombinacija neodvisnih poissonovih s.s. Ker za uporabo Lévijevega izreka
+    potrebujemo le konvergenco po to"ckah iz tega sledi, da "ce se"stevamo diskretne 
+    n.e.p. s.s. $X_i$ prav tako velja na"sa trditev. Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
     Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
     $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n'$ in 
     $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
 
+\begin{figure}[H]
     \begin{center}
+
         \begin{tikzpicture}
             % coordinate system
             \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
-            \draw[->] (2,0) -- (2,4.5) node[above] {$F_{S_t}(x)$};
-            \draw (1.95, 3.2) -- (2.05, 3.2) node[left] {$1$};
+            \draw[->] (2,0) -- (2,4.5) node[above] {$F, F_n$};
+            \draw (2, 3.4) -- (2, 3.4) node[left] {$1$};
+            \draw[dashed] (-0.75,3.2) -- (9,3.2);
 
             % CDF of continuous random variable
+            \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
+            \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.3);
+            \filldraw[blue] (5, 2.5) circle (0.7pt);
+            \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
 
-            % CDF of F_n 
-            
+            % CDF of F_n, 
+            \draw[->, red] (-0.75, 0.2) -- (0.25, 0.2);
+            \filldraw[red] (-0.75, 0.2) circle (0.7pt);
+            \draw[->, red] (0.25, 0.3) -- (1.25, 0.3);
+            \filldraw[red] (0.25, 0.3) circle (0.7pt);
+            \draw[->, red] (1.25, 0.5) -- (2.25, 0.5);
+            \filldraw[red] (1.25, 0.5) circle (0.7pt);
+            \draw[->, red] (2.25, 0.5) -- (3.25, 0.5);
+            \filldraw[red] (2.25, 0.5) circle (0.7pt);
+            \draw[->, red] (3.25, 0.2) -- (4.25, 0.2) node[above left]{$F_n(x)$};
+            \filldraw[red] (3.25, 0.2) circle (0.7pt);
+            \draw[->, red] (4.25, 0.5) -- (5.25, 0.5);
+            \filldraw[red] (4.25, 0.5) circle (0.7pt);
+            \draw[->, red] (5.25, 0.2) -- (6.25, 0.2);
+            \filldraw[red] (5.25, 0.2) circle (0.7pt);
+            \draw[->, red] (6.25, 0.5) -- (7.25, 0.5);
+            \filldraw[red] (6.25, 0.5) circle (0.7pt);
+            \draw[->, red] (7.25, 0.2) -- (8.25, 0.2);
+            \filldraw[red] (7.25, 0.2) circle (0.7pt);
 
-        \label{fig:slika2}
+
+            %intervals of F_n
+
         \end{tikzpicture}
+        \caption{Aproksimacija $F$ s $F_n$}
+        \label{fig:slika2}
     \end{center}
+\end{figure}
 
     \noindent
     Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
-    porazdelitveno funkcijo $F(x)$.
-
+    porazdelitveno funkcijo $F(x)$. Seveda velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
 
 
 
@@ -492,20 +533,6 @@ Prevod zgornjega povzetka v angle"s"cino.
     %vrste $Z_n$ konvergira h karakteristi"cni funkciji $S_t$. Torej po Lévijevem izreku o zveznosti 
     %sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
 %
-    \begin{zgled}
-        "Ce pogledamo konkreten primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
-        s parametrom $\alpha$, lahko eksplicitno izra"cunamo porazdelitev $S_t$. Za $t\geq 0$
-        in $x \geq 0$ velja
-        \begin{align*}
-            F_{S_t}(x) = \Prob(S_t \leq x)
-            &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-            &= \sum_{k=0}^\infty \frac{\alpha^kx^{k-1}e^{-\alpha x}}{(k-2)!}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-            &= \sum_{k=0}^\infty
-        \end{align*}
-    \end{zgled}
-
-
-
 
     \subsection{CPP kot martingal}
 
@@ -566,11 +593,11 @@ Prevod zgornjega povzetka v angle"s"cino.
             \end{align*}
         \end{proof}
 
-        \subsection{"Cas prvega prehoda}
-        Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
-        $a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
-        "cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
-        "Ce pogledamo dogodek $\{T_a \leq t\}$.
+        %\subsection{"Cas prvega prehoda}
+        %Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
+        %$a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
+        %"cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
+        %"Ce pogledamo dogodek $\{T_a \leq t\}$.
 
 \section{Cramér-Lundbergov model}
     V nadaljevanju se bomo usmerili v Cramér-Ludenbergov model. Ta osnovni model za zavarovalni"ska
