@@ -124,16 +124,12 @@ Prevod zgornjega povzetka v angle"s"cino.
 % tu se zacne besedilo seminarja
 \section{Uvod}
 
-    Poissonov proces "steje "stevilo prihodov v danem "casovnem intervalu, kjer narava prihodov 
-    sledi dolo"cenim omejitvam. Sestavljeni Poissonov proces je podoben 
-    Poissonovemu, razen da je vsak prihod ute"zen z neko slu"cajno spremenljivko. Kot standarden
-    primer si lahko predstavljamo stranke, ki gredo v trgovino. Njihovi prihodi sledijo Poissonovemu 
-    procesu, znesek denarja, ki ga porabijo, pa sledi sestavljenemu Poissonovemu procesu.  
-    Predpostavimo, da stranke, ki prihajajo v trgovino, sledijo Poissonovemu procesu z intenzivnostjo 
-    $\lambda = 0.1$ in da je koli"cina denarja, ki ga porabijo, porazdeljena eksponentno s parametrom 
-    $\alpha = 20$, torej na"sa trgovina ne omogo"ca vra"cil. Slika \ref{fig:slika1} prikazuje primer 
-    zaslu"zka dneva poslovanja. Na osi $x$ je "cas, na osi $y$ pa kumulativna vsota vseh prihodov do nekega 
-    trenutka v "casu.
+    \begin{center}
+        \framebox[\linewidth]{%
+    \rule{0pt}{50pt}%
+    Uvodni tekst in motivacija za "studiranje procesa, naka"zi da bo"s obravnaval Cramer-Ludenbergov model%
+        }
+    \end{center}
 
     \begin{figure}[H]
         \centering
@@ -145,23 +141,21 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{figure}
     
     \noindent
-    Sestavljeni Poissonov proces je uporabljen 
 
 
     \begin{definicija}
         Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$
         neprazna indeksna množica ter $(E, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, 
-        parametriziran s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to E$,
-         ki so $(\mathcal{F}, \Sigma)$-merljive za vsak $t \in T$.
+        parametriziran s $T$, je družina slučajnih elementov $X_t : \Omega \to E$,
+         ki so $(\mathcal{F}, \Sigma)$-merljivi za vsak $t \in T$.
         \label{def:slucProc}
     \end{definicija}
 
     \begin{opomba}
-        Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$ in da s.s.\
+        Dr"zali se bomo konvencije, da $T$ predstavlja "cas, torej $T = [0, \infty)$ in da slu"cajne
+        spremenljivke 
         zavzemajo vrednosti v realnih "stevili, torej $(E, \Sigma) = (\R, \B_{\R})$, kjer $\B_\R$ 
-        predstavlja Borelovo $\sigma-$algebro na $\R$. Od tu dalje, "ce ni druga"ce navedeno, bomo 
-        privzeli, da so s.s.\ definirane na nekem verjetnostnem prostoru 
-        $(\Omega, \mathcal{F}, \mathbb{P})$ in zavzemajo vrednosti v $(\R, \B_{\R})$.
+        predstavlja Borelovo $\sigma-$algebro na $\R$.
         \label{op:Konvencije}
     \end{opomba}
 
@@ -229,138 +223,165 @@ Prevod zgornjega povzetka v angle"s"cino.
     \end{definicija}
 
     \begin{opomba}
-        Vidimo, da je Poissonov proces le poseben primer sestavljenega Poissonovega procesa, ko za
-        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$. Bolj v splo"snem, "ce za $X_i$ 
+        Vidimo, da je sestavljeni Poissonov proces posplo"sitev homogenega Poissonovega procesa, saj "ce za
+        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$, dobimo ravno $HPP$. Bolj v splo"snem, "ce za $X_i$ 
         postavimo $X_i = \alpha$, potem velja $S_t = \alpha N_t$.
         \label{op:CPPHPPPovezava}
     \end{opomba}
 
-    V nadaljevanju bomo Poissonovemu procesu rekli $HPP$ (angl. Homogeneous Poisson Process) in ga
-    ozna"cevali z $(N_t)_{t\geq0}$, sestavljenemu Poissonovemu procesu pa $CPP$ (angl. Compound Poisson 
-    Process) in ga ozna"cevali s $(S_t)_{t\geq0}$. "Ce ni druga"ce navedeno, bo $\lambda$ ozna"cevala
-    njuno intenzivnost.
+    V nadaljevanju bomo homogen Poissonov proces z intenzivnostjo $\lambda >0$ ozna"cevali s $HPP(\lambda)$ 
+    ali naborom slu"cajnih spremenljivk $(N_t)_{t\geq0}$ (angl. Homogeneous Poisson Process), 
+    sestavljeni Poissonov proces pa s $CPP$ ali naborom slu"cajnih spremenljivk $(S_t)_{t\geq0}$ 
+    (angl. Compound Poisson Process), kjer bo vsota sledila $HPP(\lambda)$.
 
-\section{Lastnosti sestavljenega Poissonovega procesa}
 
-    V tem poglavju si bomo ogledali osnovne lastnosti sestavljenega Poissonovega procesa. Pogledali
-    si bomo... 
-    \begin{trditev}
-        $CPP$ ima neodvisne in stacionarne prirastke.
-        \label{trd:neodvPrirCPP}
-    \end{trditev}
+\section{Sestavljeni Poissonov proces}
 
-    \begin{proof}
-        Za nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ lahko slu"cajne
-        spremeljivke $S_{t_i} - S_{t_{i-1}}$ zapi"semo kot
+    \begin{center}
+        \framebox[\linewidth]{%
+    \rule{0pt}{50pt}%
+        Povzetek poglavja/krajsi uvod%
+        }
+    \end{center}
+
+    \subsection{Osnovne lastnosti}
+
+        \begin{trditev}
+            $CPP$ ima neodvisne in stacionarne prirastke.
+            \label{trd:neodvPrirCPP}
+        \end{trditev}
+
+        \begin{proof}
+            Za nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ lahko slu"cajne
+            spremeljivke $S_{t_i} - S_{t_{i-1}}$ zapi"semo kot
+            \begin{align*}
+                S_{t_i} - S_{t_{i-1}} &= \sum_{j=N_{t_{i-1}}+1}^{N_{t_i}} X_j. 
+            \end{align*}
+            Neodvisnost prirastkov sledi po neodvisnosti $X_i$ od $X_j$ za $i\neq j$ in $N_t$. 
+            Naj bo $h > 0$ in $s < t$. Potem velja
+            \begin{align*}
+                S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
+            \end{align*}
+            Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP$ velja 
+            $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
+            \begin{align*}
+                \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
+            \end{align*}
+        \end{proof}
+
+        \begin{trditev}
+            Naj bo $(S_t)_{t\geq 0}$ $CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
+            pri"cakovana vrednost in $\sigma^2= \Var{X_i} <\infty$ varianca
+            slu"cajnih spremenljivk $X_i$ za vsak $i$. Potem sta za $t\geq0$ pri"cakovana vrednost in 
+            varianca $S_t$ enaki 
+            \begin{equation*}
+                \E\left[S_t\right] = \mu\lambda t \qquad \text{in} \qquad \Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right).
+            \end{equation*}
+            \label{trd:PricVarCPP}
+        \end{trditev}
+
+        \begin{proof}
+        Po formuli za popolno pri"cakovano vrednost velja 
+        $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
+
         \begin{align*}
-            S_{t_i} - S_{t_{i-1}} &= \sum_{j=N_{t_{i-1}}+1}^{N_{t_i}} X_j. 
+            \E\left[S_t\right] &= \sum_{k=0}^{\infty} \E\left[S_t | N_t = k\right] \Prob\left(N_t = k\right)\\
+                               &= \sum_{k=0}^{\infty} \E\left[\sum_{i=1}^{k} X_i\right] \Prob\left(N_t = k\right)\\
+                               &= \sum_{k=0}^{\infty}k\E\left[X_i\right]\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+                               &= \mu\lambda te^{-\lambda t}\sum_{k=1}^{\infty}\frac{(\lambda t)^{k-1}}{(k-1)!}\\
+                               &= \mu\lambda t.
         \end{align*}
-        Neodvisnost prirastkov sledi po neodvisnosti $X_i$ od $X_j$ za $i\neq j$ in $N_t$. 
-        Naj bo $h > 0$ in $s < t$. Potem velja
+
+        \noindent
+        Po standardni formuli za varianco $\Var{S_t} = \E\left[S_t^2\right] - \E\left[S_t\right]^2$ 
+        potrebujemo izra"cunati le "se drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost.
+
         \begin{align*}
-            S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
+            \E\left[S_t^2\right] 
+                    &= \sum_{k=0}^\infty\E\left[S_t^2\mid N_t = k\right]\Prob\left(N_t=k\right) \\
+                    &= \sum_{k=0}^\infty\E\left[\left(\sum_{i=1}^kX_i\right)^2\right]\Prob\left(N_t=k\right)\\
+                    &= \sum_{k=0}^\infty\E\left[\sum_{i=1}^kX_i^2 + \sum_{i\neq j}X_iX_j\right]\Prob\left(N_t=k\right)\\
+                    &= \sum_{k=0}^\infty\left(kE\left[X_i^2\right] 
+                        +k(k-1)\E\left[X_i\right]\E\left[X_j\right]\right)\Prob\left(N_t=k\right)\\
         \end{align*}
-        Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP$ velja 
-        $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
+        Prek formule $\Var{X_i} = \E\left[X_i^2\right] - \E\left[X_i\right]^2$ dobimo
         \begin{align*}
-            \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
+            \E\left[X_i^2\right] = \sigma^2 + \mu^2.
+        \end{align*}
+        Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se tako poenostavi v 
+        $k\sigma^2 + k^2\mu^2$, torej 
+        \begin{align*}
+            \E\left[S_t^2\right] 
+                    &= \sum_{k=0}^\infty\left(k\sigma^2 + k^2\mu^2\right)\Prob\left(N_t=k\right)\\
+                    &= \sigma^2\E\left[N_t\right] + \mu^2\E\left[N_t^2\right]\\
+                    &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2),
+        \end{align*}
+        kjer upo"stevamo, da $N_t \sim \Pois{\lambda t}$. Tako dobimo
+        \begin{align*}
+            \Var{S_t} 
+                    &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2) - (\mu\lambda t)^2 \\
+                    &= \sigma^2\lambda t + \mu^2\lambda t + \mu^2\lambda^2t^2 - \mu^2\lambda^2t^2\\
+                    &= \lambda t\left(\sigma^2 + \mu^2\right).
         \end{align*}
     \end{proof}
 
-    Izra"cunajmo pri"cakovano vrednost in varianco $CPP$. Naj bo $(N_t)_{t\geq 0}$ $HPP$ z 
-    intenzivnostjo $\lambda$ in naj bo $\mu = \E\left[X_i\right]$ pri"cakovana vrednost 
-    slu"cajnih spremenljivk $X_i$ za vsak $i$. Po formuli za popolno pri"cakovano vrednost velja 
-    $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
+    \subsection{Rodovne funkcije}
 
-    \begin{align*}
-        \E\left[S_t\right] &= \sum_{k=0}^{\infty} \E\left[S_t | N_t = k\right] \Prob\left(N_t = k\right)\\
-                           &= \sum_{k=0}^{\infty} \E\left[\sum_{i=1}^{k} X_i\right] \Prob\left(N_t = k\right)\\
-                           &= \sum_{k=0}^{\infty}k\E\left[X_i\right]\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-                           &= \mu\lambda te^{-\lambda t}\sum_{k=1}^{\infty}\frac{(\lambda t)^{k-1}}{(k-1)!}\\
-                           &= \mu\lambda t.
-    \end{align*}
+    \begin{trditev}
+        Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v 
+        $CPP$ enako porazdeljene kot $X$. Potem ima za $t\geq0$ momentno rodovna funkcija $M_{S_t}$ 
+        obliko
+        \begin{equation*}
+            M_{S_t}(u) = e^{\lambda t\left(M_X(u) - 1\right)}, 
+        \end{equation*}
+        kjer $M_X$ ozna"cuje momentno rodovno funkcijo $X$.
+        \label{trd:MomentGener}
+    \end{trditev}
+    
+    \begin{proof}
+        \begin{align}
+            M_{S_t}(u) 
+                    &= \E\left[\exp\left[uS_t\right]\right] = \nonumber
+                        \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right] \nonumber\\
+                    &= \sum_{k=0}^{\infty}
+                        \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right) \nonumber \\ 
+                    &= \sum_{k=0}^{\infty}
+                        \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right) \nonumber \\
+                    &= \sum_{k=0}^{\infty}
+                        \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS_t}\\ 
+                    &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!} \nonumber \\
+                    &= e^{\lambda t\left(M_X(u) - 1\right)} \nonumber
+        \end{align}
+    \end{proof}
 
-    \noindent
-    Za izra"cun variance potrebujemo dodatno predpostavko, da imajo slu"cajne spremenljivke $X_i$ 
-    drugi moment. V tem primeru ozna"cimo $\Var{X_i} = \sigma^2$. Velja 
-    $\Var{S_t} = \E\left[S_t^2\right] - \E\left[S_t\right]^2$, torej potrebujemo izra"cunati se 
-    drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost.
-    \begin{align*}
-        \E\left[S_t^2\right] 
-                &= \sum_{k=0}^\infty\E\left[S_t^2\mid N_t = k\right]\Prob\left(N_t=k\right) \\
-                &= \sum_{k=0}^\infty\E\left[\left(\sum_{i=1}^kX_i\right)^2\right]\Prob\left(N_t=k\right)\\
-                &= \sum_{k=0}^\infty\E\left[\sum_{i=1}^kX_i^2 + \sum_{i\neq j}X_iX_j\right]\Prob\left(N_t=k\right)\\
-                &= \sum_{k=0}^\infty\left(kE\left[X_i^2\right] 
-                    +k(k-1)\E\left[X_i\right]\E\left[X_j\right]\right)\Prob\left(N_t=k\right)\\
-    \end{align*}
-    Prek formule $\Var{X_i} = \E\left[X_i^2\right] - \E\left[X_i\right]^2$ dobimo
-    \begin{align*}
-        \E\left[X_i^2\right] = \sigma^2 + \mu^2.
-    \end{align*}
-    Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se tako poenostavi v 
-    $k\sigma^2 + k^2\mu^2$, torej 
-    \begin{align*}
-        \E\left[S_t^2\right] 
-                &= \sum_{k=0}^\infty\left(k\sigma^2 + k^2\mu^2\right)\Prob\left(N_t=k\right)\\
-                &= \sigma^2\E\left[N_t\right] + \mu^2\E\left[N_t^2\right]\\
-                &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2),
-    \end{align*}
-    kjer upo"stevamo, da $N_t \sim \Pois{\lambda t}$. Tako dobimo
-    \begin{align*}
-        \Var{S_t} 
-                &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2) - (\mu\lambda t)^2 \\
-                &= \sigma^2\lambda t + \mu^2\lambda t + \mu^2\lambda^2t^2 - \mu^2\lambda^2t^2\\
-                &= \lambda t\left(\sigma^2 + \mu^2\right).
-    \end{align*}
-
-    \noindent
-    Pojavi se vpra"sanje, kako pa je $S_t$ porazdeljena? Na to bomo odgovorili s pomo"cjo rodovnih
-    funkcij. Naj bodo $X_1, X_2, \dots$ n.e.p. s.s.  z enako porazdelitvijo kot $X$.
-    Izra"cunajmo momentno rodovno funckijo $CPP$. Ozna"cimo z $M_X(u)$ momentno rodovno funkcijo 
-    s.s $X$ in z $M_{S_t}$ momentno rodovno funkcijo $CPP$.
-    \begin{align}
-        M_{S_t}(u) 
-                &= \E\left[\exp\left[uS_t\right]\right] = \nonumber
-                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\right]\right] \nonumber\\
-                &= \sum_{k=0}^{\infty}
-                    \E\left[\exp\left[u\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right) \nonumber \\ 
-                &= \sum_{k=0}^{\infty}
-                    \E\left[\exp\left[u\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right) \nonumber \\
-                &= \sum_{k=0}^{\infty}
-                    \underbrace{\E\left[e^{uX}\right]^n}_{M_X(u)^n}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS_t}\\ 
-                &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(M_X(u)\lambda t\right)^k}{k!} \nonumber \\
-                &= e^{\lambda t\left(M_X(u) - 1\right)} \nonumber
-    \end{align}
-
-    Iz opombe \ref{op:CPPHPPPovezava}, sledi, da "ce za $X_i$ vzamemo konstantno funkcijo 
-    $X_i = 1$, dobimo HPP. Tako vidimo, da je momentno rodovna funkcija $HPP$ enaka 
-    $M_{S_t}(u) = e^{\lambda t\left(e^u - 1\right)}$. Poleg tega takoj dobimo, da sta 
-    karakteristi"cna in rodovna funkcija $CPP$ enaki
+    Hitro lahko vidimo, da sta karakteristi"cna in rodovna funkcija $CPP$ enaki
 
     \begin{equation*}
         \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)} \qquad \text{in} \qquad 
-        G_{S_t}(u) = e^{\lambda t\left(G_X(u) - 1\right)}.
+        G_{S_t}(u) = e^{\lambda t\left(G_X(u) - 1\right)},
     \end{equation*} 
 
     \noindent
-    Saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
+    saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
     njeni momentno rodovni funkciji izvrednoteni v $iu$, torej $\varphi_Y(u) = G_Y(iu)$. Rodovna pa 
     izverdnotena v $\ln(u)$, torej $G_Y(u) = M_Y(\ln(u))$, "ce obstajata.
     V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
-    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med njimi.
-
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med karakteristi"cno funkcijo $CPP$ 
+    in rodovno funkcijo $HPP(\lambda)$.
     \begin{trditev}
-        Naj bodo $X_1, X_2, \dots$ n.e.p. s.s. z enako porazdelitvijo kot $X$ in
-         $(S_t)_{t\geq 0}\ CPP$ ter $(N_t)_{t\geq 0}\ HPP$ z intenzivnostjo $\lambda$ neodvisna.
+        Naj bosta $(S_t)_{t\geq0}$ $CPP$ in $(N_t)_{t\geq0}$ $HPP(\lambda)$ neodvisna. 
+        Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v $CPP$ enako porazdeljene kot $X$. 
         Potem za fiksen $t\geq0$ velja
+
         \begin{align*}
             \varphi_{S_t}(u) = G_{N_t}\left(\varphi_{X}(u)\right).
         \end{align*}
+
         \label{trd:povezavaRodovneKarkateristicne}
     \end{trditev}
 
     \begin{proof}
-        Po ena"cbi (\ref{eq:MomentS_t}) velja, da je $\varphi_{S_t}(u)$ enaka
+        Po ena"cbi (\ref{eq:MomentS_t}) iz trditve \ref{trd:MomentGener} velja, da je $\varphi_{S_t}(u)$ enaka
         \begin{align*}
             \varphi_{S_t}(u) &= \sum_{k=0}^{\infty}
             \varphi_X(u)^n\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
@@ -368,35 +389,42 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{align*}
     \end{proof}
 
-    \noindent
-    Sedaj se posvetimo vpra"sanju, kako je porazdeljena $S_t$? Iz definicije $HPP$ vemo, da je 
-    $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna spremenljivka z intenzivnostjo 
-    $\lambda t$. Fiksiramo $t\geq0$ in ra"cunamo
+    \subsection{Porazdelitev CPP}
+    Sedaj se posvetimo vpra"sanju, kako je porazdeljena slu"cajna spremenljivka $S_t$ za $t\geq 0$? 
+    Iz definicije $HPP$ vemo, da je $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna 
+    spremenljivka s parametrom $\lambda t$. Fiksiramo $t\geq0$ in dobimo 
 
     \begin{align*}
         F_{S_t}(x) = \Prob(S_t \leq x) 
         &= \sum_{k=0}^\infty \Prob(S_t \leq x \mid N_t = k)\Prob(N_t = k) \\
         & = \sum_{k=0}^\infty \Prob(\sum_{i=1}^k X_i \leq x)\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
-        & = \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
+        & = \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}, \\
     \end{align*}
 
     \noindent
     kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
-    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam ne pove veliko o 
-    porazdelitvi $S_t$. 
+    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam v praksi ne pomaga veliko.
     
     \begin{zgled}
-        "Ce pogledamo poseben primer, ko so $X_1, X_2, \dots$ neodvisne s.s. porazdeljene eksponentno 
-        s parametrom $\alpha$, lahko eksplicitno izra"cunamo porazdelitev $S_t$. Za $t\geq 0$
-        in $x \geq 0$ velja
+        "Ce pogledamo primer, ko so $X_1, X_2, \dots$ neodvisne enako porazdeljene slu"cajne spremenljivke,
+        porazdeljene kot $X$
+        \begin{equation*}
+            X\sim\text{Gamma}(a) \qquad \qquad f_X(x) = \frac{1}{\Gamma(a)}x^{a-1}e^{-x}
+        \end{equation*}
+        s parametrom $a>0$, lahko deloma eksplicitno zapi"semo porazdelitev $CPP$. Gostota $k$-te 
+        konvolucije $X_1 + \cdots + X_k$ ima formulo
+        \begin{equation*}
+            f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(na)}x^{na-1}e^{-x}.
+        \end{equation*}
+        Za $t\geq 0$ in $x \geq 0$ torej velja
         \begin{align*}
             F_{S_t}(x) = \Prob(S_t \leq x)
             &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-            &= \sum_{k=0}^\infty \frac{\alpha^kx^{k-1}e^{-\alpha x}}{(k-2)!}\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-            &= \sum_{k=0}^\infty
+            &= \sum_{k=0}^\infty 
+            ...
         \end{align*}
 
-        To je tudi prakti"cno edini primer, ko lahko pridemo do eksplicitne formule.
+        
 
     \end{zgled}
     
@@ -405,8 +433,8 @@ Prevod zgornjega povzetka v angle"s"cino.
     neodvisne s.s. porazdeljene $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$ za 
     poljubne $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. 
     Ozna"cimo s $\varphi_{Z_n}(u)$ karakteristi"cno funkcijo slu"cajne spremenljivke 
-    $Z_n = a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$.
-    Potem po neodvisnosti velja
+    $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$.
+    Po neodvisnosti velja
     \begin{align*}
         \varphi_{Z_n}(u) 
                 &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
@@ -426,7 +454,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     $$
 
     \noindent
-    Definiramo $Z_n'=\sum_{j=1}^{N}X_j$. Poka"zimo, da sta $Z_n$ in $Z_n'$ enako porazdeljeni.
+    Definiramo $Z_n':=\sum_{j=1}^{N}X_j$. Poka"zimo, da sta $Z_n$ in $Z_n'$ enako porazdeljeni.
     Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
     \begin{align*}
         \varphi_{Z_n'}(u) 
@@ -447,54 +475,54 @@ Prevod zgornjega povzetka v angle"s"cino.
     $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n'$ in 
     $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
 
-\begin{figure}[H]
-    \begin{center}
-
-        \begin{tikzpicture}
-            % coordinate system
-            \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
-            \draw[->] (2,0) -- (2,4.5) node[above] {$F, F_n$};
-            \draw (2, 3.4) -- (2, 3.4) node[left] {$1$};
-            \draw[dashed] (-0.75,3.2) -- (9,3.2);
-
-            % CDF of continuous random variable
-            \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
-            \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
-            \filldraw[blue] (5, 2.5) circle (0.7pt);
-            \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
-
-            % CDF of F_n, 
-            \draw[->, red] (-0.75, 0.22) -- (0.25, 0.22);
-            \filldraw[red] (-0.75, 0.22) circle (0.7pt);
-            \draw[->, red] (0.25, 0.39) -- (1.25, 0.39);
-            \filldraw[red] (0.25, 0.39) circle (0.7pt);
-            \draw[->, red] (1.25, 0.74) -- (2.25, 0.74);
-            \filldraw[red] (1.25, 0.74) circle (0.7pt);
-            \draw[->, red] (2.25, 1.68) -- (3.25, 1.68);
-            \filldraw[red] (2.25, 1.68) circle (0.7pt);
-            \draw[->, red] (3.25, 2.01) -- (4.25, 2.01) node[above left]{$F_n(x)$};
-            \filldraw[red] (3.25, 2.01) circle (0.7pt);
-            \draw[->, red] (4.25, 2.58) -- (5.25, 2.58);
-            \filldraw[red] (4.25, 2.58) circle (0.7pt);
-            \draw[->, red] (5.25, 2.79) -- (6.25, 2.79);
-            \filldraw[red] (5.25, 2.79) circle (0.7pt);
-            \draw[->, red] (6.25, 2.94) -- (7.25, 2.94);
-            \filldraw[red] (6.25, 2.94) circle (0.7pt);
-            \draw[->, red] (7.25, 3.07) -- (8.25, 3.07);
-            \filldraw[red] (7.25, 3.07) circle (0.7pt);
-
-
-            %intervals of F_n
-
-        \end{tikzpicture}
-        \caption{Aproksimacija $F$ s $F_n$}
-        \label{fig:slika2}
-    \end{center}
-\end{figure}
+        \begin{figure}[H]
+            \begin{center}
+            
+                \begin{tikzpicture}
+                    % coordinate system
+                    \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
+                    \draw[->] (2,0) -- (2,4.5) node[above] {$F, F_n$};
+                    \draw (2, 3.4) -- (2, 3.4) node[left] {$1$};
+                    \draw[dashed] (-0.75,3.2) -- (9,3.2);
+                
+                    % CDF of continuous random variable
+                    \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
+                    \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
+                    \filldraw[blue] (5, 2.5) circle (0.7pt);
+                    \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
+                
+                    % CDF of F_n, 
+                    \draw[->, red] (-0.75, 0.22) -- (0.25, 0.22);
+                    \filldraw[red] (-0.75, 0.22) circle (0.7pt);
+                    \draw[->, red] (0.25, 0.39) -- (1.25, 0.39);
+                    \filldraw[red] (0.25, 0.39) circle (0.7pt);
+                    \draw[->, red] (1.25, 0.74) -- (2.25, 0.74);
+                    \filldraw[red] (1.25, 0.74) circle (0.7pt);
+                    \draw[->, red] (2.25, 1.68) -- (3.25, 1.68);
+                    \filldraw[red] (2.25, 1.68) circle (0.7pt);
+                    \draw[->, red] (3.25, 2.01) -- (4.25, 2.01) node[above left]{$F_n(x)$};
+                    \filldraw[red] (3.25, 2.01) circle (0.7pt);
+                    \draw[->, red] (4.25, 2.58) -- (5.25, 2.58);
+                    \filldraw[red] (4.25, 2.58) circle (0.7pt);
+                    \draw[->, red] (5.25, 2.79) -- (6.25, 2.79);
+                    \filldraw[red] (5.25, 2.79) circle (0.7pt);
+                    \draw[->, red] (6.25, 2.94) -- (7.25, 2.94);
+                    \filldraw[red] (6.25, 2.94) circle (0.7pt);
+                    \draw[->, red] (7.25, 3.07) -- (8.25, 3.07);
+                    \filldraw[red] (7.25, 3.07) circle (0.7pt);
+                
+                
+                    %intervals of F_n
+                
+                \end{tikzpicture}
+                \caption{Aproksimacija $F$ s $F_n$}
+                \label{fig:slika2}
+            \end{center}
+        \end{figure}
 
     \noindent
     Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
-    porazdelitveno funkcijo $F(x)$. Seveda velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
+    porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
 
 
 
@@ -600,45 +628,55 @@ Prevod zgornjega povzetka v angle"s"cino.
         %"Ce pogledamo dogodek $\{T_a \leq t\}$.
 
 \section{Cramér-Lundbergov model}
-    V nadaljevanju se bomo usmerili v Cramér-Ludenbergov model. Ta osnovni model za zavarovalni"ska
-    tveganja je v svoji disretaciji leta 1903 prvi predstavil Fillip Lundeberg in tako postavil temelje
-    za teorijo zavarovalni"stva. Kasneje je model je v tridesetih letih prej"snjega stoletja dopolnil 
-    Harald Cramér. Osredoto"cili se bomo na koncept verjetnosti propada in njeno izražanje ali približevanje,
-    ki se obravnava kot orodje za ocenjevanje tveganosti zavarovalniškega posla.
 
-    \begin{definicija}
-        Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ n.e.p. s.s.
-        z enako porazdelitvijo kot $X$ in $\E\left[X\right] = \mu$ ter $\Var{X} = \sigma^2$. Potem 
-        \textit{proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
-        \begin{align*}
-            U_t = u + ct - S_t,
-        \end{align*}
-        kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $c>0$ stopnja prihodkov iz premij. 
-        \label{def:procesTveganja}
-    \end{definicija}
+    \begin{center}
+        \framebox[\linewidth]{%
+    \rule{0pt}{50pt}%
+        zgodovinski uvod in uporaba%
+    }
+    \end{center}
 
-    Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
+    \subsection{Predpostavke in omejitve modela}
+        \begin{definicija}
+            Naj bo $(S_t)_{t\geq0}$ $CPP$ in naj bodo $X_i$ n.e.p. s.s.
+            z enako porazdelitvijo kot $X$ in $\E\left[X\right] = \mu$ ter $\Var{X} = \sigma^2$. Potem 
+            \textit{proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
+            \begin{align*}
+                U_t = u + ct - S_t,
+            \end{align*}
+            kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $c>0$ stopnja prihodkov iz premij. 
+            \label{def:procesTveganja}
+        \end{definicija}
 
-    \begin{definicija}
-        Za $0<T\leq\infty$ je \textit{Verjetnost propada} v Cramér-Lundbergovem modelu definirana kot
-        \begin{align*}
-            \psi(u, T) = \Prob(U_t < 0 \text{ za nek } T \geq t > 0), 
-        \end{align*}
-        "ce gledamo proces na kon"cnem intervalu in kot
-        \begin{align*}
-            \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0),
-        \end{align*}
-        "ce gledamo proces na neskon"cnem intervalu. Ozna"cimo "se 
-        \begin{align*}
-            \tau(T)=\inf\{t\mid T\geq t\geq, U_t <0 0\}, 
-        \end{align*}
-        kot \textit{"cas propada}, kjer se dr"zimo konvencije, da je $\inf\emptyset = \infty$ in 
-        pi"semo $\tau = \tau(\infty)$ za "cas propada na neskon"cnem intervalu.
-        \label{def:verjetnostPropadaInCasiPropada}   
-    \end{definicija}
+    \subsection{Verjetnost propada}
+        Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
 
-    Seveda takoj lahko opazimo, da je $\E\left[U_t\right] = u + ct - \E\left[S_t\right] = u + ct - \mu\lambda t$.
-    Kar nam da prvo intuicijo o stopnji prihodkov premij $c$.
+        \begin{definicija}
+            Za $0<T\leq\infty$ je \textit{Verjetnost propada} v Cramér-Lundbergovem modelu definirana kot
+            \begin{align*}
+                \psi(u, T) = \Prob(U_t < 0 \text{ za nek } T \geq t > 0), 
+            \end{align*}
+            "ce gledamo proces na kon"cnem intervalu in kot
+            \begin{align*}
+                \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0),
+            \end{align*}
+            "ce gledamo proces na neskon"cnem intervalu. Ozna"cimo "se 
+            \begin{align*}
+                \tau(T)=\inf\{t\mid T\geq t\geq, U_t <0 0\}, 
+            \end{align*}
+            kot \textit{"cas propada}, kjer se dr"zimo konvencije, da je $\inf\emptyset = \infty$ in 
+            pi"semo $\tau = \tau(\infty)$ za "cas propada na neskon"cnem intervalu.
+            \label{def:verjetnostPropadaInCasiPropada}   
+        \end{definicija}
+
+        Seveda takoj lahko opazimo, da je $\E\left[U_t\right] = u + ct - \E\left[S_t\right] = u + ct - \mu\lambda t$.
+        Kar nam da prvo intuicijo o stopnji prihodkov premij $c$.
+
+    \subsection{Aproksimacije}
+
+    \subsection{Uporaba modela na podatkih...}
+
+
 
 
 
