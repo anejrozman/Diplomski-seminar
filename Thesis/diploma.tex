@@ -293,36 +293,16 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{align*}
 
         \noindent
-        Po standardni formuli za varianco $\Var{S_t} = \E\left[S_t^2\right] - \E\left[S_t\right]^2$ 
-        potrebujemo izra"cunati le "se drugi moment. Ponovno uporabimo formulo za popolno pri"cakovano vrednost.
+        Prek formule $\Var{S_t} = \E\left[\Var{S_t\mid N_t}\right] + \Var{\E\left[S_t\mid N_t\right]}$ ra"cunamo 
 
-        \begin{align*}
-            \E\left[S_t^2\right] 
-                    &= \sum_{k=0}^\infty\E\left[S_t^2\mid N_t = k\right]\Prob\left(N_t=k\right) \\
-                    &= \sum_{k=0}^\infty\E\left[\left(\sum_{i=1}^kX_i\right)^2\right]\Prob\left(N_t=k\right)\\
-                    &= \sum_{k=0}^\infty\E\left[\sum_{i=1}^kX_i^2 + \sum_{i\neq j}X_iX_j\right]\Prob\left(N_t=k\right)\\
-                    &= \sum_{k=0}^\infty\left(kE\left[X_i^2\right] 
-                        +k(k-1)\E\left[X_i\right]\E\left[X_j\right]\right)\Prob\left(N_t=k\right)\\
-        \end{align*}
-        Prek formule $\Var{X_i} = \E\left[X_i^2\right] - \E\left[X_i\right]^2$ dobimo
-        \begin{align*}
-            \E\left[X_i^2\right] = \sigma^2 + \mu^2.
-        \end{align*}
-        Izraz $kE\left[X_i^2\right]+k(k-1)\E\left[X_i\right]\E\left[X_j\right]$ se tako poenostavi v 
-        $k\sigma^2 + k^2\mu^2$, torej 
-        \begin{align*}
-            \E\left[S_t^2\right] 
-                    &= \sum_{k=0}^\infty\left(k\sigma^2 + k^2\mu^2\right)\Prob\left(N_t=k\right)\\
-                    &= \sigma^2\E\left[N_t\right] + \mu^2\E\left[N_t^2\right]\\
-                    &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2),
-        \end{align*}
-        kjer upo"stevamo, da $N_t \sim \Pois{\lambda t}$. Tako dobimo
-        \begin{align*}
-            \Var{S_t} 
-                    &= \sigma^2\lambda t + \mu^2(\lambda t + \lambda^2t^2) - (\mu\lambda t)^2 \\
-                    &= \sigma^2\lambda t + \mu^2\lambda t + \mu^2\lambda^2t^2 - \mu^2\lambda^2t^2\\
-                    &= \lambda t\left(\sigma^2 + \mu^2\right).
-        \end{align*}
+        \begin{equation*}
+            \E\left[\Var{S_t\mid N_t}\right] = \E\left[\Var{X_i}N_t\right] = \sigma^2\lambda t
+        \end{equation*}
+        in 
+        \begin{equation*}
+            \Var{\E\left[S_t\mid N_t\right]} = \Var{\E\left[X_i\right]N_t} = \mu^2\lambda t,
+        \end{equation*}
+        saj $N_t\sim\Pois{\lambda t}$. Skupaj dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
     \end{proof}
 
     \subsection{Rodovne funkcije}
@@ -391,7 +371,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \subsection{Porazdelitev CPP}
     Sedaj se posvetimo vpra"sanju, kako je porazdeljena slu"cajna spremenljivka $S_t$ za $t\geq 0$? 
-    Iz definicije $HPP$ vemo, da je $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna 
+    Iz definicije $HPP(\lambda)$ vemo, da je $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna 
     spremenljivka s parametrom $\lambda t$. Fiksiramo $t\geq0$ in dobimo 
 
     \begin{align*}
@@ -403,7 +383,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \noindent
     kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
-    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam v praksi ne pomaga veliko.
+    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam ne pomaga veliko.
     
     \begin{zgled}
         "Ce pogledamo primer, ko so $X_1, X_2, \dots$ neodvisne enako porazdeljene slu"cajne spremenljivke,
@@ -411,7 +391,7 @@ Prevod zgornjega povzetka v angle"s"cino.
         \begin{equation*}
             X\sim\text{Gamma}(a) \qquad \qquad f_X(x) = \frac{1}{\Gamma(a)}x^{a-1}e^{-x}
         \end{equation*}
-        s parametrom $a>0$, lahko deloma eksplicitno zapi"semo porazdelitev $CPP$. Gostota $k$-te 
+        s parametrom $a>0$, lahko pridemo do razmeroma eksplicitne porazdelitve $CPP$. Gostota $k$-te 
         konvolucije $X_1 + \cdots + X_k$ ima formulo
         \begin{equation*}
             f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(na)}x^{na-1}e^{-x}.
@@ -428,51 +408,85 @@ Prevod zgornjega povzetka v angle"s"cino.
 
     \end{zgled}
     
-    Poka"zimo, da je $CPP$ v resnici porazdeljen, kot limita linearne 
-    kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. Naj bodo $Y_1, Y_2, \dots, Y_n$
-    neodvisne s.s. porazdeljene $\Pois{\lambda_1}, \ \Pois{\lambda_2}, \dots \Pois{\lambda_n}$ za 
-    poljubne $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. 
-    Ozna"cimo s $\varphi_{Z_n}(u)$ karakteristi"cno funkcijo slu"cajne spremenljivke 
-    $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$.
-    Po neodvisnosti velja
-    \begin{align*}
-        \varphi_{Z_n}(u) 
-                &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
-                &= \prod_{j=1}^{n}\exp\left[\lambda_j\left(e^{a_j i u} - 1\right)\right] \\
-                &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right].
-    \end{align*}
+    %Poka"zimo, da je $CPP$ v resnici porazdeljen, kot limita linearne 
+    %kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. 
+    
+    \begin{trditev}
+        %Naj bodo $Y_1, \dots, Y_n$ neodvisne s.s.\ porazdeljene
+        %$\Pois{\lambda_1}, \dots \Pois{\lambda_n}$ za poljubne 
+        %$\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. Definiramo s.s.\ 
+        %$Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
+        med sabo in od $N$) enako porazdeljene kot
+        $$ X\sim
+        \begin{pmatrix}
+            a_1 & a_2 &  \dots & a_n \\
+            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots & \tfrac{\lambda_n}{\lambda}
+        \end{pmatrix},
+        $$
+        za poljubne $a_1, a_2, \dots, a_n \in \R$ in 
+        $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$ za katere velja 
+        ${\sum_{i=1}^n\lambda_i = \lambda}$.
+        Potem velja 
+        \begin{equation*}
+            \sum_{j=1}^na_jY_j \sim \sum_{j=1}^NX_j,
+        \end{equation*}
+        kjer so $Y_1, \dots Y_n$ neodvisne s.s.\ porazdeljene kot 
+        $\Pois{\lambda_1}, \dots \Pois{\lambda_n}$.
+        \label{trd:NXjeEnakoaY}
+    \end{trditev}
 
-    \noindent
-    Naj bo sedaj $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
-    med sabo in od $N$) enako porazdeljene kot
+    \begin{proof}
+        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo s.s.\ 
+        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo s.s.\
+        $Z:= \sum_{j=1}^{N}X_j$. Po neodvisnosti velja
+        \begin{align*}
+            \varphi_{Z_n}(u) 
+                    &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
+                    &= \prod_{j=1}^{n}\exp\left[\lambda_j\left(e^{a_j i u} - 1\right)\right] \\
+                    &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right].
+        \end{align*}
 
-    $$ X\sim
-    \begin{pmatrix}
-        a_1 & a_2 &  \dots & a_n \\
-        \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots & \tfrac{\lambda_n}{\lambda}
-    \end{pmatrix}.
-    $$
+        \noindent
+        Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
+        \begin{align*}
+            \varphi_{Z}(u) 
+                    &= G_N\left(\varphi_X(u)\right) \\
+                    &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
+                    & = \exp\left[\lambda\left(\sum_{j=1}^n\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
+                    &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right] = \varphi_{Z_n}(u).
+        \end{align*}
 
-    \noindent
-    Definiramo $Z_n':=\sum_{j=1}^{N}X_j$. Poka"zimo, da sta $Z_n$ in $Z_n'$ enako porazdeljeni.
-    Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
-    \begin{align*}
-        \varphi_{Z_n'}(u) 
-                &= G_N\left(\varphi_X(u)\right) \\
-                &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
-                & = \exp\left[\lambda\left(\sum_j^n\frac{\lambda_j}{\lambda}e^{iua_j} - 1\right)\right]\\
-                &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right] = \varphi_{Z_n}(u).
-    \end{align*}
+        \noindent 
+        Ker se karakteristi"cni funkciji $\varphi_{Z_n}$ in $\varphi_{Z'}$ ujemata, sledi da sta 
+        $Z_n$ in $Z$ enako porazdeljeni. %Rezultat je posledica inverzne formule za karateristi"cne funkcije.
+    \end{proof}
 
-    \noindent 
-    Ker se karakteristi"cni funkciji $\varphi_{Z_n}$ in $\varphi_{Z_n'}$ ujemata za vsak $u\in\R$,
-    po Lévijevem izreku o zveznosti sledi, da sta $Z_n$ in $Z_n'$ enako porazdeljeni. Tako smo pokazali, 
-    da je za ustrezno izbiro zaporedij $(a_n)_{n\geq1}$ in $(\lambda_n)_{n\geq1}$ $Z_n'$ enako 
-    porazdeljena kot linearna kombinacija neodvisnih poissonovih s.s. Ker za uporabo Lévijevega izreka
-    potrebujemo le konvergenco po to"ckah iz tega sledi, da "ce se"stevamo diskretne 
-    n.e.p. s.s. $X_i$ prav tako velja na"sa trditev. Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
+    \begin{posledica}
+        Naj bo $(a_n)_{n\in\N}$ poljubno zaporedje realnih "stevil in $(\lambda_n)_{n\in\N}$ zaporedje 
+        pozitivnih realnih "stevil, za katere velja $\sum_{n=1}^\infty\lambda_n = \lambda$ in 
+        \begin{equation*}
+            X\sim
+            \begin{pmatrix}
+                a_1 & a_2 &  \dots \\
+                \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots
+            \end{pmatrix}.
+        \end{equation*}
+        Potem velja
+        \begin{equation*}
+            \sum_{j=1}^{n}a_jY_j \xrightarrow[n\to\infty]{d}\sum_{j=1}^NX_j,
+        \end{equation*}
+        \label{pos:NXjeEnakoaYstevno}
+    \end{posledica}
+
+    \begin{proof}
+        Ker velja $\varphi_{Z_n}(u) \xrightarrow{n\to\infty} \varphi_{Z}(u)$ za vsak $u\in\R$, po Lévijevem
+        izreku o zveznosti sledi, da $Z_n \xrightarrow[n\to\infty]{d} Z$.
+    \end{proof}
+
+    Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
     Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
-    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n'$ in 
+    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
     $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
 
         \begin{figure}[H]
