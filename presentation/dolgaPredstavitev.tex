@@ -1,0 +1,213 @@
+\documentclass[]{beamer} %zaradi [handout] \pause ne dela
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{pgfpages}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{amsmath,amsthm, amsfonts,amssymb}
+\usepackage{mathtools}
+\usepackage{dsfont}
+
+\setbeameroption{hide notes}
+%\setbeameroption{show notes on second screen=right}
+
+\mode<presentation>
+\usetheme{Berlin}
+\useinnertheme[shadows]{rounded}
+\useoutertheme{infolines}
+\usecolortheme{seahorse}
+\usepackage{palatino}
+\usefonttheme{serif}
+
+%okolja za izreke, definicije, ...
+\theoremstyle{plain}
+\newtheorem{izrek}{Izrek}
+\newtheorem{definicija}{Definicija}
+\newtheorem{trditev}{Trditev}
+\newtheorem{posledica}{Posledica}
+\newtheorem{opomba}{Opomba}
+\newtheorem{zgled}{Zgled}
+\newtheorem{lema}{Lema}
+
+%\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{headline}{}
+%\setbeamertemplate{footline}{}
+
+\title[CPP in njegova uporaba v financah]{Sestavljeni Poissonov proces in njegova upraba v financah}
+\subtitle{}
+\author[Anej Rozman]{Anej Rozman}
+\institute[]{Mentor: doc.~dr. Martin Raič}
+\date[]{}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\1}{\mathds{1}}
+\newcommand{\Pois}[1]{\text{Pois}(#1)}
+\newcommand{\Var}[1]{\text{Var}\left[#1\right]}
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Poissonov proces}
+  \begin{definicija}
+    Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
+    prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ in z vrednostmi v $\mathbb{N}_0$, pravimo 
+    \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
+    \begin{enumerate}
+        \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
+        \item $(N_t)_{t\geq 0}$ ima neodvisne in stacionarne prirastke,
+        \item Za $0 \leq s < t$ velja $ N_t - N_s \sim\Pois{\lambda(t - s)}$,
+    \end{enumerate}
+  \end{definicija}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Neskončno deljive porazdelitve}
+  \begin{definicija}
+    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ definiramo
+    \textit{prirastek procesa} $X_t - X_s$ na intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima 
+    \textit{neodvisne prirastke}, če so za vsak nabor realnih "stevil
+    $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ prirastki
+    $$
+        X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \ldots, \ X_{t_n} - X_{t_{n-1}}
+    $$
+    med seboj neodvisni.
+    \label{def:prirastek}
+    \end{definicija}
+    \pause
+    \begin{definicija}
+    Pravimo, da ima proces $(X_t)_{t\geq0}$
+    \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, 
+    da ima $X_{t+h} - X_{s+h}$ enako porazdelitev kot $X_t - X_s$.
+    \label{def:stacPrir}
+    \end{definicija}
+
+  \end{frame}
+
+\begin{frame}
+  \frametitle{Sestavljeni Poissonov proces}
+  \begin{definicija}
+    Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
+    Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $(N_t)_{t\geq0}$) in enako 
+    porazdeljenih slučajnih spremenljivk z vrednostmi v $\mathbb{R}$. Potem je 
+    \textit{sestavljeni Poissonov proces} $(S_t)_{t\geq0}$ definiran kot
+    $$
+        S_t = \sum_{i=1}^{N_t} X_i.
+    $$
+    \label{def:CPP}
+\end{definicija}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Neodvisnost in stacionarnost prirastkov}
+    \begin{trditev}
+        $CPP$ ima neodvisne in stacionarne prirastke.
+        \label{trd:neodvPrirCPP}
+    \end{trditev}
+    \pause
+    \begin{proof}
+        Za nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ lahko slu"cajne
+        spremeljivke $S_{t_i} - S_{t_{i-1}}$ zapi"semo kot
+        \begin{align*}
+            S_{t_i} - S_{t_{i-1}} &= \sum_{j=N_{t_{i-1}}+1}^{N_{t_i}} X_j. 
+        \end{align*}
+        Neodvisnost prirastkov sledi po neodvisnosti $X_i$ od $X_j$ za $i\neq j$ in $N_t$. 
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Neodvisnost in stacionarnost prirastkov}
+    \begin{proof}
+        Naj bo $h > 0$ in $s < t$. Potem velja
+        \begin{align*}
+            S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
+        \end{align*}
+        Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP(\lambda)$ velja 
+        $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
+        \begin{align*}
+            \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
+        \end{align*}
+    \end{proof}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Pri"cakovana vrednost in varianca}
+    \begin{trditev}
+        Naj bo $(S_t)_{t\geq 0}$ $CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
+        pri"cakovana vrednost in $\sigma^2= \Var{X_i} <\infty$ varianca
+        slu"cajnih spremenljivk $X_i$ za vsak $i$. Potem sta za $t\geq0$ pri"cakovana vrednost in 
+        varianca $S_t$ enaki 
+        \begin{equation*}
+            \E\left[S_t\right] = \mu\lambda t \qquad \text{in} \qquad \Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right).
+        \end{equation*}
+        \label{trd:PricVarCPP}
+    \end{trditev}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Karakteristi"cna funkcija}
+  \begin{trditev}
+    Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v 
+    $CPP$ enako porazdeljene kot $X$. Potem ima za $t\geq0$ karakteristi"cna funkcija $\varphi_{S_t}$ 
+    obliko
+    \begin{equation*}
+        \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)}, 
+    \end{equation*}
+    kjer $\varphi_X$ ozna"cuje karakteristi"cno funkcijo $X$.
+    \label{trd:MomentGener}
+    \end{trditev}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Nekaj o porazdelitvi}
+    \begin{trditev}
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
+        med sabo in od $N$) enako porazdeljene kot
+        $$ X\sim
+        \begin{pmatrix}
+            a_1 & a_2 & a_3  \dots & \\
+            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
+        \end{pmatrix},
+        $$
+        za neko zaporedje realnih "stevil $(a_n)_{n\in\N}$ in 
+        zaporedje poztivnih realnih "stevil $(\lambda_n)_{n\in\N}$ za katere velja 
+        ${\sum_{i=1}^\infty\lambda_i = \lambda}$.
+        Potem velja 
+        \begin{equation*}
+            \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
+        \end{equation*}
+        kjer so $Y_1, \dots Y_n$ neodvisne s.s.\ porazdeljene kot 
+        $\Pois{\lambda_1}, \Pois{\lambda_2} \dots $
+        \label{trd:NXjeEnakoaY}
+    \end{trditev}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cramér--Lundbergov model: Teorija propada}
+    \begin{definicija}
+        Naj bo $(S_t)_{t\geq0}$ $CPP$.
+        \textit{proces tveganja} v Cramér--Lundbergovem modelu definiramo kot
+        \begin{align*}
+            U_t = u + p(t) - S_t,
+        \end{align*}
+        kjer je $u \geq 0$ za"cetni kapital in $p(t)$ funkcija prihodkov. 
+        \label{def:procesTveganja}
+    \end{definicija}
+\end{frame}
+
+\end{document}
