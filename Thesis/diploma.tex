@@ -428,16 +428,12 @@ Prevod zgornjega povzetka v angle"s"cino.
     %kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. 
     
     \begin{trditev}
-        %Naj bodo $Y_1, \dots, Y_n$ neodvisne s.s.\ porazdeljene
-        %$\Pois{\lambda_1}, \dots \Pois{\lambda_n}$ za poljubne 
-        %$\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$. Definiramo s.s.\ 
-        %$Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ za poljubne $a_1, a_2, \dots, a_n \in \R$
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
         med sabo in od $N$) enako porazdeljene kot
         $$ X\sim
         \begin{pmatrix}
-            a_1 & a_2 &  \dots & a_n \\
-            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots & \tfrac{\lambda_n}{\lambda}
+            a_1 & a_2 & a_3  \dots & \\
+            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
         \end{pmatrix},
         $$
         za poljubne $a_1, a_2, \dots, a_n \in \R$ in 
@@ -445,10 +441,10 @@ Prevod zgornjega povzetka v angle"s"cino.
         ${\sum_{i=1}^n\lambda_i = \lambda}$.
         Potem velja 
         \begin{equation*}
-            \sum_{j=1}^na_jY_j \sim \sum_{j=1}^NX_j,
+            \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
         \end{equation*}
-        kjer so $Y_1, \dots Y_n$ neodvisne s.s.\ porazdeljene kot 
-        $\Pois{\lambda_1}, \dots \Pois{\lambda_n}$.
+        kjer so $Y_1,Y_2,  \dots$ neodvisne s.s.\ porazdeljene kot 
+        $\Pois{\lambda_1},\Pois{\lambda_2}, \dots$
         \label{trd:NXjeEnakoaY}
     \end{trditev}
 
@@ -469,13 +465,16 @@ Prevod zgornjega povzetka v angle"s"cino.
             \varphi_{Z}(u) 
                     &= G_N\left(\varphi_X(u)\right) \\
                     &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
-                    & = \exp\left[\lambda\left(\sum_{j=1}^n\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
-                    &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right] = \varphi_{Z_n}(u).
+                    & = \exp\left[\lambda\left(\sum_{j=1}^\infty\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
+                    &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right]
         \end{align*}
 
         \noindent 
-        Ker se karakteristi"cni funkciji $\varphi_{Z_n}$ in $\varphi_{Z'}$ ujemata, sledi da sta 
-        $Z_n$ in $Z$ enako porazdeljeni. %Rezultat je posledica inverzne formule za karateristi"cne funkcije.
+        Vidimo, da velja%Rezultat je posledica inverzne formule za karateristi"cne funkcije.
+        \begin{equation*}
+            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z,
+        \end{equation*}
+        torej po Lévijevem izreku o kontinuiteti velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
     \end{proof}
 
     \begin{posledica}
