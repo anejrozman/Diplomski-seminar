@@ -665,45 +665,148 @@ Prevod zgornjega povzetka v angle"s"cino.
     }
     \end{center}
 
-    \subsection{Predpostavke in omejitve modela}
+    \subsection{Proces tveganja in verjetnost propada}
         \begin{definicija}
-            Naj bo $(S_t)_{t\geq0}$ $CPP$ in naj bodo $X_i$ n.e.p. s.s.
-            z enako porazdelitvijo kot $X$ in $\E\left[X\right] = \mu$ ter $\Var{X} = \sigma^2$. Potem 
-            \textit{proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
+            Naj bo $(S_t)_{t\geq0 }$ $CPP$.\textit{Proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
             \begin{align*}
-                U_t = u + ct - S_t,
+                U_t = u + p(t) - S_t,
             \end{align*}
-            kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $c>0$ stopnja prihodkov iz premij. 
+            kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $p(t)$ funkcija prihodkov iz premij. 
             \label{def:procesTveganja}
         \end{definicija}
 
-    \subsection{Verjetnost propada}
+        \begin{opomba}
+            Vrednost $U_t$ predstavlja kapital zavarovalnice ob "casu $t\geq0$. Standardno je za $p(t)$ 
+            vzeti deterministi"cno (celo linearno) funkcijo $p(t) = ct$, kjer je $c$ stopnja prihodkov premij.
+            \label{op:procesTveganja}
+        \end{opomba}
+
         Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
 
         \begin{definicija}
-            Za $0<T\leq\infty$ je \textit{Verjetnost propada} v Cramér-Lundbergovem modelu definirana kot
+            \textit{Propad} definiramo kot dogodek, da proces tveganja $(U_t)_{t\geq0}$ kadarkoli pade pod $0$. 
+            Torej 
             \begin{align*}
-                \psi(u, T) = \Prob(U_t < 0 \text{ za nek } T \geq t > 0), 
+                \bigl\{U_t<0 \ \text{za} \ t\geq 0\bigr\}
             \end{align*}
-            "ce gledamo proces na kon"cnem intervalu in kot
+            in "casu
             \begin{align*}
-                \psi(u) = \Prob(U_t < 0 \text{ za nek } t > 0),
+                T = \inf\{t\geq0 \mid U_t < 0\}, 
             \end{align*}
-            "ce gledamo proces na neskon"cnem intervalu. Ozna"cimo "se 
+            pravimo \textit{"cas propada}. Seveda velja enakost med dogodkoma
             \begin{align*}
-                \tau(T)=\inf\{t\mid T\geq t\geq, U_t <0 0\}, 
+                \{U_t<0 \ \text{za} \ t\geq0\} = \{T<\infty\}.
             \end{align*}
-            kot \textit{"cas propada}, kjer se dr"zimo konvencije, da je $\inf\emptyset = \infty$ in 
-            pi"semo $\tau = \tau(\infty)$ za "cas propada na neskon"cnem intervalu.
-            \label{def:verjetnostPropadaInCasiPropada}   
+            \label{def:PropadCasPropada} 
         \end{definicija}
 
-        Seveda takoj lahko opazimo, da je $\E\left[U_t\right] = u + ct - \E\left[S_t\right] = u + ct - \mu\lambda t$.
-        Kar nam da prvo intuicijo o stopnji prihodkov premij $c$.
+        \begin{definicija}
+            \textit{Verjetnost propada} je definirana kot funckija $\psi(u): (0,\infty) \to [0,1]$ 
+            podana s predpisom
+            \begin{align*}
+                \psi(u) = \Prob(T<\infty \mid U_0 = u).
+            \end{align*}
+            \label{def:VerjetnostPropada}
+        \end{definicija}
 
-    \subsection{Aproksimacije}
+        \begin{definicija}
+            Po konstrukciji procesa tveganja $(U_t)_{t\geq0}$ je verjentost propada mogo"ca le ob 
+            prihodih, ki sledijo $HPP(\lambda).$ S $T_n$ ozna"cimo "cas $n$-tega prihoda in definiramo 
+            \textit{ogrodje} procesa tveganja kot $(U_{T_n})_{n\in\N}$.
+            \label{def:ogrodjeProcesaTveganja}
+        \end{definicija}
 
-    \subsection{Uporaba modela na podatkih...}
+         S pomo"cjo ogrodja procesa tveganja lahko dogodek propada zapi"semo kot
+        \begin{align*}
+            \biggl\{\inf_{t\geq0}U_t<0\biggr\} &= \biggl\{\inf_{n\in\N}U_{T_n}<0\biggr\} \\
+                          &= \biggl\{\inf_{n\in\N}\left(u + p(T_n) - S_{T_n}\right) < 0\biggr\} \\
+                          &= \biggl\{\inf_{n\in\N}\left(u + cT_n - \sum_{i=1}^nX_i\right) < 0\biggr\} \\
+        \end{align*}
+        in tako dobimo nov na"cin kako zapisati verjetnost propada. Za $n\in\N$ z $W_n$ ozna"cimo 
+        medprihodni "cas $HPP(\lambda)$, torej $W_n := T_n - T_{n-1}$ in $W_0 = T_0 = 0$. Definiramo 
+        izgubo $n$-tega prihoda kot 
+        \begin{equation*}
+            Y_n := X_n - cW_n \quad \text{za} \ n\in\N.
+        \end{equation*}
+        Ozna"cimo z $Z_n := \sum_{i=1}^nY_i$ in dobimo
+        \begin{equation*}
+            \psi(u) = \Prob\left(\sup_{n\in\N}\left(Z_n\right) > u\right).
+        \end{equation*}
+        Tako verjetnost propada prevedemo na prehodno verjetnost diskretnega slu"cajnega 
+        sprehoda $(Z_n)_{n\in\N}$. V nadaljevanju nas bo predvsem zanimalo asimptoti"cno 
+        vedenje $\psi(u)$, ko gre $u\rightarrow\infty$. Cilj obravnavanja verjetnosti propada v 
+        Cramér-Lundbergovem modelu je, da se izognemo 
+        propadu z verjetnostjo 1 oziroma, da je verjetnost, da $(Z_n)_{n\in\N}$ prese"ze $u$
+        tako majhna, da lahko v praksi dogodek propada izklju"cimo. V nadaljevanju bomo
+        predpostavili, da sta $\E\left[X_n\right]$ in $\E\left[W_n\right]$ kon"cni. To nam 
+        zagotovi, da je $\E\left[Z_n\right] = \sum_{i=1}^n\E\left[X_i\right] - c\E\left[W_i\right]$
+        kon"cna.
+
+        Ker pa velja ena od treh mo"znosti:
+        \begin{align*}
+            \E\left[Y_n\right] = 
+            \begin{cases}
+                > 0, & \text{za} \ c\E\left[W_n\right] > \E\left[X_n\right], \\
+                = 0, & \text{za} \ c\E\left[W_n\right] = \E\left[X_n\right], \\
+                < 0, & \text{za} \ c\E\left[W_n\right] < \E\left[X_n\right],
+            \end{cases}
+        \end{align*}
+        bo $\E\left[Z_n\right]$ divergirala bodisi proti $\infty$ bodisi proti $-\infty$ in celo v 
+        primeru $\E\left[Y_n\right] = 0$ bo verjetnost propada enaka 1, ker bosta obstajali 
+        pozdaporedji $(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$... Spitzer [138] je dokazano.
+
+        \begin{definicija}
+            Pravimo, da proces tveganja $(U_t)_{t\geq0}$ izpolnjuje \textit{pogoju neto zaslu"zka}
+            (ang. \textit{net profit condition}), "ce velja 
+            \begin{equation*}
+                c > \frac{\E\left[X\right]}{\E\left[W\right]}.
+            \end{equation*}
+            Pogoj bomo v nadaljenvanju imenovali NPC.
+            \label{def:NPC}
+        \end{definicija}
+    
+    \subsection{Lundbergova neenakost/lahko repne porazdelitve/small claim case/ cramer bound}
+
+        V poglavju se bomo ukvarjali z lahkorepnimi porazdelitvami.
+        \begin{definicija}
+            Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepno porazdelitev}, "ce velja
+        \begin{equation*}
+            \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon)
+        \end{equation*}
+        za nek $\varepsilon > 0$.
+        \label{def:lahkorepnaPorazdelitev}
+        \end{definicija}
+
+        \begin{definicija}
+            Naj za slu"cajn spremenljivko $Z_1$ obstaja njena momentno--rodovna funkcija 
+            na intervalu $u\in(-\varepsilon, \varepsilon)$  za nek $\varepsilon > 0$. "Ce obstaja 
+            enoli"cna re"sitev ena"cbe
+            \begin{equation*}
+                M_{Z_1}(l)  = 1,
+            \end{equation*}
+            pravimo $l$ \textit{Lundbergov koeficient}.
+        \end{definicija}
+
+
+    \subsection{Simulacija majhnih zahtevkov}
+
+
+    \subsection{tezkorepne porazdelitve/large claim case}
+
+
+    \subsection{Simulacija velikih zahtevkov}
+
+
+        
+
+
+
+        
+        
+
+
+
+
 
 
 
@@ -739,6 +842,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 \bibitem{1}S.E. Shreve, Stochastic Calculus for Finance II: Continuous-Time Models, Springer, (2004).
 \bibitem{2}S.M. Ross, Stochatic Processes: Second Edition, Wiley, (1996).
 \bibitem{3}P. Embrechts, C. Klüppelberg, T. Mikosch, Modelling Extremal Events: For Insurance and Finance, Springer, (1997).
+\bibitem{4}T.Mikosch, Non-Life Insurance Mathematics: An Introduction with the Poisson Process, Springer, Second Edition, (2009).
 \end{thebibliography}
 
 \end{document}
