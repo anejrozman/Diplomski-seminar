@@ -7,9 +7,9 @@ library(dplyr)
 
 set.seed(42)
 
-#----------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------#
 
-# Slika 1 (Poisson process and compound Poisson process trajectory)
+# Slika 1 (Poisson process and compound Poisson process sample path)
 
 # Parameters
 nSteps = 150
@@ -56,17 +56,17 @@ g1 = ggplot() +
 
 g1
 
-# Saving graph to pdf
+# Save graph to pdf
 ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika1.pdf",
        g1,
        device = "pdf",
        width = 8,
        height = 5)
 
-#----------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------#
 
 # Slika 2
 
 
 
-#----------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------#

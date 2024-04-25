@@ -737,26 +737,74 @@ Prevod zgornjega povzetka v angle"s"cino.
         vedenje $\psi(u)$, ko gre $u\rightarrow\infty$. Cilj obravnavanja verjetnosti propada v 
         Cramér-Lundbergovem modelu je, da se izognemo 
         propadu z verjetnostjo 1 oziroma, da je verjetnost, da $(Z_n)_{n\in\N}$ prese"ze $u$
-        tako majhna, da lahko v praksi dogodek propada izklju"cimo. V nadaljevanju bomo
-        predpostavili, da sta $\E\left[X_n\right]$ in $\E\left[W_n\right]$ kon"cni. To nam 
-        zagotovi, da je $\E\left[Z_n\right] = \sum_{i=1}^n\E\left[X_i\right] - c\E\left[W_i\right]$
-        kon"cna.
+        tako majhna, da lahko v praksi dogodek propada izklju"cimo. 
+        \begin{trditev}
+            Naj bo $(Z_n)_{n\in\N}$ slu"cajni sprehod definiran kot $Z_n = \sum_{i=1}^nY_i$ za 
+            neodvisne in enako porazdeljene slu"cajne spremenljivke $Y_i$ z $\E\left[Y_i\right] = \mu$. 
+            Potem za vsak $u>0$ velja
+            \begin{equation*}
+                \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1 \quad \text{za} \ u > 0,
+            \end{equation*}
+            "ce velja $\E\left[Y_i\right] \geq 0$.
+            \label{trd:propadZVerjetnostjo1}
+        \end{trditev}
 
-        Ker pa velja ena od treh mo"znosti:
-        \begin{align*}
-            \E\left[Y_n\right] = 
-            \begin{cases}
-                > 0, & \text{za} \ c\E\left[W_n\right] > \E\left[X_n\right], \\
-                = 0, & \text{za} \ c\E\left[W_n\right] = \E\left[X_n\right], \\
-                < 0, & \text{za} \ c\E\left[W_n\right] < \E\left[X_n\right],
-            \end{cases}
-        \end{align*}
-        bo $\E\left[Z_n\right]$ divergirala bodisi proti $\infty$ bodisi proti $-\infty$ in celo v 
-        primeru $\E\left[Y_n\right] = 0$ bo verjetnost propada enaka 1, ker bosta obstajali 
-        pozdaporedji $(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$... Spitzer [138] je dokazano.
+        \begin{proof}
+            Zaporedje slu"cajnih spremenljivk $(Y_i)_{i\in\N}$ zadostuje krepkemu zakonu velikih 
+            "stevil, torej velja
+            \begin{equation*}
+                \frac{Y_1 + Y_2 + \cdots Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
+            \end{equation*}
+            Torej bo $Z_n$ v primeru ko je $\mu>0$
+             skoraj gotovo linearno nara"scal proti $\infty$ in bo za poljuben $u>0$
+            \begin{equation*}
+                \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
+            \end{equation*}
+            Dokaz za primer, ko je $\mu = 0$ je precej bolj tehni"cen in ne preve"c informativen, zato 
+            ga bomo izpustili. Lahko ga najdemo v [Spitzer, 138].
+        \end{proof}
+
+        \begin{opomba}
+            Iz trditve \ref{trd:propadZVerjetnostjo1} (ob predpostavkah $\E\left[X_i\right] < \infty$
+            in $\E\left[W_i\right] < \infty$) sledi, moramo premijo $c$ izbrati tako, da bo 
+            $\E\left[Y_i\right] < 0$, saj je to edini na"cin, ko lahko upamo, da verjetnost propada ne bo
+            enaka 1
+            \label{op:izbiraPremije}
+        \end{opomba}
+    
+        %V nadaljevanju bomo
+        %predpostavili, da sta $\E\left[X_n\right]$ in $\E\left[W_n\right]$ kon"cni. To nam 
+        %zagotovi, da je $\E\left[Z_n\right] = \sum_{i=1}^n\E\left[X_i\right] - c\E\left[W_i\right]$
+        %kon"cna.
+%
+        %Ker pa velja ena od treh mo"znosti:
+        %\begin{align*}
+        %    \E\left[Y_n\right] = 
+        %    \begin{cases}
+        %        > 0, & \text{za} \ c\E\left[W_n\right] > \E\left[X_n\right], \\
+        %        = 0, & \text{za} \ c\E\left[W_n\right] = \E\left[X_n\right], \\
+        %        < 0, & \text{za} \ c\E\left[W_n\right] < \E\left[X_n\right],
+        %    \end{cases}
+        %\end{align*}
+%
+        %\noindent
+        %bo verjetnost propada enaka 1, "ce velja $\E\left[Y_n\right] > 0$, saj $(Z_n)_{n\in\N}$ 
+        %zadostuje predpostavkam krepkega zakona velikih "stevil.
+        %\begin{equation*}
+        %    \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right] > 0.
+        %\end{equation*}
+        %Vidimo torej, da bo $Z_n$ skoraj gotovo linearno nara"scal proti $\infty$ in bo za poljuben 
+        %$u>0$
+        %\begin{equation*}
+        %    \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
+        %\end{equation*}
+%
+        %Izka"ze se da celo v 
+        %primeru ko bo $\E\left[Y_n\right] = 0$ bo verjetnost propada enaka 1, ker bosta obstajali 
+        %pozdaporedji $(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$... Spitzer [138] je dokazano.
 
         \begin{definicija}
-            Pravimo, da proces tveganja $(U_t)_{t\geq0}$ izpolnjuje \textit{pogoju neto zaslu"zka}
+            Pravimo, da proces tveganja $(U_t)_{t\geq0}$ izpolnjuje \textit{pogoj neto zaslu"zka}
             (ang. \textit{net profit condition}), "ce velja 
             \begin{equation*}
                 c > \frac{\E\left[X\right]}{\E\left[W\right]}.
@@ -764,51 +812,215 @@ Prevod zgornjega povzetka v angle"s"cino.
             Pogoj bomo v nadaljenvanju imenovali NPC.
             \label{def:NPC}
         \end{definicija}
+
+        Zahteva NPC je kar intuitivna, saj pove, da mora v neki "cavni enoti biti pri"cakoan 
+        dohodek iz premij ve"cji od pri"cakovanega izpla"cila zahtevkov.
     
-    \subsection{Lundbergova neenakost/lahko repne porazdelitve/small claim case/ cramer bound}
+    \subsection{Lahkorepe porazdelitve}
+        \subsubsection{Lundbergova neenakost}
 
-        V poglavju se bomo ukvarjali z lahkorepnimi porazdelitvami.
-        \begin{definicija}
-            Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepno porazdelitev}, "ce velja
-        \begin{equation*}
-            \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon)
-        \end{equation*}
-        za nek $\varepsilon > 0$.
-        \label{def:lahkorepnaPorazdelitev}
-        \end{definicija}
+            Najprej se bomo omejili na primer, ko ima porazdelitev slu"cajnih spremenljivk $X_i$, ki jih 
+            se"stevamo v $CPP$ lahek rep, saj je bila osnovna teorija, ki sta jo razvila Cramér in Lundberg,
+            izpeljana pod to predpostavko.
 
-        \begin{definicija}
-            Naj za slu"cajn spremenljivko $Z_1$ obstaja njena momentno--rodovna funkcija 
-            na intervalu $u\in(-\varepsilon, \varepsilon)$  za nek $\varepsilon > 0$. "Ce obstaja 
-            enoli"cna re"sitev ena"cbe
+            \begin{definicija}
+                Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepno porazdelitev}, "ce velja
             \begin{equation*}
-                M_{Z_1}(l)  = 1,
+                \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon)
             \end{equation*}
-            pravimo $l$ \textit{Lundbergov koeficient}.
-        \end{definicija}
+            za nek $\varepsilon > 0$.
+            \label{def:lahkorepnaPorazdelitev}
+            \end{definicija}
+
+            \begin{opomba}
+                V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjentosti ekstremnih 
+                dogodkov (torej zelo velikih zahtevkov) eksponentno pada proti $0$. To direktno sledi iz 
+                definicije \ref{def:lahkorepnaPorazdelitev} in neenakosti Markova, saj za vsak 
+                $x>0$ in $u\in(-\varepsilon, \varepsilon)$ velja
+                \begin{equation*}
+                    \Prob\left(X > x\right) = \Prob\left(e^{uX} > e^{ux}\right) \leq \frac{\E\left[e^{uX}\right]}{e^{ux}}.
+                \end{equation*}
+                \label{op:lahkorepnaPorazdelitev}
+            \end{opomba}
+
+            \begin{definicija}
+                Naj velja, da ima slu"cajna spremenljivka $Y_1$ lahek rep. "Ce obstaja pozitivna
+                enoli"cna re"sitev ena"cbe
+                \begin{equation*}
+                    M_{1Y_1}(\ell)  = 1,
+                \end{equation*}
+                pravimo $\ell$ \textit{Lundbergov koeficient}.
+            \end{definicija}
+
+            \begin{trditev}
+                mogo"ce dokazi da je $\ell$ res enoli"cna re"sitev.
+            \end{trditev}
+
+            \begin{izrek}(Lundbergova neenakost)
+                Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in 
+                naj zanj obstaja Lundebrgov koeficient $\ell$. Potem za vsak $u>0$ velja
+                \begin{equation*}
+                    \psi(u) \leq e^{-\ell u}.
+                \end{equation*}
+                \label{izr:LundbergovaNeenakost}
+            \end{izrek}
+
+            \begin{proof}
+                Neenakost bomo dokazali z indukcijo. Za $u>0$ in $n\in\N$ definiramo
+                \begin{equation*}
+                    \psi_n(u) = \Prob\left(\max_{1\leq k\leq n}Z_k > u\right)
+                \end{equation*}
+                in vidimo, da je (po zveznosti $\mathbb{P}$ od spodaj) $\psi(u) = \lim_{n\to\infty}\psi_n(u)$, 
+                torej moramo pokazati, da za vsak $n\in\N$ velja $\psi_n(u) \leq e^{-\ell u}$. \\
+                (n = 1): Kot v opombi \ref{op:lahkorepnaPorazdelitev} uporabimo neenakost Markova in dobimo
+                \begin{equation*}
+                    \psi_1(u) = \Prob\left(e^{\ell Z_1} > e^{\ell u}\right) \leq \frac{M_{Z_1}(\ell)}{e^{\ell u}} = e^{-\ell u}.
+                \end{equation*}
+                (n $\rightarrow$ n+1): 
+                Ozna"cimo s $F_{Y_1}$ porazdeliltev $Y_1$. Potem velja
+                \begin{align*}
+                    \psi_{n+1}(u) &= \Prob\left(\max_{1\leq k\leq n+1}Z_k > u\right) \\
+                                  &= \underbrace{\Prob\left(Y_1 > u\right)}_{(i)} + 
+                                  \underbrace{\Prob\left(\max_{2\leq k\leq n+1}\bigl\{Y_1 + (Z_k - Y_1)\bigr\} > u, Y_1 \leq u\right)}_{(ii)} \\
+                \end{align*}
+                Najprej se posvetimo $(ii)$. Po indukcijski predpostavki velja 
+                \begin{align*}
+                    (ii) &= \int_{(-\infty, u]}\Prob\left(\max_{1\leq k\leq n}\bigl\{x + Z_k\bigr\} > u\right)dF_{Y_1}(x) \\
+                         &= \int_{(-\infty, u]}\Prob\left(\max_{1\leq k\leq n}Z_k > u - x\right)dF_{Y_1}(x) \\
+                         &\stackrel{\text{\scalebox{0.8}{I.P.}}}{=} \int_{(-\infty, u]}\psi_n(u - x)dF_{Y_1}(x) \\
+                         &\leq \int_{(-\infty, u]}e^{-\ell(u - x)}dF_{Y_1}(x). \\
+                \end{align*}
+                Za oceno $(i)$ kot v primeru $n=1$ uporabimo neenakost Markova in dobimo
+                \begin{equation*}
+                    (i) = \psi_1(u) = \int_{(u, \infty)}dF_{Y_1}(x) \leq \int_{(u, \infty)}e^{\ell (x - u)}dF_{Y_1}(x).
+                \end{equation*}
+
+                "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo naslednjo oceno
+                \begin{align*}
+                    \psi_{n+1}(u) &\leq \int_{\R}e^{\ell (x - u)}dF_{Y_1}(x) \\
+                                  &= e^{-\ell u}M_{Y_1}(\ell) \\
+                                  &= e^{-\ell u}.
+                \end{align*}
+
+            \end{proof}
+
+            \begin{opomba}
+                Iz izreka \ref{izr:LundbergovaNeenakost} je razvidno, da z dovolj visokim za"cetnim kapitalom
+                $u$ verjetnost propada lahko v praksi zadovoljivo omejimo blizu $0$. Seveda je meja 
+                odvisna tudi od Lundbergovega koeficienta $\ell$ in krepko temelji na predpostavki 
+                lahkorepnih porazdelitev, ki pa v praksi pogosto niso izpolnjene.
+                \label{op:LundbergovaNeenakost}
+            \end{opomba}
+
+        \subsubsection{Cramérjeva meja za propad}
+            Z lundbergovo neenakostjo smo sedaj dobili orodje, s katerim lahko na enostaven na"cin navzgor 
+            ocenimo verjentost propada. Sedaj se bomo posvetili\dots
+
+            \begin{izrek}(Cramérjeva meja za propad)
+                Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in 
+                naj zanj obstaja Lundbergov koeficient $\ell$. Naj bo $F_{X}$ porazdelitev slu"cajnih spremenjlvk
+                $X_i$, ki je absolutno zvezna glede na neko mero $\nu$.Potem obstaja konstanta $C>0$ da
+                velja 
+                \begin{equation*}
+                    \lim_{u\to\infty}e^{\ell u}\psi(u) = C.
+                \end{equation*}
+                \label{izr:CramerjevaMeja}
+            \end{izrek}
+        
+        \subsubsection{Simulacija modeliranja z eksponentno porazdelitvijo}
 
 
-    \subsection{Simulacija majhnih zahtevkov}
+    \subsection{Te"zkorepe porazdelitve}
 
+        \subsubsection{Simulacija modeliranja s Pareto porazdelitvijo}
 
-    \subsection{tezkorepne porazdelitve/large claim case}
+        
+    %\subsection{Modeliranje realnih podatkov}
+    %
+    %    V tem razdelku bomo analizirali podatke iz zavarovalni"stva in jih primerjali z rezultati, 
+    %    ki smo jih izpeljali v prej"snjih razdelkih. 
+%
+    %    \begin{figure}[H]
+    %        \centering
+    %        \includegraphics[width=\textwidth]{
+    %            C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika2.pdf
+    %            }
+    %        \caption{Histograma zahtevkov med 1.1.2015 in 1.3.2015}
+    %        \label{fig:slika3}
+    %    \end{figure}
+%
+    %    \begin{figure}[H]
+    %        \centering
+    %        \includegraphics[width=\textwidth]{
+    %            C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika3.pdf
+    %            }
+    %        \caption{Stevilo prihodov zahtevkov na posamezen dan med 1.1.2015 in 1.3.2015}
+    %        \label{fig:slika4}
+    %    \end{figure}
 
-
-    \subsection{Simulacija velikih zahtevkov}
-
-
+        
         
 
 
 
-        
-        
 
 
 
+\section{Dostavek}
+    Dostavek je namenjen predvsem za dodatne definicije in trditve, ki so bile izpu"scene v glavnem
+    za namene preglednosti besdila. V primeru, "ce bralec potrebuje osve"ziti dolo"cene pojme 
+    jih ve"cino lahko najde v tem razdelku.
+    \begin{definicija}
+        Naj bo $X$ slu"cajna spremenljivka. Potem so njena \textit{rodovna funkcija}, 
+        \textit{momentno rodovna funkcija} in \textit{karakteristi"cna funkcija} definirane 
+        kot 
+        \begin{equation*}
+            G_X(u) = \E\left[u^X\right], \quad M_X(u) = \E\left[e^{uX}\right], \quad \varphi_X(u) = \E\left[e^{iuX}\right],
+        \end{equation*}
+        "ce upanja obstajajo.
+        \label{def:rodovneFunkcije}
+    \end{definicija}
 
+    \begin{izrek}(Lévijev izrek o kontinuiteti)
+        Naj bo $(X_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk (ne nujno na istem verjetnostnem prostoru)
+        in $X$ "se ena slu"cajna spremenljivka. Potem velja
+        \begin{equation*}
+            \varphi_{X_n}(u) \xrightarrow{n\to\infty} \varphi_X(u) \quad \text{za vsak} \ u \in \R
+        \end{equation*}
+        natanko tedaj, ko velja
+        \begin{equation*}
+            X_n \xrightarrow[n\to\infty]{d} X.
+        \end{equation*}
+        \label{izr:LevijevIzrek}
+    \end{izrek}
+    \begin{proof}
+        Dokaz izreka je precej tehni"cen in ga bomo izpustili. Podroben dokaz lahko bralec najde v 
+        [Fristedt, B.E., Gray L.F. (1996) A modern approach to probability theory].
+    \end{proof}
 
+    \begin{izrek}(O enoli"cnosti)
+        One to one correspondence betwwen characteristic functions and distributions.
+    \end{izrek}
 
+    \begin{definicija}
+        Naj bo $X$ slu"cajna spremenljivka in $F_X$ njena porazdelitev. Potem za $u\in\R$
+         \textit{Laplace-Stiltjesovo transformacijo} porazdelitve $F_X$ definiramo kot
+        \begin{equation*}
+            \hat{F}_X(u) = \int_{-\infty}^{\infty}e^{-ux}dF_X(x).
+        \end{equation*}
+        \label{def:LaplaceStiltjesovaTransformacija}
+    \end{definicija}
+
+    \begin{izrek}(Tonellijev izrek (Prirejen))
+        Naj bosta $X$ in $Y$ slu"cajni spremenljivki definirani vsaka na svojem verjentnostnem prostoru
+        in naj imata vsaka svojo gostoto $f_X$ in $f_Y$ glede na Lebesgueovo mero.
+        Potem velja
+        \begin{equation*}
+            \int_{\R^2}f_{X, Y}(x, y)\mathcal{L}^2(dx, dy) 
+            = \int_{\R}\left(\int_{\R}f_{X, Y}(x, y)dx\right)dy = \int_{\R}\left(\int_{\R}f_{X, Y}(x, y)dy\right)dx,
+        \end{equation*}
+        \label{izr:TonellijevIzrek}
+    \end{izrek}
 
 
 
