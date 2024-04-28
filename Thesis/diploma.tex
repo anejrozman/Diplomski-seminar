@@ -658,14 +658,19 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 \section{Cramér-Lundbergov model}
 
-    \begin{center}
-        \framebox[\linewidth]{%
-    \rule{0pt}{50pt}%
-        zgodovinski uvod in uporaba%
-    }
-    \end{center}
+    V tem razdelku obravnavamo najbolj intenzivno raziskan model v teoriji propada, običajno imenovan 
+    Cramér-Lundbergov model. V svoji najosnovnejši obliki 
+    ga je v zgodnjih 1900. letih izpeljal "svedski aktuar Filip Lundberg, da bi ocenil ranljivost 
+    zavarovalnice za propad. Čeprav naj bi bil model obravnavan kot stiliziran opis resničnosti, 
+    lepo zajema bistvo dinamike ravni presežka zavarovalne družbe, kar pojasnjuje, zakaj je postal 
+    neizpodbiten merilni model v teoriji propada.
+    V preteklem stoletju je bilo razvitih veliko tehnik za analizo Cramér-Lundbergovega modela, 
+    ki so se večinoma osredotočile na kvantifikacijo verjetnosti propada. Cilj razdelka je podati 
+    pregled glavnih rezultatov in osnovnih verjetnostnih tehnik, ter jih ponazoriti na primerih, ko 
+    zavarovalni"ske zahtevke modeliramo z lahkorepimi in te"zkorepimi porazdelitvami.
 
     \subsection{Proces tveganja in verjetnost propada}
+
         \begin{definicija}
             Naj bo $(S_t)_{t\geq0 }$ $CPP$.\textit{Proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
             \begin{align*}
@@ -676,12 +681,20 @@ Prevod zgornjega povzetka v angle"s"cino.
         \end{definicija}
 
         \begin{opomba}
-            Vrednost $U_t$ predstavlja kapital zavarovalnice ob "casu $t\geq0$. Standardno je za $p(t)$ 
-            vzeti deterministi"cno (celo linearno) funkcijo $p(t) = ct$, kjer je $c$ stopnja prihodkov premij.
+            V resnici lahko veliko lastnosti procesa tveganja izpeljemo brez da predpostavimo, da prihodi 
+            zahtevkov v $S_t$ sledijo Poissonovemu procesu, ampak splo"snemu prenovitvenemu procesu in
+            zato v nadaljevanju ne bomo uporabljali rezultatov $CPP$ kjer to ne bo potrebno.
             \label{op:procesTveganja}
         \end{opomba}
 
-        Propad bomo definirali kot dogodek, ko bo vrednost procesa tveganja postala negativna.
+        Vrednost $U_t$ predstavlja kapital zavarovalnice ob "casu $t\geq0$. Standardno je za $p(t)$ 
+        vzeti deterministi"cno funkcijo $p(t) = ct$, kjer je $c$ stopnja prihodkov premij.
+        Uporaba linearne funkcije za modeliranje premijskega dohodka v Cramér-Lundbergovem 
+        modelu ponuja realističen približek, saj kljub morebitni netočnosti v resničnih podatkih 
+        dobro odraža splošni trend rasti. To je zato, ker zavarovalnice pogosto doživljajo 
+        stabilno povečevanje premijskega dohodka skozi čas. Poleg tega je izbira linearne 
+        funkcije preprosta, kar olajša analizo modela in izpeljavo klju"cnih rezultatov, zato bomo
+        v nadaljevanju privzeli $p(t) = ct$.
 
         \begin{definicija}
             \textit{Propad} definiramo kot dogodek, da proces tveganja $(U_t)_{t\geq0}$ kadarkoli pade pod $0$. 
@@ -711,37 +724,52 @@ Prevod zgornjega povzetka v angle"s"cino.
 
         \begin{definicija}
             Po konstrukciji procesa tveganja $(U_t)_{t\geq0}$ je verjentost propada mogo"ca le ob 
-            prihodih, ki sledijo $HPP(\lambda).$ S $T_n$ ozna"cimo "cas $n$-tega prihoda in definiramo 
-            \textit{ogrodje} procesa tveganja kot $(U_{T_n})_{n\in\N}$.
+            prihodih zahtevkov. %, ki sledijo $HPP(\lambda)$
+            S $T_n$ ozna"cimo "cas $n$-tega prihoda in definiramo 
+            \textit{ogrodje procesa tveganja} kot $(U_{T_n})_{n\in\N}$.
             \label{def:ogrodjeProcesaTveganja}
         \end{definicija}
 
-         S pomo"cjo ogrodja procesa tveganja lahko dogodek propada zapi"semo kot
-        \begin{align*}
-            \biggl\{\inf_{t\geq0}U_t<0\biggr\} &= \biggl\{\inf_{n\in\N}U_{T_n}<0\biggr\} \\
-                          &= \biggl\{\inf_{n\in\N}\left(u + p(T_n) - S_{T_n}\right) < 0\biggr\} \\
-                          &= \biggl\{\inf_{n\in\N}\left(u + cT_n - \sum_{i=1}^nX_i\right) < 0\biggr\} \\
-        \end{align*}
-        in tako dobimo nov na"cin kako zapisati verjetnost propada. Za $n\in\N$ z $W_n$ ozna"cimo 
-        medprihodni "cas $HPP(\lambda)$, torej $W_n := T_n - T_{n-1}$ in $W_0 = T_0 = 0$. Definiramo 
-        izgubo $n$-tega prihoda kot 
-        \begin{equation*}
-            Y_n := X_n - cW_n \quad \text{za} \ n\in\N.
-        \end{equation*}
-        Ozna"cimo z $Z_n := \sum_{i=1}^nY_i$ in dobimo
-        \begin{equation*}
-            \psi(u) = \Prob\left(\sup_{n\in\N}\left(Z_n\right) > u\right).
-        \end{equation*}
+        \begin{trditev}
+            Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu in $(U_{T_n})_{n\in\N}$ 
+            njegovo ogrodje ter $W_n := T_n - T_{n-1}$ medpirhodni "cas $n$-tega zahtevka 
+            $(W_0 = T_0 = 0)$. Potem velja 
+            \begin{equation*}
+                \psi(u) = \Prob\left(\sup_{n\in\N}Z_n > u\right),
+            \end{equation*}
+            kjer je $Z_n = \sum_{i=1}^nY_i$  komulativna izguba po $n$ prihodih in $Y_i = X_i - cW_i$
+            izguba $i$-tega prihoda.
+            \label{trd:verjetnostPropadaZOgrodjem}
+        \end{trditev}
+
+        \begin{proof}
+
+            S pomo"cjo ogrodja procesa tveganja lahko dogodek propada zapi"semo kot
+            \begin{align*}
+                \biggl\{\inf_{t\geq0}U_t<0\biggr\} &= \biggl\{\inf_{n\in\N}U_{T_n}<0\biggr\} \\
+                              &= \biggl\{\inf_{n\in\N}\bigl\{u + p(T_n) - S_{T_n}\bigr\} < 0\biggr\} \\
+                              &= \biggl\{\inf_{n\in\N}\biggl\{u + 
+                              \underbrace{cT_n - \sum_{i=1}^nX_i}_{-Z_n}\biggr\} < 0\biggr\}. \\
+            \end{align*}
+            Potem lahko $\psi(u)$ zapi"semo kot 
+            \begin{align*}
+                \psi(u) &= \Prob\left(\inf_{n\in\N}\{-Z_n\} < -u\right) \\
+                        &= \Prob\left(\sup_{n\in\N}Z_n > u\right).
+            \end{align*}
+        \end{proof}
+
         Tako verjetnost propada prevedemo na prehodno verjetnost diskretnega slu"cajnega 
         sprehoda $(Z_n)_{n\in\N}$. V nadaljevanju nas bo predvsem zanimalo asimptoti"cno 
         vedenje $\psi(u)$, ko gre $u\rightarrow\infty$. Cilj obravnavanja verjetnosti propada v 
         Cramér-Lundbergovem modelu je, da se izognemo 
         propadu z verjetnostjo 1 oziroma, da je verjetnost, da $(Z_n)_{n\in\N}$ prese"ze $u$
         tako majhna, da lahko v praksi dogodek propada izklju"cimo. 
+
+
         \begin{trditev}
-            Naj bo $(Z_n)_{n\in\N}$ slu"cajni sprehod definiran kot $Z_n = \sum_{i=1}^nY_i$ za 
-            neodvisne in enako porazdeljene slu"cajne spremenljivke $Y_i$ z $\E\left[Y_i\right] = \mu$. 
-            Potem za vsak $u>0$ velja
+            Naj bo $(Z_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk definirano kot 
+            $Z_n = \sum_{i=1}^nY_i$ za neodvisne in enako porazdeljene slu"cajne spremenljivke 
+            $Y_i$ z $\E\left[Y_i\right] = \mu < \infty$. Potem za vsak $u>0$ velja
             \begin{equation*}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1 \quad \text{za} \ u > 0,
             \end{equation*}
@@ -751,12 +779,13 @@ Prevod zgornjega povzetka v angle"s"cino.
 
         \begin{proof}
             Zaporedje slu"cajnih spremenljivk $(Y_i)_{i\in\N}$ zadostuje krepkemu zakonu velikih 
-            "stevil, torej velja
+            "stevil \ref{izr:KrepkiZakonVelikihStevil}, torej velja
             \begin{equation*}
                 \frac{Y_1 + Y_2 + \cdots Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
             \end{equation*}
             Torej bo $Z_n$ v primeru ko je $\mu>0$
-             skoraj gotovo linearno nara"scal proti $\infty$ in bo za poljuben $u>0$
+             skoraj gotovo asimptoti"cno linearno nara"scal proti $\infty$ kot $\mu n$ in 
+             bo za poljuben $u>0$
             \begin{equation*}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
             \end{equation*}
@@ -766,9 +795,9 @@ Prevod zgornjega povzetka v angle"s"cino.
 
         \begin{opomba}
             Iz trditve \ref{trd:propadZVerjetnostjo1} (ob predpostavkah $\E\left[X_i\right] < \infty$
-            in $\E\left[W_i\right] < \infty$) sledi, moramo premijo $c$ izbrati tako, da bo 
+            in $\E\left[W_i\right] < \infty$) sledi, da moramo premijo $c$ izbrati tako, da bo 
             $\E\left[Y_i\right] < 0$, saj je to edini na"cin, ko lahko upamo, da verjetnost propada ne bo
-            enaka 1
+            enaka 1.
             \label{op:izbiraPremije}
         \end{opomba}
     
@@ -804,17 +833,18 @@ Prevod zgornjega povzetka v angle"s"cino.
         %pozdaporedji $(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$... Spitzer [138] je dokazano.
 
         \begin{definicija}
-            Pravimo, da proces tveganja $(U_t)_{t\geq0}$ izpolnjuje \textit{pogoj neto zaslu"zka}
-            (ang. \textit{net profit condition}), "ce velja 
+            Pravimo, da proces tveganja $(U_t)_{t\geq0}$ v Cramér-Lundbergovem modelu
+             zadostuje \textit{pogoju neto zaslu"zka} (ang. \textit{net profit condition}), "ce velja 
             \begin{equation*}
-                c > \frac{\E\left[X\right]}{\E\left[W\right]}.
+                c > \frac{\E\left[X\right]}{\E\left[W\right]} \quad \text{oziroma} \quad 
+                c = (1 + \rho)\frac{\E\left[X\right]}{\E\left[W\right]} \quad \text{za $\rho > 0$}.
             \end{equation*}
             Pogoj bomo v nadaljenvanju imenovali NPC.
             \label{def:NPC}
         \end{definicija}
 
-        Zahteva NPC je kar intuitivna, saj pove, da mora v neki "cavni enoti biti pri"cakoan 
-        dohodek iz premij ve"cji od pri"cakovanega izpla"cila zahtevkov.
+        Zahteva NPC za analizo poslovanja zavarovalnice je kar intuitivna, saj pove, da mora v 
+        neki "cavni enoti biti pri"cakoan dohodek iz premij ve"cji od pri"cakovanega izpla"cila zahtevkov.
     
     \subsection{Lahkorepe porazdelitve}
         \subsubsection{Lundbergova neenakost}
@@ -915,6 +945,15 @@ Prevod zgornjega povzetka v angle"s"cino.
         \subsubsection{Cramérjeva meja za propad}
             Z lundbergovo neenakostjo smo sedaj dobili orodje, s katerim lahko na enostaven na"cin navzgor 
             ocenimo verjentost propada. Sedaj se bomo posvetili\dots
+
+            \begin{lema}
+                Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in naj 
+                velja $\E\left[X\right]<\infty$ ter, da je $F_X$ absolutno zvezna glede na neko mero $\nu$.
+                Potem $\delta(u)$ zado"sca nasljednji enakosti
+                \begin{equation*}
+                    \delta(u) = \delta(0) + \frac{1}{(1+\rho)\E\left[X\right]} \int_{(0, u]}\biggl((1 - F_X(x))\delta(u - x)\biggr)dx.
+                \end{equation*}
+            \end{lema}
 
             \begin{izrek}(Cramérjeva meja za propad)
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in 
@@ -1020,6 +1059,15 @@ Prevod zgornjega povzetka v angle"s"cino.
             = \int_{\R}\left(\int_{\R}f_{X, Y}(x, y)dx\right)dy = \int_{\R}\left(\int_{\R}f_{X, Y}(x, y)dy\right)dx,
         \end{equation*}
         \label{izr:TonellijevIzrek}
+    \end{izrek}
+
+    \begin{izrek}(Krepki zakon velikih "stevi)
+        Naj bo $(X_n)_{n\in\N}$ zaporedje neodvisnih enako porazdeljenih
+        slu"cajnih spremenljivk s pri"cakovano vrendostjo $\E\left[X_i\right] = \mu <\infty$. Potem velja
+        \begin{equation*}
+            \frac{X_1 + X_2 + \cdots X_n}{n}\xrightarrow[n\to\infty]{s.g.} \mu.
+        \end{equation*}
+        \label{izr:KrepkiZakonVelikihStevil}
     \end{izrek}
 
 
