@@ -50,8 +50,20 @@ gammaRiskProcess = function(lambda, T, alpha, beta, u, c) {
   }
   riskGamma$riskProcess = riskGamma$premiumRevenue - riskGamma$cumulativeClaims
   
+  for (i in 1:nrow(riskGamma)){
+    if (riskGamma$riskProcess[i] < 0){
+      riskGamma[i,4] = 0
+      riskGamma = riskGamma[1:i,]
+      break
+    }
+  }
+  
   return(riskGamma)
 }
+
+a = gammaRiskProcess(0.3, 500, 100, 2, 200, 0)
+a[1, 4]
+length(a[])
 
 #------------------------------------------------------------------------------#
 
@@ -99,7 +111,15 @@ ParetoRiskProcess = function(lambda, T, scale, shape, u, c) {
   }
   riskPareto$riskProcess = riskPareto$premiumRevenue - riskPareto$cumulativeClaims
   
-  return(riskPareto[, c('arrivalTimes', 'riskProcess')])
+  for (i in 1:length(riskPareto)){
+    if (riskPareto$riskProcess[i] < 0){
+      riskPareto = riskPareto[1:i,]
+      break
+    }
+  }
+  
+  
+  return(riskPareto)
 }
 
 ParetoRiskProcess(lambda, T, scale, shape, u, c)
@@ -143,7 +163,7 @@ vis = function(N, type, lambda, T, scale, shape, u, c){
 }
   
 
-vis(N, FALSE, 0.1, 365, scale, shape, 10000, 500)
+vis(2, TRUE, 0.25, 30, 50, 2, 100, 5)
 
 #------------------------------------------------------------------------------#
 

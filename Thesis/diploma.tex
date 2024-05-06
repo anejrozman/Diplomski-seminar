@@ -1,11 +1,9 @@
 \documentclass[12pt, a4paper, reqno]{amsart}
-% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
 \usepackage[slovene]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{url}
-%\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -15,9 +13,12 @@
 \usepackage{bm}
 \usepackage{float}
 \usepackage{xcolor}
+%\usepackage{titlesec}
 \allowdisplaybreaks
 
-% ne spreminjaj podatkov, ki vplivajo na obliko strani
+%--------------------------------------OBLIKA DOKUMENTA--------------------------------------------%
+
+% Oblika strani
 \textwidth 15cm
 \textheight 24cm
 \oddsidemargin.5cm
@@ -27,17 +28,27 @@
 \pagestyle{plain}
 \overfullrule=15pt % oznaci predlogo vrstico
 
+% Naslovi
+%\titleformat{\section}
+%{\normalfont\Large\bfseries\centering\MakeUppercase}{\thesection}{1em}{}
+%
+%\titleformat{\subsection}
+%{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+%
+%\titleformat{\subsubsection}
+%{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
-% ukazi za matematicna okolja
-\theoremstyle{definition} % tekst napisan pokoncno
+
+% Matematicna okolja (tekst napisan pokoncno)
+\theoremstyle{definition}
 \newtheorem{definicija}{Definicija}[section]
 \newtheorem{zgled}[definicija]{Zgled}
 \newtheorem{opomba}[definicija]{Opomba}
 
 \renewcommand\endzgled{\hfill$\diamondsuit$}
 
-
-\theoremstyle{plain} % tekst napisan posevno
+% Matematicna okolja (tekst napisan posevno)
+\theoremstyle{plain} 
 \newtheorem{lema}[definicija]{Lema}
 \newtheorem{izrek}[definicija]{Izrek}
 \newtheorem{trditev}[definicija]{Trditev}
@@ -45,20 +56,19 @@
 
 
 
-% ukaz za slovarsko geslo
+% Ukaz za slovarsko geslo
 \newlength{\odstavek}
 \setlength{\odstavek}{\parindent}
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
 
+% Podatki o delu
+\newcommand{\program}{Finančna matematika} 
+\newcommand{\imeavtorja}{Anej Rozman} 
+\newcommand{\imementorja}{~doc.~dr. Martin Raič} 
+\newcommand{\naslovdela}{Sestavljeni Poissonov proces in njegova uporaba v financah} 
+\newcommand{\letnica}{2024} 
 
-% naslednje ukaze ustrezno popravi
-\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
-\newcommand{\imeavtorja}{Anej Rozman} % ime avtorja
-\newcommand{\imementorja}{~doc.~dr. Martin Raič} % akademski naziv in ime mentorja
-\newcommand{\naslovdela}{Sestavljeni Poissonov proces in njegova uporaba v financah} % naslov dela
-\newcommand{\letnica}{2024} % letnica diplome
-
-% Moji ukazi
+% Dodatni ukazi
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\E}{\mathbb{E}}
@@ -69,9 +79,7 @@
 \newcommand{\Pois}[1]{\text{Pois}(#1)}
 \newcommand{\Var}[1]{\text{Var}\left[#1\right]}
 
-
-
-
+%------------------------------------------NASLOVNE STRANI-----------------------------------------%
 
 \begin{document}
 
@@ -103,15 +111,24 @@ Ljubljana, \letnica}
 {\bf \naslovdela}\\[3mm]
 {\sc Povzetek}
 \end{center}
-% tekst povzetka v slovenscini
+
+%--------------------------------------POVZETEK V SLOVENSCINI--------------------------------------%
+
+
+
+%--------------------------------------------------------------------------------------------------%
 
 \vfill
 \begin{center}
-{\bf Compound Poisson process and its application in finance}\\[3mm] % angleski naslov
+{\bf Compound Poisson process and its application in finance}\\[3mm] 
 {\sc Abstract}
 \end{center}
-% tekst povzetka v anglescini
-Prevod zgornjega povzetka v angle"s"cino.
+
+%--------------------------------------POVZETEK V ANGLESCINI---------------------------------------%
+
+
+
+%--------------------------------------------------------------------------------------------------%
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
@@ -121,7 +138,8 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 
 
-% tu se zacne besedilo seminarja
+%--------------------------------------------VSEBINA-----------------------------------------------%
+
 \section{Uvod}
 
     \begin{center}
@@ -666,7 +684,7 @@ Prevod zgornjega povzetka v angle"s"cino.
     neizpodbiten merilni model v teoriji propada.
     V preteklem stoletju je bilo razvitih veliko tehnik za analizo Cramér-Lundbergovega modela, 
     ki so se večinoma osredotočile na kvantifikacijo verjetnosti propada. Cilj razdelka je podati 
-    pregled glavnih rezultatov in osnovnih verjetnostnih tehnik, ter jih ponazoriti na primerih, ko 
+    pregled glavnih rezultatov in osnovnih tehnik, ter jih ponazoriti na primerih, ko 
     zavarovalni"ske zahtevke modeliramo z lahkorepimi in te"zkorepimi porazdelitvami.
 
     \subsection{Proces tveganja in verjetnost propada}
@@ -694,7 +712,23 @@ Prevod zgornjega povzetka v angle"s"cino.
         dobro odraža splošni trend rasti. To je zato, ker zavarovalnice pogosto doživljajo 
         stabilno povečevanje premijskega dohodka skozi čas. Poleg tega je izbira linearne 
         funkcije preprosta, kar olajša analizo modela in izpeljavo klju"cnih rezultatov, zato bomo
-        v nadaljevanju privzeli $p(t) = ct$.
+        v nadaljevanju privzeli $p(t) = ct$. 
+
+        \begin{zgled}
+
+            Poglejmo si primer, ko...
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{
+                    C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika2.pdf
+                    }
+                \caption{Realizaciji procesa tveganja}
+                \label{fig:slika3}
+            \end{figure}
+            
+            \label{zgd:weibullProcesTveganja}
+        \end{zgled}
 
         \begin{definicija}
             \textit{Propad} definiramo kot dogodek, da proces tveganja $(U_t)_{t\geq0}$ kadarkoli pade pod $0$. 
@@ -1004,6 +1038,7 @@ Prevod zgornjega povzetka v angle"s"cino.
 
 
 
+\pagebreak
 
 \section{Dostavek}
     Dostavek je namenjen predvsem za dodatne definicije in trditve, ki so bile izpu"scene v glavnem
@@ -1070,35 +1105,33 @@ Prevod zgornjega povzetka v angle"s"cino.
         \label{izr:KrepkiZakonVelikihStevil}
     \end{izrek}
 
+    \begin{definicija}
+        Slu"cajna spremenljivka $X$ ima \textit{Weibullovo porazdelitev} s parametri $a, b > 0$, 
+        "ce ima njena porazdelitev obliko 
+        \begin{equation*}
+            F_X(x) = 1 - e^{-\left(\tfrac{x}{b}\right)^a} \quad \text{za} \ x\geq 0
+        \end{equation*}
+        in gostota obliko
+        \begin{equation*}
+            f_X(x) = \left(\frac{a}{b}\right)\left(\frac{x}{b}\right)^{a-1}e^{-\left(\tfrac{x}{b}\right)^a} \quad \text{za} \ x\geq 0.
+        \end{equation*}
+        \label{def:WeibullovaPorazdelitev}
+    \end{definicija}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%-----------------------------------------KONEC VSEBINE--------------------------------------------%
 
 \section*{Slovar strokovnih izrazov}
 
-%\geslo{}{}
+\geslo{trajektorija}{sample path}
 %
 %\geslo{}{}
 %
 
 
-% seznam uporabljene literature
+% Literatura
 \begin{thebibliography}{99}
-
 \bibitem{1}S.E. Shreve, Stochastic Calculus for Finance II: Continuous-Time Models, Springer, (2004).
 \bibitem{2}S.M. Ross, Stochatic Processes: Second Edition, Wiley, (1996).
 \bibitem{3}P. Embrechts, C. Klüppelberg, T. Mikosch, Modelling Extremal Events: For Insurance and Finance, Springer, (1997).
