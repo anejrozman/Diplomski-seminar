@@ -13,6 +13,7 @@
 \usepackage{bm}
 \usepackage{float}
 \usepackage{xcolor}
+\usepackage{bbm}
 %\usepackage{titlesec}
 \allowdisplaybreaks
 
@@ -679,9 +680,9 @@ Ljubljana, \letnica}
     V tem razdelku obravnavamo najbolj intenzivno raziskan model v teoriji propada, običajno imenovan 
     Cramér-Lundbergov model. V svoji najosnovnejši obliki 
     ga je v zgodnjih 1900. letih izpeljal "svedski aktuar Filip Lundberg, da bi ocenil ranljivost 
-    zavarovalnice za propad. Čeprav naj bi bil model obravnavan kot stiliziran opis resničnosti, 
-    lepo zajema bistvo dinamike ravni presežka zavarovalne družbe, kar pojasnjuje, zakaj je postal 
-    neizpodbiten merilni model v teoriji propada.
+    zavarovalnice za propad. Čeprav je model v svoji ideji dokaj preprost, 
+    lepo zajema bistvo dinamike ravni rezerv zavarovalne družbe in njene izpostavljenosti tveganju, 
+    kar pojasnjuje, zakaj je postal temeljni merilni model v teoriji propada.
     V preteklem stoletju je bilo razvitih veliko tehnik za analizo Cramér-Lundbergovega modela, 
     ki so se večinoma osredotočile na kvantifikacijo verjetnosti propada. Cilj razdelka je podati 
     pregled glavnih rezultatov in osnovnih tehnik, ter jih ponazoriti na primerih, ko 
@@ -708,16 +709,16 @@ Ljubljana, \letnica}
         Vrednost $U_t$ predstavlja kapital zavarovalnice ob "casu $t\geq0$. Standardno je za $p(t)$ 
         vzeti deterministi"cno funkcijo $p(t) = ct$, kjer je $c$ stopnja prihodkov premij.
         Uporaba linearne funkcije za modeliranje premijskega dohodka v Cramér-Lundbergovem 
-        modelu ponuja realističen približek, saj kljub morebitni netočnosti v resničnih podatkih 
-        dobro odraža splošni trend rasti. To je zato, ker zavarovalnice pogosto doživljajo 
+        modelu ponuja realističen približek zato, ker zavarovalnice pogosto doživljajo 
         stabilno povečevanje premijskega dohodka skozi čas. Poleg tega je izbira linearne 
         funkcije preprosta, kar olajša analizo modela in izpeljavo klju"cnih rezultatov, zato bomo
         v nadaljevanju privzeli $p(t) = ct$. 
 
         \begin{zgled}
 
-            Poglejmo si primer, ko...
-
+            Poglejmo si realizaciji procesa tveganja, ko so zahtevki $X_i$ porazdeljeni Weibullovo 
+            (\ref{def:WeibullovaPorazdelitev}) z razli"cnimi parametri. 
+            
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=\textwidth]{
@@ -913,7 +914,7 @@ Ljubljana, \letnica}
                 \begin{equation*}
                     M_{1Y_1}(\ell)  = 1,
                 \end{equation*}
-                pravimo $\ell$ \textit{Lundbergov koeficient}.
+                "stevilu $\ell$ pravimo \textit{Lundbergov koeficient}.
             \end{definicija}
 
             \begin{trditev}
@@ -959,7 +960,7 @@ Ljubljana, \letnica}
                     (i) = \psi_1(u) = \int_{(u, \infty)}dF_{Y_1}(x) \leq \int_{(u, \infty)}e^{\ell (x - u)}dF_{Y_1}(x).
                 \end{equation*}
 
-                "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo naslednjo oceno
+                "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo "zeljeno oceno
                 \begin{align*}
                     \psi_{n+1}(u) &\leq \int_{\R}e^{\ell (x - u)}dF_{Y_1}(x) \\
                                   &= e^{-\ell u}M_{Y_1}(\ell) \\
@@ -976,18 +977,130 @@ Ljubljana, \letnica}
                 \label{op:LundbergovaNeenakost}
             \end{opomba}
 
+            \begin{zgled}
+                Naj veljajo predpostavke izreka \ref{izr:LundbergovaNeenakost}, torej imamo proces 
+                tveganja $(U_t)_{t\geq0}$ v Cramér-Lundbergovem modelu, ki zadostuje NPC. Naj 
+                nadalje velja da so $X_i$ eksponentno porazdeljene slu"cajne spremenljivke s parametrom $\mu$ 
+                $(X_i \sim \text{Exp}(\mu) \ \text{za vsak} \ i)$. Vemo, da ima momentno rodovna funkcija 
+                $X_i$ obliko 
+                \begin{equation}
+                    M_{X_i}(u) = \frac{\mu}{\mu - u} \ \text{za} \ u<\mu.
+                    \label{eq:MRExsponentneSS}
+                \end{equation}
+                Tako dobimo, da ima momentno rodovna funkcija $Y_1 = X_1 - cW_1$ obliko 
+                \begin{equation*}
+                    M_{Y_1}(u) = M_{X_1}(u)M_{W_1}(-cu) = 
+                    \frac{\mu}{\mu - u}\frac{\lambda}{\lambda + cu} \ \text{za} \ u\in (-\tfrac{\lambda}{c}, \mu).
+                \end{equation*}
+                Sedaj lahko izra"cunamo Lundbergov koeficient $\ell$
+                \begin{align*}
+                    M_{Y_1}(\ell) &= 1, \\
+                    \frac{\mu}{\mu - \ell}\frac{\lambda}{\lambda + c\ell} &= 1, \\
+                    \mu\lambda &= (\mu - \ell)(\lambda + c\ell), \\
+                    \mu\lambda &= \mu\lambda - \ell\lambda + \mu c - c\ell^2, \\
+                    0 &= \mu c - c\ell - \lambda.
+                \end{align*}
+                Tako dobimo 
+                \begin{equation*}
+                    \ell = \mu - \frac{\lambda}{c} \in (0, \mu),
+                \end{equation*}
+                saj v na"sem modelu velja NPC pogoj
+                \begin{equation*}
+                    \frac{\E\left[X_1\right]}{\E\left[W_1\right]} = \frac{\lambda}{\mu} < c \iff \mu > \frac{\lambda}{c}.
+                \end{equation*}
+                "Ce uporabimo alternativno formulacijo NPC pogoja, dobimo
+                \begin{align*}
+                    c = (1 + \rho)\frac{\lambda}{\mu} \Rightarrow
+                    \ell = \mu - \frac{\lambda}{(1 + \rho)\frac{\lambda}{\mu}} = \mu\left(\frac{\rho}{1 + \rho}\right).
+                \end{align*}
+            
+                Tako dobimo zgornjo mejo za verjetnost propada
+                \begin{equation*}
+                    \psi(u) \leq e^{-\ell u} = e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)}
+                \end{equation*}
+                in vidimo, da pove"canje premije "cez neko mejo ne bistveno vpliva na oceno, saj 
+                \begin{equation*}
+                    \lim_{\rho\to\infty}e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)} = e^{-\mu u}.
+                \end{equation*}
+                V nadaljevanju bomo videli, da je Lundbergova neenakost v primeru eksponentno 
+                porazdeljenih zahtevkov skoraj to"cna vrednost verjetnosti propada, zgre"sena le za konstanto.
+                V splo"snem pa je zelo te"zko dolo"citi Lunbergov koeficient kot funkcijo parametrov
+                porazdelittev $X_1$ in $W_1$ in zato uporabljamo numeri"cne metode za njegovo aproksimacijo 
+                kot naprimer Monte Carlo simulacije.
+                \label{zgd:LundebrgovaNeenakostEksponentno}
+            \end{zgled}
+
         \subsubsection{Cramérjeva meja za propad}
-            Z lundbergovo neenakostjo smo sedaj dobili orodje, s katerim lahko na enostaven na"cin navzgor 
-            ocenimo verjentost propada. Sedaj se bomo posvetili\dots
+            Sedaj se bomo posvetili enemu najpomembnej"sih rezultatov v teoriji propada.
+
+            \begin{definicija}
+                Za la"zjo notacijo v nadaljevanju definiramo funkcijo \textit{verjentosti pre"zivetja} kot
+                $\theta(u):(0, \infty) \to [0, 1]$ s predpisom
+                \begin{equation*}
+                    \theta(u) = \Prob\left(T=\infty\mid U_0=u\right) = 1 - \psi(u).
+                \end{equation*}
+                \label{def:verjetnostPrezivetja}
+            \end{definicija}
 
             \begin{lema}
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in naj 
                 velja $\E\left[X\right]<\infty$ ter, da je $F_X$ absolutno zvezna glede na neko mero $\nu$.
-                Potem $\delta(u)$ zado"sca nasljednji enakosti
-                \begin{equation*}
-                    \delta(u) = \delta(0) + \frac{1}{(1+\rho)\E\left[X\right]} \int_{(0, u]}\biggl((1 - F_X(x))\delta(u - x)\biggr)dx.
-                \end{equation*}
+                Potem $\theta(u)$ zado"sca nasljednji enakosti
+                \begin{equation}
+                    \theta(u) = \theta(0) + \frac{1}{(1+\rho)\E\left[X\right]} \int_{(0, u]}\biggl((1 - F_X(x))\theta(u - x)\biggr)dx.
+                    \label{eq:verjetnostPrezivetja}
+                \end{equation}
+                \label{lema:verjetnostPrezivetja}
             \end{lema}
+
+            \begin{proof}
+                Iz trditve \ref{trd:verjetnostPropadaZOgrodjem} vemo, da velja
+                \begin{equation*}
+                    \psi(u) = \Prob\left(\sup_{n\in\N}Z_n > u\right),
+                \end{equation*}
+                kjer je $Z_n = \sum_{i=1}^nY_i$ in $Y_i = X_i - cW_i$. Torej je
+                \begin{align*}
+                    \theta(u) &= \Prob\left(\sup_{n\in\N}Z_n \leq u\right) \\
+                              &= \Prob\left(\{Z_n \leq u\mid \forall n\in\N\}\right) \\
+                              &= \Prob\left(\{Y_1 \leq u\}\cap \{Z_n - Y_1 \leq u - Y_1\mid \forall n\geq2\}\right) \\
+                              &= \E\left[\mathbbm{1}_{\{Y_1\leq u\}}\Prob\left(\{Z_n - Y_1 \leq u - Y_1\mid \forall n\geq2\}\mid Y_1\right)\right] \\
+                              &= \int_{(0, \infty)}\int_{(0, u + cw]}\Prob\left(\{Z_n - Y_1 \leq u - (x - cw)\mid \forall n\geq2\}\right)dF_{X_1}(x)dF_{W_1}(w) \\
+                              &= \int_{(0, \infty)}\int_{(0, u + cw]}\Prob\left(\{Z_n \leq u - (x - cw)\mid \forall n\in\N\}\right)dF_{X_1}(x)\lambda e^{-\lambda w}dw. \\
+                \end{align*}
+
+                \begin{align*}
+                    \theta(u) &= \int_{(0, \infty)}\int_{(0, u + cw]}\theta(u - x + cw)dF_{X_1}(x)\lambda e^{-\lambda w}dw (z = u + cw)\\
+                              &= \frac{\lambda}{c}e^{u\tfrac{\lambda}{c}}\int_{(u, \infty)}e^{\tfrac{-\lambda z}{c}}\int_{(0, z)}\theta(z - x)dF_{X_1}(x)dz \\
+                \end{align*}
+
+                \begin{equation*}
+                    g(z) = \int_{(0, z)}\theta(z - x)dF_{X_1}(x) \Rightarrow g'(z) = \theta(z) - \int_{(0, z)}\theta'(z - x)dF_{X_1}(x)
+                \end{equation*}
+
+                \begin{equation*}
+                    \theta(u) = \frac{\lambda}{c}e^{u\tfrac{\lambda}{c}}\int_{(u, \infty)}e^{\tfrac{-\lambda z}{c}}g(z)dz
+                \end{equation*}
+
+                \begin{equation*}
+                    \theta'(u) = \frac{\lambda}{c}\theta(u) - \frac{\lambda}{c}\int_{(0, u)}\theta(u - x)dF_{X_1}(x).
+                \end{equation*}
+
+            \end{proof}
+
+            \begin{opomba}
+                    Ena"cbo (\ref{eq:verjetnostPrezivetja}) lahko zapi"semo tudi v obliki 
+                    \begin{equation*}
+                        \theta(u) = \theta(0) + \frac{1}{(1+\rho)}\int_{(0, u]}\theta(u - x)dF_X^I(x)
+                    \end{equation*}
+                    kjer je $F_X^I(x)$ podana z ena"cbo 
+                    \begin{equation*}
+                        F_X^I(x) = \frac{1}{\E\left[X\right]}\int_{(0, x]}(1 - F_X(y))dy. \ \text{za} \ x>0.
+                    \end{equation*}
+                    Hitro lahko preverimo, da je $F_X^I(x)$ porazdelitvena funkcija, saj je $F_X^I(0) = 0$, 
+                    $F_X^I(x)$ je nara"s"cajo"ca in $F_X^I(x) \uparrow 1$ za $x\to\infty$, ker velja 
+                    $\E\left[X\right] = \int_{(0, \infty)}(1 - F_X(x))dx.$
+                \label{op:verjetnostPrezivetja}
+            \end{opomba}
 
             \begin{izrek}(Cramérjeva meja za propad)
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in 
@@ -1117,6 +1230,27 @@ Ljubljana, \letnica}
         \end{equation*}
         \label{def:WeibullovaPorazdelitev}
     \end{definicija}
+
+    \begin{definicija}
+        Naj bo $F$ porazdelitvena funkcija. Potem je 
+        \begin{align*}
+            F^{-}(x) = \int
+        \end{align*}
+        \textit{porazdelitev integrarnega repa F}.
+        \label{def:porazdelitevZintegriranegaRepa}
+    \end{definicija}
+
+    \begin{izrek}
+        izrek o sliki mere
+    \end{izrek}
+
+    \begin{trditev}
+        pricakovana vrednost kot $\int_{(0, \infty)}P(X > x)dx$ za pozitivne slucajne spremenljivke
+    \end{trditev}
+
+    \begin{proof}
+        dokaz trditve
+    \end{proof}
 
 
 
