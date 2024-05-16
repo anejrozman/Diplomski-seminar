@@ -70,19 +70,19 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 # Slika 2 (Simulation of two sample paths of risk process with Weibull claims,
 # one falls below 0 (heavy tailed) and one survives (light tailed)."
 
-set.seed(99)
+set.seed(11)
 
 # Parameters
-lambda = 0.3 # Intensity of HPP
-T = 30 # Time horizon of simulation
-u = 500 # Initial reserve
-c = 10 # Premium income rate
+lambda = 1 # Intensity of HPP
+T = 50 # Time horizon of simulation
+u = 1000 # Initial reserve
+c = 200 # Premium income rate
 
 ################################## LIGHT TAILS #################################
 
 # Light tailed Weibull
 aLight = 2 # Shape
-bLight = 100 # Rate
+bLight = 434 # Rate
 
 # Simulate arrival times for light tails
 arrivalTimesLight = c(0)
@@ -124,8 +124,8 @@ for (i in 1:nrow(riskWeibullLight)){
 ############################### HEAVY TAILS ####################################
 
 # Heavy tailed Weibull
-aHeavy = 0.5 # Shape
-bHeavy = 29.54 # Rate
+aHeavy = 0.25 # Shape
+bHeavy = 16 # Rate
 
 # Simulate arrival times for heavy tails
 arrivalTimesHeavy = c(0)
@@ -181,36 +181,41 @@ g2riskProcess = g2riskProcess + geom_line(data = riskWeibullLight,
                      size = 2.5,
                      shape = "x",
                      color = "black") +
-          labs(title = "realizacija procesa tveganja z Weibullovo porazdeljenimi zahtevki",
-               x = "Čas t",
-               y = "Proces tveganja U(t)")
+          geom_point(aes(x =riskWeibullHeavy[nrow(riskWeibullHeavy), 1], y = -0.8),
+                       size = 2.5,
+                       shape = "x",
+                       color = "black") +
+          labs(title = "Realizacija procesa tveganja z Weibullovo porazdeljenimi zahtevki",
+               x = "t",
+               y = "U(t)")
 g2riskProcess
           
 # Densities
 
 # Light
-lightDensity = data.frame(x=1:1000, y=dweibull(1:1000, aLight, bLight))
+lightDensity = data.frame(x=seq(0, 1000, by = 0.005), 
+                          y=dweibull(seq(0, 1000, by = 0.005), aLight, bLight))
 
 g2lightDensity = ggplot() + geom_line(data = lightDensity, 
                                       aes(x, y), 
                                       size = 0.7, 
                                       color = 'red') +
-                            labs(title = 'Gostota weibullove slucajne spremenljvke', 
-                                 x = 'x', 
-                                 y = 'f_X(x)')
+                            labs(title = 'Gostota X~Weibull(2, 434)',
+                                 y = 'f_X', x = '') 
 
 g2lightDensity
 
 # Heavy
-heavyDensity = data.frame(x=1:1000, y=dweibull(1:1000, aHeavy, bHeavy))
+heavyDensity = data.frame(x=seq(0, 1000, by = 0.005), 
+                          y=dweibull(seq(0, 1000, by = 0.005), aHeavy, bHeavy))
 
 g2heavyDensity = ggplot() + geom_line(data = heavyDensity, 
                                       aes(x, y), 
                                       size = 0.7, 
                                       color = 'cyan3') +
-                            labs(title = 'Gostota weibullove slucajne spremenljvke', 
-                                 x = 'x', 
-                                 y = 'f_X(x)')
+                            labs(title = 'Gostota Y~Weibull(1/4, 16)',
+                                 y = 'f_Y', x = '') + 
+                            scale_y_continuous(limits = c(0, 0.02))
 
 g2heavyDensity
   
