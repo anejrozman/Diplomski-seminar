@@ -233,4 +233,15 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
        height = 6)
 
 #-------------------------------------------------------------------------------#
+#Slika 3 (Monte Carlo simulation for approximating ruin proability)
+
+set.seed(11)
+
+# Parameters
+lambda = 1 # Intensity of HPP
+T = 50 # Time horizon of simulation
+u = 1000 # Initial reserve
+c = 200 # Premium income rate
+
+
 
