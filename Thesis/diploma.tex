@@ -138,7 +138,18 @@ Ljubljana, \letnica}
 \pagebreak
 
 
-
+%--------------------------------------------ZAHVALA-----------------------------------------------%
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\section*{Zahvala}
+%Zahvaljujem se doc. dr. Martinu Rai"cu za njegovo mentorstvo. S širokim znanjem in izkušnjami 
+%me je pomagal pri razumevanju in nadgradnji tematik, ki jih obravnavamo na dodiplomskem 
+%"sutidiju Finan"cne matematike. Hvaležen sem mu za njegovo izjemno pripravljenost, za pomoč,
+%večkratne diskusije, svetovanje pri dokazovanju izrekov in oblikovanju besedila, natančnost pri 
+%pregledovanju napisanega teksta ter vzpodbude pri premagovanju ovir.
+%
+%Hvala tudi moji družini in prijateljem za podporo in spodbudo pri delu na tem diplomskem seminarju.
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\pagebreak
 %--------------------------------------------VSEBINA-----------------------------------------------%
 
 \section{Uvod}
@@ -201,20 +212,6 @@ Ljubljana, \letnica}
         \label{def:prirastek}
     \end{definicija}
 
-    \begin{trditev}
-        Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. Potem ima $(X_t)_{t\geq0}$
-        neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
-        $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
-        slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
-        \label{trd:ekvivKarakterizacija}
-    \end{trditev}
-
-    \begin{proof}
-        $(\Rightarrow):$
-
-        $(\Leftarrow):$
-    \end{proof}
-
     \begin{definicija}
         Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem pravimo, da ima proces
         \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, 
@@ -239,6 +236,158 @@ Ljubljana, \letnica}
         \label{op:skoki}
     \end{opomba}
 }
+
+\section{Sestavljena Poissonova porazdelitev}
+
+    \begin{definicija}
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih
+        enako porazdeljenih slučajnih spremenljivk. Potem ima slu"cajna spremenljivka $S$ \textit{sestavljeno
+        Poissonovo porazdelitev} "ce je njena porazdelitev enaka porazdelitvi slu"cajne spremenljivke
+        \begin{equation*}
+            S = \sum_{i=1}^NX_i,
+        \end{equation*}
+    \end{definicija}
+
+    \begin{trditev}
+        Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. Potem ima $(X_t)_{t\geq0}$
+        neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
+        $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
+        slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
+        \label{trd:ekvivKarakterizacija}
+    \end{trditev}
+
+    \begin{proof}
+        $(\Rightarrow):$
+
+        $(\Leftarrow):$
+    \end{proof}
+
+    \begin{trditev}
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
+        med sabo in od $N$) enako porazdeljene kot
+        $$ X\sim
+        \begin{pmatrix}
+            a_1 & a_2 & a_3  \dots & \\
+            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
+        \end{pmatrix},
+        $$
+        za poljubne $a_1, a_2, \dots, a_n \in \R$ in 
+        $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$ za katere velja 
+        ${\sum_{i=1}^n\lambda_i = \lambda}$.
+        Potem velja 
+        \begin{equation*}
+            \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
+        \end{equation*}
+        kjer so $Y_1,Y_2,  \dots$ neodvisne s.s.\ porazdeljene kot 
+        $\Pois{\lambda_1},\Pois{\lambda_2}, \dots$
+        \label{trd:NXjeEnakoaY}
+    \end{trditev}
+
+    \begin{proof}
+        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo s.s.\ 
+        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo s.s.\
+        $Z:= \sum_{j=1}^{N}X_j$. Po neodvisnosti velja
+        \begin{align*}
+            \varphi_{Z_n}(u) 
+                    &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
+                    &= \prod_{j=1}^{n}\exp\left[\lambda_j\left(e^{a_j i u} - 1\right)\right] \\
+                    &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right].
+        \end{align*}
+
+        \noindent
+        Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
+        \begin{align*}
+            \varphi_{Z}(u) 
+                    &= G_N\left(\varphi_X(u)\right) \\
+                    &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
+                    & = \exp\left[\lambda\left(\sum_{j=1}^\infty\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
+                    &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right]
+        \end{align*}
+
+        \noindent 
+        Vidimo, da velja%Rezultat je posledica inverzne formule za karateristi"cne funkcije.
+        \begin{equation*}
+            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z,
+        \end{equation*}
+        torej po Lévijevem izreku o kontinuiteti velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
+    \end{proof}
+
+    \begin{posledica}
+        Naj bo $(a_n)_{n\in\N}$ poljubno zaporedje realnih "stevil in $(\lambda_n)_{n\in\N}$ zaporedje 
+        pozitivnih realnih "stevil, za katere velja $\sum_{n=1}^\infty\lambda_n = \lambda$ in 
+        \begin{equation*}
+            X\sim
+            \begin{pmatrix}
+                a_1 & a_2 &  \dots \\
+                \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots
+            \end{pmatrix}.
+        \end{equation*}
+        Potem velja
+        \begin{equation*}
+            \sum_{j=1}^{n}a_jY_j \xrightarrow[n\to\infty]{d}\sum_{j=1}^NX_j,
+        \end{equation*}
+        \label{pos:NXjeEnakoaYstevno}
+    \end{posledica}
+
+    \begin{proof}
+        Ker velja $\varphi_{Z_n}(u) \xrightarrow{n\to\infty} \varphi_{Z}(u)$ za vsak $u\in\R$, po Lévijevem
+        izreku o zveznosti sledi, da $Z_n \xrightarrow[n\to\infty]{d} Z$.
+    \end{proof}
+
+    Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
+    Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
+    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
+    $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
+
+        \begin{figure}[H]
+            \begin{center}
+            
+                \begin{tikzpicture}
+                    % coordinate system
+                    \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
+                    \draw[->] (2,0) -- (2,4.5) node[above] {$F, F_n$};
+                    \draw (2, 3.4) -- (2, 3.4) node[left] {$1$};
+                    \draw[dashed] (-0.75,3.2) -- (9,3.2);
+                
+                    % CDF of continuous random variable
+                    \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
+                    \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
+                    \filldraw[blue] (5, 2.5) circle (0.7pt);
+                    \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
+                
+                    % CDF of F_n, 
+                    \draw[->, red] (-0.75, 0.22) -- (0.25, 0.22);
+                    \filldraw[red] (-0.75, 0.22) circle (0.7pt);
+                    \draw[->, red] (0.25, 0.39) -- (1.25, 0.39);
+                    \filldraw[red] (0.25, 0.39) circle (0.7pt);
+                    \draw[->, red] (1.25, 0.74) -- (2.25, 0.74);
+                    \filldraw[red] (1.25, 0.74) circle (0.7pt);
+                    \draw[->, red] (2.25, 1.68) -- (3.25, 1.68);
+                    \filldraw[red] (2.25, 1.68) circle (0.7pt);
+                    \draw[->, red] (3.25, 2.01) -- (4.25, 2.01) node[above left]{$F_n(x)$};
+                    \filldraw[red] (3.25, 2.01) circle (0.7pt);
+                    \draw[->, red] (4.25, 2.58) -- (5.25, 2.58);
+                    \filldraw[red] (4.25, 2.58) circle (0.7pt);
+                    \draw[->, red] (5.25, 2.79) -- (6.25, 2.79);
+                    \filldraw[red] (5.25, 2.79) circle (0.7pt);
+                    \draw[->, red] (6.25, 2.94) -- (7.25, 2.94);
+                    \filldraw[red] (6.25, 2.94) circle (0.7pt);
+                    \draw[->, red] (7.25, 3.07) -- (8.25, 3.07);
+                    \filldraw[red] (7.25, 3.07) circle (0.7pt);
+                
+                
+                    %intervals of F_n
+                
+                \end{tikzpicture}
+                \caption{Aproksimacija $F$ s $F_n$}
+                \label{fig:slika2}
+            \end{center}
+        \end{figure}
+
+    \noindent
+    Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
+    porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
+
 
 \section{Sestavljeni Poissonov proces}
 
@@ -424,19 +573,19 @@ Ljubljana, \letnica}
         "Ce pogledamo primer, ko so $X_1, X_2, \dots$ neodvisne enako porazdeljene slu"cajne spremenljivke,
         porazdeljene kot $X$
         \begin{equation*}
-            X\sim\text{Gamma}(a) \qquad \qquad f_X(x) = \frac{1}{\Gamma(a)}x^{a-1}e^{-x}
+            X\sim\text{Exp}(a) \qquad \qquad f_X(x) = ae^{-ax}\mathbbm{1}_{(0, \infty)}(x),
         \end{equation*}
-        s parametrom $a>0$, lahko pridemo do razmeroma eksplicitne porazdelitve $CPP$. Gostota $k$-te 
-        konvolucije $X_1 + \cdots + X_k$ ima formulo
+        s parametrom $a>0$, lahko pridemo do  eksplicitne porazdelitve $CPP$. Gostota $k$-te 
+        konvolucije $X_1 + \cdots + X_k$ je porazdeljena kot $\text{Gamma}(k, a)$ in ima formulo
         \begin{equation*}
-            f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(na)}x^{na-1}e^{-x}.
+            f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(k)}a^kx^{k-1}e^{-ax}\mathbbm{1}_{(0, \infty)}(x).
         \end{equation*}
         Za $t\geq 0$ in $x \geq 0$ torej velja
         \begin{align*}
-            F_{S_t}(x) = \Prob(S_t \leq x)
-            &= \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
-            &= \sum_{k=0}^\infty 
-            ...
+            F_{S_t}(s) = \Prob(S_t \leq s)
+            &= \sum_{k=0}^\infty \int_0^s\frac{1}{\Gamma(k)}a^ks^{k-1}e^{-as}ds\frac{(\lambda t)^k}{k!}e^{-\lambda t}
+            \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
+            &= \int_0^s\sum_{k=0}^\infty \frac{1}{\Gamma(k)}a^ks^{k-1}e^{-as}\frac{(\lambda t)^k}{k!}e^{-\lambda t}ds
         \end{align*}
 
         
@@ -446,134 +595,6 @@ Ljubljana, \letnica}
     %Poka"zimo, da je $CPP$ v resnici porazdeljen, kot limita linearne 
     %kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. 
     
-    \begin{trditev}
-        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
-        med sabo in od $N$) enako porazdeljene kot
-        $$ X\sim
-        \begin{pmatrix}
-            a_1 & a_2 & a_3  \dots & \\
-            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
-        \end{pmatrix},
-        $$
-        za poljubne $a_1, a_2, \dots, a_n \in \R$ in 
-        $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$ za katere velja 
-        ${\sum_{i=1}^n\lambda_i = \lambda}$.
-        Potem velja 
-        \begin{equation*}
-            \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
-        \end{equation*}
-        kjer so $Y_1,Y_2,  \dots$ neodvisne s.s.\ porazdeljene kot 
-        $\Pois{\lambda_1},\Pois{\lambda_2}, \dots$
-        \label{trd:NXjeEnakoaY}
-    \end{trditev}
-
-    \begin{proof}
-        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo s.s.\ 
-        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo s.s.\
-        $Z:= \sum_{j=1}^{N}X_j$. Po neodvisnosti velja
-        \begin{align*}
-            \varphi_{Z_n}(u) 
-                    &= \prod_{j=1}^{n}\varphi_{Y_j}(a_ju)\\
-                    &= \prod_{j=1}^{n}\exp\left[\lambda_j\left(e^{a_j i u} - 1\right)\right] \\
-                    &= \exp\left[\sum_{j=1}^{n}\lambda_j\left(e^{a_j i u} - 1\right)\right].
-        \end{align*}
-
-        \noindent
-        Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
-        \begin{align*}
-            \varphi_{Z}(u) 
-                    &= G_N\left(\varphi_X(u)\right) \\
-                    &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
-                    & = \exp\left[\lambda\left(\sum_{j=1}^\infty\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
-                    &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right]
-        \end{align*}
-
-        \noindent 
-        Vidimo, da velja%Rezultat je posledica inverzne formule za karateristi"cne funkcije.
-        \begin{equation*}
-            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z,
-        \end{equation*}
-        torej po Lévijevem izreku o kontinuiteti velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
-    \end{proof}
-
-    \begin{posledica}
-        Naj bo $(a_n)_{n\in\N}$ poljubno zaporedje realnih "stevil in $(\lambda_n)_{n\in\N}$ zaporedje 
-        pozitivnih realnih "stevil, za katere velja $\sum_{n=1}^\infty\lambda_n = \lambda$ in 
-        \begin{equation*}
-            X\sim
-            \begin{pmatrix}
-                a_1 & a_2 &  \dots \\
-                \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots
-            \end{pmatrix}.
-        \end{equation*}
-        Potem velja
-        \begin{equation*}
-            \sum_{j=1}^{n}a_jY_j \xrightarrow[n\to\infty]{d}\sum_{j=1}^NX_j,
-        \end{equation*}
-        \label{pos:NXjeEnakoaYstevno}
-    \end{posledica}
-
-    \begin{proof}
-        Ker velja $\varphi_{Z_n}(u) \xrightarrow{n\to\infty} \varphi_{Z}(u)$ za vsak $u\in\R$, po Lévijevem
-        izreku o zveznosti sledi, da $Z_n \xrightarrow[n\to\infty]{d} Z$.
-    \end{proof}
-
-    Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
-    Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
-    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
-    $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
-
-        \begin{figure}[H]
-            \begin{center}
-            
-                \begin{tikzpicture}
-                    % coordinate system
-                    \draw[->] (-0.75,0) -- (9,0) node[right] {$x$};
-                    \draw[->] (2,0) -- (2,4.5) node[above] {$F, F_n$};
-                    \draw (2, 3.4) -- (2, 3.4) node[left] {$1$};
-                    \draw[dashed] (-0.75,3.2) -- (9,3.2);
-                
-                    % CDF of continuous random variable
-                    \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
-                    \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
-                    \filldraw[blue] (5, 2.5) circle (0.7pt);
-                    \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
-                
-                    % CDF of F_n, 
-                    \draw[->, red] (-0.75, 0.22) -- (0.25, 0.22);
-                    \filldraw[red] (-0.75, 0.22) circle (0.7pt);
-                    \draw[->, red] (0.25, 0.39) -- (1.25, 0.39);
-                    \filldraw[red] (0.25, 0.39) circle (0.7pt);
-                    \draw[->, red] (1.25, 0.74) -- (2.25, 0.74);
-                    \filldraw[red] (1.25, 0.74) circle (0.7pt);
-                    \draw[->, red] (2.25, 1.68) -- (3.25, 1.68);
-                    \filldraw[red] (2.25, 1.68) circle (0.7pt);
-                    \draw[->, red] (3.25, 2.01) -- (4.25, 2.01) node[above left]{$F_n(x)$};
-                    \filldraw[red] (3.25, 2.01) circle (0.7pt);
-                    \draw[->, red] (4.25, 2.58) -- (5.25, 2.58);
-                    \filldraw[red] (4.25, 2.58) circle (0.7pt);
-                    \draw[->, red] (5.25, 2.79) -- (6.25, 2.79);
-                    \filldraw[red] (5.25, 2.79) circle (0.7pt);
-                    \draw[->, red] (6.25, 2.94) -- (7.25, 2.94);
-                    \filldraw[red] (6.25, 2.94) circle (0.7pt);
-                    \draw[->, red] (7.25, 3.07) -- (8.25, 3.07);
-                    \filldraw[red] (7.25, 3.07) circle (0.7pt);
-                
-                
-                    %intervals of F_n
-                
-                \end{tikzpicture}
-                \caption{Aproksimacija $F$ s $F_n$}
-                \label{fig:slika2}
-            \end{center}
-        \end{figure}
-
-    \noindent
-    Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
-    porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
-
-
-
     %\noindent
     %"Ce sedaj po"sljemo $n \to \infty$, dobimo
     %\begin{align}
@@ -610,71 +631,171 @@ Ljubljana, \letnica}
     %sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
 %
 
-    \subsection{CPP kot martingal}
+%    \subsection{CPP kot martingal}
+%
+%        \begin{definicija}
+%            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
+%            martingal, "ce velja 
+%            $$
+%                \E\left[X_t\mid\F_s\right] = X_s
+%            $$
+%            za vsak $0\leq s \leq t$.
+%            \label{def:martingal}
+%        \end{definicija}
+%
+%        Poka"zimo, da v splo"snem $CPP$ ni martingal.
+%
+%        \begin{trditev}
+%            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
+%            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
+%            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
+%            \label{trd:CPPnimartingal}
+%        \end{trditev}
+%
+%        \begin{proof}
+%            Naj bo $0\leq s\leq t$. Potem velja
+%            \begin{align*}
+%                \E\left[S_t\mid\F_s\right] 
+%                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
+%                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
+%                        &= \mu\lambda(t-s) + S_s
+%            \end{align*}
+%           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
+%        \end{proof}
+%
+%        \begin{opomba}
+%            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
+%            $S_t$ supermartingal.
+%        \end{opomba}
+%
+%        \begin{trditev}
+%            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
+%            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
+%            Potem je proces 
+%            $$
+%                S_t - \mu\lambda t
+%            $$
+%            martingal.
+%            \label{trd:CPPpostanemartingal}
+%        \end{trditev}
+%
+%        \begin{proof}
+%            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
+%            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
+%            \begin{align*}
+%                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
+%                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
+%                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
+%                        &= S_s - \mu\lambda s.
+%            \end{align*}
+%        \end{proof}
+%
+%        %\subsection{"Cas prvega prehoda}
+%        %Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
+%        %$a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
+%        %"cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
+%        %"Ce pogledamo dogodek $\{T_a \leq t\}$.
 
-        \begin{definicija}
-            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
-            martingal, "ce velja 
-            $$
-                \E\left[X_t\mid\F_s\right] = X_s
-            $$
-            za vsak $0\leq s \leq t$.
-            \label{def:martingal}
-        \end{definicija}
+    \subsection{Neskon"cna deljivost}
 
-        Poka"zimo, da v splo"snem $CPP$ ni martingal.
+    \begin{definicija}
+        Naj bo $X$ slu"cajna spremenljivka. Pravimo, da je $X$ \textit{neskon"cno deljiva}, "ce za vsak $n\in\N$
+        obstajajo neodvisne slu"cajne spremenljivke $X_1, X_2, \dots, X_n$ tako, da velja
+        \begin{equation*}
+            X \sim X_1 + X_2 + \cdots + X_n.
+        \end{equation*}
+        Ekvivalento lahko definiramo neskon"cno deljivost prek karakteristi"cne funkcije. Pravimo, da je
+        slu"cajna spremenljivka $X$ neskon"cno deljiva, "ce je za vsak $n\in\N$ funkcija 
+        $\left(\varphi_X(u)\right)^{\frac{1}{n}}$ karakteristi"cna funkcija neke slu"cajne spremenljivke.
+    \end{definicija}
 
-        \begin{trditev}
-            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
-            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
-            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
-            \label{trd:CPPnimartingal}
-        \end{trditev}
+    \begin{zgled}
+        Seveda, "ce je $X\sim \text{Pois}(\lambda)$, je $X$ neskon"cno deljiva. To neposredno sledi 
+        iz dejstva, da je karakteristi"cna funkcija vsote n.e.p.\ s.s.\ enaka produktu karateristi"cnih 
+        funkcij, torej za $n\in\N$ in $u\in\R$ velja $\varphi_{X_1 + X_2 + \cdots + X_n}(u) = \varphi_X(u)^n$. 
+        "Ce vzamemo $X_i \sim \text{Pois}(\tfrac{\lambda}{n})$, potem je 
+        \begin{equation*}
+        \varphi_{X_1 + X_2 + \cdots + X_n}(u) = 
+        \left(\varphi_{X_i}(u)\right)^n = \left(e^{\tfrac{\lambda}{n}(e^{iu} - 1)}\right)^n = e^{\lambda(e^{iu} - 1)} = \varphi_X(u).
+        \end{equation*}
+    \end{zgled}
 
-        \begin{proof}
-            Naj bo $0\leq s\leq t$. Potem velja
-            \begin{align*}
-                \E\left[S_t\mid\F_s\right] 
-                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
-                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
-                        &= \mu\lambda(t-s) + S_s
-            \end{align*}
-           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
-        \end{proof}
+    Sedaj poka"zimo, da je sestavljena Poissonova porazdelitev neskon"cno deljiva, "se ve"c, pokazimo, 
+    da "ce je $S$ neskon"cno deljiva slu"cajna spremenljivka in zavzema vrednosti v $\N_0$, 
+    potem ima sestavljeno Poissonovo porazdelitev.
 
-        \begin{opomba}
-            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
-            $S_t$ supermartingal.
-        \end{opomba}
+    \begin{trditev}
+        Naj bo $S$ slu"cajna spremenljivka, porazdeljena sestavljeno Poissonovo s parametrom $\lambda > 0$.
+        Potem je $S$ neskon"cno deljiva.
+        \label{trd:CPDneskoncnoDeljiva}
+    \end{trditev}
 
-        \begin{trditev}
-            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
-            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
-            Potem je proces 
-            $$
-                S_t - \mu\lambda t
-            $$
-            martingal.
-            \label{trd:CPPpostanemartingal}
-        \end{trditev}
+    \begin{proof}
+        Zapi"simo $S = \sum_{i=1}^NX_i$, kjer so $X_i$ neodvisne in enako porazdeljene slu"cajne 
+        spremenjivke s skupno karakteristi"cno funkcijo $\varphi_X(u)$ in $N\sim\Pois{\lambda}$. Iz 
+        trditve \ref{trd:MomentGener} vemo, da je karakteristi"cna funkcija $S$ za $u\in \R$ enaka
+        \begin{equation*}
+            \varphi_S(u) = \varphi_N\left(\varphi_X(u)\right) = e^{\lambda\left(\varphi_X(u) - 1\right)}.
+        \end{equation*}
+        Potem za $n\in\N$ velja
+        \begin{equation*}
+            \varphi_{S}(u) = \left(e^{\frac{\lambda}{n}\left(\varphi_X(u) - 1\right)}\right)^n
+        \end{equation*}
+        in vidimo, da je fukcija $u\mapsto e^{\frac{\lambda}{n}\left(\varphi_X(u) - 1\right)}$ karakteristi"cna
+        funckija slu"cajne spremenljivke $S_i = \sum_{i = 1}^MX_i$ kjer je $M\sim\Pois{\tfrac{\lambda}{n}}$.
+    \end{proof}
 
-        \begin{proof}
-            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
-            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
-            \begin{align*}
-                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
-                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
-                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
-                        &= S_s - \mu\lambda s.
-            \end{align*}
-        \end{proof}
+    \begin{trditev}
+        Naj bo $S$ slu"cajna spremenljivka, ki zavzame vrednosti v $\N_0$ in je neskon"cno deljiva.
+        Potem ima $S$ sestavljeno Poissonovo porazdelitev.
+        \label{trd:neskoncnoDeljivaYslediCPD}
+    \end{trditev}
 
-        %\subsection{"Cas prvega prehoda}
-        %Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
-        %$a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
-        %"cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
-        %"Ce pogledamo dogodek $\{T_a \leq t\}$.
+    \begin{proof}
+        Ozna"cimo rodovno funkcijo $S$ z 
+        \begin{equation*}
+            G_S(u) = \sum_{k = 0}^\infty \underbrace{\Prob\left(S = k\right)}_{p_k}u^k.
+        \end{equation*} 
+        Pokazali bomo, da je $G_S(u)$ enaka rodovni funkciji neke slu"cajne spremenljivke, ki ima sestavljeno
+        Poissonovo porazdelitev. Ker za nenegativne celo"stevilske slu"cajne spremenljivke velja 
+        $\Prob\left(S = k\right) = \frac{G_S^{(k)}(0)}{k!}$, bo to pomenilo, da je $S$ sestavljeno Poissonova.
+        Ker je $S$ neskon"cno deljiva potem je za vsak $n\in\N$ 
 
+        \begin{equation*}
+            G_{S_n}(u) := \left(G_S(u)\right)^{\frac{1}{n}} = 
+            \sum_{k = 0}^\infty\underbrace{\Prob\left(S_n = k\right)}_{p_{k_n}}u^k
+        \end{equation*}
+        rodovna funkcija neke slu"cajne spremenljivke $S_n$ in za vsak $u\in\R$ velja enakost
+        \begin{equation*}
+            G_{S_n}(u) = \left(G_{S_1}(u)\right)^n \ \text{oziroma} \ 
+            \sum_{k = 0}^\infty p_{k}u^k = \left(\sum_{k = 0}^\infty p_{k_n}u^k\right)^n.
+        \end{equation*}
+        "Ce raz"sirimo desno stran ena"ce in predpostavimo $p_0 = 0$, dobimo, da bmora biti 
+        $p_{0_n} = 0$ in posledi"cno tudi $p_1 = p_2 = \cdots = p_{n-1} = 0$. Ker to velja za poljuben 
+        $n\in\N$ dobimo, da je $G_S(u) = 0$, kar pa je protislovje. Torej $p_0 > 0$ in zagotovo 
+        $G_S(u) > 0$ za $u\in[0, 1]$. Velja $\lim_{n\to\infty}\left(\frac{G_S(u)}{p_0}\right)^{\frac{1}{n}} = 1$ za $t\in[0, 1]$.
+        Velja $\lim_{x \to 0}\frac{\ln(1 + x)}{x} = 1.$
+        \begin{equation*}
+            \ln\left(\left(\frac{G_S(u)}{p_0}\right)^{\frac{1}{n}}\right) = \ln\left( 1 + \left(\left(\frac{G_S(u)}{p_0}\right)^{\frac{1}{n}} - 1\right)\right)
+            \approx \left(\frac{G_S(u)}{p_0}\right)^{\frac{1}{n}} - 1 \ \text{ko} \ n\to\infty.
+        \end{equation*}
+        Za $u = 1$ dobimo
+        \begin{equation*}
+            \ln\left(\left(\frac{1}{p_0}\right)^{\frac{1}{n}}\right) \approx \left(\frac{1}{p_0}\right)^{\frac{1}{p_0}} - 1 \ \text{ko} \ n\to\infty.
+        \end{equation*}
+
+
+
+        
+
+    \end{proof}
+
+    Sedaj trditev \ref{trd:neskoncnoDeljivaYslediCPD} nadgradimo\dots
+
+    \begin{trditev}
+        Naj ima slu"cajna spremenljivka $S$ neskon"cno deljivo porazdelitev. Potem lahko $S$ zapi"semo
+        izrazimo kot limito slu"cajni spremenljivk, ki imajo sestavljeno Poissonovo porazdelitev.
+    \end{trditev}
 \pagebreak
 
 \section{Cramér-Lundbergov model}
@@ -819,7 +940,7 @@ Ljubljana, \letnica}
         \begin{trditev}
             Naj bo $(Z_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk definirano kot 
             $Z_n = \sum_{i=1}^nY_i$ za neodvisne in enako porazdeljene slu"cajne spremenljivke 
-            $Y_i$ z $\E\left[Y_i\right] = \mu < \infty$. Potem za vsak $u>0$ velja
+            $Y_i$ z $\E\left[Y_i\right] < \infty$. Potem za vsak $u>0$ velja
             \begin{equation*}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1 \quad \text{za} \ u > 0,
             \end{equation*}
@@ -833,13 +954,13 @@ Ljubljana, \letnica}
             \begin{equation*}
                 \frac{Y_1 + Y_2 + \cdots Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
             \end{equation*}
-            Torej bo $Z_n$ v primeru ko je $\mu>0$
-             skoraj gotovo asimptoti"cno linearno nara"scal proti $\infty$ kot $\mu n$ in 
+            Torej bo $Z_n$ v primeru ko je $\E\left[Y_n\right]>0$
+             skoraj gotovo asimptoti"cno linearno nara"scal proti $\infty$ kot $\E\left[Y_n\right] n$ in 
              bo za poljuben $u>0$
             \begin{equation*}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
             \end{equation*}
-            Dokaz za primer, ko je $\mu = 0$ je precej bolj tehni"cen in ne preve"c informativen, zato 
+            Dokaz za primer, ko je $\E\left[Y_n\right] = 0$ je precej bolj tehni"cen in ne preve"c informativen, zato 
             ga bomo izpustili. Izka"ze se, da za neki podzaporedji vedno
             $(S_{n_k})_{k\in\N} \xrightarrow[k\to\infty]{s.g.}\infty$ in 
             $(S_{m_k})_{k\in\N} \xrightarrow[k\to\infty]{s.g.}-\infty$.
@@ -947,7 +1068,7 @@ Ljubljana, \letnica}
 
             \begin{opomba}
                 V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjentosti ekstremnih 
-                dogodkov (torej zelo velikih zahtevkov) eksponentno pada proti $0$. To direktno sledi iz 
+                dogodkov (torej zelo velikih zahtevkov) eksponentno pada proti $0$. To neposredno sledi iz 
                 definicije \ref{def:lahkorepnaPorazdelitev} in neenakosti Markova (\ref{trd:neenakostMarkova}), 
                 saj za vsak 
                 $x>0$ in $u\in(-\varepsilon, \varepsilon)$ velja
