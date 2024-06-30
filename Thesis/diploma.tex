@@ -14,6 +14,14 @@
 \usepackage{float}
 \usepackage{xcolor}
 \usepackage{bbm}
+\usepackage{xcolor}
+\usepackage[
+    colorlinks=true,
+    linkcolor=teal,      
+    citecolor=teal,    
+    filecolor=magenta,      
+    urlcolor=cyan,   
+]{hyperref}
 %\usepackage{titlesec}
 \allowdisplaybreaks
 
@@ -221,7 +229,7 @@ Ljubljana, \letnica}
 
     \begin{definicija}
         Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
-        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ in z vrednostmi v $\N_0$, pravimo 
+        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$, pravimo 
         \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
         \begin{enumerate}
             \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
@@ -710,7 +718,7 @@ Ljubljana, \letnica}
     \end{definicija}
 
     \begin{zgled}
-        Seveda, "ce je $X\sim \text{Pois}(\lambda)$, je $X$ neskon"cno deljiva. To neposredno sledi 
+        Naj bo $X\sim \text{Pois}(\lambda)$. Potem je $X$ neskon"cno deljiva. To neposredno sledi 
         iz dejstva, da je karakteristi"cna funkcija vsote n.e.p.\ s.s.\ enaka produktu karateristi"cnih 
         funkcij, torej za $n\in\N$ in $u\in\R$ velja $\varphi_{X_1 + X_2 + \cdots + X_n}(u) = \varphi_X(u)^n$. 
         "Ce vzamemo $X_i \sim \text{Pois}(\tfrac{\lambda}{n})$, potem je 
@@ -720,7 +728,7 @@ Ljubljana, \letnica}
         \end{equation*}
     \end{zgled}
 
-    Sedaj poka"zimo, da je sestavljena Poissonova porazdelitev neskon"cno deljiva, "se ve"c, pokazimo, 
+    Sedaj poka"zimo, da je sestavljena Poissonova porazdelitev neskon"cno deljiva, "se ve"c, poka"zimo, 
     da "ce je $S$ neskon"cno deljiva slu"cajna spremenljivka in zavzema vrednosti v $\N_0$, 
     potem ima sestavljeno Poissonovo porazdelitev.
 
@@ -758,7 +766,8 @@ Ljubljana, \letnica}
         \end{equation*} 
         Pokazali bomo, da je $G_S(u)$ enaka rodovni funkciji neke slu"cajne spremenljivke, ki ima sestavljeno
         Poissonovo porazdelitev. Ker za nenegativne celo"stevilske slu"cajne spremenljivke velja 
-        $\Prob\left(S = k\right) = \frac{G_S^{(k)}(0)}{k!}$, bo to pomenilo, da je $S$ sestavljeno Poissonova.
+        $\Prob\left(S = k\right) = \frac{G_S^{(k)}(0)}{k!}$, bo to pomenilo, da je $S$ sestavljeno Poissonova, 
+        saj v tem primeru rodovna funkcija dolo"ca porazdelitev $S$.
         Ker je $S$ neskon"cno deljiva potem je za vsak $n\in\N$ 
 
         \begin{equation*}
@@ -799,14 +808,15 @@ Ljubljana, \letnica}
 \pagebreak
 
 \section{Cramér-Lundbergov model}
+    \noindent
     Razdelek je prirejen po \cite{3}, \cite{4} in  \cite{5}.
 
     V tem razdelku obravnavamo najbolj intenzivno raziskan model v teoriji propada, običajno imenovan 
     Cramér-Lundbergov model. V svoji najosnovnejši obliki 
     ga je v zgodnjih 1900. letih izpeljal "svedski aktuar Filip Lundberg, da bi ocenil ranljivost 
     zavarovalnice za propad. Čeprav je model v svoji ideji dokaj preprost, 
-    lepo zajema bistvo dinamike ravni rezerv zavarovalne družbe in njene izpostavljenosti tveganju, 
-    kar pojasnjuje, zakaj je postal temeljni merilni model v teoriji propada.
+     zajema bistvo povezave ravni rezerv zavarovalnice in njene izpostavljenosti tveganju, 
+    kar je razlog, zakaj je postal temeljni merilni model v teoriji propada.
     V preteklem stoletju je bilo razvitih veliko tehnik za analizo Cramér-Lundbergovega modela, 
     ki so se večinoma osredotočale na kvantifikacijo verjetnosti propada. V razdelku podamo 
     pregled glavnih rezultatov in osnovnih tehnik, ter jih ponazorimo na primerih, ko 
@@ -815,7 +825,9 @@ Ljubljana, \letnica}
     \subsection{Proces tveganja in verjetnost propada}
 
         \begin{definicija}
-            Naj bo $(S_t)_{t\geq0 }$ $CPP$.\ \textit{Proces tveganja} v Cramér-Lundbergovem modelu definiramo kot
+            Naj bo $(S_t)_{t\geq0 }$ $CPP$, kjer so slu"cajne spremenljivke $(X_i)_{i\in\N}$, 
+            ki jih se"stevamo s.g.\ nenegativne.\ \textit{Proces tveganja} v Cramér-Lundbergovem 
+            modelu definiramo kot
             \begin{align*}
                 U_t = u + p(t) - S_t,
             \end{align*}
@@ -827,9 +839,7 @@ Ljubljana, \letnica}
             V resnici lahko veliko lastnosti procesa tveganja izpeljemo brez da predpostavimo, da prihodi 
             zahtevkov v $(S_t)_{t\geq0}$ sledijo homogenem Poissonovemu procesu,
             ampak splo"snem prenovitvenemu procesu (\ref{def:PrenovitveniProces}) in
-            zato na za"cetku ne bomo uporabljali rezultatov, ki smo jih do sedaj izpeljali. "Ce ni navedno 
-            druga"ce, predpostavimo tudi, da so zahtevki $X_i$ nenegativne neodvisne enako porazdeljene
-            slu"cajne spremenljivke.
+            zato na za"cetku ne bomo uporabljali rezultatov, ki smo jih do sedaj v delu izpeljali.
             \label{op:procesTveganja}
         \end{opomba}
 
@@ -838,7 +848,7 @@ Ljubljana, \letnica}
         Uporaba linearne funkcije za modeliranje premijskega dohodka v Cramér-Lundbergovem 
         modelu ponuja realističen približek zato, ker zavarovalnice pogosto doživljajo 
         stabilno povečevanje premijskega dohodka skozi čas. Poleg tega je izbira linearne 
-        funkcije preprosta, zato bomo v nadaljevanju privzeli, da je $p(t) = ct$. Poglejmo si 
+        funkcije preprosta, zato bomo v nadaljevanju privzeli $p(t) = ct$. Poglejmo si 
         realizaciji procesa tveganja, ko so zahtevki $X_i$ porazdeljeni Weibullovo 
         (\ref{def:WeibullovaPorazdelitev}) z razli"cnimi parametri. 
 
@@ -919,7 +929,9 @@ Ljubljana, \letnica}
 
             S pomo"cjo ogrodja procesa tveganja lahko dogodek propada zapi"semo kot
             \begin{align*}
-                \biggl\{\inf_{t\geq0}U_t<0\biggr\} &= \biggl\{\inf_{n\in\N}U_{V_n}<0\biggr\} \\
+                \bigl\{U_t<0 \ \text{za} \ t\geq 0\bigr\} &= 
+                                \biggl\{\inf_{t\geq0}U_t<0\biggr\} \\
+                              &= \biggl\{\inf_{n\in\N}U_{V_n}<0\biggr\} \\
                               &= \biggl\{\inf_{n\in\N}\bigl\{u + p(V_n) - S_{V_n}\bigr\} < 0\biggr\} \\
                               &= \biggl\{\inf_{n\in\N}\biggl\{u + 
                               \underbrace{cV_n - \sum_{i=1}^nX_i}_{-Z_n}\biggr\} < 0\biggr\} \\
@@ -932,10 +944,8 @@ Ljubljana, \letnica}
         Tako verjetnost propada prevedemo na prehodno verjetnost diskretnega slu"cajnega 
         sprehoda $(Z_n)_{n\in\N}$. V nadaljevanju nas bo predvsem zanimalo asimptoti"cno 
         vedenje $\psi(u)$, ko gre $u\rightarrow\infty$. Cilj obravnavanja verjetnosti propada v 
-        Cramér-Lundbergovem modelu je, da se izognemo 
-        propadu z verjetnostjo 1 oziroma, da je verjetnost, da $(Z_n)_{n\in\N}$ prese"ze $u$
+        Cramér-Lundbergovem modelu je, da se izognemo skoraj gotovemu propadu oziroma, da je verjetnost, da $(Z_n)_{n\in\N}$ prese"ze $u$
         tako majhna, da lahko v praksi dogodek propada izklju"cimo. 
-
 
         \begin{trditev}
             Naj bo $(Z_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk definirano kot 
@@ -961,16 +971,17 @@ Ljubljana, \letnica}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
             \end{equation*}
             Dokaz za primer, ko je $\E\left[Y_n\right] = 0$ je precej bolj tehni"cen in ne preve"c informativen, zato 
-            ga bomo izpustili. Izka"ze se, da za neki podzaporedji vedno
-            $(S_{n_k})_{k\in\N} \xrightarrow[k\to\infty]{s.g.}\infty$ in 
-            $(S_{m_k})_{k\in\N} \xrightarrow[k\to\infty]{s.g.}-\infty$.
-            Dokaz lahko najdemo v [Spitzer, 138].
+            ga bomo izpustili. Izka"ze se, da obstajata neki podzaporedji$(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$, da 
+            $Z_{n_k} \xrightarrow[k\to\infty]{s.g.}\infty$ in 
+            $Z_{m_k} \xrightarrow[k\to\infty]{s.g.}-\infty$.
+            Dokaz lahko najdemo v \cite{6}.
         \end{proof}
 
         \begin{opomba}
             Iz trditve \ref{trd:propadZVerjetnostjo1} (ob predpostavkah $\E\left[X_i\right] < \infty$
-            in $\E\left[T_i\right] < \infty$) sledi, da moramo premijo $c$ izbrati tako, da bo 
-            $\E\left[Y_i\right] < 0$, saj je to edini na"cin, ko lahko upamo, da verjetnost propada ne bo
+            in $\E\left[T_i\right] < \infty$) sledi, da moramo premijo (in s tem $c$) izbrati tako, da bo 
+            $\E\left[Y_i\right] < 0$, saj bo tako $Z_{n} \xrightarrow[n\to\infty]{s.g.}-\infty$
+            in je to edini primer, ko lahko upamo, da verjetnost propada ne bo
             enaka 1.
             \label{op:izbiraPremije}
         \end{opomba}
@@ -1017,8 +1028,19 @@ Ljubljana, \letnica}
             \label{def:NPC}
         \end{definicija}
 
-        Zahteva NPC za analizo poslovanja zavarovalnice je kar intuitivna, saj pove, da mora v 
-        neki "cavni enoti biti pri"cakoan dohodek iz premij ve"cji od pri"cakovanega izpla"cila zahtevkov.
+        Zahteva NPC za analizo poslovanja zavarovalnice je kar intuitivna, saj pove, da mora  
+        biti v nekem "casovnem intervalu pri"cakovan dohodek iz premij ve"cji od pri"cakovanega izpla"cila zahtevkov.
+
+        \begin{definicija}
+            Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepo porazdelitev}, "ce za 
+            nek $\varepsilon > 0$ velja
+        \begin{equation*}
+            \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon).
+        \end{equation*}
+        Sicer $M_X(u)$ obstaja le za $u\in(-\infty, 0]$ in pravimo, 
+        da ima $X$ \textit{te"zkorepo porazdelitev}.
+        \label{def:lahkorepnaPorazdelitev}
+        \end{definicija}
 
         \begin{zgled}[Nadaljevnaje zgleda \ref{zgd:weibullProcesTveganja}]
             V zgledu \ref{zgd:weibullProcesTveganja} smo obravnavali proces tveganja v Cramér-Lundbergovem 
@@ -1033,7 +1055,7 @@ Ljubljana, \letnica}
                     M_X(u) &= \int_{0}^{\infty}e^{ux}\frac{a}{b}\left(\frac{x}{b}\right)^{a-1}e^{-\left(\frac{x}{b}\right)^a}dx \qquad \left(y = \tfrac{x}{b},\ dy = \tfrac{dx}{b}\right) \\
                            &= a\int_{0}^{\infty}e^{uby} y^{a-1}e^{-y^a}dy.
                 \end{align*}
-                Vidimo, da v $0$ ni te"zav za poljuben $a$, ampak za $a<1$ v neskon"cnosti funkcija 
+                Vidimo, da v $0$ ni te"zav za poljuben $a > 0$, ampak za $a\in(0, 1)$ v neskon"cnosti funkcija 
                 divergira, saj se 
                 eksponent poenostavi v $y^a(uby^{1 - a} - 1)\xrightarrow{y\to\infty}\infty$ ."Ce v 
                 nadaljevanju predpostavimo $a\geq 1$ in uvedemo $z = y^a$ 
@@ -1055,16 +1077,6 @@ Ljubljana, \letnica}
         se"stevamo v $CPP$ lahek rep, saj je bila osnovna teorija, ki sta jo razvila Cramér in Lundberg,
         izpeljana pod to predpostavko.
         \subsubsection{Lundbergova neenakost}
-            \begin{definicija}
-                Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepo porazdelitev}, "ce za 
-                nek $\varepsilon > 0$ velja
-            \begin{equation*}
-                \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon).
-            \end{equation*}
-            Sicer $M_X(u)$ obstaja le za $u\in(-\infty, 0]$ in pravimo, 
-            da ima $X$ \textit{te"zkorepo porazdelitev}.
-            \label{def:lahkorepnaPorazdelitev}
-            \end{definicija}
 
             \begin{opomba}
                 V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjentosti ekstremnih 
@@ -1079,20 +1091,29 @@ Ljubljana, \letnica}
             \end{opomba}
 
             \begin{definicija}
-                Naj velja, da ima slu"cajna spremenljivka $Y_1$ iz trditve \ref{trd:verjetnostPropadaZOgrodjem} 
-                lahek rep. "Ce obstaja pozitivna re"sitev ena"cbe
+                Naj velja, da ima slu"cajna spremenljivka $Y_1 = X_1 - cT_1$ iz trditve \ref{trd:verjetnostPropadaZOgrodjem} 
+                lahek rep. "Ce obstaja enoli"cen $\ell > 0$ za katerega velja
                 \begin{equation*}
                     M_{Y_1}(\ell)  = 1,
                 \end{equation*}
-                "stevilu $\ell$ pravimo \textit{Lundbergov koeficient}.
+                potem $\ell$ pravimo \textit{Lundbergov koeficient}.
                 \label{def:LundbergovKoeficient}
             \end{definicija}
 
             \begin{trditev}
-                "Ce Lundbergov koeficient $\ell$ (pod predpostvakami definicije \ref{def:LundbergovKoeficient})
+                "Ce Lundbergov koeficient $\ell$ (pod predpostvakami definicije \ref{def:LundbergovKoeficient} in 
+                pogoja NPC)
                 obstaja, potem je enoli"cno dolo"cen.
                 \label{trd:enolicnostLundbergovegaKoeficienta}
             \end{trditev}
+
+            \begin{proof}
+                Ker ima $Y_1$ lahek rep, obstaja $\varepsilon > 0$, da je $M_{Y_1}(u) < \infty$ za $u\in(-\varepsilon, \varepsilon)$.
+                Ker velja $M_{Y_1}(0) = 1$ in $M_{Y_1}'(0) = \E\left[Y_1\right] < 0$ (NPC) ter
+                $M_{Y_1}''(u) = \E\left[Y_1^2e^{Y_1u}\right] > 0$ $(Y_1 \neq 0 \ \text{skoraj gotovo})$ za 
+                $u>0$, je $M_{Y_1}(u)$ zvezna konveksna funkcija na intervalu $(-\varepsilon, \varepsilon)$, kjer 
+                v okolici ni"cle pada, ter po predpostavki obstaja $\ell > 0$, da je $M_{Y_1}(\ell) = 1$.
+            \end{proof}
 
             \begin{izrek}(Lundbergova neenakost)
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zado"sca NPC in 
@@ -1115,7 +1136,7 @@ Ljubljana, \letnica}
                     \psi_1(u) = \Prob\left(e^{\ell Z_1} > e^{\ell u}\right) \leq \frac{M_{Z_1}(\ell)}{e^{\ell u}} = e^{-\ell u}.
                 \end{equation*}
                 (n $\rightarrow$ n+1): 
-                Ozna"cimo s $F_{Y_1}$ porazdeliltev $Y_1$. Potem velja
+                S $F_{Y_1}$ ozna"cimo porazdeliltev $Y_1$. Potem velja
                 \begin{align*}
                     \psi_{n+1}(u) &= \Prob\left(\max_{1\leq k\leq n+1}Z_k > u\right) \\
                                   &= \underbrace{\Prob\left(Y_1 > u\right)}_{(i)} + 
@@ -1131,12 +1152,12 @@ Ljubljana, \letnica}
                 Za oceno $(i)$ kot v primeru $n=1$ uporabimo neenakost Markova in dobimo
 
                 \begin{equation*}
-                    (i) = \psi_1(u) = \int_{(u, \infty)}dF_{Y_1}(x) \leq \int_{(u, \infty)}e^{\ell (x - u)}dF_{Y_1}(x).
+                    (i) = \psi_1(u) \leq \frac{M_{Z_1}(\ell)}{e^{\ell u}} = \int_{(u, \infty)}e^{-\ell (u-x)}dF_{Y_1}(x).
                 \end{equation*}
                 "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo "zeljeno oceno
 
                 \begin{align*}
-                    \psi_{n+1}(u) &\leq \int_{\R}e^{\ell (x - u)}dF_{Y_1}(x) \\
+                    \psi_{n+1}(u) &\leq \int_{\R}e^{-\ell (u - x)}dF_{Y_1}(x) \\
                                   &= e^{-\ell u}M_{Y_1}(\ell) \\
                                   &= e^{-\ell u}.
                 \end{align*}
@@ -1154,7 +1175,7 @@ Ljubljana, \letnica}
             \begin{zgled}
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC.\ Naj 
                 nadalje velja da so zahtevki
-                $X_i \stackrel{n.e.p.}{\sim} \text{Exp}(\mu) \ \text{za vsak} \ i$. Vemo, da ima momentno rodovna funkcija 
+                $X_i \stackrel{\text{\scalebox{0.8}{n.e.p.}}}{\sim} \text{Exp}(\mu) \ \text{za vsak} \ i$. Vemo, da ima momentno rodovna funkcija 
                 $X_i$ obliko 
 
                 \begin{equation*}
@@ -1185,14 +1206,15 @@ Ljubljana, \letnica}
                 \end{equation*}
                 "Ce uporabimo alternativno formulacijo NPC pogoja, dobimo
                 \begin{align*}
-                    c = (1 + \rho)\frac{\lambda}{\mu} \Rightarrow
+                    c = (1 + \rho)\frac{\lambda}{\mu} \quad \Rightarrow \quad
                     \ell = \mu - \frac{\lambda}{(1 + \rho)\frac{\lambda}{\mu}} = \mu\left(\frac{\rho}{1 + \rho}\right).
                 \end{align*}
                 Tako dobimo zgornjo mejo za verjetnost propada
                 \begin{equation*}
                     \psi(u) \leq e^{-\ell u} = e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)}
                 \end{equation*}
-                in vidimo, da pove"canje premije "cez neko mejo ne bistveno vpliva na oceno, saj 
+                in vidimo, da pove"canje stopnje prihodkov premij "cez neko mejo ne bistveno 
+                vpliva na oceno, saj 
                 \begin{equation*}
                     \lim_{\rho\to\infty}e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)} = e^{-\mu u}.
                 \end{equation*}
@@ -1205,7 +1227,8 @@ Ljubljana, \letnica}
             \end{zgled}
 
         \subsubsection{Cramérjeva meja za propad}
-            Sedaj se bomo posvetili enemu najpomembnej"sih rezultatov v teoriji propada.
+            Sedaj se posvetimo vpra"sanju, kako se obna"sa verjetnost propada v Cramér-Lundbergovem modelu,
+            ko gre $u\rightarrow\infty$ in izpeljemo enega temeljnih rezultatov v teoriji tveganja.
 
             \begin{definicija}
                 Za la"zjo notacijo v nadaljevanju definiramo funkcijo \textit{verjentosti pre"zivetja} kot
@@ -1218,8 +1241,8 @@ Ljubljana, \letnica}
 
             \begin{lema}(Integralska ena"cba za verjetnost pre"zivetja)
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in naj 
-                velja $\E\left[X_1\right]<\infty$ ter, da je $F_{X_1}$ absolutno zvezna glede na Lebesgueovo mero $\mathcal{L}$.
-                Potem $\theta(u)$ zado"sca naslednji enakosti
+                velja $\E\left[X_1\right]<\infty$ ter, da imajo slu"cajne spremenljivke $(X_i)_{i\in\N}$ 
+                gostoto. Potem $\theta(u)$ zado"sca naslednji enakosti
                 \begin{equation}
                     \theta(u) = \theta(0) + \frac{1}{(1+\rho)\E\left[X_1\right]} \int_{(0, u]}\bigl(1 - F_{X_1}(x)\bigr)\theta(u - x)dx.
                     \label{eq:verjetnostPrezivetja}
@@ -1237,7 +1260,7 @@ Ljubljana, \letnica}
                     \theta(u) &= \Prob\left(\sup_{n\in\N}Z_n \leq u\right) \\
                               &= \Prob\biggl(\bigl\{Z_n \leq u\mid n\in\N\bigr\}\biggr) \\
                               &= \Prob\biggl(\bigl\{Y_1 \leq u\bigr\}\cap \bigl\{Z_n - Y_1 \leq u - Y_1\mid n\geq2\bigr\}\biggr) \\
-                              &= \E\biggl[\mathbbm{1}_{\{Y_1\leq u\}}\Prob\biggl(\bigl\{Z_n - Y_1 \leq u - Y_1\mid n\geq2\bigr\}\mid Y_1\biggr)\biggr].
+                              &= \E\biggl[\mathbbm{1}_{\{Y_1\leq u\}}\Prob\biggl(\bigl\{Z_n - Y_1 \leq u - Y_1\mid n\geq2\bigr\} \ \Big| \ Y_1\biggr)\biggr].
                 \end{align*}
                 Sedaj upo"stevamo, da je $Y_1 = X_1 - cT_1$ in je torej dogodek $\{Y_1 \leq u\}$ 
                 enak dogodku $\{X_1 \leq u + cT_1\}$. Poleg tega velja, da je 
@@ -1246,16 +1269,16 @@ Ljubljana, \letnica}
                 Upo"stevamo "se, da je  $T_1$ medprihodni "cas v $HPP(\lambda)$ da dobimo
 
                 \begin{align*}
-                        \theta(u)   &= \int_{(0, \infty)}\int_{(0, u + cw]}\Prob\biggl(\bigl\{Z_n \leq u - (x - cw)\mid n\in\N\bigr\}\biggr)dF_{X_1}(x)dF_{W_1}(w) \\
-                                    &= \int_{(0, \infty)}\int_{(0, u + cw]}\theta(u - x + cw)dF_{X_1}(x)\lambda e^{-\lambda w}dw.
+                        \theta(u)   &= \int_{(0, \infty)}\int_{(0, u + ct]}\Prob\biggl(\bigl\{Z_n \leq u - (x - ct)\mid n\in\N\bigr\}\biggr)dF_{X_1}(x)dF_{T_1}(t) \\
+                                    &= \int_{(0, \infty)}\int_{(0, u + ct]}\theta(u - x + ct)dF_{X_1}(x)\lambda e^{-\lambda t}dt.
                 \end{align*}
-                Uvedemo novo spremenljivko $z = u + cw$ $\bigl( \text{torej} \ w = \tfrac{z - u}{c}$ in $dw = \tfrac{dz}{c} \bigr)$ 
+                Uvedemo novo spremenljivko $z = u + ct$ $\bigl( \text{torej} \ t = \tfrac{z - u}{c}$ in $dt = \tfrac{dz}{c} \bigr)$ 
                 in dobimo
 
                 \begin{align*}
                             \theta(u) = \frac{\lambda}{c}e^{\frac{\lambda u}{c}}\int_{(u, \infty)}e^{-\frac{\lambda z}{c}}\underbrace{\int_{(0, z)}\theta(z - x)dF_{X_1}(x)}_{g(z)}dz.
                 \end{align*}
-                Ker ima porazdelitev $F_{X_1}$ gostoto in je $\theta$ (odsekoma?) zvezna omejena funkcija,
+                Ker ima porazdelitev $F_{X_1}$ gostoto in je $\theta$ zvezna omejena funkcija,
                 je funkcija $g(z)$ zvezna in celo odvedljiva po osnovnem izreku analize.
                 $\theta(u)$ lahko tako odvajamo in dobimo
 
@@ -1320,7 +1343,7 @@ Ljubljana, \letnica}
 
             \begin{opomba}
                 Konstanto $\theta(0)$, ki se pojavi v (\ref{eq:verjetnostPrezivetja}) in 
-                (\ref{eq:verjetnostPrezivetja2}) lahko izra"cunamo. Ker $c$ zado"sca NPC, po trditvi 
+                (\ref{eq:verjetnostPrezivetja2}) lahko izra"cunamo. Ker $c$ zado"sca NPC, analogno trditvi 
                 \ref{trd:propadZVerjetnostjo1} velja 
                 \begin{equation*}
                     Z_n \xrightarrow[n\to\infty]{s.g.} -\infty.
@@ -1358,8 +1381,8 @@ Ljubljana, \letnica}
 
             \begin{izrek}(Cramérjeva meja za propad)
                 Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zadostuje NPC in 
-                naj zanj obstaja Lundbergov koeficient $\ell$. Naj bo $F_{X}$ porazdelitev slu"cajnih spremenjlvk
-                $X_i$, ki je absolutno zvezna glede na Lebesgueovo mero $\mathcal{L}$.\ Potem obstaja konstanta $C>0$ da
+                naj zanj obstaja Lundbergov koeficient $\ell$. Naj imajo slu"cajne spremenljivke 
+                $(X_i)_{i\in\N}$ gostoto.\ Potem obstaja konstanta $C>0$ da
                 velja 
                 \begin{equation*}
                     \lim_{u\to\infty}e^{\ell u}\psi(u) = C.
@@ -1382,11 +1405,10 @@ Ljubljana, \letnica}
                     \label{eq:verjetnostPropadaQ}
                 \end{equation}
                 Vidimo, da ima ena"cba (\ref{eq:verjetnostPropadaQ}) obliko prenovitvene 
-                ena"cbe \ref{def:prenovitvenaEnacba} z bistveno razliko, da $q\overline{F}_X$ ni
+                ena"cbe (\ref{def:prenovitvenaEnacba}) z bistveno razliko, da $q\overline{F}_X$ ni
                 verjetnostna mera, saj velja $\lim_{x\to\infty}q\overline{F}_X(x) = q < 1$. Ena"cbi 
                 (\ref{eq:verjetnostPropadaQ}) pravimo defektna prenovitvena ena"cba. Za $x > 0$ 
                 definiramo Esscherjevo transofrmacijo porazdelitve $F_X$ kot 
-
                 \begin{equation*}
                     F_\ell(x) = \int_{(0, x]}e^{\ell y}d\bigl(q\overline{F}_X(y)\bigr) = \frac{q}{\E\left[X\right]}\int_{(0, x]}e^{\ell y}\bigl(1 - F_X(y)\bigr)dy, 
                 \end{equation*}
@@ -1438,7 +1460,8 @@ Ljubljana, \letnica}
             \end{proof}
 
             \begin{opomba}
-                Izrek \ref{izr:CramerjevaMeja} nam pove, da (verjetnost konvergira k C krat e-lu).
+                Izrek \ref{izr:CramerjevaMeja} nam pove, da v primeru lahkorepih porazdelitev verjentost
+                propada asimptoti"cno to"cno ekspoenento pada proti 0.
                 
                 \label{op:pomenCramerevegaIzreka}
             \end{opomba}
@@ -1460,8 +1483,8 @@ Ljubljana, \letnica}
             \end{zgled}
 
                 Ampak to je zelo poseben primer, ko lahko vse koli"cine izra"cunamo eksplicitno.
-                Poka"zimo, kako bi v primeru, ko ne moremo priti do eksplicitne formule,
-                 do pribli"zkov funkcije $\psi(u)$ pri"sli z Monte Carlo simulacijami.
+                Poka"zimo kako v primeru, ko ne moremo priti do eksplicitne formule,
+                 do pribli"zkov funkcije $\psi(u)$ lahko pridemo z Monte Carlo simulacijami.
             
             \begin{zgled}
                 Recimo, da smo zaposleni v zavarovalnici in imamo interes ponuditi produkt, ki 
@@ -1470,9 +1493,9 @@ Ljubljana, \letnica}
                 zahtevki porazdeljeni druga"ce od konvencionalne eksponentne porazdeltive, Pri"sli smo 
                 do sklepa, da zahtevki prihajajo z intenzivnostjo
                 $\lambda = 1$ in so porazdeljeni Weibullovo s parametroma $a = 4$ in $b = 500$. 
-                Radi bi dolo"cili najmanj"s zacetni kapital $u$, ki nam ga morajo nadrejeni
+                Radi bi dolo"cili najmanj"si zacetni kapital $u$, ki nam ga morajo nadrejeni
                 odobriti za za"cetek prodaje 
-                na"sega produkta in premijo $c$, ki je ni"zja od obstojece, da bo verjentnost 
+                na"sega produkta in premijo $c$, ki je ni"zja od obstoje"ce, da bo verjentnost 
                 propada manj"sa od $0.01$ (V tem primeru propad pomeni, da bo zavarovalnica morala 
                 zvi"sati premijo in dvigniti rezerve).\ "Ce "zelimo zadostiti NPC pogoju mora veljati 
                 \begin{equation*}
@@ -1541,7 +1564,7 @@ Ljubljana, \letnica}
 
 \section{Priloga}
     Dostavek je namenjen predvsem za dodatne definicije in trditve, ki so bile izpu"scene v glavnem
-    za namene preglednosti besdila. V primeru, "ce bralec potrebuje osve"ziti dolo"cene pojme 
+    za namene preglednosti besdila. V primeru, da bralec potrebuje osve"ziti dolo"cene pojme, 
     jih ve"cino lahko najde v tem razdelku.
     \begin{definicija}
         Naj bo $X$ slu"cajna spremenljivka. Potem so njena \textit{rodovna funkcija}, 
@@ -1721,8 +1744,9 @@ Ljubljana, \letnica}
 \bibitem{1}S.E. Shreve, Stochastic Calculus for Finance II: Continuous-Time Models, Springer, (2004).
 \bibitem{2}S.M. Ross, Stochatic Processes: Second Edition, Wiley, (1996).
 \bibitem{3}P. Embrechts, C. Klüppelberg, T. Mikosch, Modelling Extremal Events: For Insurance and Finance, Springer, (1997).
-\bibitem{4}T. Mikosch, Non-Life Insurance Mathematics: An Introduction with the Poisson Process, Springer, Second Edition, (2009).
+\bibitem{4}T. Mikosch, Non-Life Insurance Mathematics: An Introduction with the Poisson Process, Second Edition, Springer, (2009).
 \bibitem{5}M. Mandjes, O. Boxma, The Cramér--Lundberg model and its variants, Springer, (2023).
+\bibitem{6}F. Spitzer, Principles of Random Walk. Second Edition, Springer, (1976).
 \end{thebibliography}
 
 \end{document}
