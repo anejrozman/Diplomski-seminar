@@ -354,99 +354,99 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #-------------------------------------------------------------------------------#
 #Slika 4 (Monte Carlo simulation for approximating asymptotics of ruin probability)
 
-set.seed(42)
-library(ggplot2)
-library(dplyr)
-library(actuar)
-library(gridExtra)
-library(glue)
-library(viridis)
-
-# Parameters
-lambda = 1 # Intensity of HPP
-a = 1/1000 # Claim size parameters
-T = 1000 # Time horizon of simulation
-u = seq(5000, 50000, 5000) # Initial reserve
-c = 1500 # Premium income rate
-N = 1000 # Number of simulations 
-
-########################## RISK PROCESS SIMULATION #############################
-estProbRuin = data.frame(u)
-estProbRuin$estimation = 0
-
-for (j in 1:length(u)) {
-  print(glue("simulation:{j}/{length(u)}"))
-  for (k in 1:N){
-    arrivalTimes = c(0)
-    t = 0
-    while (t <= T) {
-      interarrivalTime = rexp(1, rate = lambda)
-      t = t + interarrivalTime
-      arrivalTimes = c(arrivalTimes, t, t)
-    }
-    
-    # Remove the last arrival time exceeding T and add T
-    arrivalTimes = arrivalTimes[arrivalTimes < T]
-    #arrivalTimes = c(arrivalTimes, T)
-    
-    # Generate claims
-    claims = rexp(length(arrivalTimes)/2-1, mu)
-    # Simulate risk process
-    riskProcessW = data.frame(arrivalTimes)
-    riskProcessExp$premiumRevenue = u[j] + riskProcessExp$arrivalTimes*c
-    riskProcessExp$cumulativeClaims = 0
-    for (i in 2:length(arrivalTimes)) {
-      if (i %% 2 == 1) {
-        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
-      } else {
-        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] 
-      }
-    }
-    riskProcessExp$riskProcess = riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
-    # Check for ruin
-    
-  }
-}
-
-# Normalize frequencies
-estProbRuin$estimation = estProbRuin$estimation / N
-
-# Coefficient exp(\ell*u)
-cramerCoefficient = function(lambda, mu, u, c){
-  df = data.frame(u)
-  ell = mu - (lambda/c)
-  df$coefficient = exp(u * ell)
-  return(df)
-}
-
-cramerCoefficient = cramerCoefficient(lambda, mu, u, c)
-
-cramerProduct = merge(cramerCoefficient, estProbRuin, by='u')
-cramerProduct$product = cramerProduct$coefficient * cramerProduct$estimation
-
-
-############################## VISUALIZE #######################################
-
-g4 = ggplot() +
-  geom_line(data = cramerProduct,
-            aes(x = u, y = product),
-            color = "cyan") +
-  geom_hline(yintercept = 2/3, 
-             color = "red", 
-             linetype = "dashed") + 
-  labs(title = glue(" \u03BB={lambda}, \u03BC={mu}, c={c}"),
-       x = "Začetni kapital (u)",
-       y = glue("Asimptotika verjetnosti propada (\u03C8(u))"))
-
-g4
-
-#Save graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika4.pdf",
-       g4,
-       device = "pdf",
-       width = 8,
-       height = 5)
-
+#set.seed(42)
+#library(ggplot2)
+#library(dplyr)
+#library(actuar)
+#library(gridExtra)
+#library(glue)
+#library(viridis)
+#
+## Parameters
+#lambda = 1 # Intensity of HPP
+#a = 1/1000 # Claim size parameters
+#T = 1000 # Time horizon of simulation
+#u = seq(5000, 50000, 5000) # Initial reserve
+#c = 1500 # Premium income rate
+#N = 1000 # Number of simulations 
+#
+########################### RISK PROCESS SIMULATION #############################
+#estProbRuin = data.frame(u)
+#estProbRuin$estimation = 0
+#
+#for (j in 1:length(u)) {
+#  print(glue("simulation:{j}/{length(u)}"))
+#  for (k in 1:N){
+#    arrivalTimes = c(0)
+#    t = 0
+#    while (t <= T) {
+#      interarrivalTime = rexp(1, rate = lambda)
+#      t = t + interarrivalTime
+#      arrivalTimes = c(arrivalTimes, t, t)
+#    }
+#    
+#    # Remove the last arrival time exceeding T and add T
+#    arrivalTimes = arrivalTimes[arrivalTimes < T]
+#    #arrivalTimes = c(arrivalTimes, T)
+#    
+#    # Generate claims
+#    claims = rexp(length(arrivalTimes)/2-1, mu)
+#    # Simulate risk process
+#    riskProcessW = data.frame(arrivalTimes)
+#    riskProcessExp$premiumRevenue = u[j] + riskProcessExp$arrivalTimes*c
+#    riskProcessExp$cumulativeClaims = 0
+#    for (i in 2:length(arrivalTimes)) {
+#      if (i %% 2 == 1) {
+#        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
+#      } else {
+#        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] 
+#      }
+#    }
+#    riskProcessExp$riskProcess = riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
+#    # Check for ruin
+#    
+#  }
+#}
+#
+## Normalize frequencies
+#estProbRuin$estimation = estProbRuin$estimation / N
+#
+## Coefficient exp(\ell*u)
+#cramerCoefficient = function(lambda, mu, u, c){
+#  df = data.frame(u)
+#  ell = mu - (lambda/c)
+#  df$coefficient = exp(u * ell)
+#  return(df)
+#}
+#
+#cramerCoefficient = cramerCoefficient(lambda, mu, u, c)
+#
+#cramerProduct = merge(cramerCoefficient, estProbRuin, by='u')
+#cramerProduct$product = cramerProduct$coefficient * cramerProduct$estimation
+#
+#
+############################### VISUALIZE #######################################
+#
+#g4 = ggplot() +
+#  geom_line(data = cramerProduct,
+#            aes(x = u, y = product),
+#            color = "cyan") +
+#  geom_hline(yintercept = 2/3, 
+#             color = "red", 
+#             linetype = "dashed") + 
+#  labs(title = glue(" \u03BB={lambda}, \u03BC={mu}, c={c}"),
+#       x = "Začetni kapital (u)",
+#       y = glue("Asimptotika verjetnosti propada (\u03C8(u))"))
+#
+#g4
+#
+##Save graph to pdf
+#ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika4.pdf",
+#       g4,
+#       device = "pdf",
+#       width = 8,
+#       height = 5)
+#
 
 #------------------------------------------------------------------------------#
 #Slika 5 (Asymptotics for large claim case)
@@ -568,3 +568,67 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
        height = 5)
 
 #------------------------------------------------------------------------------#
+#Slika 6 (CPP standard simulation)
+
+set.seed(42)
+library(ggplot2)
+library(dplyr)
+library(actuar)
+library(gridExtra)
+library(glue)
+library(viridis)
+
+# Parameters
+lambda = 1 # Intensity of HPP
+mu = 2 
+sigma = 16 # Parameters for normal distribution
+T = 1000 # Time horizon of simulation
+N = 25 # Number of simulations
+
+# Simulate arrival times
+arrivalTimes = c(0)
+t = 0
+while (t <= T) {
+  interarrivalTime = rexp(1, rate = lambda)
+  t = t + interarrivalTime
+  arrivalTimes = c(arrivalTimes, t, t)
+}
+
+# Simulate CPP
+sim = data.frame(arrivalTimes)
+sim$EX = mu*lambda*sim$arrivalTimes
+sim$VarX = lambda*arrivalTimes*(sigma^2 + mu^2)
+simulations = c()
+for (i in 1:N){
+  sim[glue("X{i}")] = rnorm(length(arrivalTimes), mu, sigma)
+  sim$CPP = cumsum(sim[glue("X{i}")])
+  simulations = c(simulations, glue("X{i}"))
+}
+# Plot
+colors = viridis(2*N)[1:N]
+
+g6 = ggplot() +
+  geom_line(data = sim,
+            aes(x = arrivalTimes, y = EX),
+            size = 0.7,
+            color = "red") +
+  geom_line(data = sim,
+            aes(x = arrivalTimes, y = EX + 3*sqrt(VarX)),
+            size = 0.7,
+            color = "black") +
+  geom_line(data = sim,
+            aes(x = arrivalTimes, y = EX - 3*sqrt(VarX)),
+            size = 0.7,
+            color = "black") +
+  labs(title = glue(" \u03BB={lambda}, a={a}"),
+       x = "Čas",
+       y = "Vrednost CPP")
+
+for (i in 1:N){
+  g6 = g6 + geom_line(data = sim,
+                      aes(x = arrivalTimes, y = sim[simulations[i]]),
+                      color = colors[i])
+}
+g6
+
+

@@ -123,12 +123,13 @@ Ljubljana, \letnica}
 \end{center}
 
 %--------------------------------------POVZETEK V SLOVENSCINI--------------------------------------%
-V uvodu predstavimo splo"sen slu"cajni proces v zveznem "casu in njegove osnovne lastnosti. V drugem 
-poglavju definiramo sestavljeno Poissonovo porazdelitev in poka"zemo njeno povezavo z linearno 
-kombinacijo Poissonovih slu"cajnih spremenljivk. V tretjem poglavju definiramo sestavljeni Poissonov
-proces in poka"zemo njegove osnovne lastnosti, kot so stacionarnost, neodvisnost prirastkov in rodovne funkcije.
-Nato se posvetimo pojmu neskon"cne deljivosti in poka"zemo, da je pojlubna nesko"cno deljiva
-diskretna slu"cajna spremenljivka porazdeljena kot neka sestavljena Poissonova porazdelitev. V drugem delu 
+
+V prvem delu diplome najprej definiramo splo"sen slu"cajni proces v zveznem "casu in osnovne lastnosti, 
+ki jih "studiramo. Nato definiramo sestavljeno Poissonovo porazdelitev in obravnavamo njeno porazdelitveno 
+funkcijo ... Definiramo sestavljeni Poissonov proces in doka"zemo neodvisnost in stacionarnost prirastkov, 
+pogoj, da je proces martingal, "sibko in krepko lastnost Markova in poka"zemo, da je gradnik neskon"cno deljivih 
+procesov ti. Lévijevih procesov. 
+V drugem delu 
 diplome obravnavamo aplikacijo sestavljenega Poissonovega procesa v Cramér--Lundbergovem modelu. Definiramo 
 verjetnost propada in obravnavamo njeno obna"sanje v odvisnoti od za"cetnega kapitala. Doka"zemo 
 Lundbergovo neenakost in asimptoti"cno obna"sanje verjetnosti propada, ko zahtevke modeliramo z 
@@ -143,24 +144,26 @@ z ve"ckratkim simuliranjem procesa tveganja.
 \end{center}
 
 %--------------------------------------POVZETEK V ANGLESCINI---------------------------------------%
-In the introduction, we present a general stochastic process in continuous time and its basic properties.
-In the second chapter, we define the compound Poisson distribution and show its connection with a linear 
-combination of Poisson random variables. In the third chapter, we define the compound Poisson process and
-show its basic properties, such as stationarity, independence of increments, and generating functions.
-We then focus on the concept of infinite divisibility and show that any infinitely divisible discrete
-random variable is distributed as a compound Poisson distribution. In the second part of the thesis, we
-discuss the application of the compound Poisson process in the Cramér--Lundberg model. We define the
-probability of ruin and consider its behavior depending on the initial capital. We prove the Lundberg
-inequality and the asymptotic behavior of the probability of ruin when claims are modeled by light-tailed
-and heavy-tailed distributions. Finally, we practically demonstrate the behavior of the probability of ruin
-by repeatedly simulating the risk process.
+In the first part of the diploma, we first define a general stochastic process in continuous time and basic
+properties that we study. We then define the compound Poisson distribution and consider its distribution
+function ... We define the compound Poisson process and prove the independence and stationarity of the increments,
+the condition under which the process is a martingale, the weak and strong Markov property, and show that it is a building
+block of infinitely divisible processes, i.e. Lévy processes.
+In the second part of the diploma, we consider the application of the compound Poisson process in the Cramér--Lundberg model. 
+We define the probability of ruin and consider its behavior depending on the initial capital. 
+We prove the Lundberg inequality and the asymptotic behavior of the probability of ruin when claims 
+are modeled with light-tailed and heavy-tailed distributions. We practically demonstrate the behavior 
+of the probability of ruin at the end with repeated simulation of the risk process.
+
 %--------------------------------------------------------------------------------------------------%
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
-{\bf Klju"cne besede:} slu"cajni procesi, sestavljena Poissonova porazdelitev, sestavljeni Poissonov proces,
+{\bf Klju"cne besede:} slu"cajni procesi, sestavljena Poissonova porazdelitev, sestavljeni Poissonov proces, martingal, 
+"sibka lastnost Markova, krepka lastnost Markova,
 neskon"cna deljivost, Cramér--Lundbergov model, lahkorepa porazdelitev, te"zkorepa porazdelitev\\[1mm]
-{\bf Keywords:} stochastic processes, compound Poisson distribution, compound Poisson process, infinite divisibility,
+{\bf Keywords:} stochastic processes, compound Poisson distribution, compound Poisson process, 
+martingale, weak Markov property, strong Markov property, infinite divisibility,
 Cramér--Lundberg model, light-tailed distribution, heavy-tailed distribution
 \pagebreak
 
@@ -268,27 +271,113 @@ V nastajanju :)
 \section{Sestavljena Poissonova porazdelitev}
 
     \begin{definicija}
-        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih
-        enako porazdeljenih slučajnih spremenljivk. Potem ima slu"cajna spremenljivka $S$ \textit{sestavljeno
-        Poissonovo porazdelitev} "ce je njena porazdelitev enaka porazdelitvi slu"cajne spremenljivke
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
+        enako porazdeljenih slučajnih spremenljivk. Potem pravimo, da ima slu"cajna spremenljivka
         \begin{equation*}
-            S = \sum_{i=1}^NX_i,
+            S = \sum_{i=1}^NX_i
         \end{equation*}
+        \textit{sestavljeno Poissonovo porazdelitev}. 
+        \label{def:sestavljenaPoissonovaPorazdelitev}
     \end{definicija}
 
+    \subsection{Porazdelitev}
+    S pogojevanjem na $N = n$ pridemo do formule za porazdelitev $S$. Za $x \in \R$ velja 
+    \begin{align*}
+        F_{S}(x) = \Prob\bigl(S \leq x\bigr) 
+        &= \sum_{n=0}^\infty \Prob\bigl(S \leq x \mid N = n\bigr)\Prob\bigl(N = n\bigr) \\
+        &= \sum_{n=0}^\infty \Prob\biggl(\sum_{i=1}^nX_i \leq x\biggr)\Prob\bigl(N = n\bigr) \\
+        &= \sum_{n=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^n}{n!} e^{-\lambda}
+    \end{align*}
+
+    \noindent
+    kjer je $F_{X_1}^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X_1$.
+    
+    \begin{zgled}
+        Poglejmo enega enostavnej"sih primerov, ko so $X_1, X_2, \dots$ porazdeljene kot
+        \begin{equation*}
+            X_1\sim\text{Exp}(a) \qquad \qquad f_{X_1}(x) = a e^{-a x}\mathbbm{1}_{(0, \infty)}(x),
+        \end{equation*}
+        s parametrom $a>0$. Vemo, da je $k$-ta 
+        konvolucija $X_1$ porazdeljena kot \newline $\text{Gamma}(k, a)$ in ima gostoto
+        \begin{equation*}
+            f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(k)}a^kx^{k-1}e^{-a x}\mathbbm{1}_{(0, \infty)}(x).
+        \end{equation*}
+        Za $s>0$ velja
+        \begin{align*}
+            F_{S}(s) 
+            &= \sum_{k=0}^\infty \int_0^s\frac{1}{\Gamma(k)}a^kx^{k-1}e^{-ax}dx \ \frac{(\lambda )^k}{k!}e^{-\lambda }
+            \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
+            &= \int_0^s\underbrace{\sum_{k=0}^\infty \frac{1}{(k-1)!k!}(a\lambda)^kx^{k-1}e^{-(ax + \lambda)}}_{f_S(x)}dx.
+        \end{align*}
+        Vidimo, da "ze v primeru, ko poznamo eksplictno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
+        kakr"sne koli porazdelitve $S$ v kon"cni obliki. V praksi se zato poslu"zujemo numeri"cnega 
+        ocenjevanja porazdelitve.
+        \label{zgd:sestavljenaPoissonovaPorazdelitevGamma}
+    \end{zgled}
+
+    \subsection{Rodovne funkcije}
+
     \begin{trditev}
-        Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. Potem ima $(X_t)_{t\geq0}$
-        neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
-        $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
-        slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
-        \label{trd:ekvivKarakterizacija}
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
+        enako porazdeljenih slučajnih spremenljivk s karakteristi"cno funkcijo $\varphi_{X_1}$. Potem ima za $u\in\R$
+        karateristi"cna funckija $S = \sum_{i=1}^NX_i$ obliko
+        \begin{equation*}
+            \varphi_{S}(u) = e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)}.
+        \end{equation*}
+        \label{trd:MomentGener}
+    \end{trditev}
+    
+    \begin{proof}
+        \begin{align}
+            \varphi_{S}(u) 
+                    &= \E\left[\exp\left[iuS\right]\right] = 
+                        \E\left[\exp\left[iu\sum_{i = 1}^{N}X_i\right]\right] \nonumber\\
+                    &= \sum_{k=0}^{\infty}
+                        \E\left[\exp\left[iu\sum_{i = 1}^{N}X_i \mid N=k\right]\right]\Prob\left(N = k\right) \nonumber \\ 
+                    &= \sum_{k=0}^{\infty}
+                        \E\left[\exp\left[iu\sum_{i = 1}^kX_i\right]\right]\Prob\left(N = k\right) \nonumber \\
+                    &= \sum_{k=0}^{\infty}
+                        \underbrace{\E\left[e^{iuX}\right]^k}_{\varphi_{X_1}(u)^k}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS}\\ 
+                    &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(\varphi_{X_1}(u)\lambda t\right)^k}{k!} \nonumber \\
+                    &= e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)} \nonumber
+        \end{align}
+    \end{proof}
+
+    Hitro lahko vidimo,  sta rodovna in momentno rodovna funkcija $S$ enaki
+
+    \begin{equation*}
+        \varphi_{S}(u) = e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)} \qquad \text{in} \qquad 
+        G_{S}(u) = e^{\lambda t\left(G_{X_1}(u) - 1\right)},
+    \end{equation*} 
+
+    \noindent
+    saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
+    njeni momentno rodovni funkciji izvrednoteni v $iu$, torej $\varphi_Y(u) = G_Y(iu)$. Rodovna pa 
+    izverdnotena v $\ln(u)$, torej $G_Y(u) = M_Y(\ln(u))$, "ce obstajata.
+    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med karakteristi"cno funkcijo $CPP$ 
+    in rodovno funkcijo $HPP(\lambda)$.
+    \begin{trditev}
+        Naj bosta $(S_t)_{t\geq0}$ $CPP$ in $(N_t)_{t\geq0}$ $HPP(\lambda)$ neodvisna. 
+        Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v $CPP$ enako porazdeljene kot $X$. 
+        Potem za fiksen $t\geq0$ velja
+
+        \begin{align*}
+            \varphi_{S_t}(u) = G_{N_t}\left(\varphi_{X}(u)\right).
+        \end{align*}
+
+        \label{trd:povezavaRodovneKarkateristicne}
     \end{trditev}
 
     \begin{proof}
-        $(\Rightarrow):$
-
-        $(\Leftarrow):$
+        Po ena"cbi (\ref{eq:MomentS}) iz trditve \ref{trd:MomentGener} velja, da je $\varphi_{S_t}(u)$ enaka
+        \begin{align*}
+            \varphi_{S_t}(u) &= \sum_{k=0}^{\infty}
+            \varphi_X(u)^n\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
+            &= G_{N_t}\left(\varphi_X(u)\right).
+        \end{align*}
     \end{proof}
+
 
     \begin{trditev}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
@@ -299,21 +388,21 @@ V nastajanju :)
             \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
         \end{pmatrix},
         $$
-        za poljubne $a_1, a_2, \dots, a_n \in \R$ in 
-        $\lambda_1, \lambda_2, \dots, \lambda_n \in \R^+$ za katere velja 
-        ${\sum_{i=1}^n\lambda_i = \lambda}$.
+        kjer $(a_n)_{n\in\N}$ je poljubno zaporedje realnih "stevil in 
+        $(\lambda_n)_{n\in\N}$ zaporedje pozitivnih realnih "stevil za katerega velja 
+        ${\sum_{i=1}^\infty\lambda_i = \lambda}$.
         Potem velja 
         \begin{equation*}
             \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
         \end{equation*}
-        kjer so $Y_1,Y_2,  \dots$ neodvisne s.s.\ porazdeljene kot 
+        kjer so $Y_1,Y_2,  \dots$ neodvisne slu"cajne spremenljivke porazdeljene kot \\
         $\Pois{\lambda_1},\Pois{\lambda_2}, \dots$
         \label{trd:NXjeEnakoaY}
     \end{trditev}
 
     \begin{proof}
-        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo s.s.\ 
-        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo s.s.\
+        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo slu"cajne spremenljivke 
+        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo
         $Z:= \sum_{j=1}^{N}X_j$. Po neodvisnosti velja
         \begin{align*}
             \varphi_{Z_n}(u) 
@@ -333,33 +422,11 @@ V nastajanju :)
         \end{align*}
 
         \noindent 
-        Vidimo, da velja%Rezultat je posledica inverzne formule za karateristi"cne funkcije.
+        Vidimo, da za vsak $u\in\R$ \ $\varphi_{Z_n}(u)$ po to"ckah konvergira k $\varphi_{Z}(u)$, torej
         \begin{equation*}
-            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z,
+            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z.
         \end{equation*}
-        torej po Lévijevem izreku o kontinuiteti velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
-    \end{proof}
-
-    \begin{posledica}
-        Naj bo $(a_n)_{n\in\N}$ poljubno zaporedje realnih "stevil in $(\lambda_n)_{n\in\N}$ zaporedje 
-        pozitivnih realnih "stevil, za katere velja $\sum_{n=1}^\infty\lambda_n = \lambda$ in 
-        \begin{equation*}
-            X\sim
-            \begin{pmatrix}
-                a_1 & a_2 &  \dots \\
-                \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \dots
-            \end{pmatrix}.
-        \end{equation*}
-        Potem velja
-        \begin{equation*}
-            \sum_{j=1}^{n}a_jY_j \xrightarrow[n\to\infty]{d}\sum_{j=1}^NX_j,
-        \end{equation*}
-        \label{pos:NXjeEnakoaYstevno}
-    \end{posledica}
-
-    \begin{proof}
-        Ker velja $\varphi_{Z_n}(u) \xrightarrow{n\to\infty} \varphi_{Z}(u)$ za vsak $u\in\R$, po Lévijevem
-        izreku o zveznosti sledi, da $Z_n \xrightarrow[n\to\infty]{d} Z$.
+        Po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
     \end{proof}
 
     Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
@@ -451,6 +518,20 @@ V nastajanju :)
     \subsection{Osnovne lastnosti}
 
         \begin{trditev}
+            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. Potem ima $(X_t)_{t\geq0}$
+            neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
+            $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
+            slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
+            \label{trd:ekvivKarakterizacija}
+        \end{trditev}
+
+        \begin{proof}
+            $(\Rightarrow):$
+
+            $(\Leftarrow):$
+        \end{proof}
+
+        \begin{trditev}
             $CPP$ ima neodvisne in stacionarne prirastke.
             \label{trd:neodvPrirCPP}
         \end{trditev}
@@ -516,110 +597,20 @@ V nastajanju :)
             \end{equation*}
             saj $N_t\sim\Pois{\lambda t}$. Skupaj dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
         \end{proof}
-
-    \subsection{Rodovne funkcije}
-
-    \begin{trditev}
-        Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v 
-        $CPP$ enako porazdeljene kot $X$. Potem ima za $t\geq0$ karakteristi"cna funkcija $\varphi_{S_t}$ 
-        obliko
-        \begin{equation*}
-            \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)}, 
-        \end{equation*}
-        kjer $\varphi_X$ ozna"cuje karakteristi"cno funkcijo $X$.
-        \label{trd:MomentGener}
-    \end{trditev}
-    
-    \begin{proof}
-        \begin{align}
-            \varphi_{S_t}(u) 
-                    &= \E\left[\exp\left[iuS_t\right]\right] = \nonumber
-                        \E\left[\exp\left[iu\sum_{i = 1}^{N_t}X_i\right]\right] \nonumber\\
-                    &= \sum_{k=0}^{\infty}
-                        \E\left[\exp\left[iu\sum_{i = 1}^{N_t}X_i\mid N_t=k\right]\right]\Prob\left(N_t = k\right) \nonumber \\ 
-                    &= \sum_{k=0}^{\infty}
-                        \E\left[\exp\left[iu\sum_{i = 1}^kX_i\right]\right]\Prob\left(N_t = k\right) \nonumber \\
-                    &= \sum_{k=0}^{\infty}
-                        \underbrace{\E\left[e^{iuX}\right]^k}_{\varphi_X(u)^k}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS_t}\\ 
-                    &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(\varphi_X(u)\lambda t\right)^k}{k!} \nonumber \\
-                    &= e^{\lambda t\left(\varphi_X(u) - 1\right)} \nonumber
-        \end{align}
-    \end{proof}
-
-    Hitro lahko vidimo, da sta karakteristi"cna in rodovna funkcija $CPP$ enaki
-
-    \begin{equation*}
-        \varphi_{S_t}(u) = e^{\lambda t\left(\varphi_X(u) - 1\right)} \qquad \text{in} \qquad 
-        G_{S_t}(u) = e^{\lambda t\left(G_X(u) - 1\right)},
-    \end{equation*} 
-
-    \noindent
-    saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
-    njeni momentno rodovni funkciji izvrednoteni v $iu$, torej $\varphi_Y(u) = G_Y(iu)$. Rodovna pa 
-    izverdnotena v $\ln(u)$, torej $G_Y(u) = M_Y(\ln(u))$, "ce obstajata.
-    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
-    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med karakteristi"cno funkcijo $CPP$ 
-    in rodovno funkcijo $HPP(\lambda)$.
-    \begin{trditev}
-        Naj bosta $(S_t)_{t\geq0}$ $CPP$ in $(N_t)_{t\geq0}$ $HPP(\lambda)$ neodvisna. 
-        Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v $CPP$ enako porazdeljene kot $X$. 
-        Potem za fiksen $t\geq0$ velja
-
-        \begin{align*}
-            \varphi_{S_t}(u) = G_{N_t}\left(\varphi_{X}(u)\right).
-        \end{align*}
-
-        \label{trd:povezavaRodovneKarkateristicne}
-    \end{trditev}
-
-    \begin{proof}
-        Po ena"cbi (\ref{eq:MomentS_t}) iz trditve \ref{trd:MomentGener} velja, da je $\varphi_{S_t}(u)$ enaka
-        \begin{align*}
-            \varphi_{S_t}(u) &= \sum_{k=0}^{\infty}
-            \varphi_X(u)^n\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
-            &= G_{N_t}\left(\varphi_X(u)\right).
-        \end{align*}
-    \end{proof}
-
-    \subsection{Porazdelitev CPP}
-    Sedaj se posvetimo vpra"sanju, kako je porazdeljena slu"cajna spremenljivka $S_t$ za $t\geq 0$? 
-    Iz definicije $HPP(\lambda)$ vemo, da je $N_t$ za $t\geq0$ porazdeljena kot Poissonova slu"cajna 
-    spremenljivka s parametrom $\lambda t$. Fiksiramo $t\geq0$ in dobimo 
-
-    \begin{align*}
-        F_{S_t}(x) = \Prob(S_t \leq x) 
-        &= \sum_{k=0}^\infty \Prob(S_t \leq x \mid N_t = k)\Prob(N_t = k) \\
-        & = \sum_{k=0}^\infty \Prob(\sum_{i=1}^k X_i \leq x)\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
-        & = \sum_{k=0}^\infty F_X^{*k}(x)\frac{(\lambda t)^k}{k!}e^{-\lambda t}, \\
-    \end{align*}
-
-    \noindent
-    kjer je $F_X^{*k}(x)$ porazdelitev $k$-te konvolucije slu"cajne spremenljivke $X$. Razen za 
-    posebne primere, je zgornji izraz za prakti"cne namene ne-izra"cunljiv in nam ne pomaga veliko.
     
     \begin{zgled}
-        "Ce pogledamo primer, ko so $X_1, X_2, \dots$ neodvisne enako porazdeljene slu"cajne spremenljivke,
-        porazdeljene kot $X$
-        \begin{equation*}
-            X\sim\text{Exp}(a) \qquad \qquad f_X(x) = ae^{-ax}\mathbbm{1}_{(0, \infty)}(x),
-        \end{equation*}
-        s parametrom $a>0$, lahko pridemo do  eksplicitne porazdelitve $CPP$. Gostota $k$-te 
-        konvolucije $X_1 + \cdots + X_k$ je porazdeljena kot $\text{Gamma}(k, a)$ in ima formulo
-        \begin{equation*}
-            f_{X_1 + \cdots + X_k}(x) = \frac{1}{\Gamma(k)}a^kx^{k-1}e^{-ax}\mathbbm{1}_{(0, \infty)}(x).
-        \end{equation*}
-        Za $t\geq 0$ in $x \geq 0$ torej velja
-        \begin{align*}
-            F_{S_t}(s) = \Prob(S_t \leq s)
-            &= \sum_{k=0}^\infty \int_0^s\frac{1}{\Gamma(k)}a^ks^{k-1}e^{-as}ds\frac{(\lambda t)^k}{k!}e^{-\lambda t}
-            \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
-            &= \int_0^s\sum_{k=0}^\infty \frac{1}{\Gamma(k)}a^ks^{k-1}e^{-as}\frac{(\lambda t)^k}{k!}e^{-\lambda t}ds
-        \end{align*}
+        Poglejmo si konkreten primer
 
-        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{
+                C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika6.pdf
+                }
+            \caption{Trajektorije CPP z VarX in EX}
+            \label{fig:slika6}
+        \end{figure}
 
     \end{zgled}
-    
     %Poka"zimo, da je $CPP$ v resnici porazdeljen, kot limita linearne 
     %kombinacije neodvisnih Poissonovih slu"cajnih spremenljivk. 
     
@@ -659,71 +650,66 @@ V nastajanju :)
     %sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
 %
 
-%    \subsection{CPP kot martingal}
-%
-%        \begin{definicija}
-%            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
-%            martingal, "ce velja 
-%            $$
-%                \E\left[X_t\mid\F_s\right] = X_s
-%            $$
-%            za vsak $0\leq s \leq t$.
-%            \label{def:martingal}
-%        \end{definicija}
-%
-%        Poka"zimo, da v splo"snem $CPP$ ni martingal.
-%
-%        \begin{trditev}
-%            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
-%            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
-%            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
-%            \label{trd:CPPnimartingal}
-%        \end{trditev}
-%
-%        \begin{proof}
-%            Naj bo $0\leq s\leq t$. Potem velja
-%            \begin{align*}
-%                \E\left[S_t\mid\F_s\right] 
-%                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
-%                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
-%                        &= \mu\lambda(t-s) + S_s
-%            \end{align*}
-%           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
-%        \end{proof}
-%
-%        \begin{opomba}
-%            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
-%            $S_t$ supermartingal.
-%        \end{opomba}
-%
-%        \begin{trditev}
-%            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
-%            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
-%            Potem je proces 
-%            $$
-%                S_t - \mu\lambda t
-%            $$
-%            martingal.
-%            \label{trd:CPPpostanemartingal}
-%        \end{trditev}
-%
-%        \begin{proof}
-%            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
-%            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
-%            \begin{align*}
-%                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
-%                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
-%                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
-%                        &= S_s - \mu\lambda s.
-%            \end{align*}
-%        \end{proof}
-%
-%        %\subsection{"Cas prvega prehoda}
-%        %Postavimo si vpra"sanje, kdaj bo $CPP$ prvi"c dosegel nek $a\in\R$. Obravnavajmo primer, ko je 
-%        %$a>0$, saj je primer, ko je $a$ negativen simetri"cen. Naj bo $T_a = \inf\{t\geq0; S_t \geq a\}$ 
-%        %"cas prvega prehoda $CPP$. V tem poglavju bomo izra"cunali porazdelitev $T_a$.
-%        %"Ce pogledamo dogodek $\{T_a \leq t\}$.
+    \subsection{Martingali}
 
+        \begin{definicija}
+            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
+            martingal, "ce velja 
+            $$
+                \E\left[X_t\mid\F_s\right] = X_s
+            $$
+            za vsak $0\leq s \leq t$.
+            \label{def:martingal}
+        \end{definicija}
+
+        Poka"zimo, da v splo"snem $CPP$ ni martingal.
+
+        \begin{trditev}
+            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
+            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
+            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
+            \label{trd:CPPnimartingal}
+        \end{trditev}
+
+        \begin{proof}
+            Naj bo $0\leq s\leq t$. Potem velja
+            \begin{align*}
+                \E\left[S_t\mid\F_s\right] 
+                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
+                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
+                        &= \mu\lambda(t-s) + S_s
+            \end{align*}
+           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
+        \end{proof}
+
+        \begin{opomba}
+            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
+            $S_t$ supermartingal.
+        \end{opomba}
+
+        \begin{trditev}
+            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
+            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
+            Potem je proces 
+            $$
+                S_t - \mu\lambda t
+            $$
+            martingal.
+            \label{trd:CPPpostanemartingal}
+        \end{trditev}
+
+        \begin{proof}
+            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
+            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
+            \begin{align*}
+                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
+                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
+                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
+                        &= S_s - \mu\lambda s.
+            \end{align*}
+        \end{proof}
+
+    \subsection{"Casi ustavljanja in lastnosti Markova}
     \subsection{Neskon"cna deljivost}
 
     \begin{definicija}
@@ -825,6 +811,17 @@ V nastajanju :)
         Naj ima slu"cajna spremenljivka $S$ neskon"cno deljivo porazdelitev. Potem lahko $S$ zapi"semo
         izrazimo kot limito slu"cajni spremenljivk, ki imajo sestavljeno Poissonovo porazdelitev.
     \end{trditev}
+
+    \begin{definicija}
+        (Lévijev proces) Naj bo $(X_t)_{t\geq0}$ stohasti"cni proces. Pravimo, da je $(X_t)_{t\geq0}$
+        Lévijev proces, "ce velja
+        \begin{enumerate}
+            \item $X_0 = 0$ skoraj gotovo,
+            \item $(X_t)_{t\geq0}$ ima neodvisne prirastke,
+            \item $(X_t)_{t\geq0}$ je stacionaren, torej ima enako porazdelitev za vsak $t\geq0$.
+        \end{enumerate}
+
+    \end{definicija}
 \pagebreak
 
 \section{Cramér-Lundbergov model}
