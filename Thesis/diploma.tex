@@ -261,14 +261,22 @@ V nastajanju :)
         \end{enumerate}
         \label{def:HPP}
     \end{definicija}
-\textcolor{red}{
-    \begin{opomba}
-        Vidimo, da v definiciji ne zahtevamo, da so skoki procesa le +1. To sledi iz...
-        \label{op:skoki}
-    \end{opomba}
-}
+%\textcolor{red}{
+%    \begin{opomba}
+%        Vidimo, da v definiciji ne zahtevamo, da so skoki procesa le +1. To sledi iz...
+%        \label{op:skoki}
+%    \end{opomba}
+%}
 
 \section{Sestavljena Poissonova porazdelitev}
+
+    \noindent
+    Razdelek je prirejen po \cite{1}, \cite{2}, \cite{3} in \cite{8}.
+
+    Sestavljena poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki je osrednja 
+    tema dela. Lastnosti, ki jih v razdelku obravnavamo so direktno prenosljve na sam proces. Obravnavmo 
+     porazdelitev in prakti"cen na"cin kako numeri"cno do le-te pridemo, rodovne funkcije in povezavo s 
+     splo"snmi slu"cajnimi spremenljivkami.
 
     \begin{definicija}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -280,13 +288,22 @@ V nastajanju :)
         \label{def:sestavljenaPoissonovaPorazdelitev}
     \end{definicija}
 
+    \begin{opomba}
+        V splo"snem lahko namesto $N\sim\Pois{\lambda}$ obravnavamo porazdelitev s Panjerjevega razreda, kot 
+        na primer geometrijsko porazdelitev, ki jo bomo uporabili v nadaljevanju. Konkreten primer nas 
+        zanima izklju"cno zaradi procesa, ki ga v delu "studiramo.
+
+
+        \label{op:PanjerClass}
+    \end{opomba}
+
     \subsection{Porazdelitev}
-    S pogojevanjem na $N = n$ pridemo do formule za porazdelitev $S$. Za $x \in \R$ velja 
+    S pogojevanjem na $N = k$ pridemo do formule za porazdelitev $S$. Za $x \in \R$ velja 
     \begin{align*}
         F_{S}(x) = \Prob\bigl(S \leq x\bigr) 
-        &= \sum_{n=0}^\infty \Prob\bigl(S \leq x \mid N = n\bigr)\Prob\bigl(N = n\bigr) \\
-        &= \sum_{n=0}^\infty \Prob\biggl(\sum_{i=1}^nX_i \leq x\biggr)\Prob\bigl(N = n\bigr) \\
-        &= \sum_{n=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^n}{n!} e^{-\lambda}
+        &= \sum_{k=0}^\infty \Prob\bigl(S \leq x \mid N = k\bigr)\Prob\bigl(N = k\bigr) \\
+        &= \sum_{k=0}^\infty \Prob\biggl(\sum_{i=1}^kX_i \leq x\biggr)\Prob\bigl(N = k\bigr) \\
+        &= \sum_{k=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^k}{k!} e^{-\lambda}
     \end{align*}
 
     \noindent
@@ -311,7 +328,7 @@ V nastajanju :)
         \end{align*}
         Vidimo, da "ze v primeru, ko poznamo eksplictno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
         kakr"sne koli porazdelitve $S$ v kon"cni obliki. V praksi se zato poslu"zujemo numeri"cnega 
-        ocenjevanja porazdelitve.
+        ocenjevanja z Monte Carlo simulacijami.
         \label{zgd:sestavljenaPoissonovaPorazdelitevGamma}
     \end{zgled}
 
@@ -322,12 +339,13 @@ V nastajanju :)
         enako porazdeljenih slučajnih spremenljivk s karakteristi"cno funkcijo $\varphi_{X_1}$. Potem ima za $u\in\R$
         karateristi"cna funckija $S = \sum_{i=1}^NX_i$ obliko
         \begin{equation*}
-            \varphi_{S}(u) = e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)}.
+            \varphi_{S}(u) = e^{\lambda \left(\varphi_{X_1}(u) - 1\right)}.
         \end{equation*}
         \label{trd:MomentGener}
     \end{trditev}
     
     \begin{proof}
+        Velja
         \begin{align}
             \varphi_{S}(u) 
                     &= \E\left[\exp\left[iuS\right]\right] = 
@@ -337,44 +355,46 @@ V nastajanju :)
                     &= \sum_{k=0}^{\infty}
                         \E\left[\exp\left[iu\sum_{i = 1}^kX_i\right]\right]\Prob\left(N = k\right) \nonumber \\
                     &= \sum_{k=0}^{\infty}
-                        \underbrace{\E\left[e^{iuX}\right]^k}_{\varphi_{X_1}(u)^k}\frac{(\lambda t)^k}{k!}e^{-\lambda t} \label{eq:MomentS}\\ 
-                    &= e^{-\lambda t} + e^{-\lambda t}\sum_{k=1}^\infty\frac{\left(\varphi_{X_1}(u)\lambda t\right)^k}{k!} \nonumber \\
-                    &= e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)} \nonumber
+                        \underbrace{\E\left[e^{iuX_1}\right]^k}_{\varphi_{X_1}(u)^k}\frac{\lambda^k}{k!}e^{-\lambda } \label{eq:MomentS}\\ 
+                    &= e^{-\lambda } + e^{-\lambda }\sum_{k=1}^\infty\frac{\left(\varphi_{X_1}(u)\lambda \right)^k}{k!} \nonumber \\
+                    &= e^{\lambda \left(\varphi_{X_1}(u) - 1\right)} \nonumber
         \end{align}
     \end{proof}
-
-    Hitro lahko vidimo,  sta rodovna in momentno rodovna funkcija $S$ enaki
-
+    
+    \begin{posledica}
+        Rodovna in momentno rodovna funkcija $S=\sum_{i = 1}^{N}X_i$ imata obliko 
     \begin{equation*}
-        \varphi_{S}(u) = e^{\lambda t\left(\varphi_{X_1}(u) - 1\right)} \qquad \text{in} \qquad 
-        G_{S}(u) = e^{\lambda t\left(G_{X_1}(u) - 1\right)},
-    \end{equation*} 
-
-    \noindent
-    saj v splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $Y$ enaka
-    njeni momentno rodovni funkciji izvrednoteni v $iu$, torej $\varphi_Y(u) = G_Y(iu)$. Rodovna pa 
-    izverdnotena v $\ln(u)$, torej $G_Y(u) = M_Y(\ln(u))$, "ce obstajata.
-    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $CPP$, saj je ta vedno definirana 
-    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med karakteristi"cno funkcijo $CPP$ 
-    in rodovno funkcijo $HPP(\lambda)$.
-    \begin{trditev}
-        Naj bosta $(S_t)_{t\geq0}$ $CPP$ in $(N_t)_{t\geq0}$ $HPP(\lambda)$ neodvisna. 
-        Naj bodo slu"cajne spremenljivke $X_i$, ki jih se"stevamo v $CPP$ enako porazdeljene kot $X$. 
-        Potem za fiksen $t\geq0$ velja
-
-        \begin{align*}
-            \varphi_{S_t}(u) = G_{N_t}\left(\varphi_{X}(u)\right).
-        \end{align*}
-
-        \label{trd:povezavaRodovneKarkateristicne}
-    \end{trditev}
+        G_{S}(u) = e^{\lambda \left(G_{X_1}(u) - 1\right)}, \qquad \text{in} \qquad
+        M_{S}(u) = e^{\lambda \left(M_{X_1}(u) - 1\right)}.
+    \end{equation*}
+    \end{posledica}
 
     \begin{proof}
-        Po ena"cbi (\ref{eq:MomentS}) iz trditve \ref{trd:MomentGener} velja, da je $\varphi_{S_t}(u)$ enaka
+    V splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $X$ enaka
+    njeni rodovni funckij izvrednoteni v $e^{iu}$, torej $\varphi_X(u) = G_X(e^{iu})$ in momentno rodovni 
+    funkciji izvrednoteni v $iu$, torej $\varphi_X(u) = M_X(iu)$, "ce obstajata.
+    \end{proof}
+
+    V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $\varphi_S$, saj je ta vedno definirana 
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_S$. 
+
+    \begin{lema}
+        Karakteristi"cn funckijo $\varphi_S$ lahko izrazimo kot kompozitum rodovne funkcije $G_N$ in 
+        karateristi"cne funkcije $\varphi_{X_1}$.
+
         \begin{align*}
-            \varphi_{S_t}(u) &= \sum_{k=0}^{\infty}
-            \varphi_X(u)^n\frac{(\lambda t)^k}{k!}e^{-\lambda t} \\
-            &= G_{N_t}\left(\varphi_X(u)\right).
+            \varphi_{S}(u) = G_{N}\left(\varphi_{X_1}(u)\right).
+        \end{align*}
+
+        \label{lema:povezavaRodovneKarkateristicne}
+    \end{lema}
+
+    \begin{proof}
+        Po ena"cbi (\ref{eq:MomentS}) iz trditve \ref{trd:MomentGener} za $u\in\R$ velja
+        \begin{align*}
+            \varphi_{S}(u) &= \sum_{k=0}^{\infty}
+            \varphi_{X_1}(u)^n\frac{\lambda^k}{k!}e^{-\lambda} \\
+            &= G_{N}\left(\varphi_{X_1}(u)\right).
         \end{align*}
     \end{proof}
 
@@ -382,7 +402,7 @@ V nastajanju :)
     \begin{trditev}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
         med sabo in od $N$) enako porazdeljene kot
-        $$ X\sim
+        $$ X_1\sim
         \begin{pmatrix}
             a_1 & a_2 & a_3  \dots & \\
             \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
@@ -412,23 +432,24 @@ V nastajanju :)
         \end{align*}
 
         \noindent
-        Po trditvi \ref{trd:povezavaRodovneKarkateristicne} velja
+        Po lemi \ref{lema:povezavaRodovneKarkateristicne} velja
         \begin{align*}
             \varphi_{Z}(u) 
-                    &= G_N\left(\varphi_X(u)\right) \\
-                    &= \exp\left[\lambda\left(\varphi_X(u) - 1\right)\right] \\
+                    &= G_N\left(\varphi_{X_1}(u)\right) \\
+                    &= \exp\left[\lambda\left(\varphi_{X_1}(u) - 1\right)\right] \\
                     & = \exp\left[\lambda\left(\sum_{j=1}^\infty\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
-                    &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right]
+                    &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right].
         \end{align*}
 
         \noindent 
         Vidimo, da za vsak $u\in\R$ \ $\varphi_{Z_n}(u)$ po to"ckah konvergira k $\varphi_{Z}(u)$, torej
         \begin{equation*}
-            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z.
+            \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z
         \end{equation*}
-        Po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
+        po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
     \end{proof}
 
+    \begin{opomba}
     Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
     Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
     $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
@@ -482,8 +503,91 @@ V nastajanju :)
     \noindent
     Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
     porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
+    \label{op:aproksimacijaZDiskretno}
+    \end{opomba}
 
+    \subsection{Panjerjeva rekurzivna shema}
+    Poglejmo si popularno numeri"cno metodo za ra"cunaje sestavljene Poissonove porazdelitve. Kot
+    smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
+    porazdelitve $S$ v splo"snem nemogo"ce. Panjerjeva rekurzivna shema nam za posebne primere omogo"ca
+    ra"cunanje to"cne porazdelitve $S$. 
 
+    \begin{trditev}
+        Naj bo $N$ diskretna slu"cajna spremenljivka, za katero velja 
+        \begin{equation*}
+            \Prob(N = n) = \left(a + \frac{b}{n}\right)\Prob\left(N = n-1\right) \quad \text{za} \ n\in\N \ \text{in} \ a, b \in \R.
+        \end{equation*}
+        Naj bo $X_1, X_2, \dots$ zaporedje neodvisnih in enako porazdeljenih slu"cajnih spremenljivk, ki 
+        zavzemajo vrednosti v $\N_0$. Potem za $S = \sum_{i=1}^NX_i$ velja
+        \begin{equation*}
+        \Prob\left(S = 0\right) = 
+        \begin{cases}
+            \Prob\left(N = 0\right), & \text{če} \ \Prob(X_1 = 0) = 0, \\  
+            \E\left[\Prob\left(X_1 = 0\right)^N\right], & \text{sicer}, 
+        \end{cases}
+        \end{equation*}
+        in za $n\in\N$ velja
+        \begin{equation}
+            \Prob\left(S = n\right) = \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - 1\right).
+            \label{eq:PanjerRecursionScheme}
+        \end{equation}
+        \label{tdr:PanjerRecursionScheme}
+    \end{trditev}
+
+    \begin{proof}
+        Prvo se osredoto"cimo na primer $n = 0$. Velja
+        \begin{align*}
+            \Prob\left(S = 0\right)     
+                = \Prob\left(N = 0\right) + \Prob\left(S = 0, N > 0\right).
+        \end{align*}
+        "Ce velja $\Prob(X_1 = 0) = 0$, potem je $\Prob\left(S = 0, N > 0\right) = 0$ in je enakost o"citna, "ce 
+        velja $\Prob(X_1 = 0) > 0$, po zakonu za popolno pri"cakovano vrednsot ra"cunamo
+        \begin{align*}
+            \Prob\left(S = 0\right) 
+                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(S = 0, N > 0 \mid N = k\right)\Prob\left(N = k\right) \\
+                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^kX_i = 0\right)\Prob\left(N = k\right) \\
+                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(X_1 = 0\right)^k\Prob\left(N = k\right) \\
+                &= \E\left[\Prob\left(X_1 = 0\right)^N\right].
+        \end{align*}
+        Za $n\in\N$ velja
+        \begin{align*}
+            \Prob\left(S = n\right) 
+                &= \Prob\left(S = n, N > 0\right) \\
+                &= \sum_{k = 1}^\infty\Prob\left(S = n, N > 0 \mid N = k\right)\Prob\left(N = k\right) \\
+                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^kX_i = n\right)\Prob\left(N = k\right) \\
+                &= \sum_{k = 1}^\infty\Prob\left(X_1 = n - k\right)\Prob\left(N = k\right) \\
+                &= \sum_{k = 1}^\infty\Prob\left(X_1 = n - k\right)\left(a + \frac{bk}{n}\right)\Prob\left(S = n - 1\right) \\
+                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - 1\right).
+        \end{align*}
+    \end{proof}
+
+    \begin{opomba}
+        Izka"ze se, da le $3$ porazdelitve 
+        ustrezajo zahtevam iz trditve \ref{tdr:PanjerRecursionScheme}, to so $\Pois{\lambda}$, $\text{Geo}(p)$ in
+        $\text{NegBin}(r, p)$. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
+        \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. Tudi v ostalih primerih se izka"ze, da je $a < 1$, tako, da je 
+        ena"cba (\ref{eq:PanjerRecursionScheme}) res dobro definirana.
+    \end{opomba}
+
+    \begin{opomba}
+        Zahteva, da $X_i$ zavzemajo vrednosti v $\N_0$ je bolj splo"sna kot se na prvi pogled zdi, ker
+        lahko v resnici zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za nek $h>0$. V tem primeru 
+        zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in dobimo enak rezultat. Tako lahko analogno opombi 
+        \ref{op:aproksimacijaZDiskretno} aproksimiramo slu"cajne spremenljivke, ki zavzemajo vrednsoti 
+        v $[0, \infty)$. 
+    \end{opomba}
+
+    \begin{zgled}
+        "Ce se vrnemo na zgled \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, kjer so $X_i$ porazdeljene
+        kot $\text{Exp}(a)$, lahko numeri"cno izracunamo priblizke za porazdelitev $S$, tako da 
+        $X_i$ aproksimiramo z diskretnimi slucajnimi spremenljivkami in manjsamo korake $h$. 
+        \label{zgd:PanjerExp}
+    \end{zgled}
+
+    Panjerjeva rekurzivna shema je dobra, z razvojem racunalnikov, so se razvile tudi druge tehnike kot npr 
+    monte carlo in se kaj...
+
+\pagebreak
 \section{Sestavljeni Poissonov proces}
 
     \begin{center}
@@ -550,14 +654,14 @@ V nastajanju :)
             Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP$ velja 
             $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
             \begin{align*}
-                \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j = \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
+                \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \sim \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
             \end{align*}
         \end{proof}
 
         \begin{trditev}
             Naj bo $(S_t)_{t\geq 0}$ $CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
             pri"cakovana vrednost in $\sigma^2= \Var{X_i} <\infty$ varianca
-            slu"cajnih spremenljivk $X_i$ za vsak $i$. Potem sta za $t\geq0$ pri"cakovana vrednost in 
+            slu"cajnih spremenljivk $X_i$. Potem sta za $t\geq0$ pri"cakovana vrednost in 
             varianca $S_t$ enaki 
             \begin{equation*}
                 \E\left[S_t\right] = \mu\lambda t \qquad \text{in} \qquad \Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right).
@@ -593,14 +697,16 @@ V nastajanju :)
             \end{equation*}
             in 
             \begin{equation*}
-                \Var{\E\left[S_t\mid N_t\right]} = \Var{\E\left[X_i\right]N_t} = \mu^2\lambda t,
+                \Var{\E\left[S_t\mid N_t\right]} = \Var{\E\left[X_i\right]N_t} = \mu^2\lambda t.
             \end{equation*}
-            saj $N_t\sim\Pois{\lambda t}$. Skupaj dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
+            "Ce ena"cbi sestejemo, dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
         \end{proof}
     
     \begin{zgled}
-        Poglejmo si konkreten primer
-
+        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim N(2, 20)$ 
+        Tedaj vemo po \ref{trd:PricVarCPP}, da za $t\geq 0 $ velja $\E\left[S_t\right] = 2t$ in 
+        $\Var{S_t} = 22t$ ter $\sigma_{S_t} = \sqrt{22t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
+        ki jih prika"zemo na sliki \ref{fig:slika6} skupaj s funckcijama $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$. 
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{
@@ -650,66 +756,112 @@ V nastajanju :)
     %sledi, da je $S_t$ enako porazdeljena kot $Z = \sum_{i=1}^{\infty}\alpha_iY_i$.
 %
 
-    \subsection{Martingali}
+%    \subsection{Martingali}
+%
+%        \begin{definicija}
+%            Slu"cajni proces $X_t$ prilagojen glede na filtracijo (\ref{def:filtracija}) $(\F_t)_{t\geq0}$
+%            martingal, "ce velja 
+%            $$
+%                \E\left[X_t\mid\F_s\right] = X_s
+%            $$
+%            za vsak $0\leq s \leq t$.
+%            \label{def:martingal}
+%        \end{definicija}
+%
+%        \begin{trditev}
+%            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
+%            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
+%            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
+%            \label{trd:CPPnimartingal}
+%        \end{trditev}
+%
+%        \begin{proof}
+%            Naj bo $0\leq s\leq t$. Potem velja
+%            \begin{align*}
+%                \E\left[S_t\mid\F_s\right] 
+%                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
+%                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
+%                        &= \mu\lambda(t-s) + S_s
+%            \end{align*}
+%           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
+%        \end{proof}
+%
+%        \begin{opomba}
+%            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
+%            $S_t$ supermartingal.
+%        \end{opomba}
+%
+%        \begin{posledica}
+%            Za poljuben $\mu \in \R$ je proces 
+%            $$
+%                S_t - \mu\lambda t
+%            $$
+%            martingal. 
+%            \label{trd:CPPpostanemartingal}
+%        \end{posledica}
+%
+%        \begin{proof}
+%            Naj bosta $0 \leq s < t$. Velja
+%            \begin{align*}
+%                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
+%                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
+%                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
+%                        &= S_s - \mu\lambda s.
+%            \end{align*}
+%        \end{proof}
+%
+%    \subsection{"Casi ustavljanja in lastnosti Markova}
+%        \begin{definicija}
+%            Naj bo $(\Omega, \mathcal{F}, \mathbb{P}, (\mathcal{F}_t)_{t\geq0})$ filtriran verjetnostni 
+%            prostor. Slu"cajna spremenljivka 
+%            $$
+%            \tau : \Omega \to [0, \infty]
+%            $$ 
+%            je \textit{"cas ustavljanja} glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$, "ce je za vsak $t\geq0$
+%            dogodek $\{\tau \leq t\}$ element $\mathcal{F}_t$.
+%            \label{def:casUstavljanja}
+%        \end{definicija}
+%    
+%        \begin{definicija}
+%            Naj bo $(\Omega, \mathcal{F}, \mathbb{P}, (\mathcal{F}_t)_{t\geq0})$ filtriran verjetnostni
+%            in $\tau$ "cas ustavljanja glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$. Potem je
+%            \begin{equation*}
+%                \mathcal{F}_\tau = \bigl\{A \in \mathcal{F} \mid A \cap \{\tau \leq t\} \in \mathcal{F} \ \text{za vsak} \ t\geq 0\bigr\}
+%            \end{equation*}
+%            \textit{$\sigma$-algebra zgodovine} "casa ustavljanja $\tau$.
+%        \end{definicija}
+%
+%        \begin{definicija}
+%            Naj bo $(\Omega, \mathcal{F}, \mathbb{P}, (\mathcal{F}_t)_{t\geq0})$ filtriran verjetnostni
+%            prostor in $\tau$ "cas ustavljanja glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$. Naj bo 
+%            $(X_t)_{t\geq0}$ prilagojen slu"cajni proces. Pravimo, da $(X_t)_{t\geq0}$ zado"s"ca
+%            \textit{"sibki lastnosti Markova}, "ce za poljuben $t\geq 0$ proces 
+%            \begin{equation*}
+%                X_s - X_t \sim X_{s - t} \quad \text{za} \quad s\geq t.
+%            \end{equation*}
+%            Pravimo, da $(X_t)_{t\geq0}$ zado"s"ca \textit{krepki lastnosti Markova}, "ce za
+%            $s \geq 0$ velja 
+%            \begin{equation*}
+%                X_{s + \tau} - T_\tau \sim X_{s - \tau}.
+%            \end{equation*}
+%
+%        \begin{izrek}
+%            CPP zado"sca krepki in "sibki lastnosti Markova.
+%        \end{izrek}
+%
+%        \begin{proof}
+%            "Sibka lastnost sledi neposredno iz stactionarnosti prirastkov CPP \ref{trd:neodvPrirCPP}.
+%            Dokaz krepke lastnosti Markova zahteva nekoliko ve"c truda.
+%        \end{proof}
+%
+%            
+%            \label{def:sibkaKrepkaLastnostMarkova}
+%        \end{definicija}
 
-        \begin{definicija}
-            Slu"cajni proces $X_t$ prilagojen glede na filtracijo $(\F_t)_{t\geq0}$
-            martingal, "ce velja 
-            $$
-                \E\left[X_t\mid\F_s\right] = X_s
-            $$
-            za vsak $0\leq s \leq t$.
-            \label{def:martingal}
-        \end{definicija}
+    \subsection{Raz"clenitev sestevljenega Poissonovega procesa}
+        Poka"zimo obraten rezultat kot v trditvi \ref{trd:NXjeEnakoaY}, tako da raz"clenimo CPP na 
+        ve"c neodvisnih CPP z raz"clenitvijo "casa in prostora slu"cajnih spremenljivk $X_i$.
 
-        Poka"zimo, da v splo"snem $CPP$ ni martingal.
-
-        \begin{trditev}
-            Naj bo $(S_t)_{t\geq0}$ $CPP$ z intenzivnostjo $\lambda>0$ in naj bodo $X_i$ neodvisne
-            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$.
-            Potem je $S_t$ martingal natanko tedaj, ko je $\mu = 0$.
-            \label{trd:CPPnimartingal}
-        \end{trditev}
-
-        \begin{proof}
-            Naj bo $0\leq s\leq t$. Potem velja
-            \begin{align*}
-                \E\left[S_t\mid\F_s\right] 
-                        &= \E\left[S_t - S_s + S_s\mid \F_s\right] \\
-                        &= \E\left[S_t - S_s\right] + \E\left[S_s\mid \F_s\right] \\
-                        &= \mu\lambda(t-s) + S_s
-            \end{align*}
-           Enakost $\mu\lambda(t-s) + S_s = S_s$ velja $\iff$ $\mu\lambda(t-s) = 0 \iff \mu = 0$.
-        \end{proof}
-
-        \begin{opomba}
-            Seveda, "ce velja $\mu \geq 0$, potem je $S_t$ submartingal, "ce pa $\mu \leq 0$, je
-            $S_t$ supermartingal.
-        \end{opomba}
-
-        \begin{trditev}
-            Naj bo $(S_t)_{t\geq0}$ CPP z intenzivnostjo $\lambda > 0$ in naj bodo $X_i$ neodvisne
-            in enako porazdeljene slu"cajne spremenljivke z $\E\left[X_i\right] = \mu$ za vsak $i$,
-            Potem je proces 
-            $$
-                S_t - \mu\lambda t
-            $$
-            martingal.
-            \label{trd:CPPpostanemartingal}
-        \end{trditev}
-
-        \begin{proof}
-            Naj bosta $0 \leq s < t$. Prirastek $S_t - S_s$ je neodvisen od $\F_s$ in ima 
-            pri"cakovano vrednost $\mu\lambda(t-s)$. Torej 
-            \begin{align*}
-                \E\left[S_t - \mu\lambda t\mid\F_s\right] 
-                        &= \E\left[S_t - S_s\right] + S_s - \mu\lambda t\\
-                        &= \mu\lambda(t-s) + S_s - \mu\lambda t\\
-                        &= S_s - \mu\lambda s.
-            \end{align*}
-        \end{proof}
-
-    \subsection{"Casi ustavljanja in lastnosti Markova}
     \subsection{Neskon"cna deljivost}
 
     \begin{definicija}
@@ -1778,6 +1930,14 @@ V nastajanju :)
         \end{equation*}
         "ce upanja obstajajo.
         \label{def:rodovneFunkcije}
+    \end{definicija}
+
+    \begin{definicija}
+        Naj bo $(\Omega, \mathcal{F}, \Prob)$ verjetnostni prostor. Nara"scajocemu zaporedju 
+        $\sigma$-algeber $(\mathcal{F}_t)_{t\geq0}$ pravimo \textit{filtracija}, "ce za vsak $ 0\leq s\leq t$ velja
+     $\mathcal{F}_s \subseteq \mathcal{F}_{t} \subseteq \mathcal{F}.$ Za slu"cajni proces $(X_t)_{t\geq0}$ pravimo, 
+     da je \textit{prilagojen} filtraciji $\mathcal{F}$, "ce je $X_t$ $\mathcal{F}_t$-merljiva za vsak $t\geq0$.
+     \label{def:filtracija}
     \end{definicija}
 
     \begin{definicija}
