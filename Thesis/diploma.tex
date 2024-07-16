@@ -125,9 +125,10 @@ Ljubljana, \letnica}
 %--------------------------------------POVZETEK V SLOVENSCINI--------------------------------------%
 
 V prvem delu diplome najprej definiramo splo"sen slu"cajni proces v zveznem "casu in osnovne lastnosti, 
-ki jih "studiramo. Nato definiramo sestavljeno Poissonovo porazdelitev in obravnavamo njeno porazdelitveno 
-funkcijo ... Definiramo sestavljeni Poissonov proces in doka"zemo neodvisnost in stacionarnost prirastkov, 
-pogoj, da je proces martingal, "sibko in krepko lastnost Markova in poka"zemo, da je gradnik neskon"cno deljivih 
+ki jih "studiramo. Nato definiramo sestavljeno Poissonovo porazdelitev in izpeljemo rodovne funkcije, 
+obravnavamo njeno povezavo s splo"snimi porazdelitvami in izpeljemo Panjerejevo rekurzivno shemo. 
+Definiramo sestavljeni Poissonov proces in doka"zemo neodvisnost in stacionarnost prirastkov, 
+njegovo raz"clenitev glede na "cas in prostor ter ga obravnavamo, kot gradnik neskon"cno deljivih 
 procesov ti. Lévijevih procesov. 
 V drugem delu 
 diplome obravnavamo aplikacijo sestavljenega Poissonovega procesa v Cramér--Lundbergovem modelu. Definiramo 
@@ -144,11 +145,12 @@ z ve"ckratkim simuliranjem procesa tveganja.
 \end{center}
 
 %--------------------------------------POVZETEK V ANGLESCINI---------------------------------------%
-In the first part of the diploma, we first define a general stochastic process in continuous time and basic
-properties that we study. We then define the compound Poisson distribution and consider its distribution
-function ... We define the compound Poisson process and prove the independence and stationarity of the increments,
-the condition under which the process is a martingale, the weak and strong Markov property, and show that it is a building
-block of infinitely divisible processes, i.e. Lévy processes.
+In the first part of the diploma, we define a general stochastic process in continuous time and 
+basic properties that we study. We then define the compound Poisson distribution and derive the
+generating functions, discuss its connection with general distributions, and derive the Panjer recursion method.
+We define the compound Poisson process and prove the independence and stationarity of increments,
+its decomposition with respect to time and space, and consider it as a building block of infinitely divisible
+processes, i.e. Lévy processes.
 In the second part of the diploma, we consider the application of the compound Poisson process in the Cramér--Lundberg model. 
 We define the probability of ruin and consider its behavior depending on the initial capital. 
 We prove the Lundberg inequality and the asymptotic behavior of the probability of ruin when claims 
@@ -159,12 +161,12 @@ of the probability of ruin at the end with repeated simulation of the risk proce
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
-{\bf Klju"cne besede:} slu"cajni procesi, sestavljena Poissonova porazdelitev, sestavljeni Poissonov proces, martingal, 
-"sibka lastnost Markova, krepka lastnost Markova,
-neskon"cna deljivost, Cramér--Lundbergov model, lahkorepa porazdelitev, te"zkorepa porazdelitev\\[1mm]
-{\bf Keywords:} stochastic processes, compound Poisson distribution, compound Poisson process, 
-martingale, weak Markov property, strong Markov property, infinite divisibility,
-Cramér--Lundberg model, light-tailed distribution, heavy-tailed distribution
+{\bf Klju"cne besede:} slu"cajni proces, sestavljena Poissonova porazdelitev, Panjerjeva rekurzivna shema, 
+sestavljeni Poissonov proces, raz"clenitev glede na "cas, raz"clenitev glede na prostor,
+neskon"cna deljivost, Cramér--Lundbergov model, Verjetnost propada, lahkorepa porazdelitev, te"zkorepa porazdelitev\\[1mm]
+{\bf Keywords:} stochastic process, compound Poisson distribution, Panjer recursion scheme, 
+compound Poisson process, decompostition of time, decompostion of space, infinite divisibility,
+Cramér--Lundberg model, probability of ruin, light-tailed distribution, heavy-tailed distribution
 \pagebreak
 
 
@@ -275,8 +277,8 @@ V nastajanju :)
 
     Sestavljena poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki je osrednja 
     tema dela. Lastnosti, ki jih v razdelku obravnavamo so direktno prenosljve na sam proces. Obravnavmo 
-     porazdelitev in prakti"cen na"cin kako numeri"cno do le-te pridemo, rodovne funkcije in povezavo s 
-     splo"snmi slu"cajnimi spremenljivkami.
+     porazdelitev in prakti"cen na"cin kako numeri"cno do le-te pridemo, rodovne funkcije, povezavo s 
+     splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo.
 
     \begin{definicija}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -507,7 +509,7 @@ V nastajanju :)
     \end{opomba}
 
     \subsection{Panjerjeva rekurzivna shema}
-    Poglejmo si popularno numeri"cno metodo za ra"cunaje sestavljene Poissonove porazdelitve. Kot
+    Poglejmo si popularno metodo za ra"cunaje sestavljene Poissonove porazdelitve. Kot
     smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
     porazdelitve $S$ v splo"snem nemogo"ce. Panjerjeva rekurzivna shema nam za posebne primere omogo"ca
     ra"cunanje to"cne porazdelitve $S$. 
@@ -528,7 +530,7 @@ V nastajanju :)
         \end{equation*}
         in za $n\in\N$ velja
         \begin{equation}
-            \Prob\left(S = n\right) = \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - 1\right).
+            \Prob\left(S = n\right) = \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
             \label{eq:PanjerRecursionScheme}
         \end{equation}
         \label{tdr:PanjerRecursionScheme}
@@ -550,20 +552,38 @@ V nastajanju :)
                 &= \E\left[\Prob\left(X_1 = 0\right)^N\right].
         \end{align*}
         Za $n\in\N$ velja
+        \begin{align}
+            \Prob\left(S = n\right) 
+                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^k X_i = n\right)\Prob\left(N = k\right) \nonumber \\
+                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^k X_i = n\right)\left(a + \frac{b}{k}\right)\Prob\left(N = k - 1\right). \label{eq:PanjerRecursionSchemeProof}
+        \end{align}
+        "Ce sedaj upo"stevamo, da so $X_i$ neodvisne in enako porazdeljene, opazimo, da velja
+        \begin{align*}
+            1   = \E\left[\frac{\sum_{i = 1}^kX_i}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right]
+                =  \sum_{l = 1}^k\E\left[\frac{X_l}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right] 
+                = k\E\left[\frac{X_1}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i \right],
+        \end{align*}
+        torej je $\E\left[\frac{X_1}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right] = \frac{1}{k}$ in 
+        posledi"cno 
+        \begin{equation}
+            \E\left[a + \frac{bX_1}{k}\ \bigg| \  \sum_{i = 1}^kX_i = k\right] = a + \frac{b}{k}.
+        \end{equation}
+        Poleg tega velja
+        \begin{align*}
+            \E\left[a + \frac{bX_1}{n}\mid \S_k = n\right] \\
+            &= \sum_{l = 1}^k\E\left[a + \frac{bX_1}{n}\mid \S_k = n, X_l = l\right]\Prob\left(X_l = l\mid \S_k = n\right) \\
+        \end{align*}
+        "Ce sedaj vstavimo - in - v \ref{eq:PanjerRecursionSchemeProof} dobimo 
         \begin{align*}
             \Prob\left(S = n\right) 
-                &= \Prob\left(S = n, N > 0\right) \\
-                &= \sum_{k = 1}^\infty\Prob\left(S = n, N > 0 \mid N = k\right)\Prob\left(N = k\right) \\
-                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^kX_i = n\right)\Prob\left(N = k\right) \\
-                &= \sum_{k = 1}^\infty\Prob\left(X_1 = n - k\right)\Prob\left(N = k\right) \\
-                &= \sum_{k = 1}^\infty\Prob\left(X_1 = n - k\right)\left(a + \frac{bk}{n}\right)\Prob\left(S = n - 1\right) \\
-                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - 1\right).
+                &= \sum_{k = 1}^\infty\left(a + \frac{b}{k}\right)\Prob\left(X_1 = n\right)\Prob\left(S = n - k\right) \\
+                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
         \end{align*}
     \end{proof}
 
     \begin{opomba}
         Izka"ze se, da le $3$ porazdelitve 
-        ustrezajo zahtevam iz trditve \ref{tdr:PanjerRecursionScheme}, to so $\Pois{\lambda}$, $\text{Geo}(p)$ in
+        ustrezajo pogojem iz trditve \ref{tdr:PanjerRecursionScheme}. Te so $\Pois{\lambda}$, $\text{Bin}(p)$ in
         $\text{NegBin}(r, p)$. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
         \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. Tudi v ostalih primerih se izka"ze, da je $a < 1$, tako, da je 
         ena"cba (\ref{eq:PanjerRecursionScheme}) res dobro definirana.
@@ -572,9 +592,9 @@ V nastajanju :)
     \begin{opomba}
         Zahteva, da $X_i$ zavzemajo vrednosti v $\N_0$ je bolj splo"sna kot se na prvi pogled zdi, ker
         lahko v resnici zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za nek $h>0$. V tem primeru 
-        zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in dobimo enak rezultat. Tako lahko analogno opombi 
-        \ref{op:aproksimacijaZDiskretno} aproksimiramo slu"cajne spremenljivke, ki zavzemajo vrednsoti 
-        v $[0, \infty)$. 
+        zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in tako rekurzivna zveza velja za $\frac{S}{h}$. 
+        Tako lahko analogno opombi \ref{op:aproksimacijaZDiskretno} aproksimiramo slu"cajne 
+        spremenljivke, ki zavzemajo vrednsoti v $[0, \infty)$. 
     \end{opomba}
 
     \begin{zgled}
