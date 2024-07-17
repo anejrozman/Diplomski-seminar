@@ -277,8 +277,9 @@ V nastajanju :)
 
     Sestavljena poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki je osrednja 
     tema dela. Lastnosti, ki jih v razdelku obravnavamo so direktno prenosljve na sam proces. Obravnavmo 
-     porazdelitev in prakti"cen na"cin kako numeri"cno do le-te pridemo, rodovne funkcije, povezavo s 
-     splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo.
+    porazdelitev in kako te pridemo, rodovne funkcije, zanimive rezultate v povezavi s 
+    splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki ji prika"zemo na 
+    prakti"cnemu zgledu.
 
     \begin{definicija}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -291,12 +292,14 @@ V nastajanju :)
     \end{definicija}
 
     \begin{opomba}
-        V splo"snem lahko namesto $N\sim\Pois{\lambda}$ obravnavamo porazdelitev s Panjerjevega razreda, kot 
-        na primer geometrijsko porazdelitev, ki jo bomo uporabili v nadaljevanju. Konkreten primer nas 
-        zanima izklju"cno zaradi procesa, ki ga v delu "studiramo.
-
-
-        \label{op:PanjerClass}
+        V splo"snem lahko obravnavamo sestavljene porazdletive kjer je $N$ poljubna slu"cajna spremenljivka,
+        ki zavzema vrednosti v $\N_0$. Konkreten primer nas zanima zaradi njegove povezave s sestavljenim
+        Poissonovim procesom. V nadaljevanju bomo uporabljali oznako
+        \begin{equation*}
+            S_0 = 0 \quad \text{in} \quad S_n = \sum_{i=1}^nX_i \quad \text{za} \ n\in\N, 
+        \end{equation*}
+        za pogojno porazdelitev $S\mid\{N = n\}$.
+        \label{op:gneralCaseCOmpound}
     \end{opomba}
 
     \subsection{Porazdelitev}
@@ -304,7 +307,7 @@ V nastajanju :)
     \begin{align*}
         F_{S}(x) = \Prob\bigl(S \leq x\bigr) 
         &= \sum_{k=0}^\infty \Prob\bigl(S \leq x \mid N = k\bigr)\Prob\bigl(N = k\bigr) \\
-        &= \sum_{k=0}^\infty \Prob\biggl(\sum_{i=1}^kX_i \leq x\biggr)\Prob\bigl(N = k\bigr) \\
+        &= \sum_{k=0}^\infty \Prob\bigl(S_k \leq x\bigr)\Prob\bigl(N = k\bigr) \\
         &= \sum_{k=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^k}{k!} e^{-\lambda}
     \end{align*}
 
@@ -330,7 +333,7 @@ V nastajanju :)
         \end{align*}
         Vidimo, da "ze v primeru, ko poznamo eksplictno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
         kakr"sne koli porazdelitve $S$ v kon"cni obliki. V praksi se zato poslu"zujemo numeri"cnega 
-        ocenjevanja z Monte Carlo simulacijami.
+        ocenjevanja z raznimi metodami.
         \label{zgd:sestavljenaPoissonovaPorazdelitevGamma}
     \end{zgled}
 
@@ -350,12 +353,11 @@ V nastajanju :)
         Velja
         \begin{align}
             \varphi_{S}(u) 
-                    &= \E\left[\exp\left[iuS\right]\right] = 
-                        \E\left[\exp\left[iu\sum_{i = 1}^{N}X_i\right]\right] \nonumber\\
+                    &= \E\left[\exp\left[iuS\right]\right] \nonumber\\
                     &= \sum_{k=0}^{\infty}
-                        \E\left[\exp\left[iu\sum_{i = 1}^{N}X_i \mid N=k\right]\right]\Prob\left(N = k\right) \nonumber \\ 
+                        \E\left[\exp\left[iuS \ \big| \ N=k\right]\right]\Prob\left(N = k\right) \nonumber \\ 
                     &= \sum_{k=0}^{\infty}
-                        \E\left[\exp\left[iu\sum_{i = 1}^kX_i\right]\right]\Prob\left(N = k\right) \nonumber \\
+                        \E\left[\exp\left[iuS_k\right]\right]\Prob\left(N = k\right) \nonumber \\
                     &= \sum_{k=0}^{\infty}
                         \underbrace{\E\left[e^{iuX_1}\right]^k}_{\varphi_{X_1}(u)^k}\frac{\lambda^k}{k!}e^{-\lambda } \label{eq:MomentS}\\ 
                     &= e^{-\lambda } + e^{-\lambda }\sum_{k=1}^\infty\frac{\left(\varphi_{X_1}(u)\lambda \right)^k}{k!} \nonumber \\
@@ -452,10 +454,11 @@ V nastajanju :)
     \end{proof}
 
     \begin{opomba}
-    Kaj pa v primeru, ko so $X_i$ zvezno porazdeljene? 
-    Tedaj se problema lotimo na slede"c na"cin. Definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
+    Kaj pa v primeru, ko $X_i$ nimajo diskretne porazdelitve? 
+    Izkra"ze se, da tudi v splo"snem dobimo konvergenco v porazdelitvi. 
+    Ideja je, da definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
     $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
-    $m = \min\{k \in \mathbb{Z} \mid \tfrac{k}{n} > F_n(x)\}$.
+    $m = \min\{k \in \mathbb{Z} \mid F(\tfrac{k}{n}) > F_n(x)\}$.
 
         \begin{figure}[H]
             \begin{center}
@@ -505,14 +508,17 @@ V nastajanju :)
     \noindent
     Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
     porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
+    Dokaz presega obseg tega dela, ampak bralec ga lahko najde v \cite{4} (moram dobiti referenco).
     \label{op:aproksimacijaZDiskretno}
     \end{opomba}
+
+
 
     \subsection{Panjerjeva rekurzivna shema}
     Poglejmo si popularno metodo za ra"cunaje sestavljene Poissonove porazdelitve. Kot
     smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
-    porazdelitve $S$ v splo"snem nemogo"ce. Panjerjeva rekurzivna shema nam za posebne primere omogo"ca
-    ra"cunanje to"cne porazdelitve $S$. 
+    porazdelitve $S$ v splo"snem nemogo"ce. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
+    rekurzivno izraziti in posplo"siti na "sir"si razred porazdelitev.
 
     \begin{trditev}
         Naj bo $N$ diskretna slu"cajna spremenljivka, za katero velja 
@@ -542,43 +548,61 @@ V nastajanju :)
             \Prob\left(S = 0\right)     
                 = \Prob\left(N = 0\right) + \Prob\left(S = 0, N > 0\right).
         \end{align*}
-        "Ce velja $\Prob(X_1 = 0) = 0$, potem je $\Prob\left(S = 0, N > 0\right) = 0$ in je enakost o"citna, "ce 
+        "Ce velja $\Prob(X_1 = 0) = 0$, je enakost o"citna. "Ce 
         velja $\Prob(X_1 = 0) > 0$, po zakonu za popolno pri"cakovano vrednsot ra"cunamo
         \begin{align*}
             \Prob\left(S = 0\right) 
                 &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(S = 0, N > 0 \mid N = k\right)\Prob\left(N = k\right) \\
-                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^kX_i = 0\right)\Prob\left(N = k\right) \\
+                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(S_k = 0\right)\Prob\left(N = k\right) \\
                 &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(X_1 = 0\right)^k\Prob\left(N = k\right) \\
                 &= \E\left[\Prob\left(X_1 = 0\right)^N\right].
         \end{align*}
         Za $n\in\N$ velja
         \begin{align}
             \Prob\left(S = n\right) 
-                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^k X_i = n\right)\Prob\left(N = k\right) \nonumber \\
-                &= \sum_{k = 1}^\infty\Prob\left(\sum_{i = 1}^k X_i = n\right)\left(a + \frac{b}{k}\right)\Prob\left(N = k - 1\right). \label{eq:PanjerRecursionSchemeProof}
+                &= \sum_{k = 1}^\infty\Prob\left(S_k = n\right)\Prob\left(N = k\right) \nonumber \\
+                &= \sum_{k = 1}^\infty\Prob\left(S_k = n\right)\left(a + \frac{b}{k}\right)\Prob\left(N = k - 1\right). \label{eq:PanjerRecursionSchemeProof}
         \end{align}
         "Ce sedaj upo"stevamo, da so $X_i$ neodvisne in enako porazdeljene, opazimo, da velja
-        \begin{align*}
-            1   = \E\left[\frac{\sum_{i = 1}^kX_i}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right]
-                =  \sum_{l = 1}^k\E\left[\frac{X_l}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right] 
-                = k\E\left[\frac{X_1}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i \right],
-        \end{align*}
-        torej je $\E\left[\frac{X_1}{\sum_{i = 1}^kX_i} \ \bigg| \ \sum_{i = 1}^kX_i\right] = \frac{1}{k}$ in 
-        posledi"cno 
+        \begin{equation*}
+            1 = \E\left[\frac{S_k}{S_k}\ \bigg| \ S_k\right] = \sum_{i = 1}^k\E\left[\frac{X_i}{S_k}\ \big| \ S_k\right] = k\E\left[\frac{X_1}{S_k}\ \big| \ S_k\right],
+        \end{equation*}
+        torej je 
+        \begin{equation*}
+            \E\left[\frac{X_1}{S_k} \ \bigg| \ S_k\right] = \frac{1}{k}
+        \end{equation*}
+        in posledi"cno 
         \begin{equation}
-            \E\left[a + \frac{bX_1}{k}\ \bigg| \  \sum_{i = 1}^kX_i = k\right] = a + \frac{b}{k}.
-        \end{equation}
-        Poleg tega velja
-        \begin{align*}
-            \E\left[a + \frac{bX_1}{n}\mid \S_k = n\right] \\
-            &= \sum_{l = 1}^k\E\left[a + \frac{bX_1}{n}\mid \S_k = n, X_l = l\right]\Prob\left(X_l = l\mid \S_k = n\right) \\
-        \end{align*}
-        "Ce sedaj vstavimo - in - v \ref{eq:PanjerRecursionSchemeProof} dobimo 
+            \E\left[a + \frac{bX_1}{n}\ \bigg| \  S_k = n\right] = a + \frac{b}{k}.
+            \label{eq:PanjerRecursionSchemeProof2}
+        \end{equation}         
+        Nadaljno velja  
+        \begin{align}   
+            & \E\left[a + \frac{bX_1}{n}\ \bigg| \  S_k = n\right] \nonumber \\
+            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\mid S_k = n\right) \nonumber \\
+            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\frac{\Prob\left(X_1 = i, S_k - X_1 = n - i\right)}{\Prob\left(S_k = n\right)} \nonumber \\
+            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\frac{\Prob\left(X_1 = i\right)\Prob\left(S_{k- 1} = n - i\right)}{\Prob\left(S_k = n\right)} \label{eq:PanjerRecursionSchemeProof3} 
+        \end{align}
+        "Ce sedaj vstavimo enakost (\ref{eq:PanjerRecursionSchemeProof2}) v (\ref{eq:PanjerRecursionSchemeProof}) 
+        in upo"stevamo (\ref{eq:PanjerRecursionSchemeProof3}), dobimo
         \begin{align*}
             \Prob\left(S = n\right) 
-                &= \sum_{k = 1}^\infty\left(a + \frac{b}{k}\right)\Prob\left(X_1 = n\right)\Prob\left(S = n - k\right) \\
-                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
+                = \sum_{k = 1}^\infty\sum_{i = 0}^n \left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right).
         \end{align*}
+        Po Tonellijevem izreku (\ref{izr:TonellijevIzrek}) lahko zamenjamo vrstni red integracije, da dobimo
+        \begin{align*}
+            \Prob\left(S = n\right) 
+                &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\sum_{k = 1}^\infty\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right)\\
+                &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right).
+        \end{align*}
+        Izpostavimo prvi "clen vsote in izraz preoblikujemo.
+        \begin{align*}
+            \Prob\left(S = n\right) 
+                &= a\Prob\left(X_1 = 0\right)\Prob\left(S = n\right) + \sum_{i = 1}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right), \\
+            \Prob\left(S = n\right)
+                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{i = 1}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right).
+        \end{align*}
+        S tem je trditev dokazana.
     \end{proof}
 
     \begin{opomba}
@@ -593,19 +617,29 @@ V nastajanju :)
         Zahteva, da $X_i$ zavzemajo vrednosti v $\N_0$ je bolj splo"sna kot se na prvi pogled zdi, ker
         lahko v resnici zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za nek $h>0$. V tem primeru 
         zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in tako rekurzivna zveza velja za $\frac{S}{h}$. 
-        Tako lahko analogno opombi \ref{op:aproksimacijaZDiskretno} aproksimiramo slu"cajne 
-        spremenljivke, ki zavzemajo vrednsoti v $[0, \infty)$. 
-    \end{opomba}
+        Tako lahko analogno ideji opombe \ref{op:aproksimacijaZDiskretno} aproksimiramo splo"sne slu"cajne 
+        spremenljivke, ki zavzemajo vrednsoti v $[0, \infty)$, poljubno natan"cno.
+    \end{opomba}  
 
-    \begin{zgled}
-        "Ce se vrnemo na zgled \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, kjer so $X_i$ porazdeljene
-        kot $\text{Exp}(a)$, lahko numeri"cno izracunamo priblizke za porazdelitev $S$, tako da 
-        $X_i$ aproksimiramo z diskretnimi slucajnimi spremenljivkami in manjsamo korake $h$. 
+    \begin{zgled}(Nadaljevanje zgleda \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}) Sedaj vzamemo 
+        konkretne porazdeltive $N\sim\Pois{42}$ in $X_i\sim\text{Exp}(91.7)$. S stopni"casto funkcijo 
+        $F_h$ aproksimiramo porazdelitveno funkcijo $F_{X_1}$ za razli"cne vrednosti $h = 0.5, 0.1$ in $0.01$, 
+        tako da za vsak $n\in\N$ velja $F_h(x) = F_{X_1}(nh)$ za $x\in\bigl[nh, (n+1)h\bigr)$. 
+        S Panjerjevo rekurzivno shemo izra"cunamo pribli"zke porazdelitve $S$ na intervalu $[0, 100]$.
+        Rezulate prika"zemo na sliki \ref{fig:slika4}.
+ 
+        %\begin{figure}
+        %    \begin{center}
+        %        \includegraphics[width=0.8\textwidth]{}
+        %        \caption{Aproksimacija porazdelitve $S$ s Panjerjevo rekurzivno shemo}
+        %    \end{center}
+        %\end{figure}
+        
         \label{zgd:PanjerExp}
     \end{zgled}
 
     Panjerjeva rekurzivna shema je dobra, z razvojem racunalnikov, so se razvile tudi druge tehnike kot npr 
-    monte carlo in se kaj...
+    monte carlo in se kaj... [Zakljuj"cek razdelka].
 
 \pagebreak
 \section{Sestavljeni Poissonov proces}
@@ -629,8 +663,8 @@ V nastajanju :)
 
     \begin{opomba}
         Vidimo, da je sestavljeni Poissonov proces posplo"sitev homogenega Poissonovega procesa, saj "ce za
-        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$, dobimo ravno $HPP$. Bolj v splo"snem, "ce za $X_i$ 
-        postavimo $X_i = \alpha$, potem velja $S_t = \alpha N_t$.
+        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$, dobimo ravno $HPP$. Bolj v splo"snem, "ce je 
+        $X_i = \alpha$ deterministi"cna funkcija, potem velja $S_t = \alpha N_t$.
         \label{op:CPPHPPPovezava}
     \end{opomba}
 
@@ -642,7 +676,8 @@ V nastajanju :)
     \subsection{Osnovne lastnosti}
 
         \begin{trditev}
-            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. Potem ima $(X_t)_{t\geq0}$
+            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$ in naj velja $X_0 = 0$ s.g.
+            Potem ima $(X_t)_{t\geq0}$
             neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
             $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
             slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
@@ -878,9 +913,29 @@ V nastajanju :)
 %            \label{def:sibkaKrepkaLastnostMarkova}
 %        \end{definicija}
 
-    \subsection{Raz"clenitev sestevljenega Poissonovega procesa}
+    \subsection{Markiranje sestavljenega Poissonovega procesa}
         Poka"zimo obraten rezultat kot v trditvi \ref{trd:NXjeEnakoaY}, tako da raz"clenimo CPP na 
         ve"c neodvisnih CPP z raz"clenitvijo "casa in prostora slu"cajnih spremenljivk $X_i$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     \subsection{Neskon"cna deljivost}
 
@@ -1754,6 +1809,7 @@ V nastajanju :)
                 $0.3\%$ in v praksi ni zanemarljivo, ampak v na"si simulaciji nobena realizacija procesa 
                 tveganja ni padla pod 0.
 
+
                 %Definiramo "se zaporedje $(\hat{u}_n)_{n = 1}^{25}$ s predpisom $\hat{u}_n = 5000n$ in za vsak $n$
                 %izra"cunamo produkt $\psi(\hat{u}_n)e^{\ell \hat{u}_n}$, kjer do ocene za $\psi(\hat{u}_n)$
                 %pridemo na enak na"cin kot zgoraj le, da tokrat za posamezno oceno $\psi(\hat{u}_n)$ izvedemo 
@@ -1808,7 +1864,7 @@ V nastajanju :)
             \begin{equation*}
                 \lim_{x\to\infty}\frac{\Prob\left(X_1 + \cdots + X_n > x\right)}{\Prob\left(\max\{X_1, \dots, X_n\} > x\right)} = 1 \quad \text{za vsak} \quad n\geq2, 
             \end{equation*}
-            kar interpretiramo kot, da je repna porazdelitev vsote $n$-tih slu"cajnih spremenljivk 
+            kar pomeni, da je repna porazdelitev vsote $n$-tih slu"cajnih spremenljivk asimptoti"cno
             primerljiva s porazdelitvijo najve"cje. Dokaz ekvivalence lahko bralec najde v \cite{9} na strani $437$.
         \end{opomba}
         
@@ -1875,17 +1931,14 @@ V nastajanju :)
             \end{align*}
             Trditev sledi direktno iz lastnosti Laplace-Stiltjesove transformacije, saj lahko vsak $F\in
             \text{\tiny\textcalligra{F}}$ \ zapi"semo kot $aF_X$ za primerno konstanto $a\geq0$ in porazdelitveno 
-            funkcijo neke nenegativne sku"cajne spremenljivke $X$. Bolj podroben dokaz lahko bralec najde 
+            funkcijo neke nenegativne sku"cajne spremenljivke $X$. Bolj formalen dokaz lahko bralec najde 
             v \cite{4} na strani 173.
-            
-
-                
             \label{op:tezkorepnePorazdelitveAsimptotika}
         \end{opomba}
 
         \begin{zgled}
         Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér-Lundbergovem modelu, ki zado"s"ca NPC.\ Naj 
-        nadalje velja da so zahtevki neodvisno Weibullovo porazdeljeni s parametroma
+        nadalje velja da so zahtevki neodvisni Weibullovo porazdeljeni s parametroma
         $a= \frac{1}{4}$ in $b= 16$, torej $X_i\sim\text{Weibull}(\frac{1}{4}, 16)$. 
         Za dokaz, da je $\overline{F}_{X_1}$ subeksponentna, lahko bralec pogleda [...\dots].
         Recimo, da je intenzivnost 
@@ -1911,7 +1964,7 @@ V nastajanju :)
         procesa tveganja in za vsak $n$ izra"cunamo pribli"zek za razmerje $\tfrac{\psi(u_n)}{1 - \overline{F}_{X_1}(u_n)}$.
         Rezultate prika"zemo na sliki \ref{fig:slika5}.
        
-        \begin{figure}[H]
+        \begin{figure}[H]       
             \centering
             \includegraphics[width=\textwidth]{
                 C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika5.pdf

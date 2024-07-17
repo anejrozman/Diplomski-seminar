@@ -5,24 +5,32 @@
 library(ggplot2)
 library(dplyr)
 library(actuar)
-library(gridExtra)
-library(glue) # Implementation of f-string from python
+library(gridExtra) 
+library(tidyr)
+library(glue) # f-string from python
 
-set.seed(42)
+# To save files to a specific location, change filePath string. 
+# Above every simulation there is a section "PARAMETERS" that can be 
+# changed if so desired. 
+
+FILEPATH = "C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/"
 
 #-------------------------------------------------------------------------------#
 
 # Slika 1 (Poisson process and compound Poisson process sample path)
 
-# Parameters
+set.seed(42)
+
+# PARAMETERS
 nSteps = 150
-lambda = 0.1  # Intensity
+lambda = 0.1  # Intensity of HPP
+alpha = 20 # Shape parameter for exponential distribution
 
 # Generate sample path of HPP and CPP
 jumpsHpp = rpois(nSteps, lambda)
-samplePath = data.frame(time = 1:nSteps,
+samplePath = data.frame(time = 1:nSteps, 
                         jumpTimes = jumpsHpp, 
-                        gamma = rgamma(nSteps, shape = 20, rate = 1))
+                        gamma = rgamma(nSteps, shape = alpha, rate = 1))
 
 samplePath$value = cumsum(samplePath$gamma*samplePath$jumpTimes)
 
@@ -52,15 +60,15 @@ g1 = ggplot() +
                linetype = "dashed",
                color = "black") +
   coord_cartesian(clip = 'off') +
-  labs(title = lambda == 0.1~""~alpha == 20~" število korakov: 150",
-       x = "Čas",
+  labs(title = lambda == 0.1~""~alpha == 20,
+       x = ~"Čas",
        y = "Vrednost") +
   scale_size_identity()
 
 g1
 
 # Save graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika1.pdf",
+ggsave(glue("{FILEPATH}slika1.pdf"),
        g1,
        device = "pdf",
        width = 8,
@@ -69,11 +77,11 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #-------------------------------------------------------------------------------#
 
 # Slika 2 (Simulation of two sample paths of risk process with Weibull claims,
-# one falls below 0 (heavy tailed) and one survives (light tailed)."
+# one with heavy tails and one with light tails."
 
 set.seed(11)
 
-# Parameters
+# PARAMETERS
 lambda = 1 # Intensity of HPP
 T = 50 # Time horizon of simulation
 u = 1000 # Initial reserve
@@ -107,12 +115,15 @@ riskWeibullLight$premiumRevenue = u + riskWeibullLight$arrivalTimesLight*c
 riskWeibullLight$cumulativeClaims = 0
 for (i in 2:length(arrivalTimesLight)) {
   if (i %% 2 == 1) {
-    riskWeibullLight[i, 'cumulativeClaims'] = riskWeibullLight[i-1, 'cumulativeClaims'] + lightClaims[(i-1)/2]
+    riskWeibullLight[i, 'cumulativeClaims'] = 
+      riskWeibullLight[i-1, 'cumulativeClaims'] + lightClaims[(i-1)/2]
   } else {
-    riskWeibullLight[i, 'cumulativeClaims'] = riskWeibullLight[i-1, 'cumulativeClaims'] 
+    riskWeibullLight[i, 'cumulativeClaims'] = 
+      riskWeibullLight[i-1, 'cumulativeClaims'] 
   }
 }
-riskWeibullLight$riskProcess = riskWeibullLight$premiumRevenue - riskWeibullLight$cumulativeClaims
+riskWeibullLight$riskProcess = 
+  riskWeibullLight$premiumRevenue - riskWeibullLight$cumulativeClaims
 
 for (i in 1:nrow(riskWeibullLight)){
   if (riskWeibullLight$riskProcess[i] < 0){
@@ -150,12 +161,15 @@ riskWeibullHeavy$premiumRevenue = u + riskWeibullHeavy$arrivalTimesHeavy*c
 riskWeibullHeavy$cumulativeClaims = 0
 for (i in 2:length(arrivalTimesHeavy)) {
   if (i %% 2 == 1) {
-    riskWeibullHeavy[i, 'cumulativeClaims'] = riskWeibullHeavy[i-1, 'cumulativeClaims'] + heavyClaims[(i-1)/2]
+    riskWeibullHeavy[i, 'cumulativeClaims'] = 
+      riskWeibullHeavy[i-1, 'cumulativeClaims'] + heavyClaims[(i-1)/2]
   } else {
-    riskWeibullHeavy[i, 'cumulativeClaims'] = riskWeibullHeavy[i-1, 'cumulativeClaims'] 
+    riskWeibullHeavy[i, 'cumulativeClaims'] = 
+      riskWeibullHeavy[i-1, 'cumulativeClaims'] 
   }
 }
-riskWeibullHeavy$riskProcess = riskWeibullHeavy$premiumRevenue - riskWeibullHeavy$cumulativeClaims
+riskWeibullHeavy$riskProcess = 
+  riskWeibullHeavy$premiumRevenue - riskWeibullHeavy$cumulativeClaims
 
 for (i in 1:nrow(riskWeibullHeavy)){
   if (riskWeibullHeavy$riskProcess[i] < 0){
@@ -227,7 +241,7 @@ g2 = grid.arrange(g2, g2riskProcess, heights = c(3.5, 6.5))
 g2
 
 # Save graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika2.pdf",
+ggsave(glue("{FILEPATH}slika2.pdf"),
        g2,
        device = "pdf",
        width = 8,
@@ -237,15 +251,9 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #Slika 3 (Monte Carlo simulation for approximating ruin proability)
 
 # Comment: 
-# 1.) If you create more than 4 simulations you have to manually chose more colors
-# when plotting approx. line 340)
-# 2.) Currently takes approx. 10 minutes to execute simulations
-library(ggplot2)
-library(dplyr)
-library(actuar)
-library(gridExtra)
-library(glue)
-library(viridis)
+# 1.) If you create more than 4 batches of simulations you have to manually 
+# chose more colors when plotting. (approx. line 340)
+# 2.) With current parameters takes approx. 10 minutes to execute simulations.
 
 set.seed(42)
 
@@ -255,14 +263,12 @@ mu = 1/1000 # Claim size parameter
 T = 1000 # Time horizon of simulation
 u = seq(500, 25000, 500) # Initial reserve
 c = 1500 # Premium income rate
-N = c(10, 50, 100) # Number of simulations 
+N = c(10, 25, 100) # Number of simulations 
 
 ########################## RISK PROCESS SIMULATION #############################
 
 estimateProbabilityOfRuin = data.frame(u, matrix(0, ncol = length(N), nrow = length(u)))
 colnames(estimateProbabilityOfRuin) = c("u", as.character(N))
-
-
 
 # Simulate arrival times
 for (sim in N){
@@ -279,9 +285,9 @@ for (sim in N){
         arrivalTimes = c(arrivalTimes, t, t)
       }
       
-      # Remove the last arrival time exceeding T and add T
+      # Remove the last arrival time exceeding T 
       arrivalTimes = arrivalTimes[arrivalTimes < T]
-      #arrivalTimes = c(arrivalTimes, T)
+      arrivalTimes = c(arrivalTimes, T)
       
       # Generate claims
       claims = rexp(length(arrivalTimes)/2-1, mu)
@@ -291,12 +297,16 @@ for (sim in N){
       riskProcessExp$cumulativeClaims = 0
       for (i in 2:length(arrivalTimes)) {
         if (i %% 2 == 1) {
-          riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
+          riskProcessExp[i, 'cumulativeClaims'] = 
+            riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
         } else {
-          riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] 
+          riskProcessExp[i, 'cumulativeClaims'] = 
+            riskProcessExp[i-1, 'cumulativeClaims'] 
         }
       }
-      riskProcessExp$riskProcess = riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
+      riskProcessExp$riskProcess = 
+        riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
+      
       # Check for ruin
       for (i in 1:nrow(riskProcessExp)){
         if (riskProcessExp$riskProcess[i] < 0){
@@ -324,32 +334,41 @@ exactProbabilityOfRuin = exactProbabilityOfRuin(lambda, mu, u, c)
 # Merge estimates with exact values
 pOfRuin = merge(estimateProbabilityOfRuin, exactProbabilityOfRuin, by='u')
 
+# Pivot dataframe for plotting
+pOfRuinLong = pOfRuin %>% 
+  pivot_longer(cols = -u, 
+               names_to = "N", 
+               values_to = "value")
+
 ############################## VISUALIZE #######################################
 
-g3 = ggplot() +
-              geom_line(data = pOfRuin,
-                        aes(x = u, y = exactProbability),
-                        color = "black") +
-              labs(title = glue(" \u03BB={lambda}, \u03BC={mu}, c={c}"),
-                   x = "Začetni kapital (u)",
-                   y = glue("Verjetnost propada (\u03C8(u))"))
+g3 = ggplot(data = pOfRuin) 
+colors = c("cyan", "red", "blueviolet", "black")
 
-colors = c("cyan", "red", "blueviolet", "darkseagreen")
-for (i in seq_along(N)){
-  g3 = g3 + geom_line(data = pOfRuin,
-                      aes(x = u, y = !!sym(as.character(N)[i])),
-                      color = colors[i])
-}
+g3 = g3 + geom_line(data = pOfRuinLong,
+                    aes(x = u, y = value, color = N)) +
+          labs(title = expression(lambda == 1 ~ "" ~ mu == 0.001 ~ " c = 1500"),
+                    x = "Začetni kapital (u)",
+                    y = expression(Verjetnost~propada~(psi(u)))
+                  ) + 
+          scale_color_manual(
+            values = c("10"="cyan", "25"="red", "100"="blueviolet", "exactProbability"="black"), 
+            name = "Število simulacij",
+            labels = c("10 simulacij", "100 simulacij", "25 simulacij", "točna vrednost")
+            ) +  
+          theme(legend.position = c(0.8, 0.65),  
+                legend.box.background = element_rect(color = "black", size = 0.5), 
+                legend.key.size = unit(2, "lines"),  
+                legend.text = element_text(size = 12) )  
 
 g3
-
+          
 # Save graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika3.pdf",
+ggsave(glue("{FILEPATH}slika3.pdf"),
        g3,
-       device = "pdf",
+       device = cairo_pdf,
        width = 8,
        height = 5)
-
 
 #-------------------------------------------------------------------------------#
 #Slika 4 (Monte Carlo simulation for approximating asymptotics of ruin probability)
@@ -397,12 +416,15 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #    riskProcessExp$cumulativeClaims = 0
 #    for (i in 2:length(arrivalTimes)) {
 #      if (i %% 2 == 1) {
-#        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
+#        riskProcessExp[i, 'cumulativeClaims'] = 
+#           riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
 #      } else {
-#        riskProcessExp[i, 'cumulativeClaims'] = riskProcessExp[i-1, 'cumulativeClaims'] 
+#        riskProcessExp[i, 'cumulativeClaims'] = 
+#           riskProcessExp[i-1, 'cumulativeClaims'] 
 #      }
 #    }
-#    riskProcessExp$riskProcess = riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
+#    riskProcessExp$riskProcess = 
+#         riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
 #    # Check for ruin
 #    
 #  }
@@ -441,7 +463,7 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #g4
 #
 ##Save graph to pdf
-#ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika4.pdf",
+#ggsave(glue("{FILEPATH}slika4.pdf"),
 #       g4,
 #       device = "pdf",
 #       width = 8,
@@ -449,17 +471,16 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #
 
 #------------------------------------------------------------------------------#
-#Slika 5 (Asymptotics for large claim case)
+#Slika 5 (Asymptotics for large claim case, Weibull distributed claims)
 
 set.seed(42)
-library(ggplot2)
-library(dplyr)
-library(actuar)
-library(gridExtra)
-library(glue)
-library(viridis)
 
-# Parameters
+# Comment: 1.) If claim size parameters are changed the density function of the 
+# integrated tail distribution must be recalculated. 
+# 2.) Since the number of simutaions if very high this section of code takes 
+# approx. 30 minutes to execute.
+
+# PARAMETERS
 lambda = 1 # Intensity of HPP
 a = 1/4 
 b = 16 # Claim size parameters
@@ -501,12 +522,15 @@ for (sim in N){
       riskProcessW$cumulativeClaims = 0
       for (i in 2:length(arrivalTimes)) {
         if (i %% 2 == 1) {
-          riskProcessW[i, 'cumulativeClaims'] = riskProcessW[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
+          riskProcessW[i, 'cumulativeClaims'] = 
+            riskProcessW[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
         } else {
-          riskProcessW[i, 'cumulativeClaims'] = riskProcessW[i-1, 'cumulativeClaims'] 
+          riskProcessW[i, 'cumulativeClaims'] = 
+            riskProcessW[i-1, 'cumulativeClaims'] 
         }
       }
-      riskProcessW$riskProcess = riskProcessW$premiumRevenue - riskProcessW$cumulativeClaims
+      riskProcessW$riskProcess = 
+        riskProcessW$premiumRevenue - riskProcessW$cumulativeClaims
       # Check for ruin
       for (i in 1:nrow(riskProcessW)){
         if (riskProcessW$riskProcess[i] < 0){
@@ -520,7 +544,7 @@ for (sim in N){
   estimateProbabilityOfRuin[cname] = estimateProbabilityOfRuin[cname] / sim
 }
 
-# convert expression from latex to function \frac{\left(u^{\frac{3}{4}} + 6 \sqrt{u} + 24 \sqrt[4]{u} + 48\right)e^{-\frac{\sqrt[4]{u}}{2}}}{48}
+# Density of integrated tail distribution
 tailOfIntegratedTailDistribution = function(u){
   df = data.frame(u)
   df$tail =((u^(3/4) + 6*sqrt(u) + 24*u^(1/4) + 48)*exp(-(u^(1/4)/2)))/48
@@ -539,31 +563,44 @@ for (i in seq_along(N)){
   ratios = c(ratios, glue("Ratio{as.character(N)[i]}"))
 }
 
-# Remove last row
-#asymptotic = asymptotic[-nrow(asymptotic),]
+# Povot long for visualization
+asymptoticLong = asymptotic
+
+asymptoticLong = asymptotic[, c("u", "Ratio10", "Ratio100", "Ratio250")]
+asymptoticLong = asymptoticLong %>% 
+  pivot_longer(cols = -u, 
+               names_to = "N", 
+               values_to = "value")
 
 ############################## VISUALIZE #######################################
-g5 = ggplot() +
-  geom_hline(yintercept = 3.310345, 
-             color = "black", 
-             linetype = "dashed") + 
-  labs(title = glue(" \u03BB={lambda}, a={a}, b={b}, c={c}"),
-       x = "Začetni kapital (u)",
-       y = glue("Asimptotika verjetnosti propada (\u03C8(u))"))
-  
-colors = c("cyan", "red", "blueviolet", "darkseagreen")
-for (i in seq_along(N)){
-  g5 = g5 + geom_line(data = asymptotic,
-                      aes(x = u, y = !!sym(as.character(ratios[i]))),
-                      color = colors[i])
-}
+
+g5 = ggplot(data = asymptoticLong)
+colors = c("cyan", "red", "blueviolet")
+
+g5 = g5 + geom_line(data = asymptoticLong,
+                    aes(x = u, y = value, color = N)) +
+          labs(title = expression(lambda == 1 ~"a=0.25 b=16 c=1500"),
+               x = "Začetni kapital (u)",
+               y = expression(Verjetnost~propada~(psi(u)))
+               ) + 
+          geom_hline(yintercept = 3.310345, 
+                                  color = "black", 
+                                  linetype = "dashed") + 
+          annotate("text", x = 6000, y = 3.4, label = expression(1/rho), hjust = 1.1, vjust = -0.5) + 
+          scale_color_manual(values = colors, 
+                             name = "Število simulacij",
+                             labels = c("10 simulacij", "100 simulacij", "250 simulacij")) +  
+          theme(legend.position = c(0.15, 0.75),  
+                legend.box.background = element_rect(color = "black", size = 0.5), 
+                legend.key.size = unit(2, "lines"),  
+                legend.text = element_text(size = 12) )
 
 g5
 
 #Save graph to pdf
-ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika5.pdf",
+ggsave(glue("{FILEPATH}slika5.pdf"),
        g5,
-       device = "pdf",
+       device = cairo_pdf,
        width = 8,
        height = 5)
 
@@ -571,19 +608,15 @@ ggsave("C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski
 #Slika 6 (CPP standard simulation)
 
 set.seed(42)
-library(ggplot2)
-library(dplyr)
-library(actuar)
-library(gridExtra)
-library(glue)
-library(viridis)
 
-# Parameters
+# PARAMETERS
 lambda = 1 # Intensity of HPP
 mu = 2 
 sigma = 16 # Parameters for normal distribution
 T = 1000 # Time horizon of simulation
-N = 25 # Number of simulations
+N = 10 # Number of simulations of CPP
+
+############################# SIMULATION #######################################
 
 # Simulate arrival times
 arrivalTimes = c(0)
@@ -601,10 +634,12 @@ sim$VarX = lambda*arrivalTimes*(sigma^2 + mu^2)
 simulations = c()
 for (i in 1:N){
   sim[glue("X{i}")] = rnorm(length(arrivalTimes), mu, sigma)
-  sim$CPP = cumsum(sim[glue("X{i}")])
-  simulations = c(simulations, glue("X{i}"))
+  sim[glue("CPP{i}")] = cumsum(sim[glue("X{i}")])
+  simulations = c(simulations, glue("CPP{i}"))
 }
-# Plot
+
+######################## VISUALIZE #############################################
+library(viridis)
 colors = viridis(2*N)[1:N]
 
 g6 = ggplot() +
@@ -620,15 +655,25 @@ g6 = ggplot() +
             aes(x = arrivalTimes, y = EX - 3*sqrt(VarX)),
             size = 0.7,
             color = "black") +
-  labs(title = glue(" \u03BB={lambda}, a={a}"),
+  labs(title = glue(" \u03BB={lambda}, a={mu}, \u03C3={sigma}"),
        x = "Čas",
        y = "Vrednost CPP")
 
 for (i in 1:N){
   g6 = g6 + geom_line(data = sim,
-                      aes(x = arrivalTimes, y = sim[simulations[i]]),
+                      aes(x = arrivalTimes, y = !!sym(as.character(simulations[i]))),
                       color = colors[i])
 }
 g6
+
+# save graph to pdf
+ggsave(glue("{FILEPATH}slika6.pdf"),
+       g6,
+       device = "pdf",
+       width = 8,
+       height = 5)
+
+#------------------------------------------------------------------------------#
+#Slika 7 (Panjer recursion)
 
 
