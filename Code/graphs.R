@@ -370,106 +370,6 @@ ggsave(glue("{FILEPATH}slika3.pdf"),
        width = 8,
        height = 5)
 
-#-------------------------------------------------------------------------------#
-#Slika 4 (Monte Carlo simulation for approximating asymptotics of ruin probability)
-
-#set.seed(42)
-#library(ggplot2)
-#library(dplyr)
-#library(actuar)
-#library(gridExtra)
-#library(glue)
-#library(viridis)
-#
-## Parameters
-#lambda = 1 # Intensity of HPP
-#a = 1/1000 # Claim size parameters
-#T = 1000 # Time horizon of simulation
-#u = seq(5000, 50000, 5000) # Initial reserve
-#c = 1500 # Premium income rate
-#N = 1000 # Number of simulations 
-#
-########################### RISK PROCESS SIMULATION #############################
-#estProbRuin = data.frame(u)
-#estProbRuin$estimation = 0
-#
-#for (j in 1:length(u)) {
-#  print(glue("simulation:{j}/{length(u)}"))
-#  for (k in 1:N){
-#    arrivalTimes = c(0)
-#    t = 0
-#    while (t <= T) {
-#      interarrivalTime = rexp(1, rate = lambda)
-#      t = t + interarrivalTime
-#      arrivalTimes = c(arrivalTimes, t, t)
-#    }
-#    
-#    # Remove the last arrival time exceeding T and add T
-#    arrivalTimes = arrivalTimes[arrivalTimes < T]
-#    #arrivalTimes = c(arrivalTimes, T)
-#    
-#    # Generate claims
-#    claims = rexp(length(arrivalTimes)/2-1, mu)
-#    # Simulate risk process
-#    riskProcessW = data.frame(arrivalTimes)
-#    riskProcessExp$premiumRevenue = u[j] + riskProcessExp$arrivalTimes*c
-#    riskProcessExp$cumulativeClaims = 0
-#    for (i in 2:length(arrivalTimes)) {
-#      if (i %% 2 == 1) {
-#        riskProcessExp[i, 'cumulativeClaims'] = 
-#           riskProcessExp[i-1, 'cumulativeClaims'] + claims[(i-1)/2]
-#      } else {
-#        riskProcessExp[i, 'cumulativeClaims'] = 
-#           riskProcessExp[i-1, 'cumulativeClaims'] 
-#      }
-#    }
-#    riskProcessExp$riskProcess = 
-#         riskProcessExp$premiumRevenue - riskProcessExp$cumulativeClaims
-#    # Check for ruin
-#    
-#  }
-#}
-#
-## Normalize frequencies
-#estProbRuin$estimation = estProbRuin$estimation / N
-#
-## Coefficient exp(\ell*u)
-#cramerCoefficient = function(lambda, mu, u, c){
-#  df = data.frame(u)
-#  ell = mu - (lambda/c)
-#  df$coefficient = exp(u * ell)
-#  return(df)
-#}
-#
-#cramerCoefficient = cramerCoefficient(lambda, mu, u, c)
-#
-#cramerProduct = merge(cramerCoefficient, estProbRuin, by='u')
-#cramerProduct$product = cramerProduct$coefficient * cramerProduct$estimation
-#
-#
-############################### VISUALIZE #######################################
-#
-#g4 = ggplot() +
-#  geom_line(data = cramerProduct,
-#            aes(x = u, y = product),
-#            color = "cyan") +
-#  geom_hline(yintercept = 2/3, 
-#             color = "red", 
-#             linetype = "dashed") + 
-#  labs(title = glue(" \u03BB={lambda}, \u03BC={mu}, c={c}"),
-#       x = "Začetni kapital (u)",
-#       y = glue("Asimptotika verjetnosti propada (\u03C8(u))"))
-#
-#g4
-#
-##Save graph to pdf
-#ggsave(glue("{FILEPATH}slika4.pdf"),
-#       g4,
-#       device = "pdf",
-#       width = 8,
-#       height = 5)
-#
-
 #------------------------------------------------------------------------------#
 #Slika 5 (Asymptotics for large claim case, Weibull distributed claims)
 
@@ -675,5 +575,132 @@ ggsave(glue("{FILEPATH}slika6.pdf"),
 
 #------------------------------------------------------------------------------#
 #Slika 7 (Panjer recursion)
+library(actuar)
+set.seed(42)
 
+# PARAMETERS
+lambda = 5 # Intensity of Poisson distribution
+a = 1/3.1415 # Shape parameter for exponential distribution
+h = c(1, 0.1) # Steps in Panjer recursion
+limX = 10
+limS = 100
+
+############# UPPER APPROXIMATION OF EXPONENTIAL DISTRIBUTION ##################
+
+# Create dataframe with exponential cdf 
+x = seq(0, limX-0.001, by = 0.001)
+cdfUpper = data.frame(x, cdf = pexp(x, rate = a))
+
+# Discretize the cdf of the exponential distribution
+for (i in 1:length(h)){
+  cdfUpper[glue("discreteUpper{h[i]}")] = rep(
+    cumsum(actuar::discretize(pexp(x, rate = a), 0, limX, h[i], method="upper")), 
+    each = 1/(0.001/h[i])
+    )
+}
+
+# Plot 
+g7upper = ggplot(data=cdfUpper)
+g7upper = g7upper + geom_line(aes(x = x, y = cdf), color = "black") +
+  geom_line(aes(x = x, y = discreteUpper1), color = "cyan") +
+  geom_line(aes(x = x, y = discreteUpper0.1), color = "red") +
+  labs(title = expression(Zgornja~aproksimacija~porazdelitve~"X~Exp( 1/"~pi~")"),
+       x = "x",
+       y ="F_X(x)"
+  ) 
+g7upper
+
+############# LOWER APPROXIMATION OF EXPONENTIAL DISTRIBUTION ##################
+
+# Discretize the cdf of the exponential distribution
+
+cdfLower = data.frame(x, cdf = pexp(x, rate = a))
+
+for (i in 1:length(h)){
+  cdfLower[glue("discreteLower{h[i]}")] = rep(
+    cumsum(actuar::discretize(pexp(x, rate = a), 0, limX, h[i], method="lower")), 
+    each = 1/(0.001/h[i])
+  )[1:10000]
+}
+
+# Plot
+g7lower = ggplot(data=cdfLower)
+g7lower = g7lower + geom_line(aes(x = x, y = cdf), color = "black") +
+  geom_line(aes(x = x, y = discreteLower1), color = "blueviolet") +
+  geom_line(aes(x = x, y = discreteLower0.1), color = "darkorange") +
+  labs(title = expression(Spodnja~aproksimacija~porazdelitve~"X~Exp( 1/"~pi~")"),
+       x = "x",
+       y ="F_X(x)"
+  )
+
+g7lower
+
+#################### PANJER RECURSION ##########################################
+
+# Discretization of exponantial distribution  
+expUpper1 = discretize(pexp(x, a), 0, limS, by = 1, method = "upper")
+expUpper0.1 = discretize(pexp(x, a), 0, limS, by = 0.1, method = "upper")
+expLower1 = discretize(pexp(x, rate = a), 0, limS, by = 1, method = "lower")[1:100]
+expLower0.1 = discretize(pexp(x, rate = a), 0, limS, by = 0.1, method = "lower")[1:1000]
+
+# Panjer recursion functions
+panjerUpper1 = aggregateDist(method = 'recursive', 
+                             model.freq = 'poisson',
+                             lambda = lambda,
+                             model.sev = expUpper1,
+                             x.scale = 1, 
+                             tol = 0.001,
+                             maxit = 100000000)
+panjerUpper0.1 = aggregateDist(method = 'recursive',
+                               model.freq = 'poisson', 
+                               lambda = lambda,
+                               model.sev = expUpper0.1,
+                               x.scale = 0.1,
+                               tol = 0.001,
+                               maxit = 100000000)
+panjerLower1 = aggregateDist(method = 'recursive',
+                             model.freq = 'poisson', 
+                             lambda = lambda,
+                             model.sev = expLower1,
+                             x.scale = 1,
+                             tol = 0.001,
+                             maxit = 100000000)
+panjerLower0.1 = aggregateDist(method = 'recursive',
+                               model.freq = 'poisson', 
+                               lambda = lambda,
+                               model.sev = expLower0.1,
+                               x.scale = 0.1,
+                               tol = 0.001,
+                               maxit = 100000000)
+
+library(latex2exp)
+# Plot 
+li = seq(0, 60, by = 0.1)
+g7panjer = ggplot()
+g7panjer = g7panjer + 
+  geom_step(aes(x = li, y = panjerUpper1(li)), color = "cyan") + 
+  geom_step(aes(x = li, y = panjerUpper0.1(li)), color = "red") + 
+  geom_step(aes(x = li, y = panjerLower1(li)), color = "blueviolet") +
+  geom_step(aes(x = li, y = panjerLower0.1(li)), color = "darkorange") +
+  labs(title =  TeX(r'( Aproksimacija porazdelitve $S = \sum_{i=1}^NX_i$ s Panjerjevo rekurzivno shemo)'),
+       x = "x",
+       y ="F_S(x)"
+  )
+  
+g7panjer
+
+########################### VISUALIZE ##########################################
+
+#Combine plots
+g7approx = grid.arrange(g7upper, g7lower, ncol = 2)
+g7 = grid.arrange(g7approx, g7panjer, heights = c(4, 6))
+
+g7
+
+# Save graph to pdf
+ggsave(glue("{FILEPATH}slika7.pdf"),
+       g7,
+       device = cairo_pdf,
+       width = 12,
+       height = 10)
 

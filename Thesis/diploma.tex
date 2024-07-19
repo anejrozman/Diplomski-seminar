@@ -20,7 +20,7 @@
 \usepackage[
     colorlinks=true,
     linkcolor=cyan,      
-    citecolor=cyan,    
+    citecolor=red,    
     filecolor=magenta,      
     urlcolor=cyan,   
 ]{hyperref}
@@ -273,13 +273,13 @@ V nastajanju :)
 \section{Sestavljena Poissonova porazdelitev}
 
     \noindent
-    Razdelek je prirejen po \cite{1}, \cite{2}, \cite{3} in \cite{8}.
+    Razdelek je prirejen po \cite{1}, \cite{2} in \cite{3}.
 
-    Sestavljena poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki je osrednja 
-    tema dela. Lastnosti, ki jih v razdelku obravnavamo so direktno prenosljve na sam proces. Obravnavmo 
+    Sestavljena poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki ga obravnavamo 
+    v naslednjem razdelku. Lastnosti, ki jih doka"zemo so direktno prenosljve na sam proces. Obravnavmo 
     porazdelitev in kako te pridemo, rodovne funkcije, zanimive rezultate v povezavi s 
-    splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki ji prika"zemo na 
-    prakti"cnemu zgledu.
+    splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki jo prika"zemo na 
+    prakti"cnem zgledu.
 
     \begin{definicija}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -292,23 +292,24 @@ V nastajanju :)
     \end{definicija}
 
     \begin{opomba}
-        V splo"snem lahko obravnavamo sestavljene porazdletive kjer je $N$ poljubna slu"cajna spremenljivka,
+        V splo"snem lahko obravnavamo sestavljene porazdelitve kjer je $N$ poljubna slu"cajna spremenljivka,
         ki zavzema vrednosti v $\N_0$. Konkreten primer nas zanima zaradi njegove povezave s sestavljenim
         Poissonovim procesom. V nadaljevanju bomo uporabljali oznako
         \begin{equation*}
-            S_0 = 0 \quad \text{in} \quad S_n = \sum_{i=1}^nX_i \quad \text{za} \ n\in\N, 
+            S_0 = 0 \quad \text{in} \quad S_k = \sum_{i=1}^kX_i \quad \text{za} \ k\in\N, 
         \end{equation*}
-        za pogojno porazdelitev $S\mid\{N = n\}$.
+        za pogojno porazdelitev $S\mid\{N = k\}$.
         \label{op:gneralCaseCOmpound}
     \end{opomba}
 
     \subsection{Porazdelitev}
-    S pogojevanjem na $N = k$ pridemo do formule za porazdelitev $S$. Za $x \in \R$ velja 
+    Z uporabo izreka o popolni verjetnosti s pogojevanjem na $N$ pridemo do formule za 
+    porazdelitev $S$. Za $x \in \R$ velja 
     \begin{align*}
         F_{S}(x) = \Prob\bigl(S \leq x\bigr) 
         &= \sum_{k=0}^\infty \Prob\bigl(S \leq x \mid N = k\bigr)\Prob\bigl(N = k\bigr) \\
         &= \sum_{k=0}^\infty \Prob\bigl(S_k \leq x\bigr)\Prob\bigl(N = k\bigr) \\
-        &= \sum_{k=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^k}{k!} e^{-\lambda}
+        &= \sum_{k=0}^\infty F_{X_1}^{*k}(x) \frac{\lambda^k}{k!} e^{-\lambda},
     \end{align*}
 
     \noindent
@@ -317,7 +318,7 @@ V nastajanju :)
     \begin{zgled}
         Poglejmo enega enostavnej"sih primerov, ko so $X_1, X_2, \dots$ porazdeljene kot
         \begin{equation*}
-            X_1\sim\text{Exp}(a) \qquad \qquad f_{X_1}(x) = a e^{-a x}\mathbbm{1}_{(0, \infty)}(x),
+            X_1\sim\text{Exp}(a), \qquad \qquad f_{X_1}(x) = a e^{-a x}\mathbbm{1}_{(0, \infty)}(x),
         \end{equation*}
         s parametrom $a>0$. Vemo, da je $k$-ta 
         konvolucija $X_1$ porazdeljena kot \newline $\text{Gamma}(k, a)$ in ima gostoto
@@ -331,9 +332,9 @@ V nastajanju :)
             \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
             &= \int_0^s\underbrace{\sum_{k=0}^\infty \frac{1}{(k-1)!k!}(a\lambda)^kx^{k-1}e^{-(ax + \lambda)}}_{f_S(x)}dx.
         \end{align*}
-        Vidimo, da "ze v primeru, ko poznamo eksplictno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
+        Vidimo, da "ze v primeru, ko poznamo eksplicitno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
         kakr"sne koli porazdelitve $S$ v kon"cni obliki. V praksi se zato poslu"zujemo numeri"cnega 
-        ocenjevanja z raznimi metodami.
+        ocenjevanja.
         \label{zgd:sestavljenaPoissonovaPorazdelitevGamma}
     \end{zgled}
 
@@ -361,7 +362,7 @@ V nastajanju :)
                     &= \sum_{k=0}^{\infty}
                         \underbrace{\E\left[e^{iuX_1}\right]^k}_{\varphi_{X_1}(u)^k}\frac{\lambda^k}{k!}e^{-\lambda } \label{eq:MomentS}\\ 
                     &= e^{-\lambda } + e^{-\lambda }\sum_{k=1}^\infty\frac{\left(\varphi_{X_1}(u)\lambda \right)^k}{k!} \nonumber \\
-                    &= e^{\lambda \left(\varphi_{X_1}(u) - 1\right)} \nonumber
+                    &= e^{\lambda \left(\varphi_{X_1}(u) - 1\right)}. \nonumber
         \end{align}
     \end{proof}
     
@@ -383,7 +384,7 @@ V nastajanju :)
     za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_S$. 
 
     \begin{lema}
-        Karakteristi"cn funckijo $\varphi_S$ lahko izrazimo kot kompozitum rodovne funkcije $G_N$ in 
+        Karakteristi"cno funckijo $\varphi_S$ lahko izrazimo kot kompozitum rodovne funkcije $G_N$ in 
         karateristi"cne funkcije $\varphi_{X_1}$.
 
         \begin{align*}
@@ -402,6 +403,78 @@ V nastajanju :)
         \end{align*}
     \end{proof}
 
+    Vemo, da za neodvisne slu"cajne spremenljivke $X_1,  \dots, X_n$, ki so porazdeljene 
+    kot $X_1\sim\Pois{\lambda_1}, \ \dots, \ X_n\sim\Pois{\lambda_n}$, 
+    velja, da je njihova vsota $S = \sum_{i=1}^nX_i$ porazdeljena kot $S\sim\Pois{\lambda}$, kjer je
+    $\lambda = \sum_{i=1}^n\lambda_i$. Izka"ze se, da ima sestavljena poissonova porazdelitev 
+    podobno lastnost.
+
+    \begin{definicija}
+        Naj bo $(\lambda_k)_{k\in\N}$ zaporedje pozitivnih realnih "stevil za katerega velja 
+        $\sum_{k=1}^\infty\lambda_k = 1$. Naj bodo $F_1, F_2, \dots$ porazdelitvene funckcije
+        realnih slu"cajnih spremenljivk $X_1, X_2, \dots$ Potem 
+        \begin{equation*}
+            F = \sum_{k=1}^\infty\lambda_kF_k
+        \end{equation*}
+        pravimo \textit{me"sanica porazdelitev} $F_1, F_2, \dots$
+    \end{definicija}
+    \noindent
+    O"citno je $F$ porazdelitvena funckija. "Ce definiramo 
+    $$
+    I \sim 
+    \begin{pmatrix}
+        1 & 2 & 3 & \dots \\
+        \lambda_1 & \lambda_2 & \lambda_3 & \dots
+    \end{pmatrix},
+    $$
+    vidimo, da je $F$ porazdelitev slu"cajne spremenljivke $X = \mathbbm{1}_{\{I = 1\}}X_1 + \cdots + \mathbbm{1}_{\{I = n\}}X_n$, 
+    kar enostavno poka"zemo z uporabo zakona o popolni verjentnosti. Za poljuben $n\in\N$ in $x\in\R$ velja 
+    \begin{align*}
+        \Prob\left(X \leq x\right) 
+        &= \sum_{k=1}^n\Prob\left(X \leq x \ \big| \ I = k\right)\Prob\left(I = k\right) \\
+        &= \sum_{k=1}^n\Prob\left(X_k \leq x\right)\lambda_k \\
+        &= \sum_{k=1}^nF_k(x)\lambda_k.
+    \end{align*}
+    Z enakim argumentom lahko poka"zemo, da je $\varphi_X(u) = \sum_{k=1}^\infty\lambda_k\varphi_{X_k}(u)$.
+
+
+    \begin{trditev}
+        Naj imajo neodvisne slu"cajne spremenljivke $S_1, \dots, S_n$ sestavljeno Poissonovo porazdelitev, torej 
+        \begin{equation*}
+            S_k = \sum_{i=1}^{N_k}X_i^{(k)} \quad \text{za} \ k=1, \dots, n,
+        \end{equation*}
+        kjer je $N_k\sim \Pois{\lambda_k}$ za $\lambda_k > 0$ in za vsak $k = 1, \dots, n$ je $(X_i^{(k)})_{i\in\N}$ 
+        zaporedje neodvisnih enako porazdeljenih slu"cajnih spremenljivk. Potem velja   
+        \begin{equation*}
+            S = \sum_{k=1}^nS_k \sim \sum_{i=1}^{N}Y_i,
+        \end{equation*}
+        kjer je $N\sim\Pois{\lambda}$ s parametrom $\lambda = \sum_{k=1}^n\lambda_k$ in $(Y_i)_{i\in\N}$ zaporedje
+        neodvisnih enako porazdeljenih slu"cajnih spremenljivk z me"sano porazdelitvijo
+        \begin{equation*}
+        F_{Y_1} = \sum_{k=1}^n\frac{\lambda_k}{\lambda}F_{X_1^{(k)}}.
+        \end{equation*}
+        \label{trd:vsotaCPDjeCPD}
+    \end{trditev}
+
+    \begin{proof}
+        Karakteristi"cna funkcija $S_k$ ima obliko
+        \begin{equation*}
+            \varphi_{S_k}(u) = e^{\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)}.
+        \end{equation*}
+        Ker so $S_1, \dots, S_n$ neodvisne, velja
+        \begin{align*}
+            \varphi_{S}(u) 
+                &= \prod_{k=1}^n\varphi_{S_k}(u) \\
+                &= \prod_{k=1}^n\exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right] \\
+                &= \exp\left[\lambda\left(\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u) - 1\right)\right].
+        \end{align*}
+        Po izreku o 
+        enoli"cnosti (\ref{izr:enolicnost}) sledi $S\sim\sum_{i=1}^{N}Y_i$.
+    
+    \end{proof}
+
+    Na podoben na"cin poka"zemo, kako se sestavljena Poissonova porazdelitev izra"za v primeru, ko so
+    slu"cajne spremenljivke $X_i$ diskretno porazdeljene.
 
     \begin{trditev}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots X_n$ neodvisne s.s. (neodvisne 
@@ -450,16 +523,19 @@ V nastajanju :)
         \begin{equation*}
             \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z
         \end{equation*}
-        po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_\infty :=\lim_{n\to\infty}Z_n \sim Z$.
+        po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_n \xrightarrow[n\to\infty]{d}Z$.
     \end{proof}
 
-    \begin{opomba}
-    Kaj pa v primeru, ko $X_i$ nimajo diskretne porazdelitve? 
-    Izkra"ze se, da tudi v splo"snem dobimo konvergenco v porazdelitvi. 
-    Ideja je, da definiramo $F_n(x) := F(\tfrac{m}{n})$ kjer je
-    $F(x)$ porazdelitvena funkcija slu"cajne spremenljivke $Z_n$ in 
-    $m = \min\{k \in \mathbb{Z} \mid F(\tfrac{k}{n}) > F_n(x)\}$.
+    Rezultat je zanimiv predvsem zato, ker nam za razliko od trditve \ref{trd:vsotaCPDjeCPD} pove, da 
+    lahko slu"cajno vsoto izrazimo kot linearno kombinacijo oziroma vrsto Poissonovih slu"cajnih spremenljivk.
 
+    \begin{opomba}
+    Kaj pa v primeru, ko $X_i$ niso diskretno porazdeljene? Ali lahko
+    trditev \ref{trd:NXjeEnakoaY} posplo"simo?
+    Izka"ze se, da tudi v splo"snem dobimo konvergenco v porazdelitvi (nisem prepri"can "ce je to res). 
+    Naj bo $F(x)$ porazdelitvena funkcija realno"stevilske slu"cajne spremenljivke $X_1$.
+    Ideja je, da definiramo funkcijo $F_n(x) := F(\tfrac{k + 1}{n})$ na intervalu 
+    $\bigl[\frac{k}{n}, \frac{k + 1}{n}\bigr)$ za $k\in\mathbb{Z}$.
         \begin{figure}[H]
             \begin{center}
             
@@ -471,12 +547,12 @@ V nastajanju :)
                     \draw[dashed] (-0.75,3.2) -- (9,3.2);
                 
                     % CDF of continuous random variable
-                    \draw[blue] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
-                    \draw[->, blue] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
-                    \filldraw[blue] (5, 2.5) circle (0.7pt);
-                    \draw[blue] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.15) node[below] {$F(x)$};
+                    \draw[cyan] (-0.75, 0.1) .. controls (0,0.2) and (2.2, 0.3) .. (2.8, 1.2);
+                    \draw[->, cyan] (2.8, 1.2) .. controls (3.1, 1.7) and (3.6, 2) .. (5, 2.1);
+                    \filldraw[cyan] (5, 2.5) circle (0.7pt);
+                    \draw[cyan] (5, 2.5) .. controls (6, 2.8) and (7.5, 3) .. (9, 3.05) node[below] {$F(x)$};    
                 
-                    % CDF of F_n, 
+                    % CDF of F_n,   
                     \draw[->, red] (-0.75, 0.22) -- (0.25, 0.22);
                     \filldraw[red] (-0.75, 0.22) circle (0.7pt);
                     \draw[->, red] (0.25, 0.39) -- (1.25, 0.39);
@@ -493,8 +569,8 @@ V nastajanju :)
                     \filldraw[red] (5.25, 2.79) circle (0.7pt);
                     \draw[->, red] (6.25, 2.94) -- (7.25, 2.94);
                     \filldraw[red] (6.25, 2.94) circle (0.7pt);
-                    \draw[->, red] (7.25, 3.07) -- (8.25, 3.07);
-                    \filldraw[red] (7.25, 3.07) circle (0.7pt);
+                    \draw[->, red] (7.25, 3.03) -- (8.25, 3.03);
+                    \filldraw[red] (7.25, 3.03) circle (0.7pt);
                 
                 
                     %intervals of F_n
@@ -507,20 +583,30 @@ V nastajanju :)
 
     \noindent
     Kot je razvidno iz slike \ref{fig:slika2}, je $F_n(x)$ stopni"casta funkcija, ki aproksimira 
-    porazdelitveno funkcijo $F(x)$. Velja $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna.
-    Dokaz presega obseg tega dela, ampak bralec ga lahko najde v \cite{4} (moram dobiti referenco).
+    porazdelitveno funkcijo $F(x)$. Vemo, da $F_n$ ustreza diskretni porazdelitvi
+
+    $$ 
+    \begin{pmatrix}
+        & \dots & \frac{k}{n} & \frac{k + 1}{n} & \frac{k+2}{n} & \dots & \\
+        & \dots & F(\frac{k}{n}) - F(\frac{k-1}{n}) & F(\frac{k+1}{n}) - F(\frac{k}{n}) & F(\frac{k+2}{n}) - F(\frac{k+1}{n}) & \dots & 
+    \end{pmatrix}.
+    $$
+    Izka"ze se, da $F_n \xrightarrow{n\to\infty}F$ povsod kjer je $F$ zvezna, ampak
+    dokaz presega obseg tega dela. Interesirani bralec ga lahko najde v \cite{4} (moram dobiti dejansko referenco).
     \label{op:aproksimacijaZDiskretno}
     \end{opomba}
 
 
 
-    \subsection{Panjerjeva rekurzivna shema}
-    Poglejmo si popularno metodo za ra"cunaje sestavljene Poissonove porazdelitve. Kot
-    smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
-    porazdelitve $S$ v splo"snem nemogo"ce. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
-    rekurzivno izraziti in posplo"siti na "sir"si razred porazdelitev.
 
-    \begin{trditev}
+
+    \subsection{Panjerjeva rekurzivna shema}
+    Poglejmo si popularno metodo za ra"cunaje sestavljene Poissonove porazdelitve v praksi. Kot
+    smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
+    porazdelitve $S$ v kon"cni obliki v splo"snem nemogo"ce. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
+    rekurzivno izraziti in ustrezno posplo"siti na "sir"si razred porazdelitev.
+
+    \begin{trditev}(Panjer)
         Naj bo $N$ diskretna slu"cajna spremenljivka, za katero velja 
         \begin{equation*}
             \Prob(N = n) = \left(a + \frac{b}{n}\right)\Prob\left(N = n-1\right) \quad \text{za} \ n\in\N \ \text{in} \ a, b \in \R.
@@ -608,48 +694,57 @@ V nastajanju :)
     \begin{opomba}
         Izka"ze se, da le $3$ porazdelitve 
         ustrezajo pogojem iz trditve \ref{tdr:PanjerRecursionScheme}. Te so $\Pois{\lambda}$, $\text{Bin}(p)$ in
-        $\text{NegBin}(r, p)$. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
-        \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. Tudi v ostalih primerih se izka"ze, da je $a < 1$, tako, da je 
+        $\text{NegBin}(r, p)$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
+        \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. Tudi v ostalih primerih se izka"ze, da je $a < 1$, tako da je 
         ena"cba (\ref{eq:PanjerRecursionScheme}) res dobro definirana.
     \end{opomba}
 
     \begin{opomba}
-        Zahteva, da $X_i$ zavzemajo vrednosti v $\N_0$ je bolj splo"sna kot se na prvi pogled zdi, ker
-        lahko v resnici zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za nek $h>0$. V tem primeru 
+        Zahtevo, da $X_i$ zavzemajo vrednosti v $\N_0$ lahko sprostimo. V resnici 
+        lahko zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za nek $h>0$. V tem primeru 
         zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in tako rekurzivna zveza velja za $\frac{S}{h}$. 
-        Tako lahko analogno ideji opombe \ref{op:aproksimacijaZDiskretno} aproksimiramo splo"sne slu"cajne 
+        Tako lahko kot v ideji opombe \ref{op:aproksimacijaZDiskretno} aproksimiramo splo"sne slu"cajne 
         spremenljivke, ki zavzemajo vrednsoti v $[0, \infty)$, poljubno natan"cno.
     \end{opomba}  
 
-    \begin{zgled}(Nadaljevanje zgleda \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}) Sedaj vzamemo 
-        konkretne porazdeltive $N\sim\Pois{42}$ in $X_i\sim\text{Exp}(91.7)$. S stopni"casto funkcijo 
-        $F_h$ aproksimiramo porazdelitveno funkcijo $F_{X_1}$ za razli"cne vrednosti $h = 0.5, 0.1$ in $0.01$, 
-        tako da za vsak $n\in\N$ velja $F_h(x) = F_{X_1}(nh)$ za $x\in\bigl[nh, (n+1)h\bigr)$. 
-        S Panjerjevo rekurzivno shemo izra"cunamo pribli"zke porazdelitve $S$ na intervalu $[0, 100]$.
-        Rezulate prika"zemo na sliki \ref{fig:slika4}.
+    \begin{zgled}(Nadaljevanje zgleda \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}) Recimo, da imamo
+        konkretni porazdeltivi $N\sim\Pois{9}$ in $X_i\sim\text{Exp}(\frac{1}{\pi})$. Podobno kot v opombi
+        \ref{op:aproksimacijaZDiskretno} s stopni"castima funkcijama
+        $F^u_h$ in $F_h^l$ aproksimiramo porazdelitveno funkcijo $F_{X_1}$ za razli"cne vrednosti $h \in \{1, \ 0,1\}$.
+        Za vsak $n\in\N$ velja $F^u_h(x) = F_{X_1}((n+1)h)$ za $x\in\bigl[nh, (n+1)h\bigr)$ in 
+        $F^l_h(x) = F_{X_1}(nh)$ za $x\in\bigl[nh, (n+1)h\bigr)$.
+        S Panjerjevo rekurzivno shemo izra"cunamo pribli"zke porazdelitve $S$ na intervalu $[0, 60]$.
+        Rezulate prika"zemo na sliki \ref{fig:slika7}. 
  
-        %\begin{figure}
-        %    \begin{center}
-        %        \includegraphics[width=0.8\textwidth]{}
-        %        \caption{Aproksimacija porazdelitve $S$ s Panjerjevo rekurzivno shemo}
-        %    \end{center}
-        %\end{figure}
+        \begin{figure}[h!]
+            \begin{center}
+                \includegraphics[width=\textwidth]{
+                    C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika7.pdf
+                }
+                \caption{Aproksimacija porazdelitve $S$ s Panjerjevo rekurzivno shemo.}
+                \label{fig:slika7}
+            \end{center}
+        \end{figure}
         
-        \label{zgd:PanjerExp}
+        \label{zgd:PanjerExp}  
     \end{zgled}
-
-    Panjerjeva rekurzivna shema je dobra, z razvojem racunalnikov, so se razvile tudi druge tehnike kot npr 
-    monte carlo in se kaj... [Zakljuj"cek razdelka].
+ 
+    Vidimo, da "ze za $h = 0,1$ dobimo zelo natan"cno aproksimacijo porazdelitve. Danes 
+    Panjerjeva metoda predstavlja alternativo Monte Carlo metodam. Njena glavna prednost 
+    je, da z manj"sanjem koraka $h$ dose"zemo poljubno natan"cno to"cno aproksimacijo neke porazdelitve. 
+    Monte Carlo metode so bolj splo"sne, saj temeljijo zgolj na ponavljanju simulacij in se lahko uporabljajo za modeliranje bolj zapletenih 
+    porazdelitev, ki ne zadovoljujejo pogojev trditve \ref{tdr:PanjerRecursionScheme}.
 
 \pagebreak
 \section{Sestavljeni Poissonov proces}
 
-    \begin{center}
-        \framebox[\linewidth]{%
-    \rule{0pt}{50pt}%
-        Povzetek poglavja/krajsi uvod%
-        }
-    \end{center}
+    \noindent
+    Razdelek je prirejen po \cite{1}, \cite{2}, in \cite{3}.
+
+    Poka"zemo, da ima sestavljeni Poissonov proces neodvisne in stancionarne prirastke. Markiranje, pokazemo 
+    da spada v sirsi razred slucajnih procesov t.i.\ Levijevih procesov.
+
+
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
         Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $(N_t)_{t\geq0}$) in enako 
@@ -685,9 +780,35 @@ V nastajanju :)
         \end{trditev}
 
         \begin{proof}
-            $(\Rightarrow):$
+            Glavna ideja je upoštevati vektorje $(X_0, X_{t_1}, ..., X_{t_n})$ in $(X_0, X_{t_1}-X_0, ..., X_{t_n}-X_{t_{n-1}})$ ter opaziti, da lahko katerikoli od teh dveh vektorjev uporabimo za pridobitev drugega s preprostim seštevanjem ali odštevanjem.
 
-            $(\Leftarrow):$
+            \textbf{Dejstvo 1:} Popravimo pozitivni celi števili $n, k$. Naj bodo $Y, W_1, ..., W_n$ naključne spremenljivke. Če je $Y$ neodvisen od naključnega vektorja $(W_1, ..., W_n)$, je $Y$ tudi neodvisen od $h(W_1, ..., W_n)$, kjer je $h:\mathbb{R}^n\rightarrow\mathbb{R}^k$ neka Borelova merljiva funkcija.
+
+            \textbf{Dejstvo 2:} Popravimo $n\geq 2$ kot celo število. Če so $(A_1, A_2, ..., A_n)$ naključne spremenljivke, tako da je za vsak $i \in \{2, ..., n\}$, $A_i$ neodvisen od $(A_1, ..., A_{i-1})$, potem so $A_1, ..., A_n$ medsebojno neodvisni.
+
+            \textbf{Prva smer:}
+            Predpostavimo, da ima $(X_t)_{t\geq 0}$ lastnost, da je $X_0=0$ z gotovostjo in tudi lastnost neodvisnih prirastkov. Popravimo $n$ kot pozitivno celo število in popravimo $\{t_i\}_{i=1}^{n+1}$ tako, da velja $0\leq t_1\leq ... \leq t_{n+1}$. Želimo pokazati, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0,X_{t_1}, ..., X_{t_n})$.
+
+            Ker je $X_0=0$ z gotovostjo, vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0, X_{t_1}-X_0, X_{t_2}-X_{t_1}, ..., X_{t_n}-X_{t_{n-1}})$. Tako (po Dejstvu 1) vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $h(X_0, X_{t_1}-X_0..., X_{t_n}-X_{t_{n-1}})$ za katerokoli merljivo funkcijo $h:\mathbb{R}^{n+1}\rightarrow\mathbb{R}^{n+1}$. Opazimo, da
+            \begin{align}
+            X_0 &= 0\
+            X_{t_1} &= X_0 + (X_{t_1} - X_0)\
+            X_{t_2} &= X_0 + (X_{t_1} - X_{0}) + (X_{t_2} - X_{t_1})\
+            &\vdots\
+            X_{t_n} &= X_0 + (X_{t_1} - X_{0}) + (X_{t_2} - X_{t_1}) + \cdots + (X_{t_n} - X_{t_{n-1}})
+            \end{align}
+            Tako je $(X_0, X_{t_1}, ..., X_{t_n})=h(X_0, X_{t_1}-X_0, ..., X_{t_n}-X_{t_{n-1}})$ za merljivo funkcijo $h=(h_0, ..., h_n)$, definirano z
+            \begin{align}
+            h_0(a_0, ..., a_n) &= a_0\
+            h_1(a_0, ..., a_n) &= a_0 + a_1\
+            &\vdots\
+            h_n(a_0, ..., a_n) &= a_0 + a_1 + \cdots + a_n
+            \end{align}
+            $\Box$
+            
+            \textbf{Obratna smer:}
+            Predpostavimo, da $(X_t){t\geq 0}$ zadošča za vse pozitivne cele števile $n$ in vse čase $0 \leq t_1 \leq \cdots \leq t{n+1}$, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0, ..., X_{t_n})$. Želimo pokazati, da ima lastnost neodvisnih prirastkov. Popravimo $n$. Po Dejstvu 1 vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $h(X_0, ..., X_{t_n})$ za katerokoli merljivo funkcijo $h$. Jasno je, da obstaja merljiva funkcija, ki preslika čiste čase $(X_0, ..., X_{t_n})$ v njihove razlike $(X_1-X_0, ..., X_{t_n}-X_{t_{n-1}})$. Tako je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_1-X_0, ..., X_{t_n}-X_{t_{n-1}})$. Po Dejstvu 2 velja, da ima $(X_t)_{t\geq 0}$ lastnost neodvisnih prirastkov. $\Box$,
+
         \end{proof}
 
         \begin{trditev}
@@ -758,16 +879,16 @@ V nastajanju :)
         \end{proof}
     
     \begin{zgled}
-        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim N(2, 20)$ 
-        Tedaj vemo po \ref{trd:PricVarCPP}, da za $t\geq 0 $ velja $\E\left[S_t\right] = 2t$ in 
-        $\Var{S_t} = 22t$ ter $\sigma_{S_t} = \sqrt{22t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
+        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim \text{Exp}(\frac{1}{\pi})$ 
+        Tedaj za $t\geq 0 $ velja $\E\left[S_t\right] = \pi t$ in 
+        $\Var{S_t} = t(\pi^2 + \pi^4)$ ter $\sigma_{S_t} = \sqrt{22t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
         ki jih prika"zemo na sliki \ref{fig:slika6} skupaj s funckcijama $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$. 
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{
                 C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika6.pdf
                 }
-            \caption{Trajektorije CPP z VarX in EX}
+            \caption{Trajektorije CPP s funckijama $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$}
             \label{fig:slika6}
         \end{figure}
 
@@ -1053,7 +1174,7 @@ V nastajanju :)
 
 \section{Cramér-Lundbergov model}
     \noindent
-    Razdelek je prirejen po \cite{3}, \cite{4} in  \cite{5}.
+    Razdelek je prirejen po \cite{3}, \cite{4},  \cite{5} in \cite{9}.
 
     V tem razdelku obravnavamo najbolj intenzivno raziskan model v teoriji propada, običajno imenovan 
     Cramér-Lundbergov model. V svoji najosnovnejši obliki 
@@ -2090,6 +2211,16 @@ V nastajanju :)
         Dokaz izreka lahko bralec najde v \cite{7}.
     \end{proof}
 
+    \begin{izrek}(Izrek o enoli"cnosti)
+        Naj bosta $X$ in $Y$ slu"cajni spremenljivki, ne nujno definirani na istem verjetnostnem prostoru.
+        "Ce za vsak $u\in\R$ velja $\varphi_X(u) = \varphi_Y(u)$, potem imata $X$ in $Y$ enako porazdelitev.
+        \label{izr:enolicnost}
+    \end{izrek}
+
+    \begin{proof}
+        Dokaz izreka lahko bralec najde v \cite{7}.
+    \end{proof}
+
     \begin{izrek}(Lévijev izrek o kontinuiteti)
         Naj bo $(X_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk (ne nujno na istem verjetnostnem prostoru)
         in $X$ "se ena slu"cajna spremenljivka. Potem za vsak $u\in\R$ velja
@@ -2152,10 +2283,6 @@ V nastajanju :)
     \begin{proof}
         Dokaz izreka lahko bralec najde v \cite{7}.
     \end{proof} 
-
-    \begin{izrek}(Izrek o enoli"cnosti)
-        One to one correspondence betwwen characteristic functions and distributions.
-    \end{izrek}
 
     \begin{definicija}
         Naj bo $X$ nenegativna slu"cajna spremenljivka in $F_X$ njena porazdelitvena funkcija. 
