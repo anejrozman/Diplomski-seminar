@@ -22,7 +22,7 @@
     linkcolor=cyan,      
     citecolor=red,    
     filecolor=magenta,      
-    urlcolor=cyan,   
+    urlcolor=orange,   
 ]{hyperref}
 %\usepackage{titlesec}
 \allowdisplaybreaks
@@ -253,6 +253,14 @@ V nastajanju :)
     \end{definicija}
 
     \begin{definicija}
+        Naj bosta $(X_t)_{t\geq0}$ in $(Y_t)_{t\geq0}$ slu"cajna procesa ne nujno definirana na istem 
+        verjetnostnem prostoru. Pravimo, da sta $(X_t)_{t\geq0}$ in $(Y_t)_{t\geq0}$ \textit{neodvisna}, 
+        "ce sta za vsak kon"cen nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ slu"cajna 
+        vektorja $(X_{t_1}, X_{t_2}, \ldots, X_{t_n})$ in $(Y_{t_1}, Y_{t_2}, \ldots, Y_{t_n})$ neodvisna.
+        \label{def:neodvisnostSP}
+    \end{definicija}
+
+    \begin{definicija}
         Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
         prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$, pravimo 
         \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
@@ -470,7 +478,6 @@ V nastajanju :)
         \end{align*}
         Po izreku o 
         enoli"cnosti (\ref{izr:enolicnost}) sledi $S\sim\sum_{i=1}^{N}Y_i$.
-    
     \end{proof}
 
     Na podoben na"cin poka"zemo, kako se sestavljena Poissonova porazdelitev izra"za v primeru, ko so
@@ -749,16 +756,17 @@ V nastajanju :)
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
         Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $(N_t)_{t\geq0}$) in enako 
         porazdeljenih slučajnih spremenljivk z vrednostmi v $\mathbb{R}$. Potem je 
-        \textit{sestavljeni Poissonov proces} $(S_t)_{t\geq0}$ definiran kot
+        \textit{sestavljeni Poissonov proces} $(S_t)_{t\geq0}$ definiran kot dru"zina
+        slu"cajnih spremenljivk
         $$
-            S_t = \sum_{i=1}^{N_t} X_i.
+            S_t = \sum_{i=1}^{N_t} X_i, \quad t\geq0.
         $$
         \label{def:CPP}
     \end{definicija}
 
     \begin{opomba}
-        Vidimo, da je sestavljeni Poissonov proces posplo"sitev homogenega Poissonovega procesa, saj "ce za
-        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$, dobimo ravno $HPP$. Bolj v splo"snem, "ce je 
+        Vidimo, da je sestavljeni Poissonov proces naravna posplo"sitev homogenega Poissonovega procesa, saj "ce za
+        $X_i$ vzamemo konstantno funkcijo $X_i = 1$ za vsak $i$, je to ravno $HPP(\lambda)$. Bolj v splo"snem, "ce je 
         $X_i = \alpha$ deterministi"cna funkcija, potem velja $S_t = \alpha N_t$.
         \label{op:CPPHPPPovezava}
     \end{opomba}
@@ -769,11 +777,15 @@ V nastajanju :)
     (angl. Compound Poisson Process), kjer bo vsota sledila $HPP(\lambda)$.
 
     \subsection{Osnovne lastnosti}
+    
+        Kot smo nakazali v uvodu dela, nas pri "studiranju slu"cajnih procesov najprej zanimajo osnovne 
+        lastnosti s katerimi je la"zje delati kot z ne"stevnim naborom slu"cajnih spremenljivk in s pomo"cjo 
+        katerih lahko poka"zemo globje rezultate o procesu. 
 
         \begin{trditev}
             Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$ in naj velja $X_0 = 0$ s.g.
             Potem ima $(X_t)_{t\geq0}$
-            neodvisne prirastke natanko tedaj, ko je za vsak nabor realnih "stevil 
+            neodvisne prirastke natanko tedaj, ko je za vsak nabor "stevil 
             $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
             slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
             \label{trd:ekvivKarakterizacija}
@@ -879,10 +891,10 @@ V nastajanju :)
         \end{proof}
     
     \begin{zgled}
-        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim \text{Exp}(\frac{1}{\pi})$ 
-        Tedaj za $t\geq 0 $ velja $\E\left[S_t\right] = \pi t$ in 
-        $\Var{S_t} = t(\pi^2 + \pi^4)$ ter $\sigma_{S_t} = \sqrt{22t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
-        ki jih prika"zemo na sliki \ref{fig:slika6} skupaj s funckcijama $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$. 
+        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim N(2, 42)$ 
+        Tedaj za $t\geq 0 $ velja $\E\left[S_t\right] = 2t$ in 
+        $\Var{S_t} = t(2^2 + 42^2) = 1768t$ ter $\sigma_{S_t} = \sqrt{1768t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
+        ki jih prika"zemo na sliki \ref{fig:slika6} skupaj s funkcijama $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$. 
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{
@@ -1038,6 +1050,90 @@ V nastajanju :)
         Poka"zimo obraten rezultat kot v trditvi \ref{trd:NXjeEnakoaY}, tako da raz"clenimo CPP na 
         ve"c neodvisnih CPP z raz"clenitvijo "casa in prostora slu"cajnih spremenljivk $X_i$.
 
+        \begin{izrek}(o markiranju CPP)
+            Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bo $A_1, \dots, \ A_n$ disjunktna particija mno"zice 
+            $[0, \infty) \times \R$. Potem so za vsak fiksen $t\geq0$ in $j = 1, \dots, n$ slu"cajne spremenljivke
+            \begin{equation}
+                S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right)
+                \label{eq:markedCPP}
+            \end{equation}
+            med seboj neodvisne. "Se ve"c, za vsak $j = 1, \dots, n$ ima
+            \begin{equation*}
+                S_t^{(j)} \sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)
+            \end{equation*}
+            sestavljeno Poissonovo porazdelitev, kjer je $(U_i)_{i\in\N}$ zaporedje neodvisnih (med sabo, $N_t$ in $(X_i)_{i\in\N}$) in enako porazdeljenih slu"cajnih spremenljivk
+            kot $U_1\sim U\left([0, t]\right)$.
+            \label{izr:MarkiranjeCPP}
+        \end{izrek}
+
+        \begin{proof}
+            Za splo"sen $\text{HPP}(\lambda)$ velja lasntost vrstilnih statistik (\ref{trd:VrstilneStatistikeHPP}),
+            torej
+            \begin{equation*}
+                \left(V_1, \dots, \ V_k \mid N_t = k\right)\sim \left(U_{(1)}, \dots, \ U_{(k)}\right), \quad k\in\N.
+            \end{equation*}
+            Tako lahko za $j\in\{1, \dots, n\}$ (\ref{eq:markedCPP}) pogojno na dogodek $\{N_t = k\}$ zapi"semo kot
+            \begin{equation*}
+                S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{(i)}, X_i\right).
+            \end{equation*}
+            Vrstni red sumandov je nepomemben, tako lahko z upo"stevanjem neodvisnosti in enake 
+            porazdeljenosti $S_t^{(j)}\mid \{N_t = k\} $ zapi"semo kot 
+            \begin{equation*}
+                S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{i}, X_i\right).
+            \end{equation*}
+            Sedaj si poglejmo skupno karakteristi"cno funkcijo slu"cajnega vektorja \newline
+            $(S_t^{(1)}, \dots, \ S_t^{(n)})$.
+            \begin{align*}
+                \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) 
+                    &= \E\left[\exp\left[iu_1S_1 + \dots + iu_nS_n\right]\right] \\
+                    &= \sum_{k =0}^\infty \E\left[\exp\left[iu_1S_1 + \dots + iu_nS_n\right]\mid N_t = k\right]\Prob(N_t = k)\\
+                    &= \sum_{k=0}^\infty \E\left[\exp\left[\sum_{j=1}^niu_j\sum_{i=1}^kX_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\right]\right]\Prob(N_t = k)\\
+                    &= \sum_{k=0}^\infty \E\left[\exp\left[\sum_{i=1}^k\sum_{j=1}^niu_jX_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\right]\right]\Prob(N_t = k)\\
+                    &= \E\left[\exp\left[\sum_{i=1}^{N_t}\sum_{j=1}^niu_jX_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\right]\right]. 
+            \end{align*}
+            Sedaj opazimo, da imamo v eksponentu sestavljeno Poissonovo vsoto, za katero poznamo obliko karakteristi"cne 
+            funckcije. "Ce jo logaritmiramo dobimo
+            
+            \begin{align*}
+                \log\varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) 
+                    &= \lambda t \left(\E\left[\exp\left[\sum_{j = 1}^nis_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right] - 1\right)\\
+                    &= 
+            \end{align*}
+            Vidimo, da je (reference) vsota logaritmov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
+            Tako sledi, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, S_t^{(n)}$ neodvisne in po obliki karakteristi"cne 
+            funckcije vidimo, da so res porazdeljene sestavljeno Poissonovo.
+        \end{proof}
+
+        Izrek o markiranju CPP ima vrsto uporabnih posledic. Direktno nam poda 
+        alternativen dokaz za dokaz neodvisnosti in stacionarnosti prirastkov CPP.
+
+        \begin{posledica}
+            CPP ima neodvisne in stacionarne prirastke.
+        \end{posledica}
+
+        \begin{proof}
+            Naj bo za $0\leq t_1 \leq \cdots \leq t_n$ $A_1, \dots, \ A_n$ disjunktna particija 
+            mno"zice $[0, \infty) \times \R$ defniriana kot
+            \begin{equation*}
+                A_j = [t_{j-1}, t_j)\times \R, \quad j = 1, \dots, n.
+            \end{equation*}
+            Potem so slu"cajne spremenljivke $S_{t_1}^{(1)}, \dots, \ S_{t_n}^{(n)}$ neodvisne in enako
+            porazdeljene kot 
+            \begin{equation*}
+                S_{t_j}^{(j)} \sim \sum_{i=1}^{N_{t_j} - N_{t_{j-1}}}X_i, \quad j = 1, \dots, n.
+            \end{equation*}
+        \end{proof}
+
+        \begin{posledica}
+            "Ce v izreku o markiranju CPP \ref{izr:MarkiranjeCPP} sprostimo $t$, so procesi $(S_t^{(j)})_{t\geq0}$ 
+            med seboj neodivisni in imajo neodvisne prirastke. 
+        \end{posledica}
+
+        \begin{proof}
+            Prvo poka"zimo, neodivsnot prirastkov za $(S_t^{(j)})_{t\geq0}, j=1, \dots, n$. Naj bodo 
+            $0\leq t_1 \leq \cdots \leq t_n$ in $A_1, \dots, \ A_n$ disjunktna particija mno"zice
+        \end{proof}
+
 
 
 
@@ -1073,8 +1169,9 @@ V nastajanju :)
 
     \begin{zgled}
         Naj bo $X\sim \text{Pois}(\lambda)$. Potem je $X$ neskon"cno deljiva. To neposredno sledi 
-        iz dejstva, da je karakteristi"cna funkcija vsote n.e.p.\ s.s.\ enaka produktu karateristi"cnih 
-        funkcij, torej za $n\in\N$ in $u\in\R$ velja $\varphi_{X_1 + X_2 + \cdots + X_n}(u) = \varphi_X(u)^n$. 
+        iz lastnsoti, da za $n\in\N$ velja $X\sim Y_1 + \cdots + Y_n$ kjer so $Y_i\sim\Pois{\frac{\lambda}{n}}$ neodvisne 
+        enako porazdeljene. Ekvivalentno lahko neskon"cno deljivost poka"zemo s karakteristi"cno
+        funkcijo. Za $n\in\N$ in $u\in\R$ velja $\varphi_{X_1 + X_2 + \cdots + X_n}(u) = \varphi_X(u)^n$. 
         "Ce vzamemo $X_i \sim \text{Pois}(\tfrac{\lambda}{n})$, potem je 
         \begin{equation*}
         \varphi_{X_1 + X_2 + \cdots + X_n}(u) = 
@@ -1715,8 +1812,8 @@ V nastajanju :)
             \end{opomba}
 
             \begin{opomba}
-                Konstanto $\theta(0)$, ki se pojavi v (\ref{eq:verjetnostPrezivetja}) in 
-                (\ref{eq:verjetnostPrezivetja2}) lahko izra"cunamo. Ker $c$ zado"sca NPC, analogno trditvi 
+                Konstanto $\theta(0)$, ki se pojavi v (\ref{eq:verjetnostPrezivetja}) in      
+                (\ref{eq:verjetnostPrezivetja2}) lahko izra"cunamo. Ker $c$ zado"sca NPC, po argumentu v dokazu trditve
                 \ref{trd:propadZVerjetnostjo1} velja 
                 \begin{equation*}
                     Z_n \xrightarrow[n\to\infty]{s.g.} -\infty.
@@ -2283,6 +2380,23 @@ V nastajanju :)
     \begin{proof}
         Dokaz izreka lahko bralec najde v \cite{7}.
     \end{proof} 
+
+    \begin{trditev}
+        Definicija homogenega Poissonovega procesa \ref{def:HPP} je ekvivalentna karakterizaciji 
+        z lastnostjo vrstilnih statistik. Naj bo $\lambda > 0$ in $(N_t)_{t\geq0}$ enostavni 
+        proces "stetja za katerega je $N_0 = 0$ s.g.\ Naj za vsak $t\geq0$ velja $N_t \sim \text{Pois}(\lambda t)$ in, 
+        pogojno na dogodek $\{N_t = k\}$ je vektor "casov prihodov porazdeljen kot 
+        \begin{equation*}
+            (V_1, \dots, V_k) \mid \{N_t = k\} \sim (U_{(1)}, \dots, U_{(k)}),
+        \end{equation*}
+        kjer je $(U_{(1)}, \dots, U_{(k)})$ vektor vrstilnih statistik vektorja $(U_1, \dots, U_k)$ 
+        neodvisnih \newline enako porazdeljenih slu"cajnih spremenljivk $U_i\sim U\left([0, t]\right)$.
+        \label{trd:VrstilneStatistikeHPP}
+    \end{trditev}
+
+    \begin{proof}
+        Dokaz trditve lahko bralec najde v \cite{7}.
+    \end{proof}
 
     \begin{definicija}
         Naj bo $X$ nenegativna slu"cajna spremenljivka in $F_X$ njena porazdelitvena funkcija. 

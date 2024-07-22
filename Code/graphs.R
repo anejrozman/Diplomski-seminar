@@ -7,6 +7,7 @@ library(dplyr)
 library(actuar)
 library(gridExtra) 
 library(tidyr)
+library(latex2exp)
 library(glue) # f-string from python
 
 # To save files to a specific location, change filePath string. 
@@ -511,8 +512,8 @@ set.seed(42)
 
 # PARAMETERS
 lambda = 1 # Intensity of HPP
-mu = 2 
-sigma = 16 # Parameters for normal distribution
+mu = 2
+sigma = 42# Parameters for normal distribution
 T = 1000 # Time horizon of simulation
 N = 10 # Number of simulations of CPP
 
@@ -524,13 +525,13 @@ t = 0
 while (t <= T) {
   interarrivalTime = rexp(1, rate = lambda)
   t = t + interarrivalTime
-  arrivalTimes = c(arrivalTimes, t, t)
+  arrivalTimes = c(arrivalTimes, t)
 }
 
 # Simulate CPP
 sim = data.frame(arrivalTimes)
 sim$EX = mu*lambda*sim$arrivalTimes
-sim$VarX = lambda*arrivalTimes*(sigma^2 + mu^2)
+sim$VarX = lambda*arrivalTimes*(mu^2 + sigma^2)
 simulations = c()
 for (i in 1:N){
   sim[glue("X{i}")] = rnorm(length(arrivalTimes), mu, sigma)
@@ -539,43 +540,46 @@ for (i in 1:N){
 }
 
 ######################## VISUALIZE #############################################
-library(viridis)
-colors = viridis(2*N)[1:N]
 
-g6 = ggplot() +
-  geom_line(data = sim,
-            aes(x = arrivalTimes, y = EX),
-            size = 0.7,
-            color = "red") +
-  geom_line(data = sim,
-            aes(x = arrivalTimes, y = EX + 3*sqrt(VarX)),
-            size = 0.7,
-            color = "black") +
-  geom_line(data = sim,
-            aes(x = arrivalTimes, y = EX - 3*sqrt(VarX)),
-            size = 0.7,
-            color = "black") +
-  labs(title = glue(" \u03BB={lambda}, a={mu}, \u03C3={sigma}"),
-       x = "Čas",
-       y = "Vrednost CPP")
+colors = c("cyan", "red", "blueviolet", "darkorange", 
+           "cyan4", "red4", "darkorchid4", "darkorange3", 
+           "aquamarine", "brown1","cornflowerblue",  "darkgoldenrod1" )
+
+g6 = ggplot() 
 
 for (i in 1:N){
   g6 = g6 + geom_line(data = sim,
                       aes(x = arrivalTimes, y = !!sym(as.character(simulations[i]))),
                       color = colors[i])
 }
+g6 = g6 + geom_line(data = sim,
+            aes(x = arrivalTimes, y = EX),
+            size = 0.8,
+            color = "black") +
+          geom_line(data = sim,
+                    aes(x = arrivalTimes, y = EX +3*sqrt(VarX)),
+                    size = 0.7,
+                    color = "black") +
+          geom_line(data = sim,
+                    aes(x = arrivalTimes, y = EX - 3*sqrt(VarX)),
+                    size = 0.7,
+                    color = "black") +
+          labs(title = expression(lambda == 1 ~mu == 2~sigma == 42),
+               x = "Čas (t)",
+               y = TeX(r'(Vrednost $(S_t)$ )')) 
+
 g6
 
 # save graph to pdf
 ggsave(glue("{FILEPATH}slika6.pdf"),
        g6,
-       device = "pdf",
+       device = cairo_pdf,
        width = 8,
        height = 5)
 
 #------------------------------------------------------------------------------#
 #Slika 7 (Panjer recursion)
-library(actuar)
+
 set.seed(42)
 
 # PARAMETERS
@@ -673,7 +677,6 @@ panjerLower0.1 = aggregateDist(method = 'recursive',
                                tol = 0.001,
                                maxit = 100000000)
 
-library(latex2exp)
 # Plot 
 li = seq(0, 60, by = 0.1)
 g7panjer = ggplot()
