@@ -774,7 +774,7 @@ V nastajanju :)
     V nadaljevanju bomo homogen Poissonov proces z intenzivnostjo $\lambda >0$ ozna"cevali s $HPP(\lambda)$ 
     ali naborom slu"cajnih spremenljivk $(N_t)_{t\geq0}$ (angl. Homogeneous Poisson Process), 
     sestavljeni Poissonov proces pa s $CPP$ ali naborom slu"cajnih spremenljivk $(S_t)_{t\geq0}$ 
-    (angl. Compound Poisson Process), kjer bo vsota sledila $HPP(\lambda)$.
+    (angl. Compound Poisson Process), kjer bo vsota sledila $HPP(\lambda)$. 
 
     \subsection{Osnovne lastnosti}
     
@@ -792,34 +792,25 @@ V nastajanju :)
         \end{trditev}
 
         \begin{proof}
-            Glavna ideja je upoštevati vektorje $(X_0, X_{t_1}, ..., X_{t_n})$ in $(X_0, X_{t_1}-X_0, ..., X_{t_n}-X_{t_{n-1}})$ ter opaziti, da lahko katerikoli od teh dveh vektorjev uporabimo za pridobitev drugega s preprostim seštevanjem ali odštevanjem.
-
-            \textbf{Dejstvo 1:} Popravimo pozitivni celi števili $n, k$. Naj bodo $Y, W_1, ..., W_n$ naključne spremenljivke. Če je $Y$ neodvisen od naključnega vektorja $(W_1, ..., W_n)$, je $Y$ tudi neodvisen od $h(W_1, ..., W_n)$, kjer je $h:\mathbb{R}^n\rightarrow\mathbb{R}^k$ neka Borelova merljiva funkcija.
-
-            \textbf{Dejstvo 2:} Popravimo $n\geq 2$ kot celo število. Če so $(A_1, A_2, ..., A_n)$ naključne spremenljivke, tako da je za vsak $i \in \{2, ..., n\}$, $A_i$ neodvisen od $(A_1, ..., A_{i-1})$, potem so $A_1, ..., A_n$ medsebojno neodvisni.
-
-            \textbf{Prva smer:}
-            Predpostavimo, da ima $(X_t)_{t\geq 0}$ lastnost, da je $X_0=0$ z gotovostjo in tudi lastnost neodvisnih prirastkov. Popravimo $n$ kot pozitivno celo število in popravimo $\{t_i\}_{i=1}^{n+1}$ tako, da velja $0\leq t_1\leq ... \leq t_{n+1}$. Želimo pokazati, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0,X_{t_1}, ..., X_{t_n})$.
-
-            Ker je $X_0=0$ z gotovostjo, vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0, X_{t_1}-X_0, X_{t_2}-X_{t_1}, ..., X_{t_n}-X_{t_{n-1}})$. Tako (po Dejstvu 1) vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $h(X_0, X_{t_1}-X_0..., X_{t_n}-X_{t_{n-1}})$ za katerokoli merljivo funkcijo $h:\mathbb{R}^{n+1}\rightarrow\mathbb{R}^{n+1}$. Opazimo, da
-            \begin{align}
-            X_0 &= 0\
-            X_{t_1} &= X_0 + (X_{t_1} - X_0)\
-            X_{t_2} &= X_0 + (X_{t_1} - X_{0}) + (X_{t_2} - X_{t_1})\
-            &\vdots\
-            X_{t_n} &= X_0 + (X_{t_1} - X_{0}) + (X_{t_2} - X_{t_1}) + \cdots + (X_{t_n} - X_{t_{n-1}})
-            \end{align}
-            Tako je $(X_0, X_{t_1}, ..., X_{t_n})=h(X_0, X_{t_1}-X_0, ..., X_{t_n}-X_{t_{n-1}})$ za merljivo funkcijo $h=(h_0, ..., h_n)$, definirano z
-            \begin{align}
-            h_0(a_0, ..., a_n) &= a_0\
-            h_1(a_0, ..., a_n) &= a_0 + a_1\
-            &\vdots\
-            h_n(a_0, ..., a_n) &= a_0 + a_1 + \cdots + a_n
-            \end{align}
-            $\Box$
-            
-            \textbf{Obratna smer:}
-            Predpostavimo, da $(X_t){t\geq 0}$ zadošča za vse pozitivne cele števile $n$ in vse čase $0 \leq t_1 \leq \cdots \leq t{n+1}$, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_0, ..., X_{t_n})$. Želimo pokazati, da ima lastnost neodvisnih prirastkov. Popravimo $n$. Po Dejstvu 1 vemo, da je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $h(X_0, ..., X_{t_n})$ za katerokoli merljivo funkcijo $h$. Jasno je, da obstaja merljiva funkcija, ki preslika čiste čase $(X_0, ..., X_{t_n})$ v njihove razlike $(X_1-X_0, ..., X_{t_n}-X_{t_{n-1}})$. Tako je $X_{t_{n+1}}-X_{t_n}$ neodvisen od $(X_1-X_0, ..., X_{t_n}-X_{t_{n-1}})$. Po Dejstvu 2 velja, da ima $(X_t)_{t\geq 0}$ lastnost neodvisnih prirastkov. $\Box$,
+            $(\Leftarrow):$ Recimo, da je za vsak $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ 
+            prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
+            Potem je $X_{t_{n+1}} - X_{t_n}$ neodvisen tudi od $h(X_{t_1}, \dots, X_{t_n})$ za poljubno merljivo funkcijo $h:\R^n\to \R^n$.
+            O"citno je $(X_{t_1}, \dots, X_{t_n}) \mapsto (X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$ taka funkcija,
+            torej je $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$. Ker 
+            to velja za poljuben $n$ in poljubne $t_i$, sledi, da ima $(X_t)$ neodvisne prirastke. \newline
+            $(\Rightarrow):$  Recimo, da ima $(X_t)_{t\geq0}$ neodvisne prirastke. Ker velja $X_0 = 0$ s.g., vemo, da 
+            je za poljuben $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$
+            prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ in posledi"cno neodvisen od
+            $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ za poljubno merljivo funkcijo $h:\R^{n+1}\to \R^{n+1}$, ki 
+            jo definiramo na slede"c na"cin:
+            \begin{align*}
+                h(x_0, x_1, \dots, x_n) &= (h_0, h_1, \dots, h_n),\\
+                                    h_0 &= x_0, \\
+                                    h_1 &= x_0 + x_1, \\
+                                    &\vdots\\
+                                    h_n &= x_0 + x_1 + \cdots + x_n.
+            \end{align*}
+            Tako velja $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}) = (X_0, X_{t_1}, \dots, X_{t_n})$ in s tem je trditev dokazana.
 
         \end{proof}
 
@@ -1047,12 +1038,13 @@ V nastajanju :)
 %        \end{definicija}
 
     \subsection{Markiranje sestavljenega Poissonovega procesa}
-        Poka"zimo obraten rezultat kot v trditvi \ref{trd:NXjeEnakoaY}, tako da raz"clenimo CPP na 
-        ve"c neodvisnih CPP z raz"clenitvijo "casa in prostora slu"cajnih spremenljivk $X_i$.
+        Poka"zimo obraten rezultat kot v trditvi \ref{trd:NXjeEnakoaY}, tako da s particijo "casa in 
+        prostora slu"cajnh spremenljivk $X_i$ raz"clenimo CPP na ve"c neodvisnih sestavljenih
+        Poissonovih procesov.
 
         \begin{izrek}(o markiranju CPP)
             Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bo $A_1, \dots, \ A_n$ disjunktna particija mno"zice 
-            $[0, \infty) \times \R$. Potem so za vsak fiksen $t\geq0$ in $j = 1, \dots, n$ slu"cajne spremenljivke
+            $[0, \infty) \times \R$. Potem so za fiksen $t\geq0$ in $j = 1, \dots, n$ slu"cajne spremenljivke
             \begin{equation}
                 S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right)
                 \label{eq:markedCPP}
@@ -1094,18 +1086,19 @@ V nastajanju :)
             Sedaj opazimo, da imamo v eksponentu sestavljeno Poissonovo vsoto, za katero poznamo obliko karakteristi"cne 
             funckcije. "Ce jo logaritmiramo dobimo
             
-            \begin{align*}
-                \log\varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) 
-                    &= \lambda t \left(\E\left[\exp\left[\sum_{j = 1}^nis_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right] - 1\right)\\
-                    &= 
-            \end{align*}
-            Vidimo, da je (reference) vsota logaritmov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
+            \begin{align}
+                &\log\varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) \nonumber\\
+                    &= \lambda t \left(\E\left[\exp\left[\sum_{j = 1}^nis_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right] - 1\right)\nonumber\\
+                    &= \lambda t \left(\left(\sum_{j=1}^n\mathbb{E}\left[\exp\left(is_j X_1 \mathbbm{1}_{A_j}(U_1, X_1)\right)\right] - \left(1 - \Prob\left((U_1, X_1) \in A_j\right)\right)\right) - 1\right)\nonumber \\
+                    &= \lambda t \sum_{j=1}^n\left(\E\left[\exp\left[is_jX_1\mathbbm{1}_{A_j}(U_1, X_1)\right]\right] - 1\right) \label{eq:logKarakteristicnaFunkcija}
+            \end{align}
+            Vidimo, da je (\ref{eq:logKarakteristicnaFunkcija}) ravno vsota logaritmov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
             Tako sledi, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, S_t^{(n)}$ neodvisne in po obliki karakteristi"cne 
             funckcije vidimo, da so res porazdeljene sestavljeno Poissonovo.
         \end{proof}
 
         Izrek o markiranju CPP ima vrsto uporabnih posledic. Direktno nam poda 
-        alternativen dokaz za dokaz neodvisnosti in stacionarnosti prirastkov CPP.
+        alternativen dokaz za neodvisnost in stacionarnost prirastkov CPP.
 
         \begin{posledica}
             CPP ima neodvisne in stacionarne prirastke.
@@ -1115,9 +1108,9 @@ V nastajanju :)
             Naj bo za $0\leq t_1 \leq \cdots \leq t_n$ $A_1, \dots, \ A_n$ disjunktna particija 
             mno"zice $[0, \infty) \times \R$ defniriana kot
             \begin{equation*}
-                A_j = [t_{j-1}, t_j)\times \R, \quad j = 1, \dots, n.
+                A_1 = [0, t_1)\times \R, \quad A_j = [t_{j-1}, t_j)\times \R, \quad za \ j = 2, \dots, n \ in \quad A_{n + 1} = [t_{n}, \infty)\times \R.
             \end{equation*}
-            Potem so slu"cajne spremenljivke $S_{t_1}^{(1)}, \dots, \ S_{t_n}^{(n)}$ neodvisne in enako
+            Potem so slu"cajne spremenljivke $S_{t_1}^{(1)}, \dots, \ S_{t_{n+1}}^{(n)}$ neodvisne in enako
             porazdeljene kot 
             \begin{equation*}
                 S_{t_j}^{(j)} \sim \sum_{i=1}^{N_{t_j} - N_{t_{j-1}}}X_i, \quad j = 1, \dots, n.
@@ -1134,27 +1127,10 @@ V nastajanju :)
             $0\leq t_1 \leq \cdots \leq t_n$ in $A_1, \dots, \ A_n$ disjunktna particija mno"zice
         \end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     \subsection{Neskon"cna deljivost}
+    Koncept neskončne deljivosti je 
+    temeljni pri "studiranju slu"cajnih procesov. 
+    
 
     \begin{definicija}
         Naj bo $X$ slu"cajna spremenljivka. Pravimo, da je $X$ \textit{neskon"cno deljiva}, "ce za vsak $n\in\N$
