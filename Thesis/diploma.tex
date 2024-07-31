@@ -1586,14 +1586,13 @@ V nastajanju :)
 
             \begin{proof}
                 Zaradi konveksnosti eksponentne funkcije je mno"zica $I = \{u\in\R \mid M_{Y_1}(u) < \infty\}$ konveksna, 
-                torej je $I$ interval, poltrak ali kar cela realna os. Po predpostavki obstaja $\ell \in I$ za 
+                torej je $I$ interval, poltrak ali kar cela realna os. Po predpostavki obstaja pozitiven $\ell \in I$ za 
                 katerega vejla $M_{Y_1}(\ell) = 1$.
                 Ker ima $Y_1$ lahek rep, obstaja $\varepsilon > 0$, da je $M_{Y_1}(u) < \infty$ za $u\in(-\varepsilon, \varepsilon)\subseteq I$.
                 Ker velja $M_{Y_1}(0) = 1$ in $M_{Y_1}'(0) = \E\left[Y_1\right] < 0$ (zaradi pogoja NPC) ter
                 $M_{Y_1}''(u) = \E\left[Y_1^2e^{Y_1u}\right] > 0$ $(Y_1 \neq 0 \ \text{skoraj gotovo})$ za 
-                $u>0$, je $M_{Y_1}(u)$ zvezna konveksna funkcija na intervalu $(-\varepsilon, \varepsilon)$, kjer 
-                v okolici ni"cle pada. Po predpostavki obstaja $\ell > 0$, da je $M_{Y_1}(\ell) = 1$, ki pa
-                je zaradi konveksnosti funkcije enoli"cno dolo"cen.
+                $u>0$, je $M_{Y_1}$ zvezna konveksna funkcija na $I$, kjer 
+                v okolici ni"cle pada. Tako je $\ell$ zaradi konveksnosti $M_{Y_1}$ enoli"cno dolo"cen.
             \end{proof}
 
             \begin{izrek}(Lundbergova neenakost)
@@ -1927,7 +1926,7 @@ V nastajanju :)
                 \end{equation}
                 kjer je $M^{\ell}$ prenovitvena mera prenovitvenega procesa z medprihodnimi "casi, 
                 ki imajo porazdelitveno funkcijo $F_\ell$. V splo"snem $M^{\ell}$ te"zko dolo"cimo. 
-                "Ce pa je $u\mapsto qe^{\ell u}(1 - \overline{F}_X(u))$ direktno Riemannovo integrabilna
+                "Ce pa je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ direktno Riemannovo integrabilna
                 (\ref{def:direktnaRieamnovaIntegrabilnost}), nam 
                 Smithov izrek da asimptoti"cno vedenje re"sitve (\ref{eq:resitevCramerjevePrenovitveneEnacbe}),
                 ko gre $u\to\infty$.
@@ -2103,6 +2102,41 @@ V nastajanju :)
             kar pomeni, da je repna porazdelitev vsote $n$-tih slu"cajnih spremenljivk asimptoti"cno
             primerljiva s porazdelitvijo najve"cje. Dokaz ekvivalence lahko bralec najde v \cite{9} na strani $437$.
         \end{opomba}
+
+        \begin{lema}
+            Naj bo $F_{X_1}$ subeksponentna porazdelitvena funkcija nenegativne slu"cajne spremenljivke 
+            $X_1$. Potem za vsak $\varepsilon > 0$ obstaja pozitivna konstanta $K(\varepsilon) < \infty$, 
+            da za vsak $n\geq2$ velja 
+            \begin{equation*}
+                \frac{\Prob(X_1 + \cdots + X_n > x)}{\Prob(X_1 > x)} \leq K(\varepsilon)(1+\varepsilon)^n, \quad x \geq 0. 
+            \end{equation*} 
+            \label{lema:ocenaSubeksponentnePorazdelitve}
+        \end{lema}
+
+        \begin{proof}
+            Fiksiramo $n\geq2$ in $x\geq0$. Ulomek preoblikujemo
+            \begin{align*}
+                \frac{\Prob(X_1 + \cdots + X_n > x)}{\Prob(X_1 > x)} 
+                &= \frac{(1 - F_{X_1}^{*n}(x)) + F_{X_1}(x) - F_{X_1}(x)}{1 - F_{X_1}(x)} \\
+                &= 1 + \frac{F_{X_1}(x) - F_{X_1}^{*n}(x)}{1 - F_{X_1}(x)}. \\
+            \end{align*}
+            Naj bo $a_n = \sup_{x\geq0}\biggl\{ 1 + \frac{F_{X_1}(x) - F_{X_1}^{*n}(x)}{1 - F_{X_1}(x)}\biggr\}.$ Za 
+            konstanto $M\in(0, \infty)$ lahko ocenimo
+            \begin{align*}
+                a_{n+1} &\leq 1 + \sup_{0\leq x\leq M}\int_{(0,x]}\frac{1 - F_{X_1}^{*n}(x - y)}{1 - F_{X_1}(x)}\, dF_{X_1}(y) \\
+                            & \quad + \sup_{x\geq M}\int_{(0, x]}\frac{1 - F_{X_1}^{*n}(x - y)}{1 - F_{X_1}(x - y)}\frac{1 - F_{X_1}(x - y)}{1 - F_{X_1}}(x) \, dF_{X_1}(y) \\
+                        &\leq 1 + T + a_n\sup_{x\geq M}\frac{F_{X_1}(x) - F_{X_1}^{*2}(x)}{1 - F_{X_1}(x)},
+            \end{align*}
+            kjer je $T = (1 - F_{X_1})^{-1}(M) < \infty$. Ker je $F_{X_1}$ subeksponentna lahko 
+            za vsak $\varepsilon > 0$ izberemo tak $M$, da velja
+            \begin{align*}
+                a_{n+1} \leq 1 + T + a_n(1 + \varepsilon)
+            \end{align*}
+            in tako dobimo "zeleno oceno
+            \begin{equation*}
+                a_n \leq \underbrace{(1 + T)\frac{1}{\varepsilon}}_{K(\varepsilon)}(1 + \varepsilon)^n.
+            \end{equation*}
+        \end{proof}
         
         \begin{izrek}(Asimptotika verjetnosti propada, te"zkorepe porazdelitve)
             Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC in 
@@ -2149,8 +2183,14 @@ V nastajanju :)
             \begin{align*}
                 \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}   &= \lim_{u\to\infty}p\sum_{n=1}^{\infty}q^n\frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u\right)}{1 - \overline{F}_{X_1}(u)}.
             \end{align*}
-            Limito in vsoto lahko zamenjamo, saj "ce definiramo zaporedje funkcij ...
-
+            "Ce vzamemo $\varepsilon < \frac{1}{q} - 1$, lahko po lemi \ref{lema:ocenaSubeksponentnePorazdelitve} zaporedje funkcij 
+            \begin{equation*}
+                f_k(n) = \frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u_k\right)}{1 - \overline{F}_{X_1}(u_k)}, \quad n\geq 2,\ k\in\N, 
+            \end{equation*}
+            omejimo z integrabilno funkcijo $K(\varepsilon)(1 + \varepsilon)^n$ za vsak $n\geq 2$ (glede na mero, ki "steje). Limito $u\to\infty$ po 
+            realnih "stevilih nadomestimo z limito po zaporedjih pozitivnih "stevil $u_k\xrightarrow{k\to\infty}\infty$.
+            Tako lahko po Lebesgueovem izreku o dominirani konvergenci (\ref{izr:dominiranaKonvergenca})
+            zamenjanmo vrstni red limite in vsote.
             Ker je $\overline{F}_{X_1}$ subeksponentna, za vsak $n\in\N$ velja
             \begin{equation*}
                 \lim_{u\to\infty}\frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u\right)}{1 - \overline{F}_{X_1}(u)} = n.
@@ -2179,7 +2219,8 @@ V nastajanju :)
         Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC.\ Naj 
         nadalje velja, da so zahtevki neodvisni Weibullovo porazdeljeni s parametroma
         $a= \frac{1}{4}$ in $b= 16$, torej $X_i\sim\text{Weibull}(\frac{1}{4}, 16)$. 
-        Za dokaz, da je $\overline{F}_{X_1}$ subeksponentna, lahko bralec pogleda [...\dots].
+        Dokaz, da je $\overline{F}_{X_1}$ subeksponentna porazdelitvena funkcija, lahko bralec 
+        najde v \cite{9} na strani 444.
         Recimo, da je intenzivnost 
         prihodov zahtevkov $\lambda = 1$ in stopnja prihodkov premij $c = 500$.
         Podobno kot v zgledu \ref{zgd:MonteCarlo} z Monte Carlo simulacijami poka"zimo, da 
