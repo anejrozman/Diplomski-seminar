@@ -89,7 +89,7 @@
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\1}{\mathds{1}}
 \newcommand{\Pois}[1]{\text{Pois}(#1)}
-\newcommand{\Var}[1]{\text{Var}\left[#1\right]}
+\newcommand{\Var}[1]{\text{$\mathbb{V}\!\mathrm{ar}$}\left[#1\right]}
 \DeclareMathOperator{\HPP}{HPP}
 \DeclareMathOperator{\CPP}{CPP}
 
@@ -128,17 +128,16 @@ Ljubljana, \letnica}
 
 %--------------------------------------POVZETEK V SLOVENSCINI--------------------------------------%
 
-V prvem delu diplome najprej definiramo splo"sen slu"cajni proces v zveznem "casu in osnovne lastnosti, 
-ki jih "studiramo. Nato definiramo sestavljeno Poissonovo porazdelitev in izpeljemo rodovne funkcije, 
-obravnavamo njeno povezavo s splo"snimi porazdelitvami in izpeljemo Panjerejevo rekurzivno shemo. 
-Definiramo sestavljeni Poissonov proces in doka"zemo neodvisnost in stacionarnost prirastkov, 
-njegovo raz"clenitev glede na "cas in prostor ter ga obravnavamo, kot gradnik neskon"cno deljivih 
-procesov ti. Lévijevih procesov. 
-V drugem delu 
-diplome obravnavamo aplikacijo sestavljenega Poissonovega procesa v Cramér--Lundbergovem modelu. Definiramo 
+V prvem delu diplome najprej definiramo sestavljeno Poissonovo porazdelitev in izpeljemo obliko njenih rodovnih 
+funkcij, obravnavamo njeno povezavo s splo"snimi porazdelitvami in izpeljemo Panjerejevo rekurzivno shemo. 
+Nato definiramo sestavljeni Poissonov proces in poka"zemo nekaj osnovnih lastnosti kot je neodvisnost 
+in stacionarnost prirastkov. Izpeljemo nekaj rezultatov, ki jih dobimo, ko 
+sestavljeni Poissonov proces markiramo in ga 
+obravnavamo kot gradnik neskon"cno deljivih procesov ti. Lévijevih procesov. 
+V drugem delu diplome obravnavamo aplikacijo sestavljenega Poissonovega procesa v Cramér--Lundbergovem modelu. Definiramo 
 verjetnost propada in obravnavamo njeno obna"sanje v odvisnoti od za"cetnega kapitala. Doka"zemo 
 Lundbergovo neenakost in asimptoti"cno obna"sanje verjetnosti propada, ko zahtevke modeliramo z 
-la"zkorepo in te"zkorepo porazdelitvijo. Obna"sanje verjetnosti propada na koncu prakti"cno prika"zemo 
+lahkorepimi in te"zkorepimi porazdelitvami. Obna"sanje verjetnosti propada na koncu prakti"cno prika"zemo 
 z ve"ckratkim simuliranjem procesa tveganja.
 %--------------------------------------------------------------------------------------------------%
 
@@ -149,19 +148,17 @@ z ve"ckratkim simuliranjem procesa tveganja.
 \end{center}
 
 %--------------------------------------POVZETEK V ANGLESCINI---------------------------------------%
-In the first part of the diploma, we define a general stochastic process in continuous time and 
-basic properties that we study. We then define the compound Poisson distribution and derive the
-generating functions, discuss its connection with general distributions, and derive the Panjer recursion method.
-We define the compound Poisson process and prove the independence and stationarity of increments,
-its decomposition with respect to time and space, and consider it as a building block of infinitely divisible
-processes, i.e. Lévy processes.
-In the second part of the diploma, we consider the application of the compound Poisson process in the Cramér--Lundberg model. 
-We define the probability of ruin and consider its behavior depending on the initial capital. 
-We prove the Lundberg inequality and the asymptotic behavior of the probability of ruin when claims 
-are modeled with light-tailed and heavy-tailed distributions. We practically demonstrate the behavior 
-of the probability of ruin at the end with repeated simulation of the risk process.
-
-%--------------------------------------------------------------------------------------------------%
+In the first part of the thesis, we define the compound Poisson distribution and derive the form of its
+generating functions, discuss its connection with general distributions, and derive the Panjer recursion scheme.
+We then define the compound Poisson process and show some basic properties such as the independence and
+stationarity of increments. We derive some results of the marked compound Poisson process and consider it as a
+building block of infinitely divisible processes i.e. Lévy processes. In the second part of the thesis, we
+consider the application of the compound Poisson process in the Cramér--Lundberg model. We define the probability
+of ruin and consider its behavior depending on the initial capital. We prove the Lundberg inequality and the
+asymptotic behavior of the probability of ruin when the claims are modeled by light-tailed and heavy-tailed
+distributions. We practically demonstrate the behavior of the probability of ruin by repeatedly
+simulating the risk process.
+%-----------------------------------------------------------------------------------%
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
@@ -177,58 +174,67 @@ Cramér--Lundberg model, probability of ruin, light-tailed distribution, heavy-t
 %--------------------------------------------ZAHVALA-----------------------------------------------%
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \section*{Zahvala}
-V nastajanju :)
-%Zahvaljujem se doc. dr. Martinu Rai"cu za njegovo mentorstvo. S širokim znanjem in izkušnjami 
-%me je pomagal pri razumevanju in nadgradnji tematik, ki jih obravnavamo na dodiplomskem 
-%"sutidiju Finan"cne matematike. Hvaležen sem mu za njegovo izjemno pripravljenost, za pomoč,
-%večkratne diskusije, svetovanje pri dokazovanju izrekov in oblikovanju besedila, natančnost pri 
-%pregledovanju napisanega teksta ter vzpodbude pri premagovanju ovir.
+V nastajanju :) 
+%\noindent
+%Zahvaljujem se doc.\ dr.\ Martinu Rai"cu za njegovo mentorstvo. S svojim znanjem in izkušnjami 
+%mi je pomagal ne le pri razumevanju snovi predstavljene v delu, ampak tudi pri razlagi
+%naprednej"sih tem, ki so povezane s slu"cajnimi procesi. Hvaležen sem mu za njegovo izjemno pripravljenost,
+%večkratne (dolge) diskusije, svetovanje pri dokazovanju izrekov, oblikovanju in natančnost pri 
+%pregledovanju besedila.
 %
-%Hvala tudi moji družini in prijateljem za podporo in spodbudo pri delu na tem diplomskem seminarju.
+%\noindent
+%Zahvaljujem se tudi svoji dru"zini za vso podporo med "studijem. 
+%
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 \pagebreak
 %--------------------------------------------VSEBINA-----------------------------------------------%
 
 \section{Uvod}
+Na različnih področjih, kot so finance, telekomunikacija in predvsem zavarovalništvo, 
+se je v zadnjem stoletju pojavila potreba po modeliranju raznih pojavov oziroma procesov. Eden najpreprostejših primerov 
+je modeliranje števila dogodkov v nekem časovnem intervalu. Konkretno si zamislimo, da zavarovalnica 
+želi modelirati število ljudi, ki bodo v enem dnevu vložili zahtevek za avtomobilsko zavarovanje. 
+Tovrstne procese standardno modeliramo s homogenim Poissonovim procesom oziroma v splošnem s procesi 
+štetja. V delu privzamemo, da je bralec s temi temami že seznanjen, saj slu"zijo kot osnova za teorijo, 
+ki jo izpeljemo. 
 
-    \begin{center}
-        \framebox[\linewidth]{%
-    \rule{0pt}{50pt}%
-    Uvodni tekst in motivacija za "studiranje procesa, naka"zi da bo"s obravnaval Cramer-Ludenbergov model%
-        }
-    \end{center}
+V praksi zavarovalnico redko zanima "stevilo zahtevkov, veliko bolj pomembno je, kolik"sno "skodo bo 
+morala popla"cati v enem dvnevu. Seveda ne 
+moremo privzeti, da so vsi zahtevki enaki. Škoda, ki nastane v prometni nesreči, je v večini primerov precej 
+večja od tiste, ki nastane, če oseba poškoduje vrata avtomobila. Potrebe po modeliranju takih procesov
+v zavarovalni"stvu so nas pripeljale do razvoja teorije sestavljenih procesov.
 
+Ideja je, da vsak prihod v procesu "stetja obtežimo z neko slučajno spremenljivko, ki predstavlja vi"sino "skode enega
+zahtevka. 
+Te vrednosti skozi čas seštevamo in tako dobimo oceno za kumulativno škodo, ki jo zavarovalnica 
+mora poplačati v enem dnevu.
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{
             C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika1.pdf
             }
-        \caption{Primer trajektorije sestavljenega Poissonovega procesa}
+        \caption{Primer trajektorije sestavljenega Poissonovega procesa z intenzivnostjo $\lambda = 0{,}1$ in
+        eksponentno porazdeljenimi zahtevki $X_i\sim\text{Exp}(20)$.}
         \label{fig:slika1}
     \end{figure}
-    
     \noindent
+    Na sliki \ref{fig:slika1} je prikazan primer trajektorije sestavljenega Poissonovega procesa, ki je 
+    poseben primer splo"snega sestavljenega procesa in osrednja tema dela. 
 
-    \begin{definicija}
-        Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
-        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$, pravimo 
-        \textit{homogeni Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
-        \begin{enumerate}
-            \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
-            \item $(N_t)_{t\geq 0}$ ima neodvisne in stacionarne prirastke,
-            \item Za $0 \leq s < t$ velja $ N_t - N_s \sim\Pois{\lambda(t - s)}$,
-        \end{enumerate}
-        \label{def:HPP}
-    \end{definicija}
+    V prvem delu se bomo ostredoto"cili na sestavljeno Poissonovo porazdelitev in pokazali 
+    njene glavne lastnosti, ki bodo klju"cnega pomena pri obravnavi sestavljenega Poissonovega procesa.
 
-    V delu bomo z $V_n$ ozna"cevali "cas $n$-tega prihoda Poissonovega procesa in s $T_n$ $n$-ti 
-    medprihodni "cas.
-    \pagebreak
+    V drugem delu pa se bomo posvetili Cramér--Lundbergovem modelu, ki temelji na teoriji
+    sestavljenega Poissonovega procesa in je
+    osnovni model v teoriji tveganja. Obravnavali bomo predvsem verjentnost propada zavarovalnice. Na koncu 
+    bomo dokazali dva zanimiva izreka o asimptoti"cnem obna"sanju verjetnosti propada ko modeliramo 
+    razli"cene vrste zahtevkov. 
+    
 
 \section{Sestavljena Poissonova porazdelitev}
 
     \noindent
-    Razdelek je prirejen po \cite{1}, \cite{2} in \cite{3}.
+    Razdelek je prirejen po \cite{1}, \cite{2} in \cite{4}.
 
     Sestavljena Poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki ga obravnavamo 
     v naslednjem razdelku. Lastnosti, ki jih doka"zemo so direktno prenosljve na sam proces. Obravnavamo 
@@ -299,7 +305,9 @@ V nastajanju :)
         \label{zgd:sestavljenaPoissonovaPorazdelitevGamma}
     \end{zgled}
 
-    \subsection{Rodovne, momentno-rodovne in karakteristi"cne funkcije}
+    \subsection{Rodovne, momentno-rodovne in karakteristi"cne funkcije} Klju"cno \newline orodje pri dokazovanju
+    lastnosti slu"cajnih spremenljivk so rodovne funckije (\ref{def:rodovneFunkcije}), saj nam pomagajo
+    pri obravnavi vsot neodvisnih slu"cajnih spremenljivk in ("ce obstajajo) popolnoma dolo"cajo njihovo porazdelitev.  
 
     \begin{trditev}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -337,8 +345,8 @@ V nastajanju :)
 
     \begin{proof}
     V splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $X$ enaka
-    njeni momentno-rodovni funckij izvrednoteni v $iu$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
-    pa je enaka momentno-rodovni funkciji izvrednoteni v $\ln(u)$, torej 
+    njeni momentno-rodovni funckij izvrednoteni v $iu$ za $u\in\R$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
+    pa je enaka momentno-rodovni funkciji izvrednoteni v $\ln(u)$ za $u>0$, torej 
     $G_X(u) = M_X\left(\ln(u)\right)$, "ce obstajata.
     \end{proof}
 
@@ -374,7 +382,7 @@ V nastajanju :)
 
     \begin{definicija}
         Naj bo $(\lambda_k)_{k\in\N}$ zaporedje pozitivnih realnih "stevil, za katerega velja 
-        $\sum_{k=1}^\infty\lambda_k = 1$. Naj bodo $F_1, F_2, \dots$ porazdelitvene funkccije
+        $\sum_{k=1}^\infty\lambda_k = 1$. Naj bodo $F_1, F_2, \dots$ porazdelitvene funkcije
         realnih slu"cajnih spremenljivk $X_1, X_2, \dots$ Potem 
         \begin{equation*}
             F = \sum_{k=1}^\infty\lambda_kF_k
@@ -429,7 +437,7 @@ V nastajanju :)
             \varphi_{S}(u) 
                 &= \prod_{k=1}^n\varphi_{S^{(k)}}(u) \\
                 &= \prod_{k=1}^n\exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right] \\
-                &= \exp\left[\lambda\left(\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u) - 1\right)\right].
+                &= \exp\Biggl[\lambda\Biggl(\underbrace{\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u)}_{\varphi_{Y_1}{u}} - 1\Biggr)\Biggr].
         \end{align*}
         Po izreku o 
         enoli"cnosti (\ref{izr:enolicnost}) sledi $S\sim\sum_{i=1}^{N}Y_i$.
@@ -563,7 +571,7 @@ V nastajanju :)
 
 
     \subsection{Panjerjeva rekurzivna shema}
-    Poglejmo si popularno metodo za ra"cunaje sestavljene Poissonove porazdelitve v praksi. Kot
+    Poglejmo si popularno metodo za numeri"cno ocenjevanje sestavljene Poissonove porazdelitve v praksi. Kot
     smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
     porazdelitve $S$ v kon"cni obliki v splo"snem nemogo"ce. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
     rekurzivno izraziti in ustrezno posplo"siti na "sir"si razred porazdelitev.
@@ -657,8 +665,10 @@ V nastajanju :)
         Izka"ze se, da le tri porazdelitve 
         ustrezajo pogojem iz trditve \ref{tdr:PanjerRecursionScheme}. Te so $\Pois{\lambda}$, $\text{Bin}(p)$ in
         $\text{NegBin}(r, p)$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
-        \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. Tudi v ostalih primerih (argument je podan v \cite{4} na strani 122) se izka"ze, da je $a < 1$, tako da je 
+        \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. 
+        Tudi v ostalih primerih (argument je podan v \cite{4} na strani 122) se izka"ze, da je $a < 1$, tako da je 
         ena"cba (\ref{eq:PanjerRecursionScheme}) res dobro definirana.
+        \label{op:PanjerRazsiritev}
     \end{opomba}
 
     \begin{opomba}
@@ -671,11 +681,13 @@ V nastajanju :)
 
     \begin{zgled}(Nadaljevanje zgleda \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}) Recimo, da imamo
         konkretni porazdeltivi $N\sim\Pois{9}$ in $X_i\sim\text{Exp}(\frac{1}{\pi})$. S stopni"castima funkcijama
-        $F^u_h$ in $F_h^l$ aproksimiramo porazdelitveno funkcijo $F_{X_1}$ za vrednosti $h \in \{1, \ 0{,}1\}$.
+        $F^u_h$ in $F_h^l$ aproksimiramo porazdelitveno funkcijo $F_{X_1}$ za vrednosti $h \in \{1, \ 0{,}1\}$. 
+        (Aproksimacije so na sliki \ref{fig:slika7} in so obarvane;  $F^u_{1}$ modra, $F^u_{0{,}1}$ 
+        rde"ca, $F^l_{1}$ vijoli"cna in $F^l_{0{,}1}$ oran"zna).
         Za vsak $n\in\N$ velja $F^u_h(x) = F_{X_1}((n+1)h)$ za $x\in\bigl[nh, (n+1)h\bigr)$ in 
         $F^l_h(x) = F_{X_1}(nh)$ za $x\in\bigl[nh, (n+1)h\bigr)$.
         S Panjerjevo rekurzivno shemo izra"cunamo pribli"zke porazdelitvene funkcije slu"cajne 
-        spremenljivke $S$ na intervalu $[0, 60]$. Rezultate prika"zemo na sliki \ref{fig:slika7}. 
+        spremenljivke $S$ na intervalu $[0, 60]$.  
  
         \begin{figure}[h!]
             \begin{center}
@@ -687,15 +699,17 @@ V nastajanju :)
             \end{center}
         \end{figure}
         
-        \label{zgd:PanjerExp}  
-    \end{zgled}
- 
+    \pagebreak
     Vidimo, da "ze za $h = 0{,}1$ dobimo zelo natan"cno aproksimacijo porazdelitve. Danes 
     Panjerjeva metoda predstavlja alternativo Monte Carlo metodam. Njena glavna prednost 
     je, da z manj"sanjem koraka $h$ dose"zemo poljubno natan"cno to"cno aproksimacijo neke porazdelitve. 
     Monte Carlo metode so bolj splo"sne, saj temeljijo zgolj na ponavljanju simulacij in se lahko uporabljajo za modeliranje bolj zapletenih 
-    porazdelitev, ki ne zadovoljujejo pogojev trditve \ref{tdr:PanjerRecursionScheme}.
-    \pagebreak
+    porazdelitev, ki ne zadovoljujejo pogojev trditve \ref{tdr:PanjerRecursionScheme} ali njene posplo"sitve
+    v opombi \ref{op:PanjerRazsiritev}.
+
+    \label{zgd:PanjerExp}  
+    \end{zgled}
+
 
 \section{Sestavljeni Poissonov proces}
 
@@ -704,8 +718,28 @@ V nastajanju :)
 
 
     Poka"zemo, da ima sestavljeni Poissonov proces neodvisne in stancionarne prirastke. Markiranje, pokazemo 
-    da spada v sirsi razred slucajnih procesov t.i.\ Levijevih procesov.
+    da spada v sirsi razred slucajnih procesov t.i.\ Levijevih procesov. 
+    
+    Ker sestavljeni Poissonov proces
+    sloni na homogenem Poissonovem procesu, najprej definiramo tega na najbolj klasi"cen na"cin.
 
+    \begin{definicija}
+        Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
+        prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$, pravimo 
+        \textit{homogeni Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
+        \begin{enumerate}
+            \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
+            \item $(N_t)_{t\geq 0}$ ima neodvisne in stacionarne prirastke,
+            \item Za $0 \leq s < t$ velja $ N_t - N_s \sim\Pois{\lambda(t - s)}$,
+        \end{enumerate}
+        \label{def:HPP}
+    \end{definicija}
+
+    \begin{opomba}
+    V delu bomo z $V_n$ ozna"cevali "cas $n$-tega prihoda v homogenem Poissonovem procesu in s $T_n$ $n$-ti 
+    medprihodni "cas. Za medprihodne "case velja velja, da so neodivsni in enako porazdeljeni, kot 
+    $T_1 \sim \text{Exp}(\lambda)$. Bralec lahko najde dokaz ekvivalence v \cite{7} na strani ...
+    \end{opomba}
 
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ Poissonov proces z intenzivnostjo $\lambda$. 
@@ -1930,11 +1964,17 @@ V nastajanju :)
                 (\ref{def:direktnaRieamnovaIntegrabilnost}), nam 
                 Smithov izrek da asimptoti"cno vedenje re"sitve (\ref{eq:resitevCramerjevePrenovitveneEnacbe}),
                 ko gre $u\to\infty$.
-                Direktno Riemannovo integrabilnost preverimo tako, da zapi"semo 
+                Direktno Riemannovo integrabilnost preverimo tako, da upo"stevamo 
+                \begin{equation*}
+                    \int_{(0, \infty)}xe^{\ell x}(1 - \overline{F}_{X_1}(x))dx < \infty, 
+                \end{equation*}
+                in funkcijo $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ zapi"semo kot
                 \begin{align*}
-                    qe^{\ell u}(1 - \overline{F}_{X_1}(u)) &= \int_{()}
+                    qe^{\ell u}(1 - \overline{F}_{X_1}(u))
+                     &= q\int_{(u, \infty)}e^{\ell x}\, d\overline{F}_{X_1}(x) 
+                        - q\ell \int_{(u, \infty)}(1 - \overline{F}_{X_1}(x))e^{\ell x}\, dx \\                                  
                 \end{align*}
-                Tako vidimo, da je $qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
+                Tako vidimo, da je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
                 Riemannovo integrabilnih funkcij in je zato po kriteriju (\ref{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}) 
                 direktno Riemannovo integrabilna. Dobimo 
                 \begin{equation}
@@ -2286,6 +2326,22 @@ V nastajanju :)
     \end{definicija}
 
     \begin{definicija}
+        Naj bosta $F$ in $G$ porazdelitveni funkciji dveh neodvisnih nenegativnih slu"cajnih 
+        spremenljivk $X$ in $Y$. \textit{Konvoulicjo} funkcij $F$ in $G$ definiramo kot
+        Lebesgue-Stieltjesov integral
+        \begin{equation*}
+            (F*G)(t) = \int_{[0, t]}F(t - x)\, dG(x) = \int_{[0, t]}G(t - x)\, dF(x).
+        \end{equation*} 
+        Konovlucija $(F*G)$ se ujema s porazdelitveno funkcijo vsote $X + Y$, kar lahko 
+        enostavno poka"zemo z uporabo transformacijske formule.
+        Za neodvisne in enako porazdeljene nenegativne slu"cajne spremenljivke $X_1, X_2, \dots, X_n$ 
+        s porazdelitveno funkcijo $F_{X_1}$ rekurzivno definiramo \textit{k-to konvoulicijo} kot
+        \begin{equation*}
+            F_{X_1}^{*k}(t) = (F_{X_1}*\cdots*F_{X_1})(t) = \int_{[0, t]}F_{X_1}^{*(k-1)}(t - x)\, dF_{X_1}(x),
+        \end{equation*}
+        ki se prav tako ujema s porazdelitveno funkcijo vsote $X_1 + X_2 + \cdots + X_n$. 
+
+
 
         
         \label{def:konvolucija}
@@ -2303,7 +2359,7 @@ V nastajanju :)
         V delu se bomo omejili na primer, ko $T$ predstavlja "cas, torej $T = [0, \infty)$ in da slu"cajne
         spremenljivke 
         zavzemajo vrednosti v realnih "stevilih, torej $(E, \Sigma) = (\R, \B_{\R})$, kjer $\B_\R$ 
-        predstavlja Borelovo $\sigma-$algebro na $\R$.
+        predstavlja Borelovo $\sigma$-algebro na $\R$.
         \label{op:Konvencije}
     \end{opomba}
 
@@ -2504,11 +2560,9 @@ V nastajanju :)
         Dokaz izreka lahko bralec najde v \cite{7}.
     \end{proof} 
 
-    \begin{trditev}
-        Definicija homogenega Poissonovega procesa \ref{def:HPP} je ekvivalentna karakterizaciji 
-        z lastnostjo vrstilnih statistik. Naj bo $\lambda > 0$ in $(N_t)_{t\geq0}$ enostavni 
-        proces "stetja za katerega je $N_0 = 0$ s.g.\ Naj za vsak $t\geq0$ velja $N_t \sim \text{Pois}(\lambda t)$ in, 
-        pogojno na dogodek $\{N_t = k\}$ je vektor "casov prihodov porazdeljen kot 
+    \begin{trditev}(Lastnost vrstilnih statistik)
+        Naj bo $(N_t)_{t\geq0}$ homogeni Poissonov proces z intenzivnostjo $\lambda > 0$. 
+        Za $k\in\N$ je pogojno na dogodek $\{N_t = k\}$ vektor "casov prihodov porazdeljen kot 
         \begin{equation*}
             (V_1, \dots, V_k) \mid \{N_t = k\} \sim (U_{(1)}, \dots, U_{(k)}),
         \end{equation*}
@@ -2518,7 +2572,7 @@ V nastajanju :)
     \end{trditev}
 
     \begin{proof}
-        Dokaz trditve lahko bralec najde v \cite{7}.
+        Dokaz trditve lahko bralec najde v \cite{4} na strani 24.
     \end{proof}
 
     \begin{definicija}
