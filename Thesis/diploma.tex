@@ -221,10 +221,12 @@ mora poplačati v enem dnevu.
     Na sliki \ref{fig:slika1} je prikazan primer trajektorije sestavljenega Poissonovega procesa, ki je 
     poseben primer splo"snega sestavljenega procesa in osrednja tema dela. 
 
-    V prvem delu se bomo ostredoto"cili na sestavljeno Poissonovo porazdelitev in pokazali 
-    njene glavne lastnosti, ki bodo klju"cnega pomena pri obravnavi sestavljenega Poissonovega procesa.
+    V prvem delu diplome se bomo ostredoto"cili na sestavljeno Poissonovo porazdelitev in pokazali 
+    njene glavne lastnosti, ki bodo klju"cnega pomena pri obravnavi sestavljenega Poissonovega procesa. 
+    Izpeljali bomo osnovne lastnosti procesa, ki jih bomo skozi delo uporabljali in nekaj zanimivih tem 
+    kot so markiranje in neskon"cna deljivost.
 
-    V drugem delu pa se bomo posvetili Cramér--Lundbergovem modelu, ki temelji na teoriji
+    V drugem delu diplome pa se bomo posvetili Cramér--Lundbergovem modelu, ki temelji na teoriji
     sestavljenega Poissonovega procesa in je
     osnovni model v teoriji tveganja. Obravnavali bomo predvsem verjentnost propada zavarovalnice. Na koncu 
     bomo dokazali dva zanimiva izreka o asimptoti"cnem obna"sanju verjetnosti propada ko modeliramo 
@@ -337,10 +339,11 @@ mora poplačati v enem dnevu.
     
     \begin{posledica}
         Rodovna in karakteristi"cna funkcija $S=\sum_{i = 1}^{N}X_i$ imata obliko 
-    \begin{equation*}
-        G_{S}(u) = e^{\lambda \left(G_{X_1}(u) - 1\right)}, \qquad \text{in} \qquad
-        \varphi_{S}(u) = e^{\lambda \left(\varphi_{X_1}(u) - 1\right)}.
-    \end{equation*}
+        \begin{equation*}
+            G_{S}(u) = e^{\lambda \left(G_{X_1}(u) - 1\right)}, \qquad \text{in} \qquad
+            \varphi_{S}(u) = e^{\lambda \left(\varphi_{X_1}(u) - 1\right)}.
+        \end{equation*}
+        \label{pos:RodovnaKarakteristicna}
     \end{posledica}
 
     \begin{proof}
@@ -351,7 +354,7 @@ mora poplačati v enem dnevu.
     \end{proof}
 
     V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $\varphi_S$, saj je ta vedno definirana 
-    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_S$. 
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_N$. 
 
     \begin{lema}
         Karakteristi"cno funkcijo $\varphi_S$ lahko izrazimo kot kompozitum rodovne funkcije $G_N$ in 
@@ -645,7 +648,7 @@ mora poplačati v enem dnevu.
             \Prob\left(S = n\right) 
                 = \sum_{k = 1}^\infty\sum_{i = 0}^n \left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right).
         \end{align*}
-        Po Tonellijevem izreku (\ref{izr:TonellijevIzrek}) lahko zamenjamo vrstni red integracije, da dobimo
+        Po Tonellijevem izreku (\ref{izr:TonellijevIzrek}) lahko zamenjamo vrstni red vsot, da dobimo
         \begin{align*}
             \Prob\left(S = n\right) 
                 &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\sum_{k = 1}^\infty\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right)\\
@@ -716,12 +719,16 @@ mora poplačati v enem dnevu.
     \noindent
     Razdelek je prirejen po \cite{1}, \cite{2}, in \cite{3}.
 
+    Sedaj se posvetimo "studiranju sestavljenega Poissonovega procesa. Bralec lahko najde 
+    osnovne definicije in lastnosti med definicijama (\ref{def:slucProc}) in 
+    (\ref{def:neodvisnostSP}) v Prilogi.
+    Najprej doka"zemo in izpeljemo nekaj osnovnih lastnosti procesa kot so neodvisnot in stacionarnost
+    prirastov, pri"cakovana vrednost in varianca. Obravnavamo markiranje procesa glede "cas in 
+    njegovo vrednost. Na koncu predstavimo nekaj splo"sne teorije procesov z neodvisnimi in 
+    stacionarnimi prirastki in kako je ta tesno povezana s sestavljenim Poissonovim procesom 
 
-    Poka"zemo, da ima sestavljeni Poissonov proces neodvisne in stancionarne prirastke. Markiranje, pokazemo 
-    da spada v sirsi razred slucajnih procesov t.i.\ Levijevih procesov. 
-    
-    Ker sestavljeni Poissonov proces
-    sloni na homogenem Poissonovem procesu, najprej definiramo tega na najbolj klasi"cen na"cin.
+    Ker je sestavljeni Poissonov proces nadgradnja homogenenga Poissonovega procesa, najprej podamo definicijo 
+    s katero bomo delali. 
 
     \begin{definicija}
         Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
@@ -737,8 +744,9 @@ mora poplačati v enem dnevu.
 
     \begin{opomba}
     V delu bomo z $V_n$ ozna"cevali "cas $n$-tega prihoda v homogenem Poissonovem procesu in s $T_n$ $n$-ti 
-    medprihodni "cas. Za medprihodne "case velja velja, da so neodivsni in enako porazdeljeni, kot 
-    $T_1 \sim \text{Exp}(\lambda)$. Bralec lahko najde dokaz ekvivalence v \cite{7} na strani ...
+    medprihodni "cas. Za medprihodne "case velja, da so neodivsni in enako porazdeljeni, kot 
+    $T_1 \sim \text{Exp}(\lambda)$. Ta lastnost je tudi alternativna definicija procesa. Bralec 
+    lahko najde dokaz ekvivalence v \cite{7} na strani ...
     \end{opomba}
 
     \begin{definicija}
@@ -763,54 +771,79 @@ mora poplačati v enem dnevu.
     V nadaljevanju bomo homogen Poissonov proces z intenzivnostjo $\lambda >0$ ozna"cevali s $\HPP(\lambda)$ 
     ali naborom slu"cajnih spremenljivk $(N_t)_{t\geq0}$ (angl. Homogeneous Poisson Process), 
     sestavljeni Poissonov proces pa s $\CPP$ ali naborom slu"cajnih spremenljivk $(S_t)_{t\geq0}$ 
-    (angl. Compound Poisson Process), kjer bo vsota sledila $\HPP(\lambda)$. 
+    (angl. Compound Poisson Process), kjer privzamemo, da prihodi sledijo nekem $\HPP(\lambda)$. 
 
     \subsection{Osnovne lastnosti}
     
-        Kot smo nakazali v uvodu dela, nas pri "studiranju slu"cajnih procesov najprej zanimajo osnovne 
-        lastnosti s katerimi je la"zje delati kot z ne"stevnim naborom slu"cajnih spremenljivk in s pomo"cjo 
-        katerih lahko poka"zemo globje rezultate o procesu. 
+        Pri "studiranju slu"cajnih procesov nas najprej zanimajo neke osnovne lastnosti, s katerimi 
+        je la"zje delati kot z ne"stevnim naborom slu"cajnih spremenljivk in s pomo"cjo katerih 
+        lahko poka"zemo globje rezultate o procesu. 
 
-        %\begin{posledica}
-        %    Za fiksen $t\geq0$ ima $S_t$ sestavljeno Poissonovo porazdelitev, tako da imajo njene 
-        %    rodovne funkcije obliko
-        %    \begin{equation*}
-        %        \varphi_{S_t}(u) = e^{\lambda t \left(\varphi_{X_1}(u) - 1\right)}, \quad 
-        %    \end{equation*}
-        %    
-        %    \label{pos:rodovneFunkcijeCPP}
-        %\end{posledica}
+        %\begin{trditev}
+        %    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$ in naj velja $X_0 = 0$ s.g.
+        %    Potem ima $(X_t)_{t\geq0}$
+        %    neodvisne prirastke natanko tedaj, ko je za vsak nabor "stevil 
+        %    $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
+        %    slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
+        %    \label{trd:ekvivKarakterizacija}
+        %\end{trditev}
+%
+        %\begin{proof}
+        %    $(\Leftarrow):$ Recimo, da je za vsak $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ 
+        %    prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
+        %    Potem je $X_{t_{n+1}} - X_{t_n}$ neodvisen tudi od $h(X_{t_1}, \dots, X_{t_n})$ za poljubno merljivo funkcijo $h:\R^n\to \R^n$.
+        %    O"citno je $(X_{t_1}, \dots, X_{t_n}) \mapsto (X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$ taka funkcija,
+        %    torej je $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$. Ker 
+        %    to velja za poljuben $n$ in poljubne $t_i$, sledi, da ima $(X_t)$ neodvisne prirastke. \newline
+        %    $(\Rightarrow):$  Recimo, da ima $(X_t)_{t\geq0}$ neodvisne prirastke. Ker velja $X_0 = 0$ s.g., vemo, da 
+        %    je za poljuben $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$
+        %    prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ in posledi"cno neodvisen od
+        %    $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ za poljubno merljivo funkcijo $h:\R^{n+1}\to \R^{n+1}$, ki 
+        %    jo definiramo na slede"c na"cin:
+        %    \begin{align*}
+        %        h(x_0, x_1, \dots, x_n) &= (h_0, h_1, \dots, h_n),\\
+        %                            h_0 &= x_0, \\
+        %                            h_1 &= x_0 + x_1, \\
+        %                            &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
+        %                            h_n &= x_0 + x_1 + \cdots + x_n.
+        %    \end{align*}
+        %    Tako velja $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}) = (X_0, X_{t_1}, \dots, X_{t_n})$ in s tem je trditev dokazana.
+        %\end{proof}
 
         \begin{trditev}
-            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$ in naj velja $X_0 = 0$ s.g.
-            Potem ima $(X_t)_{t\geq0}$
-            neodvisne prirastke natanko tedaj, ko je za vsak nabor "stevil 
-            $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od
-            slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
-            \label{trd:ekvivKarakterizacija}
+            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. $(X_t)_{t\geq0}$ ima
+            neodvisne in stacionarne prirastke natanko tedaj, ko je za poljubna realna "stevila
+            $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja 
+            \begin{equation}
+                X_{t_{n+1}} - X_{t_n}\mid X_{0}, X_{t_1} \dots, X_{t_n} \sim X_{t_{n+1} - t_n}.
+                \label{eq:neodvisnostStacionarnostPrirastov}
+            \end{equation}
+            \label{trd:neodvisnostStacionarnostPrirastov}
         \end{trditev}
 
         \begin{proof}
-            $(\Leftarrow):$ Recimo, da je za vsak $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$ 
-            prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od slu"cajnega vektorja $(X_{t_1}, \dots, X_{t_n})$.
-            Potem je $X_{t_{n+1}} - X_{t_n}$ neodvisen tudi od $h(X_{t_1}, \dots, X_{t_n})$ za poljubno merljivo funkcijo $h:\R^n\to \R^n$.
-            O"citno je $(X_{t_1}, \dots, X_{t_n}) \mapsto (X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$ taka funkcija,
-            torej je $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_{t_2} - X_{t_1}, \dots, X_{t_{n}} - X_{t_{n-1}})$. Ker 
-            to velja za poljuben $n$ in poljubne $t_i$, sledi, da ima $(X_t)$ neodvisne prirastke. \newline
-            $(\Rightarrow):$  Recimo, da ima $(X_t)_{t\geq0}$ neodvisne prirastke. Ker velja $X_0 = 0$ s.g., vemo, da 
-            je za poljuben $n\in\N$ in poljuben nabor "stevil $0 \leq t_1 < \ldots < t_n < t_{n+1} <\infty$
-            prirastek $X_{t_{n+1}} - X_{t_n}$ neodvisen od $(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ in posledi"cno neodvisen od
-            $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ za poljubno merljivo funkcijo $h:\R^{n+1}\to \R^{n+1}$, ki 
-            jo definiramo na slede"c na"cin:
+            $(\Rightarrow):$ Recimo, da ima $(X_t)_{t\geq0}$ neodvisne in stacionarne prirastke. Za 
+            poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ nas zanima porazdelitev 
+            slu"cajne spremenljivke $X_{t_{n+1}} - X_{t_n}\mid X_{0}, X_{t_1}, \dots, X_{t_n}$.
+            Po trditvi (\ref{trd:CPDneskoncnoDeljiva}) vemo, da je ta enaka porazdelitvi slu"cajne spremenljivke
+            $X_{t_{n+1}} - X_{t_n}\mid g(X_0, X_{t_1}, \dots, X_{t_n})$ za poljubno merljivo funkcijo $g:\R^{n+1}\to \R^{n+1}$,
+            ki jo definiramo na slede"c na"cin:
+            \pagebreak
             \begin{align*}
-                h(x_0, x_1, \dots, x_n) &= (h_0, h_1, \dots, h_n),\\
-                                    h_0 &= x_0, \\
-                                    h_1 &= x_0 + x_1, \\
+                g(x_0, x_1, \dots, x_n) &= (g_0, g_1, \dots, g_n),\\
+                                    g_0 &= x_0, \\
+                                    g_1 &= x_1 - x_0, \\
                                     &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
-                                    h_n &= x_0 + x_1 + \cdots + x_n.
+                                    g_n &= x_n - x_{n-1}.
             \end{align*}
-            Tako velja $h(X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}) = (X_0, X_{t_1}, \dots, X_{t_n})$ in s tem je trditev dokazana.
+            $g$ je o"citno merljiva, saj jo definiramo le z od"stevanjem.
+            Vidimo, da je 
+            $$g(X_0, X_{t_1}, \dots, X_{t_n}) = (X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}).$$ 
+            Po neodvisnosti in stacionarnosti prirastkov $(X_t)_{t\geq0}$ sledi (\ref{eq:neodvisnostStacionarnostPrirastov}).
 
+            \noindent
+            $(\Leftarrow):$ Recimo, da za poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja
+            (\ref{eq:neodvisnostStacionarnostPrirastov}).
         \end{proof}
 
         \begin{trditev}
@@ -819,28 +852,65 @@ mora poplačati v enem dnevu.
         \end{trditev}
 
         \begin{proof}
-            Za $n\in\N$ in nabor realnih "stevil $0 \leq t_1 < \ldots < t_{n+1}  < \infty$ ter nabor naravnih 
-            "stevil $k_1 \leq \ldots \leq k_{n}$ si pogljemo pogojno porazdelitev
+            Po trditvi \ref{trd:neodvisnostStacionarnostPrirastov} je dovolj pokazati, da za poljubna 
+            realna "stevila
+            $0\leq t_1 < t_2 < \ldots< t_n < t_{n+1}$ velja 
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid S_{t_1}, \dots, S_{t_n} \sim S_{t_{n+1} - t_n}.
+            \end{equation*}
+            Naj bodo $k_1, \dots, k_n \in \N_0$ in $k_1\leq \cdots \leq k_n$. Na dogodku 
+            $\{N_{t_n} = k_n\}$ velja 
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n} = \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i,
+            \end{equation*}
+            zato je 
             \begin{align*}
-                S_{t_{n+1}} - S_{t_n} &\mid (S_{t_1}, \dots, S_{t_n}, N_{t_1} = k_1, \dots, N_{t_n} = k_n) \\
-                        \sim S_{t_{n+1}} - S_{t_n} &\mid (S_{t_1, k_1}, \dots, S_{t_n, k_n}, N_{t_1} = k_1, \dots, N_{t_n} = k_n). 
+                &S_{t_{n+1}} - S_{t_n}\mid N_{t_1}= k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n} \sim \\
+                &\sim \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i\mid N_{t_1}= k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n}.
             \end{align*}
-
-            
-            spremeljivke $S_{t_i} - S_{t_{i-1}}$ zapi"semo kot
+            Ker pa so $X_1, \dots, X_{k_n}, N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}$ neodvisne, sledi, 
+            da sta neodvisna tudi vektorja 
+            $$(N_{t_1}, N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}, X_1, \dots, X_{k_n}) \ \text{in} \
+            (N_{t_{n+1}} - N_{t_n} X_{k_n + 1}, \dots),$$ z njima pa tudi vektor
+            $(N_{t_1}, \dots, N_{t_n}, X_1, \dots, X_{k_n})$ in slu"cajna spremenljivka \newline
+            $\sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i$. Torej je
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n}  
+                \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i.
+            \end{equation*}
+            Vemo, da po stacionarnosti prirastkov $\HPP$ velja $N_{t_{n+1}} - N_{t_n} \sim N_{t_{n+1} - t_n}$. 
+            Ker pa je zaporedje $X_{k_n + 1}, X_{k_n + 2}, \dots$ neodvisno od $N_{t_{n+1}} - N_{t_n}$,
+            zaporedje $X_1, X_2, \dots$ neodvisno od $N_{t_{n+1} - t_n}$ ter ker sta zaporedji 
+            $X_1, X_2, \dots$ in $X_{k_n + 1}, X_{k_n + 2}, \dots$ enako porazdeljeni, je tudi 
+            \begin{equation*}
+                N_{t_{n+1}} - N_{t_n}; X_{k_n + 1}, X_{k_n + 2}, \dots \sim N_{t_{n+1} - t_n}; X_1, X_2, \dots
+            \end{equation*}
+            in zato tudi 
             \begin{align*}
-                S_{t_i} - S_{t_{i-1}} &= X_{N_{t_{i - 1} + 1}} + \cdots + X_{N_{t_i}} 
+                &S_{t_{n+1}} - S_{t_n} \mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n} \\
+                &\sim \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i 
+                = \sum_{i = 1}^{N_{t_{n+1} - t_n}}X_i = S_{t_{n+1} - t_n}.
             \end{align*}
-            Neodvisnost prirastkov sledi po neodvisnosti $X_i$ od $X_j$ za $i\neq j$ in $N_t$. 
-            Naj bo $h > 0$ in $s < t$. Potem velja
-            \begin{align*}
-                S_{t+h} - S_{s+h} &= \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \\
-            \end{align*}
-            Vsota ima $N_{t+h} - N_{s+h}$ členov. Ker za $HPP$ velja 
-            $N_{t+h} - N_{s+h} \sim N_t - N_s$, je 
-            \begin{align*}
-                \sum_{j=N_{s+h}+1}^{N_{t+h}} X_j \sim \sum_{j=N_{s}+1}^{N_{t}} X_j = S_t - S_s.
-            \end{align*}
+            Potem pa je tudi
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, \sum_{i=1}^{k_1}X_i, \dots, \sum_{i=k_{n-1} + 1}^{k_n}X_i \sim S_{t_{n+1} - t_n}, 
+            \end{equation*}
+            ker na dogodku $\{N_{t_1} = k_1, \dots, N_{t_n} = k_n\}$ velja 
+            \begin{equation*}
+                \sum_{i=1}^{k_1}X_i = S_{t_1}, \dots, \sum_{i=k_{n-1} + 1}^{k_n}X_i = S_{t_n} - S_{t_{n-1}},
+            \end{equation*}
+            je kon"cno 
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}
+            \end{equation*}
+            oziroma 
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid N_{t_1}, \dots, N_{t_n}, S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}
+            \end{equation*}
+            in po trditvi (\ref{trd:pogojneLastnosti}) velja
+            \begin{equation*}
+                S_{t_{n+1}} - S_{t_n}\mid S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}.
+            \end{equation*}
         \end{proof}
 
         \begin{opomba}
@@ -852,7 +922,7 @@ mora poplačati v enem dnevu.
         \end{opomba}
 
         \begin{trditev}
-            Naj bo $(S_t)_{t\geq 0}$ $CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
+            Naj bo $(S_t)_{t\geq 0}$ $\CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
             pri"cakovana vrednost in $\sigma^2= \Var{X_i} <\infty$ varianca
             slu"cajnih spremenljivk $X_i$. Potem sta za $t\geq0$ pri"cakovana vrednost in 
             varianca $S_t$ enaki 
@@ -1047,15 +1117,15 @@ mora poplačati v enem dnevu.
 
     \subsection{Markiranje sestavljenega Poissonovega procesa}
         Poka"zimo obraten rezultat kot v trditvi \ref{trd:vsotaCPDjeCPD} kjer smo vsoto sestalvjeno Poissonovo 
-        porazdeljenih slu"cajnih spremenljivk izrazili s skupno. S particijo "casa in 
+        porazdeljenih slu"cajnih spremenljivk izrazili s skupno sestavljeno Poissonovo porazdelitvijo. S particijo "casa in 
         prostora slu"cajnh spremenljivk $X_i$ raz"clenimo splo"sen CPP na ve"c neodvisnih sestavljenih
         Poissonovih procesov.
  
         \begin{izrek}(o markiranju)
             Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bo $A_1, \dots, \ A_n$ disjunktna particija mno"zice 
-            $[0, \infty) \times \R$. Potem so za fiksen $t\geq0$ in $j = 1, \dots, n$ slu"cajne spremenljivke
+            $[0, \infty) \times \R$. Potem so za fiksen $t\geq0$ slu"cajne spremenljivke
             \begin{equation}
-                S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right)
+                S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right), \quad j = 1, \dots, n
                 \label{eq:markedCPP}
             \end{equation}
             med seboj neodvisne. "Se ve"c, za vsak $j = 1, \dots, n$ ima
@@ -1073,12 +1143,12 @@ mora poplačati v enem dnevu.
             \begin{equation*}
                 \left(V_1, \dots, \ V_k \mid N_t = k\right)\sim \left(U_{(1)}, \dots, \ U_{(k)}\right), \quad k\in\N.
             \end{equation*}
-            Tako lahko za $j\in\{1, \dots, n\}$ (\ref{eq:markedCPP}) pogojno na dogodek $\{N_t = k\}$ zapi"semo kot
+            Tako lahko za $j\in\{1, \dots, n\}$ vsoto (\ref{eq:markedCPP}), pogojno na dogodek $\{N_t = k\}$, zapi"semo kot
             \begin{equation*}
                 S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{(i)}, X_i\right).
             \end{equation*}
-            Vrstni red sumandov je nepomemben, tako lahko z upo"stevanjem neodvisnosti in enake 
-            porazdeljenosti $X_i$, $S_t^{(j)}\mid \{N_t = k\} $ zapi"semo kot 
+            Vrstni red sumandov je nepomemben. Z upo"stevanjem neodvisnosti in enake 
+            porazdeljenosti $X_i$, pogojno porazdelitev $S_t^{(j)}\mid \{N_t = k\} $ zapi"semo kot 
             \begin{equation*}
                 S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{i}, X_i\right).
             \end{equation*}
@@ -1094,16 +1164,16 @@ mora poplačati v enem dnevu.
                     &= \E\left[\exp\left[\sum_{i=1}^{N_t}\sum_{j=1}^niu_jX_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\right]\right]. 
             \end{align*}
             Opazimo, da imamo v eksponentu sestavljeno Poissonovo vsoto, za katero poznamo obliko karakteristi"cne 
-            funckcije. "Ce jo logaritmiramo dobimo
-            
+            funckcije iz posledice \ref{pos:RodovnaKarakteristicna}. Za namene berljivosti ozna"cimo 
+            eksponent karakterist"cne funkcije kot
+
             \begin{align}
-                &\log\varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) \nonumber \\
-                    &= \lambda t \biggl(\underbrace{\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right]}_{(i)} - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
+                    \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) &= e^{g(u_1, \dots, \ u_n)}, \nonumber \\
+                    g(u_1, \dots, u_n) &= \lambda t \biggl(\underbrace{\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right]}_{(i)} - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
             \end{align}
-            Ker so mno"zice $A_j$ disjunktne, lahko $(i)$ izrazimo kot integral\footnote{V delu bo 
-            tak integral od sedaj naprej ozna"ceval Lebesgueov integral po Lebesgueovi 
-            ali Lebesgue-Stieltjesovi meri. Ker nikoli ne bomo imeli te"zav s konvergenco
-            privzamemo, da se vedno ujema s pripadajo"cim Riemannovim oziroma posplo"senim Riemannovim integralom.}, da dobimo
+            Ker so mno"zice $A_j$ disjunktne, lahko $(i)$ izrazimo kot integral\footnote{V delu 
+            integral s tak"snim zapisom obmo"cja integracije ozna"cuje Lebesgueov integral po Lebesgueovi 
+            ali Lebesgue-Stieltjesovi meri porojeni z ustrezno porazdelitveno funkcijo.}, da dobimo
 
             \begin{align*}
                 (i) &= \int_{[0, \infty)\times\R}e^{\sum_{j = 1}^niu_jx\mathbbm{1}_{A_j}(u, x)}dF_{U_1}(u)dF_{X_1}(x)\\
@@ -1117,7 +1187,7 @@ mora poplačati v enem dnevu.
                     &\lambda t \left(\left(\sum_{j=1}^n\left(\E\left[\exp\left(iu_j X_1 \mathbbm{1}_{A_j}(U_1, X_1)\right)\right] - \left( 1 - \Prob\left((U_1, X_1) \in A_j\right)\right)\right)\right) - 1\right)\nonumber \\
                     &= \lambda t \sum_{j=1}^n\left(\E\left[\exp\left[iu_jX_1\mathbbm{1}_{A_j}(U_1, X_1)\right]\right] - 1\right) \label{eq:logKarakteristicnaFunkcija2}
             \end{align} 
-            in vidimo, da je (\ref{eq:logKarakteristicnaFunkcija2}) ravno vsota logaritmov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
+            in vidimo, da je (\ref{eq:logKarakteristicnaFunkcija2}) ravno vsota eksponentov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
             Tako sledi, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, S_t^{(n)}$ neodvisne in po obliki karakteristi"cne 
             funckcije vidimo, da so res porazdeljene sestavljeno Poissonovo.
         \end{proof}
@@ -1160,7 +1230,7 @@ mora poplačati v enem dnevu.
             \end{equation*}
             med seboj neodvisne, kar pomeni, da ima $(S_t^{(j)})_{t\geq0}$ neodvisne prirastke.
             Neodvisnost procesov $(S_t^{(1)}, \dots, \ S_t^{(n)})_{t\geq0}$ poka"zemo po definiciji
-            \ref{def:neodvisnostSP}. Za $j=1, \dots, n$ in $m^{(j)}\in\N$ naj bo $0 = t_0^{(j)} < t_1^{(j)} < \cdots < t^{(j)}_{m^{(j)}} < \infty$ 
+            (\ref{def:neodvisnostSP}). Za $j=1, \dots, n$ in $m^{(j)}\in\N$ naj bo $0 = t_0^{(j)} < t_1^{(j)} < \cdots < t^{(j)}_{m^{(j)}} < \infty$ 
             poljuben nabor "stevil. Definiramo $\Delta^{(j)}_i = [t^{(j)}_{i-1}, t^{(j)}_i)$ in mno"zice
             \begin{equation*}
                 A_i^{*(j)} = A_j \cap \left(\Delta_i^{(j)} \times \R\right), \quad j = 1, \dots, n, \quad i = 1, \dots, m^{(j)},
@@ -1231,7 +1301,7 @@ mora poplačati v enem dnevu.
     \end{proof}
 
     Enostavno smo pokazali, da sta Poissonova in sestavljena Poissonova porazdelitev neskon"cno deljivi. 
-    Naslednji rezultat je precej bolj temeljni in ne o"citen.
+    Naslednji rezultat je precej bolj zahteven in presenetljiv.
     
     \begin{trditev}
         Naj bo $S$ slu"cajna spremenljivka, ki zavzame vrednosti v $\N_0$ in je neskon"cno deljiva.
@@ -2340,10 +2410,6 @@ mora poplačati v enem dnevu.
             F_{X_1}^{*k}(t) = (F_{X_1}*\cdots*F_{X_1})(t) = \int_{[0, t]}F_{X_1}^{*(k-1)}(t - x)\, dF_{X_1}(x),
         \end{equation*}
         ki se prav tako ujema s porazdelitveno funkcijo vsote $X_1 + X_2 + \cdots + X_n$. 
-
-
-
-        
         \label{def:konvolucija}
     \end{definicija}
 
@@ -2409,6 +2475,17 @@ mora poplačati v enem dnevu.
     % da je \textit{prilagojen} filtraciji $\mathcal{F}$, "ce je $X_t$ $\mathcal{F}_t$-merljiva za vsak $t\geq0$.
     % \label{def:filtracija}
     %\end{definicija}
+
+    \begin{trditev}
+        Naj bodo $X, Y$ in $Z$ slu"cajne spremenljivke ter $g$ in $h$ poljubni borelovi funkciji. 
+        "Ce velja $X\mid Z\sim Y$, velja tudi $X\mid Z\sim X\mid g(Z)\sim Y$. Splo"sneje, 
+        "ce je $X\mid Z \sim Y\mid h(g(Z))$, je tudi $X\mid Z\sim X\mid g(Z) \sim Y\mid h(g(Z)).$
+        \label{trd:pogojneLastnosti}
+    \end{trditev}
+
+    \begin{proof}
+        
+    \end{proof}
 
     \begin{definicija}
         Slu"cajna spremenljivka $X$ ima \textit{Weibullovo porazdelitev} s parametroma $a, b > 0$, 
@@ -2678,8 +2755,9 @@ mora poplačati v enem dnevu.
 
 \noindent
 \textbf{trajektorija} \ sample path \\
-\textbf{slu"cajni proces} \ stochastic process \\
+\textbf{sestavljeni procesi} \  compound processes \\
 \textbf{sestavljeni Poissonov proces} \ compound Poisson process \\
+\textbf{markiranje procesa} \ space-time decomposition of process \\
 \textbf{neskon"cna deljivost} \ infinite divisibility \\
 \textbf{proces tveganja} \ risk process \\
 \textbf{verjetnost propada} \ probability of ruin \\
