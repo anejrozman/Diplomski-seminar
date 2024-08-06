@@ -93,6 +93,18 @@
 \DeclareMathOperator{\HPP}{HPP}
 \DeclareMathOperator{\CPP}{CPP}
 
+% Barva linka tritev iz poglavja Priloga
+\colorlet{linkequation}{blue}
+\newcommand*{\refPriloga}[1]{%
+  \begingroup
+    \hypersetup{
+      linkcolor=magenta,
+      linkbordercolor=magenta,
+    }%
+    \ref{#1}%
+  \endgroup
+}
+
 %------------------------------------------NASLOVNE STRANI-----------------------------------------%
 
 \begin{document}
@@ -163,10 +175,10 @@ simulating the risk process.
 \vfill\noindent
 {\bf Math. Subj. Class. (2020):} 60G07 60G20 60G51 \\[1mm]
 {\bf Klju"cne besede:} slu"cajni proces, sestavljena Poissonova porazdelitev, Panjerjeva rekurzivna shema, 
-sestavljeni Poissonov proces, raz"clenitev glede na "cas, raz"clenitev glede na prostor,
+sestavljeni Poissonov proces, markiranje,
 neskon"cna deljivost, Cramér--Lundbergov model, Verjetnost propada, lahkorepa porazdelitev, te"zkorepa porazdelitev\\[1mm]
 {\bf Keywords:} stochastic process, compound Poisson distribution, Panjer recursion scheme, 
-compound Poisson process, decompostition of time, decompostion of space, infinite divisibility,
+compound Poisson process, space-time decomposition, infinite divisibility,
 Cramér--Lundberg model, probability of ruin, light-tailed distribution, heavy-tailed distribution
 \pagebreak
 
@@ -196,7 +208,8 @@ je modeliranje števila dogodkov v nekem časovnem intervalu. Konkretno si zamis
 želi modelirati število ljudi, ki bodo v enem dnevu vložili zahtevek za avtomobilsko zavarovanje. 
 Tovrstne procese standardno modeliramo s homogenim Poissonovim procesom oziroma v splošnem s procesi 
 štetja. V delu privzamemo, da je bralec s temi temami že seznanjen, saj slu"zijo kot osnova za teorijo, 
-ki jo izpeljemo. Nekatere klju"cne definicije in rezultate lahko brealec najde v prilogi.
+ki jo izpeljemo. Na nekatere klju"cne definicije in rezultate, ki jih bomo uporabljali bodo posebej 
+ozna"cene kot (\refPriloga{def:rodovneFunkcije}). Bralec jih nato lahko najde v prilogi. 
 
 V praksi zavarovalnico redko zanima "stevilo zahtevkov, veliko bolj pomembno je, kolik"sno "skodo bo 
 morala popla"cati v enem dvnevu. Seveda ne 
@@ -281,7 +294,7 @@ mora poplačati v nekem časovnem intervalu.
     \end{align*}
 
     \noindent
-    kjer je $F_{X_1}^{*k}(x)$  $k$-ta konvolucija (\ref{def:konvolucija}) funkcije $F_{X_1}$.
+    kjer je $F_{X_1}^{*k}(x)$  $k$-ta konvolucija (\refPriloga{def:konvolucija}) funkcije $F_{X_1}$.
     
     \begin{zgled}
         Poglejmo enega enostavnej"sih primerov, ko so $X_1, X_2, \dots$ porazdeljene kot
@@ -298,7 +311,7 @@ mora poplačati v nekem časovnem intervalu.
         \begin{align*}
             F_{S}(s) 
             &= \sum_{k=0}^\infty \int_0^s\frac{1}{\Gamma(k)}a^kx^{k-1}e^{-ax}dx \ \frac{(\lambda )^k}{k!}e^{-\lambda }
-            \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
+            \qquad \qquad \text{Tonelli} \ (\refPriloga{izr:TonellijevIzrek}) \\
             &= \int_0^s\underbrace{\sum_{k=0}^\infty \frac{1}{(k-1)!k!}(a\lambda)^kx^{k-1}e^{-(ax + \lambda)}}_{f_S(x)}dx.
         \end{align*}
         Vidimo, da lahko "ze celo v primeru, ko poznamo eksplicitno formulo za $F^{*k}_{X_1}$, te"zko pridemo do 
@@ -308,7 +321,7 @@ mora poplačati v nekem časovnem intervalu.
     \end{zgled}
 
     \subsection{Rodovne, momentno-rodovne in karakteristi"cne funkcije} Klju"cno \newline orodje pri dokazovanju
-    lastnosti slu"cajnih spremenljivk so rodovne funckije (\ref{def:rodovneFunkcije}), saj nam pomagajo
+    lastnosti slu"cajnih spremenljivk so rodovne funckije (\refPriloga{def:rodovneFunkcije}), saj nam pomagajo
     pri obravnavi vsot neodvisnih slu"cajnih spremenljivk in ("ce obstajajo) popolnoma dolo"cajo njihovo porazdelitev.  
 
     \begin{trditev}
@@ -443,7 +456,7 @@ mora poplačati v nekem časovnem intervalu.
                 &= \exp\Biggl[\lambda\Biggl(\underbrace{\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u)}_{\varphi_{Y_1}{u}} - 1\Biggr)\Biggr].
         \end{align*}
         Po izreku o 
-        enoli"cnosti (\ref{izr:enolicnost}) sledi $S\sim\sum_{i=1}^{N}Y_i$.
+        enoli"cnosti (\refPriloga{izr:enolicnost}) sledi $S\sim\sum_{i=1}^{N}Y_i$.
     \end{proof}
 
     Na podoben na"cin poka"zemo, kako se sestavljena Poissonova porazdelitev izra"za v primeru, ko so
@@ -496,7 +509,7 @@ mora poplačati v nekem časovnem intervalu.
         \begin{equation*}
             \varphi_{Z_n} \xrightarrow{n\to\infty}\varphi_Z
         \end{equation*}
-        po Lévijevem izreku o kontinuiteti (\ref{izr:LevijevIzrek}) velja $Z_n \xrightarrow[n\to\infty]{d}Z$.
+        po Lévijevem izreku o kontinuiteti (\refPriloga{izr:LevijevIzrek}) velja $Z_n \xrightarrow[n\to\infty]{d}Z$.
     \end{proof}
 
     Rezultat je zanimiv predvsem zato, ker nam za razliko od trditve \ref{trd:vsotaCPDjeCPD} pove, da 
@@ -648,7 +661,7 @@ mora poplačati v nekem časovnem intervalu.
             \Prob\left(S = n\right) 
                 = \sum_{k = 1}^\infty\sum_{i = 0}^n \left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right).
         \end{align*}
-        Po Tonellijevem izreku (\ref{izr:TonellijevIzrek}) lahko zamenjamo vrstni red vsot, da dobimo
+        Po Tonellijevem izreku (\refPriloga{izr:TonellijevIzrek}) lahko zamenjamo vrstni red vsot, da dobimo
         \begin{align*}
             \Prob\left(S = n\right) 
                 &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\sum_{k = 1}^\infty\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right)\\
@@ -721,7 +734,7 @@ mora poplačati v nekem časovnem intervalu.
 
     Sedaj se posvetimo "studiranju sestavljenega Poissonovega procesa. Bralec lahko najde 
     osnovne definicije splo"snih slu"cajnih procesov, s katerimi delamo,
-     med definicijama (\ref{def:slucProc}) in (\ref{def:neodvisnostSP}) v prilogi.
+     med definicijama (\refPriloga{def:slucProc}) in (\refPriloga{def:neodvisnostSP}) v prilogi.
     Najprej doka"zemo in izpeljemo nekaj osnovnih lastnosti procesa kot so neodvisnot in stacionarnost
     prirastov, pri"cakovana vrednost in varianca. Obravnavamo markiranje procesa glede "cas in 
     njegovo vrednost. Na koncu predstavimo nekaj splo"sne teorije procesov z neodvisnimi in 
@@ -826,7 +839,7 @@ mora poplačati v nekem časovnem intervalu.
             $(\Rightarrow):$ Recimo, da ima $(X_t)_{t\geq0}$ neodvisne in stacionarne prirastke. Za 
             poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ nas zanima porazdelitev 
             slu"cajne spremenljivke $X_{t_{n+1}} - X_{t_n}\mid X_{0}, X_{t_1}, \dots, X_{t_n}$.
-            Po trditvi (\ref{trd:pogojneLastnosti}) vemo, da je ta enaka porazdelitvi slu"cajne spremenljivke
+            Po trditvi (\refPriloga{trd:pogojneLastnosti}) vemo, da je ta enaka porazdelitvi slu"cajne spremenljivke
             $X_{t_{n+1}} - X_{t_n}\mid g(X_0, X_{t_1}, \dots, X_{t_n})$ za poljubno borelovo funkcijo $g:\R^{n+1}\to \R^{n+1}$,
             ki jo definiramo na slede"c na"cin:
             \pagebreak
@@ -842,7 +855,7 @@ mora poplačati v nekem časovnem intervalu.
             $$g(X_0, X_{t_1}, \dots, X_{t_n}) = (X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}).$$ 
             Po neodvisnosti prirastkov $(X_t)_{t\geq0}$ sledi, da je porazdelitev slu"cajne 
             spremenljivke $X_{t_{n+1}} - X_{t_n}$ neodvisna od slu"cajnega vektorja
-            $(X_0, X_{t_1}, \dots, X_{t_n})$. Po stacionarnosti prirastkov $(X_t)_{t\geq0}$ nato sledi 
+            $(X_0, X_{t_1} - X_{t_2}, \dots, X_{t_n} - X_{t_{n-1}})$. Po stacionarnosti prirastkov $(X_t)_{t\geq0}$ nato sledi 
             veljavnost (\ref{eq:neodvisnostStacionarnostPrirastov}). \newline
             \noindent
             $(\Leftarrow):$ Recimo, da za poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja
@@ -911,7 +924,7 @@ mora poplačati v nekem časovnem intervalu.
             \begin{equation*}
                 S_{t_{n+1}} - S_{t_n}\mid N_{t_1}, \dots, N_{t_n}, S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}
             \end{equation*}
-            in po trditvi (\ref{trd:pogojneLastnosti}) velja
+            in po trditvi (\refPriloga{trd:pogojneLastnosti}) velja
             \begin{equation*}
                 S_{t_{n+1}} - S_{t_n}\mid S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}.
             \end{equation*}
@@ -1142,7 +1155,7 @@ mora poplačati v nekem časovnem intervalu.
         \end{izrek}
 
         \begin{proof}
-            Za splo"sen $\text{HPP}(\lambda)$ velja lasntost vrstilnih statistik (\ref{trd:VrstilneStatistikeHPP}),
+            Za splo"sen $\text{HPP}(\lambda)$ velja lasntost vrstilnih statistik (\refPriloga{trd:VrstilneStatistikeHPP}),
             torej
             \begin{equation*}
                 \left(V_1, \dots, \ V_k \mid N_t = k\right)\sim \left(U_{(1)}, \dots, \ U_{(k)}\right), \quad k\in\N.
@@ -1236,19 +1249,19 @@ mora poplačati v nekem časovnem intervalu.
             \end{equation*}
             med seboj neodvisne.
             Neodvisnost procesov $(S_t^{(1)})_{t\geq0}, \dots, \ (S_t^{(n)})_{t\geq0}$ poka"zemo po definiciji
-            (\ref{def:neodvisnostSP}). Za $j=1, \dots, n$ in $m_j\in\N$ naj bodo $0 = t_0^{(j)} < t_1^{(j)} < \cdots < t^{(j)}_{m_j} < \infty$ 
+            (\refPriloga{def:neodvisnostSP}). Za $j=1, \dots, n$ in $m_j\in\N$ naj bodo $0 = t_0^{(j)} < t_1^{(j)} < \cdots < t^{(j)}_{m_j} < \infty$ 
             poljubni nabori realnih "stevil. Definiramo $\Delta^{(j)}_k = [t^{(j)}_{k-1}, t^{(j)}_k)$ in mno"zice
             \begin{equation*}
                 A_k^{*(j)} = A_j \cap \left(\Delta_k^{(j)} \times \R\right), \quad j = 1, \dots, n, \quad k = 1, \dots, m_j,
             \end{equation*}
             ki so o"citno disjunktna particija mno"zice $[0, \infty)\times \R$ za vsak
             $j = 1, \dots, n$. Naj bo $t = \max_{j = 1, \dots, n}t_{m_j}$. Po izreku o markiranju 
-            so prirastki
+            so prirastki porazdeljeni kot
             \begin{equation*}
                 \sum_{i = 1}^{N_t} X_i\mathbbm{1}_{A_k^{*(j)}}(U_i, X_i) \sim 
                 S_{t_k^{(j)}}^{(j)} - S_{t_{k-1}^{(j)}}^{(j)}, \quad j = 1, \dots, n, \quad k = 1, \dots, m_j
             \end{equation*}
-            med seboj neodvisni. Podobno kot v trditvi \ref{trd:neodvisnostStacionarnostPrirastov} za 
+            in med seboj neodvisni. Podobno kot v trditvi \ref{trd:neodvisnostStacionarnostPrirastov} za 
             $j=1, \dots, n$ lahko tvorimo 
             borelovo funkcijo $g_j:\R^{m_j + 1}\to\R^{m_j + 1}$, da velja 
             \begin{equation*}
@@ -1264,8 +1277,8 @@ mora poplačati v nekem časovnem intervalu.
 
     \subsection{Neskon"cna deljivost}
         Koncept neskon"cne deljivosti je temeljni pri "studiranju slu"cajnih procesov, saj z neskon"cno 
-        deljivimi porazdelitvami karakteriziramo enega najsplo"snej"sih razredov 
-        slu"cajnih procesov t.i.\ Lévyjevih procesov.  
+        deljivimi porazdelitvami karakteriziramo enega najsplo"snej"sih 
+        slu"cajnih procesov t.i.\ Lévyjevih procesov. 
 
     \begin{definicija}
         Naj bo $X$ slu"cajna spremenljivka. Pravimo, da je $X$ \textit{neskon"cno deljiva}, "ce za vsak $n\in\N$
@@ -1366,33 +1379,71 @@ mora poplačati v nekem časovnem intervalu.
 
     \end{proof}
 
-    Sedaj navedimo nekaj rezultatov, ki ilustrirajo pomembnost sestavljene Poissonove porazdelitve in 
-    sestavljenega Poissonovega procesa pri  Dokazi presegajo obseg dela, in jih bralec lahko najde v knjigi 
-    \cite{10}.
-    Trditev \ref{trd:neskoncnoDeljivaYslediCPD} lahko posplo"simo na poljubne slu"cajne spremenljivke, ki
-    so neskon"cno deljive.
+    Sedaj navedemo nekaj klju"cncih rezultatov, ki ilustrirajo pomembnost sestavljene Poissonove porazdelitve in 
+    sestavljenega Poissonovega procesa v bolj splo"sni teoriji slu"cajnih procesov. Dokazi trditev in izrekov presegajo delo in bralec jih lahko najde v knjigi 
+    \cite{10} ki je izklju"cno namenjena teoriji neskon"cno deljivih porazdelitev. 
+    Trditev \ref{trd:neskoncnoDeljivaYslediCPD} posplo"simo na vse
+    neskon"cno deljive slu"cajne spremenljivke s tem, da zahtevamo le konvergenco v porazdelitvi 
+    (\refPriloga{def:KonvergencaVPorazdelitvi}).
+    
 
     \begin{trditev}
         Naj ima slu"cajna spremenljivka $S$ neskon"cno deljivo porazdelitev. Potem obstaja zaporedje 
         slu"cajnih spremenljivk $(S_n)_{n\in\N}$, ki imajo sestavljeno Poissonovo porazdelitev in
-        konvergirajo proti $S$ v porazdelitvi (\ref{def:KonvergencaVPorazdelitvi}).
+        konvergirajo proti $S$ v porazdelitvi.
     \end{trditev}
 
-    Vidimo, da je neskon"cna deljivost mo"cno povezana s sestavljeno Poissonovo porazdelitvijo. Osrednja
-    tema neskon"cne deljivosti pa je razred splo"snih Lévijevih procesov. 
+    \begin{proof}
+        Dokaz lahko bralec najde v \cite{7} na strani ....
+    \end{proof}
 
+    Do sedaj smo ve"ckrat omenili Lévijeve procese. Definiramo jih na slede"c na"cin. 
+    
     \begin{definicija}
         Slučajnemu procesu $(X_t)_{t\geq0}$ definiranem na verjetnostnemu
         prostoru $(\Omega, \mathcal{F}, \Prob)$ pravimo \textit{Lévijev proces}, če zadošča naslednjim pogojem:
         \begin{enumerate}
             \item $\Prob(X_0 = 0)=1$.
-            \item Poti $X$ so $\Prob$-skoraj gotovo zvezne z desne (z levimi limitami).
+            \item Trajektorije $(X_t)_{t\geq0}$ so $\Prob$-skoraj gotovo zvezne z desne z levimi limitami (cádlág).
             \item $(X_t)_{t\geq0}$ ima neodvisne in stacionarne prirastke.
         \end{enumerate}
     \end{definicija}
 
-    Vidimo, da sestavljeni Poissonov proces zadošča vsem trem pogojem. Razred levijevih procesov 
-    je zelo "sirok. Izka"ze se, da 
+    Takoj vidimo, da homogeni in sestavljeni Poissonov proces zadoščata prvemu in tretjemu pogoju. 
+    Izka"ze se, da imata tudi cádlág trajektorije in sta torej Lévijeva procesa.
+    Naslednji izrek nam pove, da Lévijeve procese karakteriziramo z neskon"cno deljivimi porazdelitvami.
+
+    \begin{izrek}
+        Naj bo $(X_t)_{t\geq0}$ Lévijev proces z vrednostmi v $\R$, potem je za fiksen $t\geq0$
+        slu"cajna spremenljivka $X_t$ neskon"cno deljiva. Obratno, "ce je slu"cajna spremenljivka $X$ 
+        neskon"cno deljiva, obstaja Lévijev proces $(X_t)_{t\geq0}$ na $\R$, da za $t=1$ velja
+        $X_1\sim X$. "Ce sta $(X_t)_{t\geq0}$ in $(Y_t)_{t\geq0}$ dva Lévijeva procesa z vrednostmi V
+        $\R$ in velja $X_1\sim Y_1$, potem sta procesa enako porazdeljena. 
+    \end{izrek}
+
+    \begin{proof}
+        Dokaz izreka lahko bralec najde v \cite{10} na strani 35.
+    \end{proof}  
+
+    Tako kot lahko poljubno neskon"cno deljivo porazdelitev dobimo z limito sestavljenih Poissonovih
+    se podobno izka"ze, da poljuben Lévijev proces izrazimo kot vsoto sestavljenega Poissonovega procesa
+    in Brownovega gibanja\footnote{Brownovo gibanje $(B_t)_{t\geq0}$ je Lévijev proces kjer poleg zahtev $(1)$ in $(3)$
+    dodatno zahtevamo, da za $t\geq0$ velja $B_t\sim N(0, t)$ in da ima proces zvezne trajektorije (posledi"cno so seveda cádlág).}.
+    To je posledica Lévy-Hin"cinove formule za karateristi"cno funkcijo Lévijevih procesov kateri je 
+    namenjeno drugo poglavje knjige \cite{10}. Izka"ze se, da za poljuben Lévijev proces $(X_t)_{t\geq0}$ obstajata enoli"cno 
+    dolo"ceni "stevili $\gamma\in\R$ in $\sigma>0$ ter kon"cna mera $\nu$ na $\R$ za katero velja $\nu(\{0\}) = 0$, 
+    ki popolnoma dolo"cajo njegovo porazdelitev. Tedaj velja 
+    $$
+        X_t = \gamma t + \sigma B_t + S_t, \qquad t\geq0,
+    $$
+    kjer je $(S_t)_{t\geq0}$ sestavljen Poissonov proces z intenzivnostjo $\lambda = \nu(\{\R\})$ in kjer 
+    imajo $X_i$ porazdelitev $\frac{\nu(\{B\})}{\lambda}$, kjer je $B$ poljubna Borelova mno"zica.
+
+    
+    V tem razdleku smo si pogledali nekoliko bolj napredno in nadvse zanimivo teorijo slu"cajnih 
+    procesov ter njeno povezavo s sestavljenim Poissonovim procesom. 
+    Snov pa tehni"cno presega dodiplomsko raven in zato ne bomo nadaljevali v tej smeri. V drugem delu diplome se 
+    bomo raje posvetili prakti"cnemu primeru uporabe sestavljenega Poissonovega procesa v zavarovalni"stvu.
 
     \pagebreak
 
@@ -1431,7 +1482,7 @@ mora poplačati v nekem časovnem intervalu.
         \begin{opomba}
             V resnici lahko veliko lastnosti procesa tveganja izpeljemo brez predpostavke, da prihodi 
             zahtevkov v $(S_t)_{t\geq0}$ sledijo homogenemu Poissonovemu procesu,
-            ampak lahko privzamemo, da sledijo splo"snemu prenovitvenemu procesu (\ref{def:PrenovitveniProces}). 
+            ampak lahko privzamemo, da sledijo splo"snemu prenovitvenemu procesu (\refPriloga{def:PrenovitveniProces}). 
             Zato bomo pri dokazovanju nekaterih rezultatov medprihodne "case zahtevkov $T_i$ obravnavali v 
             splo"snem, ne da bi predpostavili, da so eksponentno porazdeljeni.
             \label{op:procesTveganja}
@@ -1444,7 +1495,7 @@ mora poplačati v nekem časovnem intervalu.
         stabilno povečevanje premijskega dohodka skozi čas. Poleg tega je izbira linearne 
         funkcije preprosta, zato bomo v nadaljevanju privzeli $p(t) = ct$. Poglejmo si 
         realizaciji procesa tveganja, ko so zahtevki $X_i$ porazdeljeni Weibullovo 
-        (\ref{def:WeibullovaPorazdelitev}) z razli"cnimi parametri. 
+        (\refPriloga{def:WeibullovaPorazdelitev}) z razli"cnimi parametri. 
 
         \begin{zgled}
             Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu z za"cetnim kapitalom
@@ -1556,7 +1607,7 @@ mora poplačati v nekem časovnem intervalu.
 
         \begin{proof}
             Zaporedje slu"cajnih spremenljivk $(Y_i)_{i\in\N}$ zado"s"ca predpostavkam krepkega zakona
-            velikih "stevil (\ref{izr:KrepkiZakonVelikihStevil}), torej velja
+            velikih "stevil (\refPriloga{izr:KrepkiZakonVelikihStevil}), torej velja
             \begin{equation*}
                 \frac{Y_1 + Y_2 + \cdots Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
             \end{equation*}
@@ -1666,7 +1717,7 @@ mora poplačati v nekem časovnem intervalu.
                 \pagebreak
                 \begin{align*}
                     M_X(u) &= \int_{0}^{\infty}e^{ubz^{\frac{1}{a}}}e^{-z}dz \\
-                           &= \int_{0}^{\infty}\sum_{k=0}^{\infty}\frac{(ubz^{\frac{1}{a}})^k}{k!}e^{-z}dz \qquad \qquad \text{Tonelli} \ (\ref{izr:TonellijevIzrek}) \\
+                           &= \int_{0}^{\infty}\sum_{k=0}^{\infty}\frac{(ubz^{\frac{1}{a}})^k}{k!}e^{-z}dz \qquad \qquad \text{Tonelli} \ (\refPriloga{izr:TonellijevIzrek}) \\
                            &= \sum_{k=0}^{\infty}\frac{(ub)^k}{k!}\int_{0}^{\infty}z^{\frac{k}{a}}e^{-z}dz \\
                            &= \sum_{k=0}^{\infty}\frac{(ub)^k}{k!} \, \Gamma \! \left(\frac{k}{a} + 1\right).
                 \end{align*} 
@@ -1684,7 +1735,7 @@ mora poplačati v nekem časovnem intervalu.
             \begin{opomba}
                 V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjentosti ekstremnih 
                 dogodkov (torej zelo velikih zahtevkov) eksponentno pada proti $0$. To neposredno sledi iz 
-                definicije \ref{def:lahkorepnaPorazdelitev} in neenakosti Markova (\ref{trd:neenakostMarkova}), 
+                definicije \ref{def:lahkorepnaPorazdelitev} in neenakosti Markova (\refPriloga{trd:neenakostMarkova}), 
                 saj za vsak 
                 $x>0$ in $u\in(-\varepsilon, \varepsilon)$ velja
                 \begin{equation*}
@@ -1915,7 +1966,7 @@ mora poplačati v nekem časovnem intervalu.
                 \begin{equation*}
                     (ii) =  - \frac{\lambda}{c}\int_{(0, t]}\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_{(0, t]}\int_{(0, u]}\theta'(u - x)F_{X_1}(x)dxdu. 
                 \end{equation*}
-                Po Tonellijevem izreku (\ref{izr:TonellijevIzrek}) lahko zamenjamo vrstni red integracije.
+                Po Tonellijevem izreku (\refPriloga{izr:TonellijevIzrek}) lahko zamenjamo vrstni red integracije.
 
                 \begin{align*}
                     (ii)    &=  - \frac{\lambda}{c}\int_{(0, t]}\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\int_{[x, t]}\theta'(u - x)dudx \\
@@ -1941,7 +1992,7 @@ mora poplačati v nekem časovnem intervalu.
                         \theta(u) = \theta(0) + \frac{1}{1+\rho}\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x),
                         \label{eq:verjetnostPrezivetja2}
                     \end{equation}
-                    kjer je $\overline{F}_{X_1}$ porazdelitev integriranega repa (\ref{def:porazdelitevintegriranegaRepa}) 
+                    kjer je $\overline{F}_{X_1}$ porazdelitev integriranega repa (\refPriloga{def:porazdelitevintegriranegaRepa}) 
                     slu"cajne spremenljivke $X_1$.
                     %Hitro lahko preverimo, da je $F_X^I(x)$ porazdelitvena funkcija, saj je $F_X^I(0) = 0$, 
                     %$F_X^I(x)$ je nara"s"cajo"ca in $F_X^I(x) \uparrow 1$ za $x\to\infty$, ker velja 
@@ -1969,7 +2020,7 @@ mora poplačati v nekem časovnem intervalu.
                 \begin{equation*}
                     \lim_{u\to\infty}\theta(u) = 1 = \theta(0) + \frac{1}{1 + \rho}\lim_{u\to\infty}\int_{(0, \infty)}\mathbbm{1}_{(0, u]}(x)\theta(u - x)d\overline{F}_{X_1}(x). \\
                 \end{equation*}
-                Po izreku o monotoni konvergenci (\ref{izr:monotonaKonvergenca}) sledi
+                Po izreku o monotoni konvergenci (\refPriloga{izr:monotonaKonvergenca}) sledi
 
                 \begin{align*}
                     1 &= \theta(0) + \frac{1}{1 + \rho}\int_{(0, \infty)}1d\overline{F}_{X_1}(x) \\
@@ -2014,7 +2065,7 @@ mora poplačati v nekem časovnem intervalu.
                     \psi(u) = q\bigl(1 - \overline{F}_{X_1}(u)\bigr) + \int_{(0, u]}\psi(u - x)d\bigl(q\overline{F}_{X_1}(x)\bigr).
                     \label{eq:verjetnostPropadaQ}
                 \end{equation}
-                Vidimo, da ima ena"cba (\ref{eq:verjetnostPropadaQ}) obliko prenovitvene 
+                Vidimo, da ima ena"cba (\refPriloga{eq:verjetnostPropadaQ}) obliko prenovitvene 
                 ena"cbe (\ref{def:prenovitvenaEnacba}) z bistveno razliko, da $q\overline{F}_{X_1}$ ni
                 verjetnostna mera, saj velja $\lim_{x\to\infty}q\overline{F}_{X_1}(x) = q < 1$. Ena"cbi 
                 (\ref{eq:verjetnostPropadaQ}) pravimo defektna prenovitvena ena"cba. Za $x > 0$ 
@@ -2043,7 +2094,7 @@ mora poplačati v nekem časovnem intervalu.
                 \end{align}
                 Vidimo, da sedaj ena"cba (\ref{eq:CramérjevaPrenovitvenaEnacba}) ustreza obliki prenovitvene ena"cbe za par \newline $\left(qe^{\ell u}\bigl(1 - \overline{F}_{X_1}(u)\bigr), F_\ell\right)$
                 in ker je funkcija $u\mapsto qe^{\ell u}\bigl(1 - \overline{F}_{X_1}(u)\bigr)$ omejena na kon"cnih 
-                intervalih in $F_\ell$ nearitmeti"cna, lahko uporabimo Smithov klju"cni prenovitveni izrek (\ref{izr:Smith}), da dobimo
+                intervalih in $F_\ell$ nearitmeti"cna, lahko uporabimo Smithov klju"cni prenovitveni izrek (\refPriloga{izr:Smith}), da dobimo
                 re"sitev
                 
                 \begin{equation}
@@ -2053,7 +2104,7 @@ mora poplačati v nekem časovnem intervalu.
                 kjer je $M^{\ell}$ prenovitvena mera prenovitvenega procesa z medprihodnimi "casi, 
                 ki imajo porazdelitveno funkcijo $F_\ell$. V splo"snem $M^{\ell}$ te"zko dolo"cimo. 
                 "Ce pa je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ direktno Riemannovo integrabilna
-                (\ref{def:direktnaRieamnovaIntegrabilnost}), nam 
+                (\refPriloga{def:direktnaRieamnovaIntegrabilnost}), nam 
                 Smithov izrek da asimptoti"cno vedenje re"sitve (\ref{eq:resitevCramerjevePrenovitveneEnacbe}),
                 ko gre $u\to\infty$.
                 Direktno Riemannovo integrabilnost preverimo tako, da upo"stevamo 
@@ -2067,7 +2118,7 @@ mora poplačati v nekem časovnem intervalu.
                         - q\ell \int_{(u, \infty)}(1 - \overline{F}_{X_1}(x))e^{\ell x}\, dx \\                                  
                 \end{align*}
                 Tako vidimo, da je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
-                Riemannovo integrabilnih funkcij in je zato po kriteriju (\ref{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}) 
+                Riemannovo integrabilnih funkcij in je zato po kriteriju (\refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}) 
                 direktno Riemannovo integrabilna. Dobimo 
                 \begin{equation}
                     C = \lim_{u\to\infty}e^{\ell u}\psi(u) =  \frac{q}{\alpha} \int_{(0, \infty)}e^{\ell x}(1 - \overline{F}_{X_1}(x))dx,
@@ -2286,7 +2337,7 @@ mora poplačati v nekem časovnem intervalu.
             Najprej poka"zimo, da lahko verjetnost 
             pre"zivetja iz leme \ref{lema:verjetnostPrezivetja} 
             predstavimo kot porazdelitveno funkcijo sestavljene
-            geometrijske porazdelitve (\ref{def:CompoundGeometricDistribution}). "Ce definiramo 
+            geometrijske porazdelitve (\refPriloga{def:CompoundGeometricDistribution}). "Ce definiramo 
             $G \sim \text{Geom}(\frac{\rho}{1 + \rho})$ in zaporedje neodvisnih enako porazdeljenih 
             slu"cajnih spremenljivk $(\overline{X}_i)_{i\in\N}$ s porazdelitveno funkcijo $\overline{F}_{X_1}$, 
             bomo pokazali, da porazdelitvena funkcija $F_C$ slu"cajne spremenljivke
@@ -2321,7 +2372,7 @@ mora poplačati v nekem časovnem intervalu.
             \end{equation*}
             omejimo z integrabilno funkcijo $K(\varepsilon)(1 + \varepsilon)^n$ za vsak $n\geq 2$ (glede na mero, ki "steje). Limito $u\to\infty$ po 
             realnih "stevilih nadomestimo z limito po zaporedjih pozitivnih "stevil $u_k\xrightarrow{k\to\infty}\infty$.
-            Tako lahko po Lebesgueovem izreku o dominirani konvergenci (\ref{izr:dominiranaKonvergenca})
+            Tako lahko po Lebesgueovem izreku o dominirani konvergenci (\refPriloga{izr:dominiranaKonvergenca})
             zamenjanmo vrstni red limite in vsote.
             Ker je $\overline{F}_{X_1}$ subeksponentna, za vsak $n\in\N$ velja
             \begin{equation*}
@@ -2487,6 +2538,8 @@ mora poplačati v nekem časovnem intervalu.
         "ce sta za vsak par $k,j \in \N$ in kon"cen nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_{n_k} < \infty$ in 
         $0 \leq t_1 < t_2 < \ldots < t_{n_j} < \infty$ slu"cajna 
         vektorja $(X_{t_1}, X_{t_2}, \ldots, X_{t_{n_k}})$ in $(Y_{t_1}, Y_{t_2}, \ldots, Y_{t_{n_j}})$ neodvisna.
+        Po drugi strani, "ce velja $(X_{t_1}, X_{t_2}, \ldots, X_{t_{n_k}}) \sim (Y_{t_1}, Y_{t_2}, \ldots, Y_{t_{n_j}})$
+        sta procesa \textit{enako porazdeljena}.
         \label{def:neodvisnostSP}
     \end{definicija}
 
@@ -2497,6 +2550,21 @@ mora poplačati v nekem časovnem intervalu.
     % da je \textit{prilagojen} filtraciji $\mathcal{F}$, "ce je $X_t$ $\mathcal{F}_t$-merljiva za vsak $t\geq0$.
     % \label{def:filtracija}
     %\end{definicija}
+
+    %\begin{trditev}
+    %    Naj bosta $X$ in $Y$ slu"cajni spremenljivki definirani na $(\Omega, \mathcal{F}, \Prob)$ in 
+    %    $g$ in $h$ borelovi funkciji.
+    %    Potem sta $X$ in $Y$ neodvisni natanko tedaj, ko sta $g(X)$ in $h(Y)$ neodvisni. Trditev naravno 
+    %    posplo"simo na slu"cajne vektorje. 
+    %\end{trditev}
+%
+    %\begin{proof}
+    %    Naj bosta $B$ in $C$ poljubni borelovi mno"zici. "Ce sta $X$ in $Y$ neodvisni, velja 
+    %    $\Prob(h(X)\in B, g(Y)\in C) = \Prob(X\in h^{-1}(B))\Prob(Y\in g^{-1}(C)) = \Prob(h(X)\in B) \Prob(g(Y)\in C)$. 
+    %    "Ce sta $g(X)$ in $h(Y)$ neodvisni pa velja 
+    %    $ \Prob(X\in B, Y\in C) = \Prob(h(X)\in h(B))\Prob( g(Y)\in g(C)) = \Prob(X\in B)\Prob( Y\in C)$. 
+    %    
+    %\end{proof}
 
     \begin{trditev}
         Naj bodo $X, Y$ in $Z$ slu"cajne spremenljivke ter $g$ in $h$ poljubni borelovi funkciji. 
