@@ -164,7 +164,7 @@ z ve"ckratkim simuliranjem procesa tveganja.
 In the first half of the diploma, we define the compound Poisson distribution and derive the form of its
 generating functions. We discuss its connection with general distributions and derive the Panjer recursion scheme.
 We then define the compound Poisson process and show some basic properties such as the independence and
-stationarity of increments. We derive some results obtained when the compound Poisson process is marked.
+stationarity of increments. We derive some results that follow from a space-time decomposition of the compound Poisson process.
 In the second half of the diploma, we discuss the application of the compound Poisson process in the Cramér--Lundberg model. 
 We define the probability of ruin and survival and express the latter as a defective renewal equation. 
 We prove the Lundberg inequality and discuss the asymptotic behavior of the probability of ruin when 
@@ -204,8 +204,8 @@ V nastajanju :)
 
 \section{Uvod}
 Na razli"cnih podro"cjih financ so se v zadnjem stoletju razvile raznovrstne verjetnostne tehnike kako 
-modelirati razli"cne vrednostne procese finan"cnih instrumentov. Osredoto"cimo se na zavarovalni"stvo, 
-kjer "zelimo modelirati razli"cne produkte zavarovanja, ki jih ponujamo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
+modelirati razli"cne vrednostne procese finan"cnih instrumentov. V delu se osredoto"cimo na zavarovalni"stvo, 
+kjer "zelimo modelirati razli"cne produkte zavarovanja, ki jih zavarovalnice ponujajo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
 bodo zavarovanci pla"cevali.  Zadovoljiti "zelimo neke zastavljene metrike tveganja in dobiti verjetnostna zagotovila, 
 da lahko skozi "cas pri"cakujemo dobi"cek. 
 Standarden pristop k problemu je uporaba sestavljenih porazdelitev oziroma procesov kjer skozi "cas se"stevamo naklju"cno "stevilo 
@@ -228,7 +228,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     Sliko \ref{fig:slika1} v kontekstu zavarovalni"stva interpretiramo kot kumulativno obveznost zavarovalnice 
     svojim zavarovancem v nekem "casovnem intervalu. 
 
-    Diploma se v grobem deli na dva dela. Drugo in tretje poglavje sta namenjeni tehni"cni obravnavi klju"cnih lastnosti 
+    Vsebina se v grobem deli na dva dela. Drugo in tretje poglavje sta namenjeni tehni"cni obravnavi klju"cnih lastnosti 
     sestavljene Poissonove porazdelitve in procesa. V "cetrtem poglavju pa se posvetimo prakti"cni obravnavi uporabe sestavljenega
     Poissonovega procesa v zavarovalni"stvu. 
 
@@ -250,7 +250,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     V nekaj primerih navedemo le skice dokazov in podamo reference na vire ozna"cene s rde"co barvo \raisebox{0.6ex}{\fcolorbox{black}{red}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}. 
     Na slike in rezultate, ki jih izpeljemo v delu, se sklicujemo z modro barvo \raisebox{0.6ex}{\fcolorbox{black}{propercyan}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
     Na koncu dela je priloga, kjer je zbrana velika ve"cina definicij in izrekov, s katerimi naj bi bil bralec seznanjen pred branjem dela. Na njih 
-    se skli"cemo, ko jih prvi"c omenimo v delu ter pri dokazih in jih ozna"cimo z vijola barvo \raisebox{0.6ex}{\fcolorbox{black}{properpurple}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
+    se skli"cemo, ko jih prvi"c omenimo v delu ter pri dokazih trditev in jih ozna"cimo z vijola barvo \raisebox{0.6ex}{\fcolorbox{black}{properpurple}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
 
     \newpage
 \section{Sestavljena Poissonova porazdelitev}
@@ -742,17 +742,17 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     Razdelek je prirejen po \cite{1}, \cite{2}, in \cite{3}.
 
     Sedaj se posvetimo "studiranju sestavljenega Poissonovega procesa. Bralec lahko najde 
-    osnovne definicije splo"snih slu"cajnih procesov, s katerimi delamo,
+    osnovne definicije in lastnosti splo"snih slu"cajnih procesov, ki nas zanimajo, 
      med definicijama \refPriloga{def:slucProc} in \refPriloga{def:neodvisnostSP} v prilogi.
     Najprej doka"zemo in izpeljemo nekaj osnovnih lastnosti procesa kot so neodvisnot in stacionarnost
     prirastov, pri"cakovana vrednost in varianca. Na koncu obravnavamo markiranje procesa glede "cas in 
     njegovo vrednost ter doka"zemo nekaj zanimivih posledic.
 
-    Ker sestavljeni Poissonov proces temelji na homogenenem Poissonovem procesu, najprej podamo definicijo 
+    Sestavljeni Poissonov proces temelji na homogenenem Poissonovem procesu, zato najprej podamo definicijo 
     s katero bomo delali, saj ima homogeni Poissonov proces ve"c karakterizacij. 
 
     \begin{definicija}
-        Naj bo $\lambda > 0$. Dru"zini slu"cajnih spremenljivk $(N_t)_{t\geq 0}$, definirani na verjetnostnem 
+        Naj bo $\lambda > 0$. Dru"zini slu"cajnih spremenljivk $(N_t)_{t\geq 0}$, definiranimi na verjetnostnem 
         prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ z vrednostmi v $\N_0$, pravimo 
         \textit{homogeni Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
         \begin{enumerate}
@@ -868,7 +868,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \noindent
             $(\Leftarrow):$ Recimo, da za poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja
             (\ref{eq:neodvisnostStacionarnostPrirastov}).
-            \textcolor{red}{Pri tem dokazu ne vem, kako bi to korektno argumentiral.}
+            \textcolor{red}{Ne vem kako bi napisal to smer implikacije.}
         \end{proof}
 
         \begin{trditev}
@@ -1286,7 +1286,8 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             Markiranje je v praksi posebej uporabno pri analizi produktov 
             proporcionalnega pozavarovanja, kjer si zavarovalnica (cedent) in  
             pozavarovalnica delita obveznosti in dobi"cek glede na velikost zahtevkov. Naj bo $(S_t)_{t\geq0}$ $\CPP$  
-            v katerem se"stevamo nenegativne slu"cajne spremenljivke $X_i$ in $ 0 = d_0 < d_1 < \cdots < d_n < \infty$ pozitivna realna "stevila. 
+            v katerem se"stevamo nenegativne slu"cajne spremenljivke $X_i$, ki predstavljajo zahtevke, 
+            ki jih zavarovalnica prejema, in $ 0 = d_0 < d_1 < \cdots < d_n < \infty$ pozitivna realna "stevila. 
             Za fiksen $t\geq0$ so mno"zice 
             $A_1, \dots, \ A_{n + 1}$ in $B$ disjunktna particija mno"zice $[0, \infty)^2$ oblike 
             \begin{equation*}
@@ -1678,7 +1679,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         ena"cbo. 
 
     \begin{definicija}
-        Za la"zjo notacijo v nadaljevanju definiramo funkcijo \textit{verjetnosti pre"zivetja} kot
+        Za lep"so notacijo v nadaljevanju definiramo funkcijo \textit{verjetnosti pre"zivetja} kot
         $\theta(u):(0, \infty) \to [0, 1]$ s predpisom
         \begin{equation*}
             \theta(u) = \Prob_u\left(T=\infty\right) = 1 - \psi(u).
@@ -1764,13 +1765,13 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \begin{align*}
             \theta(t) - \theta(0) &= \frac{\lambda}{c}\int_{(0, t]}\theta(u)du - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\theta(t - x)dx,\\
             \theta(t) &= \theta(0) + \frac{\lambda}{c}\int_{(0, t]}\bigl(1 - F_{X_1}(x)\bigr)\theta(t - x)dx \\
-                    &= \theta(0) + \frac{1}{c}\int_{(0, t]}\theta(t - x)d\overline{F}_{X_1}(x).
+                    &= \theta(0) + \frac{1}{1 + \rho}\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x).
         \end{align*}
-        "Ce sedaj upo"stevamo enakost 
+        Pri enakosti v zadnji vrstici smo upo"stevali  
         \begin{equation*}
-            \frac{1}{c} = \frac{1}{1 + \rho}
+            \frac{\lambda}{c} = \frac{1}{1 + \rho}\frac{1}{\E\left[X_1\right]}
         \end{equation*}
-        in zamenjamo oznako spremenljivke $t\mapsto u$, dobimo "zeleno enakost (\ref{eq:verjetnostPrezivetja}).
+        in zamenjali oznako spremenljivke $t\mapsto u$. S tem je lema dokazana. 
 
     \end{proof}
 
@@ -1814,10 +1815,23 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     defektna prenovitvena ena"cba. V splo"snem defektne prenovitvene ena"cbe lahko re"sujemo s pomo"cjo 
     Banachovega izreka o negibni to"cki \refPriloga{izr:Banach}. Da funkcija $\theta$ re"si ena"cbo 
     (\ref{eq:verjetnostPrezivetja3}) lahko povemo tako, da je negibna to"cka operatorja 
-    \begin{equation*}
+    \begin{equation}
         Ag(u) = (1 - q) + q\int_{(0, u]}g(u - x)d\overline{F}_{X_1}(x),
+        \label{eq:operator}
+    \end{equation}
+    saj je ta skr"citev na prostoru omejenih funkcij $B([0, \infty))$ opremljenim s supremum metriko
+    \begin{equation*}
+        d_\infty(f, g) = \sup_{u\in[0, \infty)}\big|f(u) - g(u)\big|,  \quad f, g\in B([0, \infty)).
     \end{equation*}
-    "ce je ta skr"citev na prostoru omejenih funkcij $B([0, \infty))$ opremljenim s supremum normo.
+    To enostavno poka"zemo z oceno
+    \begin{align*}
+        \sup_{u\in[0, \infty)}\big|Af(u) - Ag(v)\big| 
+                    &= \sup_{u\in[0, \infty)}\bigg|q\int_{(0, u]}f(u- x) - g(u - x)d\overline{F}_{X_1}(x)\bigg| \\
+                                &\leq \sup_{u\in[0, \infty)}q\int_{(0, u]}\big|f(u - x) - g(u - x)\big|d\overline{F}_{X_1}(x) \\
+                                &\leq \sup_{u\in[0, \infty)}q\int_{(0, u]}d_\infty(f, g)d\overline{F}_{X_1}(x) \\
+                                &\leq q\int_{(0, \infty)}d_\infty(f, g)d\overline{F}_{X_1}(x)\\
+                                &= qd_\infty(f, g).
+    \end{align*}
     \label{op:OperatorPrenovitvena}
     \end{opomba}
 
@@ -2102,7 +2116,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
                      &= q\int_{(u, \infty)}e^{\ell x}\, d\overline{F}_{X_1}(x) 
                         - q\ell \int_{(u, \infty)}(1 - \overline{F}_{X_1}(x))e^{\ell x}\, dx. \\                                  
                 \end{align*}
-                \textcolor{red}{Tu ne vem kako lepo argumentirati rezultatov. Lahko napis"sem samo pravilo za odvajanje produkta? Po tem bom napisal pojasnilo bi se morala urediti tudi naslednja stran, ki je trenutno nekoliko prazna}
+                \textcolor{red}{Tu ne vem kako lepo argumentirati rezultatov. Lahko napis"sem samo pravilo za odvajanje produkta?}
                 Tako vidimo, da je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
                 Riemannovo integrabilnih funkcij in je zato po kriteriju \refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost} 
                 direktno Riemannovo integrabilna. Dobimo 
@@ -2268,9 +2282,9 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \begin{lema}
             Naj bo $F_{X_1}$ subeksponentna porazdelitvena funkcija nenegativne slu"cajne spremenljivke 
             $X_1$. Potem za vsak $\varepsilon > 0$ obstaja pozitivna konstanta $K(\varepsilon) < \infty$, 
-            da za vsak $n\geq2$ velja 
+            da za vsak $n\geq2$ in $x \geq 0$ velja 
             \begin{equation*}
-                \frac{\Prob(X_1 + \cdots + X_n > x)}{\Prob(X_1 > x)} \leq K(\varepsilon)(1+\varepsilon)^n, \quad x \geq 0. 
+                \frac{\Prob(X_1 + \cdots + X_n > x)}{\Prob(X_1 > x)} \leq K(\varepsilon)(1+\varepsilon)^n. 
             \end{equation*} 
             \label{lema:ocenaSubeksponentnePorazdelitve}
         \end{lema}
@@ -2313,71 +2327,111 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \end{izrek}
 
         \begin{proof}
-            V primeru subeksponentinh porazdelitev se dokaza lotimo 
-            Najprej poka"zimo, da lahko verjetnost 
-            pre"zivetja iz leme \ref{lema:verjetnostPrezivetja} 
-            predstavimo kot porazdelitveno funkcijo sestavljene
-            geometrijske porazdelitve \refPriloga{def:CompoundGeometricDistribution}. "Ce definiramo 
-            $G \sim \text{Geom}(\frac{\rho}{1 + \rho})$ in zaporedje neodvisnih enako porazdeljenih 
-            slu"cajnih spremenljivk $(\overline{X}_i)_{i\in\N}$ s porazdelitveno funkcijo $\overline{F}_{X_1}$, 
-            bomo pokazali, da porazdelitvena funkcija $F_C$ slu"cajne spremenljivke
-            $C = \sum_{i=1}^{G}\overline{X}_i$ zado"s"ca ena"cbi 
+            Dokaza se lotimo z iskanjem negibne to"cke 
+            operatorja (\ref{eq:operator}), ki smo ga definirali v opombi \ref{op:OperatorPrenovitvena}.
+            Re"sitev $\theta = A\theta$ se izra"za kot limita $\theta = \lim_{n\to\infty}A^ng_0$ za 
+            poljubno funkcijo $g_0\in B([0, \infty)).$ Naj bodo $\overline{X}_1, \overline{X}_2, \dots $ 
+            neodivnse enako porazdeljene slu"cajne spremenljivke s porazdelitveno funkcijo $\overline{F}_{X_1}$.
+            Potem $A$ izrazimo kot
+            \begin{equation*}
+                Ag(u) = (1 - q) + q\E\left[g(u - \overline{X}_1)\right]
+            \end{equation*}
+            in z indukcijo poka"zemo, da za $g_0 = (1 - q)\mathbbm{1}(u\geq0)$ za vsak $n\in\N$ velja
+            \begin{equation*}
+                A^ng_0(u) = (1 - q)\sum_{k = 0}^nq^k\Prob\left(\overline{W}_k \leq u\right),
+            \end{equation*}
+            pri "cemer je $\overline{W}_k = \overline{X}_1 + \cdots + \overline{X}_k$ in $\overline{W}_0 = 0$.
+            Enakost o"citno velja za $n=1$. Indukcijski korak pa poka"zemo...
+            \begin{center}
+                \textcolor{red}{indukcije mi ni uspelo izpeljati. Prav tako mi ni 
+                jasno zakaj moramo raz"siriti razred funkcij na realno os, saj so slu"cajne spremenljivke 
+                nenegativne.}
+            \end{center}
+            Sledi 
             \begin{equation}
-                F_C(u) = \frac{\rho}{1 + \rho} + \frac{1}{1 + \rho}\int_{(0, u]}F_C(u - x)d\overline{F}_{X_1}(x),
-                \label{eq:verjetnostPrezivetja4}
+                \theta(u) = \lim_{n\to\infty} A^ng_0 = (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right).
+                \label{eq:bodocaGeometrijska}
             \end{equation}
-            ki je natanko ena"cba (\ref{eq:verjetnostPrezivetja3}) iz leme \ref{lema:verjetnostPrezivetja}.
-            Porazdelitvena funkcija $F_C$ ima obliko
-            \begin{align}
-                \Prob\left(C \leq u\right)  &= \Prob\left(G = 0\right) + \sum_{n = 1}^\infty\Prob\left(G = n\right)\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right) \nonumber\\
-                                            &= \frac{\rho}{1 + \rho} + \frac{\rho}{1 + \rho}\sum_{n = 1}^\infty\frac{1}{(1 + \rho)^n}\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right). \label{eq:distributionOfC}
-            \end{align}
-            Za preglednost ponovno uvedemo oznako $q= \frac{1}{1 + \rho}$ in 
-             $p = \frac{\rho}{1 + \rho}$ in ena"cbo (\ref{eq:distributionOfC}) preoblikujemo 
+            Upo"stevamo enakost
             \begin{align*}
-                \Prob\left(C \leq u\right)  
-                    &= p + qp\overline{F}_{X_1}(u) + p\sum_{n = 2}^\infty q^{n}\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right) \\
-                    &= p + qp\overline{F}_{X_1}(u) + qp\sum_{n = 2}^\infty q^{n-1}\int_{(0, u]}\Prob\left(x + \overline{X}_2 + \cdots + \overline{X}_{n} \leq u\right)d\overline{F}_{X_1}(x) \\
-                    &= p + q\int_{(0, u]}p\left[1 + \sum_{n = 2}^\infty q^{n-1}\Prob\left(\overline{X}_2 + \cdots + \overline{X}_n \leq u - x\right)\right]d\overline{F}_{X_1}(x) \\
-                    &= p + q\int_{(0, u]}\Prob\left(C \leq u - x\right)d\overline{F}_{X_1}(x).
+                \psi(u) &= 1 - \theta(u)\\
+                        &= (1 - q)\sum_{k = 0}^\infty q^k - (1 - q)\sum_{k = 0}^\infty \Prob\left(\overline{W}_k \leq u\right) \\
+                        &= (1 - q)\sum_{k = 0}^\infty q^k\left(1 - \Prob\left(\overline{W}_k \leq u\right) \right)\\
+                        &= (1 - q)\sum_{k = 0}^\infty q^k \Prob\left(\overline{W}_k > u\right).
             \end{align*}
-            Vidimo, da $F_C$ zado"s"ca ena"cbi (\ref{eq:verjetnostPrezivetja3}), torej je res $F_C = \theta$. Limito 
-            $\lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}$ lahko tako zapi"semo kot
+
+%            Najprej poka"zimo, da lahko verjetnost 
+%            pre"zivetja iz leme \ref{lema:verjetnostPrezivetja} 
+%            predstavimo kot porazdelitveno funkcijo sestavljene
+%            geometrijske porazdelitve \refPriloga{def:CompoundGeometricDistribution}. "Ce definiramo 
+%            $G \sim \text{Geom}(\frac{\rho}{1 + \rho})$ in zaporedje neodvisnih enako porazdeljenih 
+%            slu"cajnih spremenljivk $(\overline{X}_i)_{i\in\N}$ s porazdelitveno funkcijo $\overline{F}_{X_1}$, 
+%            bomo pokazali, da porazdelitvena funkcija $F_C$ slu"cajne spremenljivke
+%            $C = \sum_{i=1}^{G}\overline{X}_i$ zado"s"ca ena"cbi 
+%            \begin{equation}
+%                F_C(u) = \frac{\rho}{1 + \rho} + \frac{1}{1 + \rho}\int_{(0, u]}F_C(u - x)d\overline{F}_{X_1}(x),
+%                \label{eq:verjetnostPrezivetja4}
+%            \end{equation}
+%            ki je natanko ena"cba (\ref{eq:verjetnostPrezivetja3}) iz leme \ref{lema:verjetnostPrezivetja}.
+%            Porazdelitvena funkcija $F_C$ ima obliko
+%            \begin{align}
+%                \Prob\left(C \leq u\right)  &= \Prob\left(G = 0\right) + \sum_{n = 1}^\infty\Prob\left(G = n\right)\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right) \nonumber\\
+%                                            &= \frac{\rho}{1 + \rho} + \frac{\rho}{1 + \rho}\sum_{n = 1}^\infty\frac{1}{(1 + \rho)^n}\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right). \label{eq:distributionOfC}
+%            \end{align}
+%            Za preglednost ponovno uvedemo oznako $q= \frac{1}{1 + \rho}$ in 
+%             $p = \frac{\rho}{1 + \rho}$ in ena"cbo (\ref{eq:distributionOfC}) preoblikujemo 
+%            \begin{align*}
+%                \Prob\left(C \leq u\right)  
+%                    &= p + qp\overline{F}_{X_1}(u) + p\sum_{n = 2}^\infty q^{n}\Prob\left(\overline{X}_1 + \cdots + \overline{X}_{n} \leq u\right) \\
+%                    &= p + qp\overline{F}_{X_1}(u) + qp\sum_{n = 2}^\infty q^{n-1}\int_{(0, u]}\Prob\left(x + \overline{X}_2 + \cdots + \overline{X}_{n} \leq u\right)d\overline{F}_{X_1}(x) \\
+%                    &= p + q\int_{(0, u]}p\left[1 + \sum_{n = 2}^\infty q^{n-1}\Prob\left(\overline{X}_2 + \cdots + \overline{X}_n \leq u - x\right)\right]d\overline{F}_{X_1}(x) \\
+%                    &= p + q\int_{(0, u]}\Prob\left(C \leq u - x\right)d\overline{F}_{X_1}(x).
+%            \end{align*}
+%            Vidimo, da $F_C$ zado"s"ca ena"cbi (\ref{eq:verjetnostPrezivetja3}), torej je res $F_C = \theta$. 
+            \noindent
+            Limito $\lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}$ lahko tako zapi"semo kot
             \begin{align*}
-                \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}   &= \lim_{u\to\infty}p\sum_{n=1}^{\infty}q^n\frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u\right)}{1 - \overline{F}_{X_1}(u)}.
+                \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}   &= \lim_{u\to\infty}(1 - q)\sum_{n=1}^{\infty}q^n\frac{\Prob\left(\overline{W}_k > u\right)}{1 - \overline{F}_{X_1}(u)}.
             \end{align*}
             "Ce vzamemo $\varepsilon < \frac{1}{q} - 1$, lahko po lemi \ref{lema:ocenaSubeksponentnePorazdelitve} zaporedje funkcij 
             \begin{equation*}
-                f_k(n) = \frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u_k\right)}{1 - \overline{F}_{X_1}(u_k)}, \quad n\geq 2,\ k\in\N, 
+                f_k(n) = \frac{\Prob\left(\overline{W}_k > u_k\right)}{1 - \overline{F}_{X_1}(u_k)}, \quad n\geq 2,\ k\in\N, 
             \end{equation*}
             omejimo z integrabilno funkcijo $K(\varepsilon)(1 + \varepsilon)^n$ za vsak $n\geq 2$ (glede na mero, ki "steje). Limito $u\to\infty$ po 
             realnih "stevilih nadomestimo z limito po zaporedjih pozitivnih "stevil $u_k\xrightarrow{k\to\infty}\infty$.
-            Tako lahko po Lebesgueovem izreku o dominirani konvergenci (\refPriloga{izr:dominiranaKonvergenca})
+            Tako lahko po Lebesgueovem izreku o dominirani konvergenci \refPriloga{izr:dominiranaKonvergenca}
             zamenjanmo vrstni red limite in vsote.
             Ker je $\overline{F}_{X_1}$ subeksponentna, za vsak $n\in\N$ velja
             \begin{equation*}
-                \lim_{u\to\infty}\frac{\Prob\left(\overline{X}_1 + \cdots +\overline{X}_n > u\right)}{1 - \overline{F}_{X_1}(u)} = n.
+                \lim_{u\to\infty}\frac{\Prob\left(\overline{W}_k > u\right)}{1 - \overline{F}_{X_1}(u)} = n.
             \end{equation*}
             Kon"cno je
             \begin{align*}
-                \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)} &= p\sum_{n=1}^\infty q^nn \\
-                                 &= \frac{pq}{(1 - q)^2} =  \frac{1}{\rho}.
+                \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)} &= (1 - q)\sum_{n=1}^\infty q^nn \\
+                                 &= \frac{q}{(1 - q)} =  \frac{1}{\rho}.
             \end{align*}
         \end{proof}
 
         \begin{opomba}
-            Poka"zemo lahko tudi, da je $F_C$ edina porazdelitvena funkcija, ki zado"s"ca (\ref{eq:verjetnostPrezivetja3})
-            v razredu funkcij 
+            "Ce tako kot v definiciji sestavljene geometrijske porazdelitve \refPriloga{def:CompoundGeometricDistribution} 
+            vzamemo $G\sim\text{Geom}(1 - q)$, ki je neodvisna od $\overline{X}_1, \overline{X}_2, \dots,$ ima
+            $C = \overline{W}_G$  sestavljeno geometrijsko porazdelitev in za $u\geq0$ velja
             \begin{align*}
-                \text{\tiny\textcalligra{F}} = \{F \mid \ & \text{$F:\R\to[0, \infty)$ omejena, nepadajo"ca, zvezna z desne} \\
-                & \text{in za $x<0:F(x)=0$}\}.
+             \Prob\left(C \leq u\right)
+                    &= \sum_{k = 0}^\infty\Prob\left(G = k\right)\Prob\left(\overline{W}_k \leq u\right) \nonumber\\
+                    &= (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right) = \theta(u).
             \end{align*}
-            Trditev sledi direktno iz lastnosti Laplace-Stieltjesove transformacije, saj lahko vsak $F\in
-            \text{\tiny\textcalligra{F}}$ \ zapi"semo kot $aF_X$ za primerno konstanto $a\geq0$ in porazdelitveno 
-            funkcijo neke nenegativne slu"cajne spremenljivke $X$. Bolj formalen dokaz lahko bralec najde 
-            v \cite{4} na strani 173.
+            Torej je $C\sim \theta$ in posledi"cno $\psi(u) = \Prob\left(C > u\right) = (1-q)\sum_{k=0}^\infty q^k\Prob\left(\overline{W}_k > u\right)$.
             \label{op:tezkorepnePorazdelitveAsimptotika}
         \end{opomba}
+
+        Izreka \ref{izr:CramerjevaMeja} in \ref{izr:tezkorepnePorazdelitveAsimptotika} poka"zeta klju"cno 
+        razliko med lahkorepimi in te"zkorepimi porazdelitvami. Limita (\ref{eq:tezkorepnePorazdelitveAsimptotika})
+        nam pove, da je konvergenca verjetnosti propada $\psi$ enakega reda kot $(1 - \overline{F}_{X_1})$, ki pa 
+        ni zanemarljiva tudi za velike vrednosti $u$. To pomeni, da so zavarovalni"ski produkti, za katere 
+        verjamemo, da so zahtevki subexponentno porazdeljneni, nevarni, saj imajo najve"cji zahtevki velik 
+        vpliv na celoten proces tveganja in se propad lahko zgodi zaradi enega samega velikega
+        zahtevka kot v zgledu \ref{zgd:weibullProcesTveganja}.
 
         \begin{zgled}
         Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC.\ Naj 
@@ -2397,7 +2451,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         Iz zgleda \ref{zgd:weibullProcesTveganja} vemo, da je $\E\left[X_1\right] = 384$. Z uvedbo nove spremenljivke
         $z = x^{1/4} (dz = \frac{1}{4x^{3/4}}dx)$ z nekaj ra"cunanja dobimo 
         \begin{equation*}
-            \overline{F}_{X_1}(u) = 1 - \frac{\left(u^{3/4} + 6 \sqrt{u} + 24 \sqrt[4]{u} + 48\right)e^{-{\sqrt[4]{u}}/{2}}}{48}
+            \overline{F}_{X_1}(u) = 1 - \frac{\left(u^{3/4} + 6 \sqrt{u} + 24 \sqrt[4]{u} + 48\right)e^{-{\sqrt[4]{u}}/{2}}}{48}.
         \end{equation*}
         Izra"cunamo "se 
         \begin{equation*}
@@ -2771,8 +2825,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             f(t) = g(t) + \int_{[0, t]}f(t - s)dF(s), \quad t\geq 0,
         \end{equation*}
         kjer sta neznana funkcija $f$ in znana funckija $g$ definirani na $\R^+$, $F$ pa je 
-        porazdelitvna funkcija neke pozitivne slu"cajne spremenljivke $X$. Prenovitveno ena"cbo predstavimo
-        s parom $(g, F)$.
+        porazdelitvna funkcija neke pozitivne slu"cajne spremenljivke $X$.
         \label{def:prenovitvenaEnacba}
     \end{definicija}
 
