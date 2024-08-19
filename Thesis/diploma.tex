@@ -203,17 +203,17 @@ V nastajanju :)
 %--------------------------------------------VSEBINA-----------------------------------------------%
 
 \section{Uvod}
-Na razli"cnih podro"cjih financ so se v zadnjem stoletju razvile raznovrstne verjetnostne tehnike kako 
-modelirati razli"cne vrednostne procese finan"cnih instrumentov. V delu se osredoto"cimo na zavarovalni"stvo, 
-kjer "zelimo modelirati razli"cne produkte zavarovanja, ki jih zavarovalnice ponujajo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
-bodo zavarovanci pla"cevali.  Zadovoljiti "zelimo neke zastavljene metrike tveganja in dobiti verjetnostna zagotovila, 
-da lahko skozi "cas pri"cakujemo dobi"cek. 
-Standarden pristop k problemu je uporaba sestavljenih porazdelitev oziroma procesov kjer skozi "cas se"stevamo naklju"cno "stevilo 
-neodvisnih enako poradeljenih slu"cajnih spremenljik, ki predstavljajo vi"sino posameznih zahtevkov zavarovancev.\ Prvi tak model za opis
-poslovanja zavarovalnice 
-je v za"cetku 20. stoletja razvil Filip Lundberg in je danes eden izmed najbolj raziskanih in 
-uporabljenih modelov v teoriji tveganja. Model temelji na sestavljenemu Poissonovemu procesu, kjer predpostavimo, da je "stevilo zahtevkov,
-ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno.
+    Na razli"cnih podro"cjih financ so se v zadnjem stoletju razvile raznovrstne verjetnostne tehnike, kako 
+    modelirati spreminjanje vrednosti finan"cnih instrumentov s "casom. V delu se osredoto"cimo na zavarovalni"stvo, 
+    kjer "zelimo modelirati razli"cne produkte zavarovanja, ki jih zavarovalnice ponujajo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
+    bodo zavarovanci pla"cevali. Zadostiti "zelimo dolo"cenim zastavljenim merilom tveganja in dobiti verjetnostna zagotovila, 
+    da lahko skozi "cas pri"cakujemo dobi"cek. 
+    Standarden pristop k problemu je uporaba sestavljenih porazdelitev oziroma procesov, kjer skozi "cas se"stevamo naklju"cno "stevilo 
+    neodvisnih enako porazdeljenih slu"cajnih spremenljik, ki predstavljajo vi"sino posameznih zahtevkov zavarovancev.\ Prvi tak model za opis
+    poslovanja zavarovalnice 
+    je v za"cetku 20. stoletja razvil Filip Lundberg. Le-ta danes eden izmed najbolj raziskanih in 
+    uporabljenih modelov v teoriji tveganja. Model temelji na sestavljenem Poissonovem procesu, kjer predpostavimo, da ima "stevilo zahtevkov,
+    ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdelitev.
 
     \begin{figure}[H]
         \centering
@@ -233,9 +233,9 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     Poissonovega procesa v zavarovalni"stvu. 
 
     V drugem poglavju definiramo sestavljeno Poissonovo porazdelitev in izpeljemo obliko njenih rodovnih funkcij.
-    Te"zava, ki si jo delijo sestavljene porazdelitve, je, da se njihove porazdelitvene funkcije izra"zajo 
-    s konvolucijam, ki pa se zelo redko analiti"cno izra"cunljive. Zato izpeljemo Panjerjevo rekurzivno shemo, ki 
-    je ena izmed najbolj popularnih metod za numeric"cno ocenjevanje sestavljene Poissonove porazdelitve.
+    Te"zava, ki si jo delijo sestavljene porazdelitve, je, da so redko analiti"cno izra"cunljive. 
+    Zato izpeljemo Panjerjevo rekurzivno shemo, ki 
+    je ena izmed najbolj popularnih metod za numeri"cno aproksimacijo sestavljene Poissonove porazdelitve.
 
     V tretjem poglavju definiramo sestavljeni Poissonov proces in izpeljemo nekaj osnovnih lastnosti, kot sta 
     neodvisnost in stacionarnost prirastkov ter pri"cakovana vrednost. Poglavje zaklju"cimo z izpeljavo rezultatov,
@@ -249,7 +249,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     V delu privzamemo, da je bralec seznanjen z osnovami verjetnosti, homogenega Poissonovega procesa in prenovitvenimi procesi.
     Na slike, vire in rezultate, ki jih izpeljemo v delu, se sklicujemo z modro barvo \raisebox{0.6ex}{\fcolorbox{black}{propercyan}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
     Na koncu dela je priloga, kjer je zbrana velika ve"cina definicij in izrekov, s katerimi naj bi bil bralec seznanjen pred branjem dela. Na njih 
-    se skli"cemo, ko jih prvi"c omenimo v delu ter pri dokazih trditev in jih ozna"cimo z rde"co barvo \raisebox{0.6ex}{\fcolorbox{black}{red}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
+    se skli"cemo, ko jih prvi"c omenimo v delu in pri dokazih trditev, ter jih ozna"cimo z rde"co barvo \raisebox{0.6ex}{\fcolorbox{black}{red}{\rule{0pt}{1pt}\rule{1pt}{0pt}}}.
 
     \newpage
 \section{Sestavljena Poissonova porazdelitev}
@@ -258,10 +258,10 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     Razdelek je prirejen po \cite{1}, \cite{2} in  \cite{4}.
 
     Sestavljena Poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki ga obravnavamo 
-    v naslednjem razdelku. Lastnosti, ki jih doka"zemo so direktno prenosljve na sam proces. Izplejemo 
+    v naslednjem razdelku. Lastnosti, ki jih doka"zemo, so direktno prenosljve na sam proces. Izpeljemo 
     obliko rodovnih funkcij, porazdelitveno funkcijo, zanimive rezultate v povezavi s 
-    splo"snmi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki jo prika"zemo na 
-    prakti"cnemu zgledu.
+    splo"snimi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki jo prika"zemo na 
+    prakti"cnem zgledu.
 
     \begin{definicija}
         Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
@@ -274,15 +274,16 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{definicija}
 
     \begin{opomba}
-        V primeru, ko so $X_i = 1$ za vsak $i\in\N$, je $S\sim\Pois{\lambda}$.
+        V primeru, ko je $X_i = 1$ za vsak $i\in\N$, je $S\sim\Pois{\lambda}$.
     \end{opomba}
 
     \begin{opomba}
-        Na enak na"cin definiramo splo"sne sestavljene porazdelitve kjer je $N$ poljubna slu"cajna spremenljivka,
-        ki zavzema vrednosti v $\N_0$. Konkreten primer nas zanima zaradi njegove povezave s sestavljenim
+        Na enak na"cin definiramo splo"sne sestavljene porazdelitve, kjer je $N$ poljubna slu"cajna spremenljivka,
+        ki zavzema vrednosti v $\N_0$\footnote{V delu se dr"zimo dogovora, da je $S$ na dogodku $\{N=0\}$ prazna vsota in zato 
+        enaka $0$.}. Konkreten primer nas zanima zaradi njegove povezave s sestavljenim
         Poissonovim procesom. V nadaljevanju bomo uporabljali oznako
         \begin{equation*}
-            S_0 = 0 \quad \text{in} \quad S_k = \sum_{i=1}^kX_i \quad \text{za} \ k\in\N; 
+            S_0 = 0 \quad \text{in} \quad S_k = \sum_{i=1}^kX_i \quad \text{za} \ k\in\N\>; 
         \end{equation*}
         opazimo, da se brezpogojna porazdelitev slu"cajne spremenljivke $S_k$ ujema s pogojno porazdelitvijo 
         slu"cajne spremenljivke $S\mid\{N = k\}$.
@@ -290,13 +291,13 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{opomba}
 
     \subsection{Rodovne, momentno-rodovne in karakteristi"cne funkcije} Klju"cno \newline orodje pri dokazovanju
-    lastnosti slu"cajnih spremenljivk so rodovne funckije \refPriloga{def:rodovneFunkcije}, saj so zelo uporabne
+    lastnosti slu"cajnih spremenljivk so rodovne funkcije \refPriloga{def:rodovneFunkcije}, saj so zelo uporabne
     pri obravnavi vsot neodvisnih slu"cajnih spremenljivk in ("ce obstajajo) popolnoma dolo"cajo njihovo porazdelitev.  
 
     \begin{trditev}
-        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
-        enako porazdeljenih slučajnih spremenljivk z momentno-rodovno funkcijo $M_{X_1}$. Potem ima za $u\in\R$
-        momentno-rodovna funkcija $S = \sum_{i=1}^NX_i$ obliko
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in od $N$)
+        enako porazdeljenih slučajnih spremenljivk z momentno-rodovno funkcijo $M_{X_1}$. Potem ima 
+        momentno-rodovna funkcija vsote $S = \sum_{i=1}^NX_i$ obliko
         \begin{equation*}
             M_{S}(u) = e^{\lambda \left(M_{X_1}(u) - 1\right)}.
         \end{equation*}
@@ -309,7 +310,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \varphi_{S}(u) 
                     &= \E\left[\exp\left[uS\right]\right] \nonumber\\
                     &= \sum_{k=0}^{\infty}
-                        \E\left[\exp\left[uS \ \big| \ N=k\right]\right]\Prob\left(N = k\right) \nonumber \\ 
+                        \E\left[\exp\left[uS\right] \ \big| \ N=k\right]\Prob\left(N = k\right) \nonumber \\ 
                     &= \sum_{k=0}^{\infty}
                         \E\left[\exp\left[uS_k\right]\right]\Prob\left(N = k\right) \nonumber \\
                     &= \sum_{k=0}^{\infty}
@@ -322,7 +323,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \begin{posledica}
         Rodovna in karakteristi"cna funkcija $S=\sum_{i = 1}^{N}X_i$ imata obliko 
         \begin{equation*}
-            G_{S}(u) = e^{\lambda \left(G_{X_1}(u) - 1\right)}, \qquad \text{in} \qquad
+            G_{S}(u) = e^{\lambda \left(G_{X_1}(u) - 1\right)} \qquad \text{in} \qquad
             \varphi_{S}(u) = e^{\lambda \left(\varphi_{X_1}(u) - 1\right)}.
         \end{equation*}
         \label{pos:RodovnaKarakteristicna}
@@ -330,8 +331,8 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
 
     \begin{proof}
     V splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $X$ enaka
-    njeni momentno-rodovni funckij izvrednoteni v $iu$ za $u\in\R$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
-    pa je enaka momentno-rodovni funkciji izvrednoteni v $\ln(u)$ za $u>0$, torej 
+    njeni momentno-rodovni funkciji, izvrednoteni v $iu$ za $u\in\R$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
+    pa je enaka momentno-rodovni funkciji, izvrednoteni v $\ln(u)$ za $u>0$, torej 
     $G_X(u) = M_X\left(\ln(u)\right)$, "ce obstajata.
     \end{proof}
 
@@ -358,9 +359,9 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \end{align*}
     \end{proof}
 
-    \subsection{Porazdelitev}
+    \subsection{Porazdelitvena funkcija}
     Z uporabo izreka o popolni verjetnosti s pogojevanjem na $N$ pridemo do formule za 
-    porazdelitev slu"cajne spremenljivke $S$. Za $x \in \R$ velja 
+    porazdelitveno funkcijo slu"cajne spremenljivke $S$. Za $x \in \R$ velja 
     \begin{align*}
         F_{S}(x) = \Prob\bigl(S \leq x\bigr) 
         &= \sum_{k=0}^\infty \Prob\bigl(S \leq x \mid N = k\bigr)\Prob\bigl(N = k\bigr) \\
@@ -405,11 +406,12 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \begin{definicija}
         Naj bo $(\lambda_k)_{k=1}^n$ zaporedje pozitivnih realnih "stevil, za katerega velja 
         $\sum_{k=1}^n\lambda_k = 1$. Naj bodo $F_1, \dots, F_n$ porazdelitvene funkcije
-        realnih slu"cajnih spremenljivk $X_1, \dots, X_n$ Potem 
+        realnih slu"cajnih spremenljivk $X_1, \dots, X_n$. Potem porazdelitvi s porazdelitveno 
+        funkcijo 
         \begin{equation*}
             F = \sum_{k=1}^n\lambda_kF_k
         \end{equation*}
-        pravimo \textit{me"sanica porazdelitev} $F_1, \dots, F_n$
+        pravimo \textit{me"sanica porazdelitev} teh slu"cajnih spremenljivk z ute"zmi $(\lambda_k)_{k=1}^n$.
     \end{definicija}
     \noindent
     O"citno je $F$ porazdelitvena funkcija. "Ce definiramo slu"cajno spremenljivko 
@@ -418,17 +420,18 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \begin{pmatrix}
         1 & 2  & \dots & n\\
         \lambda_1 & \lambda_2  & \dots & \lambda_n
-    \end{pmatrix},
+    \end{pmatrix}
     $$
-    vidimo, da je $F$ porazdelitev slu"cajne spremenljivke $X = \mathbbm{1}_{\{I = 1\}}X_1 + \cdots + \mathbbm{1}_{\{I = n\}}X_n$, 
+    in je le-ta neodvisna od vsake od slu"cajnih spremenljivk $X_1, \dots, X_n$, vidimo, da je $F$ 
+    porazdelitev slu"cajne spremenljivke $X_I = \mathbbm{1}_{\{I = 1\}}X_1 + \cdots + \mathbbm{1}_{\{I = n\}}X_n$, 
     kar enostavno poka"zemo z uporabo zakona o popolni verjentnosti. Za poljuben $n\in\N$ in $x\in\R$ velja 
     \begin{align*}
-        \Prob\left(X \leq x\right) 
-        &= \sum_{k=1}^n\Prob\left(X \leq x \ \big| \ I = k\right)\Prob\left(I = k\right) \\
+        \Prob\left(X_I \leq x\right) 
+        &= \sum_{k=1}^n\Prob\left(X_I \leq x \ \big| \ I = k\right)\Prob\left(I = k\right) \\
         &= \sum_{k=1}^n\Prob\left(X_k \leq x\right)\lambda_k \\
         &= \sum_{k=1}^nF_k(x)\lambda_k.
     \end{align*}
-    Z enakim argumentom lahko poka"zemo, da je $\varphi_X(u) = \sum_{k=1}^n\lambda_k\varphi_{X_k}(u)$.
+    Z enakim argumentom lahko poka"zemo, da je $\varphi_{X_I}(u) = \sum_{k=1}^n\lambda_k\varphi_{X_k}(u)$.
 
 
     \begin{trditev}
@@ -450,16 +453,16 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{trditev}
 
     \begin{proof}
-        Karakteristi"cna funkcija $S^{(k)}$ ima obliko
+        Karakteristi"cna funkcija slu"cajne spremenljivke $S^{(k)}$ ima obliko
         \begin{equation*}
-            \varphi_{S^{(k)}}(u) = e^{\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)}.
+            \varphi_{S^{(k)}}(u) = \exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right].
         \end{equation*}
         Ker so $S^{(1)}, \dots, S^{(n)}$ neodvisne, velja
         \begin{align*}
             \varphi_{S}(u) 
                 &= \prod_{k=1}^n\varphi_{S^{(k)}}(u) \\
                 &= \prod_{k=1}^n\exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right] \\
-                &= \exp\Biggl[\lambda\Biggl(\underbrace{\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u)}_{\varphi_{Y_1}{u}} - 1\Biggr)\Biggr].
+                &= \exp\Biggl[\lambda\Biggl(\underbrace{\sum_{k=1}^n \frac{\lambda_k}{\lambda} \varphi_{X_1^{(k)}}(u)}_{\varphi_{Y_1}(u)} - 1\Biggr)\Biggr].
         \end{align*}
         Po izreku o 
         enoli"cnosti \refPriloga{izr:enolicnost} sledi $S\sim\sum_{i=1}^{N}Y_i$.
@@ -473,25 +476,25 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         med sabo in od $N$) enako porazdeljene po shemi
         $$ 
         \begin{pmatrix}
-            a_1 & a_2 & a_3  \dots & \\
-            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} \dots & 
+            a_1 & a_2 & a_3 &  \dots  \\
+            \tfrac{\lambda_1}{\lambda} & \tfrac{\lambda_2}{\lambda} & \tfrac{\lambda_3}{\lambda} & \dots 
         \end{pmatrix},
         $$
         kjer je $(a_n)_{n\in\N}$ poljubno zaporedje realnih "stevil in 
-        $(\lambda_n)_{n\in\N}$ zaporedje pozitivnih realnih "stevil za katerega velja 
+        $(\lambda_n)_{n\in\N}$ zaporedje pozitivnih realnih "stevil, za katerega velja 
         ${\sum_{i=1}^\infty\lambda_i = \lambda}$.
         Potem velja 
         \begin{equation*}
             \sum_{j=1}^\infty a_jY_j \sim \sum_{j=1}^NX_j,
         \end{equation*}
-        kjer so $Y_1,Y_2,  \dots$ neodvisne slu"cajne spremenljivke porazdeljene kot \\
+        kjer so $Y_1,Y_2,  \dots$ neodvisne slu"cajne spremenljivke s porazdelitvami \\
         $\Pois{\lambda_1},\Pois{\lambda_2}, \dots$
         \label{trd:NXjeEnakoaY}
     \end{trditev}
 
     \begin{proof}
-        S $\varphi_{Z_n}(u)$ ozna"cimo karakteristi"cno funkcijo slu"cajne spremenljivke 
-        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}(u)$ karakteristi"cno funkcijo
+        S $\varphi_{Z_n}$ ozna"cimo karakteristi"cno funkcijo slu"cajne spremenljivke 
+        $Z_n := a_1Y_1 + a_2Y_2 + \dots + a_nY_n$ in s $\varphi_{Z}$ karakteristi"cno funkcijo
         $Z:= \sum_{j=1}^{N}X_j$. Po neodvisnosti velja
         \begin{align*}
             \varphi_{Z_n}(u) 
@@ -501,10 +504,9 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \end{align*}
 
         \noindent
-        Po trditvi  \ref{lema:povezavaRodovneKarkateristicne} velja
+        Po posledici  \ref{pos:RodovnaKarakteristicna} velja
         \begin{align*}
             \varphi_{Z}(u) 
-                    &= G_N\left(\varphi_{X_1}(u)\right) \\
                     &= \exp\left[\lambda\left(\varphi_{X_1}(u) - 1\right)\right] \\
                     & = \exp\left[\lambda\left(\sum_{j=1}^\infty\frac{\lambda_j}{\lambda}e^{a_jiu} - 1\right)\right]\\
                     &= \exp\left[\sum_{j=1}^{\infty}\lambda_j\left(e^{a_j i u} - 1\right)\right].
@@ -518,7 +520,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         po Lévijevem izreku o kontinuiteti \refPriloga{izr:LevijevIzrek} velja $Z_n \xrightarrow[n\to\infty]{d}Z$.
     \end{proof}
 
-    Rezultat je zanimiv predvsem zato, ker nam za razliko od trditve \ref{trd:vsotaCPDjeCPD} pove, da 
+    Rezultat je zanimiv predvsem zato, ker nam v nasprotju s trditvijo \ref{trd:vsotaCPDjeCPD} pove, da 
     lahko slu"cajno vsoto izrazimo kot linearno kombinacijo oziroma vrsto Poissonovih slu"cajnih spremenljivk.
 
     %\begin{opomba}
@@ -593,26 +595,22 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
 
 
     \subsection{Panjerjeva rekurzivna shema}
-    Poglejmo si popularno metodo za numeri"cno ocenjevanje sestavljene Poissonove porazdelitve v praksi. Kot
-    smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je ra"cunanje eksplicitne 
-    porazdelitve $S$ v kon"cni obliki v splo"snem nemogo"ce. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
-    rekurzivno izraziti in ustrezno posplo"siti na "sir"si razred porazdelitev.
+    Poglejmo si popularno metodo za numeri"cno aproksimacijo sestavljene Poissonove porazdelitve v praksi. Kot
+    smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je izra"zava eksplicitne 
+    porazdelitve $S$ v zaklju"ceni obliki v splo"snem nemogo"ca. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
+    rekurzivno izraziti in ustrezno posplo"siti na "sir"si razred porazdelitev. 
 
     \begin{trditev}(Panjer)
-        Naj bo $N$ diskretna slu"cajna spremenljivka, za katero velja 
+        Naj bo $N$ diskretna slu"cajna spremenljivka z vrednostmi v $\N_0$, za katero velja 
         \begin{equation*}
             \Prob(N = n) = \left(a + \frac{b}{n}\right)\Prob\left(N = n-1\right) \quad \text{za} \ n\in\N \ \text{in} \ a, b \in \R.
         \end{equation*}
         Naj bo $X_1, X_2, \dots$ zaporedje neodvisnih in enako porazdeljenih slu"cajnih spremenljivk, ki 
-        zavzemajo vrednosti v $\N_0$. Potem za $S = \sum_{i=1}^NX_i$ velja
+        zavzemajo vrednosti v $\N_0$. Potem za $S = \sum_{i=1}^NX_i$ od dogovoru, da je $0^0:=1$, velja
         \begin{equation*}
-        \Prob\left(S = 0\right) = 
-        \begin{cases}
-            \Prob\left(N = 0\right), & \text{če} \ \Prob(X_1 = 0) = 0, \\  
-            \E\left[\Prob\left(X_1 = 0\right)^N\right], & \text{sicer}, 
-        \end{cases}
+        \Prob\left(S = 0\right) =  \E\left[\Prob\left(X_1 = 0\right)^N\right],
         \end{equation*}
-        in za $n\in\N$ velja
+        za $n\in\N$ pa velja
         \begin{equation}
             \Prob\left(S = n\right) = \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
             \label{eq:PanjerRecursionScheme}
@@ -621,64 +619,62 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{trditev}
 
     \begin{proof}
-        Prvo se osredoto"cimo na primer $n = 0$. Velja
-        \begin{align*}
-            \Prob\left(S = 0\right)     
-                = \Prob\left(N = 0\right) + \Prob\left(S = 0, N > 0\right).
-        \end{align*}
-        "Ce velja $\Prob(X_1 = 0) = 0$, je enakost o"citna. "Ce 
-        velja $\Prob(X_1 = 0) > 0$, po zakonu za popolno pri"cakovano vrednost ra"cunamo
+        Po zakonu za popolno pri"cakovano vrednost velja
         \begin{align*}
             \Prob\left(S = 0\right) 
-                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(S = 0, N > 0 \mid N = k\right)\Prob\left(N = k\right) \\
-                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(S_k = 0\right)\Prob\left(N = k\right) \\
-                &= \Prob\left(N = 0\right) + \sum_{k = 1}^\infty\Prob\left(X_1 = 0\right)^k\Prob\left(N = k\right) \\
+                &= \sum_{j = 0}^\infty\Prob\left(S = 0\mid N = j\right)\Prob\left(N = j\right) \\
+                &= \sum_{j = 0}^\infty\Prob\left(S_j = 0\right)\Prob\left(N = j\right) \\
+                &= \sum_{j = 0}^\infty\Prob\left(X_1 = 0\right)^j\Prob\left(N = j\right) \\
                 &= \E\left[\Prob\left(X_1 = 0\right)^N\right].
         \end{align*}
-        Za $n\in\N$ velja
+        Za $n\in\N$ pa velja
         \begin{align}
             \Prob\left(S = n\right) 
-                &= \sum_{k = 1}^\infty\Prob\left(S_k = n\right)\Prob\left(N = k\right) \nonumber \\
-                &= \sum_{k = 1}^\infty\Prob\left(S_k = n\right)\left(a + \frac{b}{k}\right)\Prob\left(N = k - 1\right). \label{eq:PanjerRecursionSchemeProof}
+                &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\Prob\left(N = j\right) \nonumber \\
+                &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\left(a + \frac{b}{j}\right)\Prob\left(N = j - 1\right). \label{eq:PanjerRecursionSchemeProof}
         \end{align}
-        "Ce sedaj upo"stevamo, da so $X_i$ neodvisne in enako porazdeljene, opazimo, da velja
+        Ker so $X_1, X_2, \dots$ neodvisne in enako porazdeljene, so izmenljive \refPriloga{def:Izmenljivost} in tako po 
+        trditvi \refPriloga{trd:izmenljivostSimetricnaFunkcija} velja
         \begin{equation*}
-            1 = \E\left[\frac{S_k}{S_k} \biggm|  S_k\right] = \sum_{i = 1}^k\E\left[\frac{X_i}{S_k} \biggm|  S_k\right] = k\E\left[\frac{X_1}{S_k} \biggm|  S_k\right],
+            1 = \E\left[\frac{S_j}{S_j} \biggm|  S_j\right] = \sum_{k = 1}^j\E\left[\frac{X_k}{S_j} \biggm|  S_j\right] = j\,\E\left[\frac{X_1}{S_j} \biggm|  S_j\right],
         \end{equation*}
         torej je 
         \begin{equation*}
-            \E\left[\frac{X_1}{S_k}  \biggm|  S_k\right] = \frac{1}{k}
+            \E\left[\frac{X_1}{S_j}  \biggm|  S_j\right] = \frac{1}{j}
         \end{equation*}
         in posledi"cno 
         \begin{equation}
-            \E\left[a + \frac{bX_1}{n} \biggm|   S_k = n\right] = a + \frac{b}{k}.
+            \E\left[a + \frac{bX_1}{n} \biggm|   S_j = n\right] = a + \frac{b}{j}.
             \label{eq:PanjerRecursionSchemeProof2}
         \end{equation}         
-        Nadaljno velja  
+        Nadalje velja  
         \begin{align}   
-            & \E\left[a + \frac{bX_1}{n} \biggm|   S_k = n\right] \nonumber \\
-            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\mid S_k = n\right) \nonumber \\
-            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\frac{\Prob\left(X_1 = i, S_k - X_1 = n - i\right)}{\Prob\left(S_k = n\right)} \nonumber \\
-            &= \sum_{i = 0}^n\left(a + \frac{bi}{n}\right)\frac{\Prob\left(X_1 = i\right)\Prob\left(S_{k- 1} = n - i\right)}{\Prob\left(S_k = n\right)} \label{eq:PanjerRecursionSchemeProof3} 
+            & \E\left[a + \frac{bX_1}{n} \biggm|   S_j = n\right] \nonumber \\
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\mid S_j = n\right) \nonumber \\
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob\left(X_1 = k, S_j - X_1 = n - k\right)}{\Prob\left(S_j = n\right)} \nonumber \\
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob\left(X_1 = k\right)\Prob\left(S_{j- 1} = n - k\right)}{\Prob\left(S_j = n\right)} \label{eq:PanjerRecursionSchemeProof3} 
         \end{align}
+
+        \pagebreak
+        \noindent
         "Ce sedaj vstavimo enakost (\ref{eq:PanjerRecursionSchemeProof2}) v (\ref{eq:PanjerRecursionSchemeProof}) 
         in upo"stevamo (\ref{eq:PanjerRecursionSchemeProof3}), dobimo
         \begin{align*}
             \Prob\left(S = n\right) 
-                = \sum_{k = 1}^\infty\sum_{i = 0}^n \left(a + \frac{bi}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right).
+                = \sum_{j = 1}^\infty\sum_{k = 0}^n \left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S_{j - 1} = n - k\right)\Prob\left(N = j - 1\right).
         \end{align*}
-        Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} lahko zamenjamo vrstni red vsot, da dobimo
+        Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} lahko zamenjamo vrstni red vsot, kar nam da
         \begin{align*}
-            \Prob\left(S = n\right) 
-                &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\sum_{k = 1}^\infty\Prob\left(S_{k - 1} = n - i\right)\Prob\left(N = k - 1\right)\\
-                &= \sum_{i = 0}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right).
+            \Prob(S = n) 
+                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\sum_{j = 1}^\infty\Prob\left(S_{j - 1} = n - k\right)\Prob\left(N = j - 1\right)\\
+                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
         \end{align*}
         Izpostavimo prvi "clen vsote in izraz preoblikujemo.
         \begin{align*}
             \Prob\left(S = n\right) 
-                &= a\Prob\left(X_1 = 0\right)\Prob\left(S = n\right) + \sum_{i = 1}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right), \\
+                &= a\Prob\left(X_1 = 0\right)\Prob\left(S = n\right) + \sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right), \\
             \Prob\left(S = n\right)
-                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{i = 1}^n\left(a + \frac{b}{n}\right)\Prob\left(X_1 = i\right)\Prob\left(S = n - i\right).
+                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
         \end{align*}
         S tem je trditev dokazana.
     \end{proof}
@@ -686,7 +682,8 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \begin{opomba}
         Izka"ze se, da le tri porazdelitve 
         ustrezajo rekurzivni izra"zavi iz trditve \ref{tdr:PanjerRecursionScheme}. Te so $\Pois{\lambda}$, $\text{Bin}(p)$ in
-        $\text{NegBin}(r, p)$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. V primeru $N\sim\Pois{\lambda}$ za $n\in\N$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
+        $\text{NegBin}(r, p)$ ob dogovoru, da ima zalogo vrednosti $\N_0$ in $r\geq0$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. 
+        V primeru $N\sim\Pois{\lambda}$ za $n\in\N_0$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
         \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. 
         Tudi v ostalih primerih (argument je podan v \cite{4} na strani 122) se izka"ze, da je $a < 1$, tako da je 
         ena"cba (\ref{eq:PanjerRecursionScheme}) res dobro definirana.
@@ -694,7 +691,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{opomba}
 
     \begin{opomba}
-        Zahtevo, da $X_i$ zavzemajo vrednosti v $\N_0$ se spla"ca posplo"siti, tako da 
+        Zahtevo, da $X_i$ zavzemajo vrednosti v $\N_0$, se spla"ca posplo"siti, tako da 
         zahtevamo le, da $X_i$ zavzemajo vrednosti v $h\N_0$ za neki $h>0$. V tem primeru 
         zapi"semo $S = h\sum_{i=1}^N\frac{X_i}{h}$ in tako rekurzivna zveza velja za $\frac{S}{h}$. 
         Tako lahko aproksimiramo splo"sne slu"cajne 
@@ -726,7 +723,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     Panjerjeva metoda predstavlja alternativo Monte Carlo metodam. Njena glavna prednost 
     je, da z manj"sanjem koraka $h$ dose"zemo poljubno natan"cno to"cno aproksimacijo neke porazdelitve.\ 
     Monte Carlo metode so bolj splo"sne, saj temeljijo zgolj na ponavljanju simulacij in se lahko uporabljajo za modeliranje bolj zapletenih 
-    porazdelitev, ki ne zadovoljujejo pogojev trditve \ref{tdr:PanjerRecursionScheme} ali njene posplo"sitve
+    porazdelitev, ki ne zado"s"cajo pogojem trditve \ref{tdr:PanjerRecursionScheme}, ali njene posplo"sitve
     v opombi \ref{op:PanjerRazsiritev}. 
 
     \label{zgd:PanjerExp}  
@@ -772,7 +769,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
 
     \begin{definicija}
         Naj bo $(N_t)_{t\geq0}$ homogeni Poissonov proces z intenzivnostjo $\lambda$. 
-        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in $(N_t)_{t\geq0}$) in enako 
+        Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in od procesa $(N_t)_{t\geq0}$) in enako 
         porazdeljenih slučajnih spremenljivk. Potem je 
         \textit{sestavljeni Poissonov proces} $(S_t)_{t\geq0}$ definiran kot dru"zina
         slu"cajnih spremenljivk
@@ -798,7 +795,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     
         Pri "studiranju slu"cajnih procesov nas najprej zanimajo neke osnovne lastnosti, s katerimi 
         je la"zje delati kot z ne"stevnim naborom slu"cajnih spremenljivk in s pomo"cjo katerih 
-        lahko poka"zemo globje rezultate o procesu. 
+        lahko poka"zemo globlje rezultate o procesu. 
 
         %\begin{trditev}
         %    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$ in naj velja $X_0 = 0$ s.g.
@@ -833,41 +830,53 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
 
         \pagebreak
         \begin{trditev}
-            Naj bo $(X_t)_{t\geq0}$ slu"cajni proces na $(\Omega, \F, \mathbb{P})$. $(X_t)_{t\geq0}$ ima
+            Slu"cajni proces $(X_t)_{t\geq0}$ na $(\Omega, \F, \mathbb{P})$, za katerega je $X_0 = 0$, ima
             neodvisne in stacionarne prirastke natanko tedaj, ko za poljubna realna "stevila
             $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja 
             \begin{equation}
-                X_{t_{n+1}} - X_{t_n}\mid X_{0}, X_{t_1} \dots, X_{t_n} \sim X_{t_{n+1} - t_n}.
+                X_{t_{n+1}} - X_{t_n}\mid X_{t_1} \dots, X_{t_n} \sim X_{t_{n+1} - t_n}.
                 \label{eq:neodvisnostStacionarnostPrirastov}
             \end{equation}
             \label{trd:neodvisnostStacionarnostPrirastov}
         \end{trditev}
 
         \begin{proof}
-            $(\Rightarrow):$ Recimo, da ima $(X_t)_{t\geq0}$ neodvisne in stacionarne prirastke. Za 
-            poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ nas zanima porazdelitev 
-            slu"cajne spremenljivke $X_{t_{n+1}} - X_{t_n}\mid X_{0}, X_{t_1}, \dots, X_{t_n}$.
-            Po trditvi \refPriloga{trd:pogojneLastnosti} vemo, da je ta enaka porazdelitvi slu"cajne spremenljivke
-            $X_{t_{n+1}} - X_{t_n}\mid g(X_0, X_{t_1}, \dots, X_{t_n})$ za poljubno borelovo funkcijo $g:\R^{n+1}\to \R^{n+1}$,
-            ki jo definiramo na slede"c na"cin:
+            $(\Rightarrow):$ Recimo, da ima $(X_t)_{t\geq0}$ neodvisne in stacionarne prirastke. Ker je 
+            $X_0$ konstanta, lahko pi"semo $X_0 = x_0$. Po predpostavki in definicijah \refPriloga{def:prirastek} in 
+            \refPriloga{def:stacPrir} je 
+            \begin{equation*}
+                X_{t_{n+1}} - X_{t_n}\mid X_{t_1} - x_0 \dots, X_{t_n} - X_{t_{n-1}}\sim X_{t_n} - X_{t_{n-1}} \sim X_{t_{n+1} - t_n}.
+            \end{equation*}
+            Po trditvi \refPriloga{trd:pogojneLastnosti} je potem za poljubno Borelovo funkcijo $g:\R^{n}\to \R^{n}$
+            tudi 
+            \begin{equation*}
+                X_{t_{n+1}} - X_{t_n}\mid g(X_{t_1} - x_0 \dots, X_{t_n} - X_{t_{n-1}}) \sim X_{t_{n+1} - t_n}.
+            \end{equation*}
+            "Ce definiramo 
             \begin{align*}
-                g(x_0, x_1, \dots, x_n) &= (g_0, g_1, \dots, g_n),\\
-                                    g_0 &= x_0, \\
-                                    g_1 &= x_1 - x_0, \\
+                g(y_1, y_2, \dots, y_n) &= (g_1, g_2, \dots, g_n),\\
+                                    g_1 &= y_1 + x_0, \\
+                                    g_2 &= y_2 + g_1, \\
                                     &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
-                                    g_n &= x_n - x_{n-1}.
+                                    g_n &= y_n + g_{n-1}.
             \end{align*}
-            $g$ je o"citno merljiva, saj jo definiramo le z od"stevanjem.
-            Vidimo, da je 
-            $$g(X_0, X_{t_1}, \dots, X_{t_n}) = (X_0, X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}}).$$ 
-            Po neodvisnosti prirastkov $(X_t)_{t\geq0}$ sledi, da je porazdelitev slu"cajne 
-            spremenljivke $X_{t_{n+1}} - X_{t_n}$ neodvisna od slu"cajnega vektorja
-            $(X_0, X_{t_1} - X_{t_2}, \dots, X_{t_n} - X_{t_{n-1}})$. Po stacionarnosti prirastkov $(X_t)_{t\geq0}$ nato sledi 
-            veljavnost (\ref{eq:neodvisnostStacionarnostPrirastov}). \newline
+            Funkcija $g$ je o"citno merljiva, saj jo definiramo le s se"stevanjem. Ker velja
+            $g(X_{t_1} - x_0, \dots, X_{t_n} - X_{t_{n-1}}) = (X_{t_1}, \dots, X_{t_n})$, 
+            smo dokazali prvo smer implikacije. \newline
             \noindent
             $(\Leftarrow):$ Recimo, da za poljubna realna "stevila $0\leq t_1 < t_2 < \ldots < t_n < t_{n+1} < \infty$ velja
-            (\ref{eq:neodvisnostStacionarnostPrirastov}).
-            \textcolor{red}{Ne vem kako bi napisal to smer implikacije.}
+            (\ref{eq:neodvisnostStacionarnostPrirastov}). Zdaj definiramo 
+            \begin{align*}
+                h(y_1, y_2, \dots, y_n) &= (h_1, h_2, \dots, h_n),\\
+                                    h_1 &= y_1 - x_0, \\
+                                    h_2 &= y_2 + y_1, \\
+                                    &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
+                                    h_n &= y_n + y_{n-1}. 
+            \end{align*}  
+            Po trditvi \refPriloga{trd:pogojneLastnosti} je potem $X_{t_{n+1}} - X_{t_n}$ neodvisna od
+            $(X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ in enako porazdeljena kot $X_{t_{n+1} - t_n}$.
+            Z indukcijo dobimo, da so potem tudi prirastki med seboj neodvisni in stacionarni.     
+            
         \end{proof}
 
         \begin{trditev}
@@ -890,11 +899,12 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             zato je 
             \begin{align*}
                 &S_{t_{n+1}} - S_{t_n}\mid N_{t_1}= k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n} \\
-                &\sim \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i\mid N_{t_1}= k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n}.
+                &\sim \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i\Bigm| N_{t_1}= k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n}.
             \end{align*}
-            Ker pa so $X_1, \dots, X_{k_n}, N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}$ neodvisne, sledi, 
+            Ker pa so $X_1, \dots, X_{k_n}, X_{k_{n+1}}, X_{k_{n+2}}, \dots,
+             N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}, N_{t_{n+1}} - N_{t_n}$, neodvisne, sledi, 
             da sta neodvisna tudi vektorja 
-            $$(N_{t_1}, N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}, X_1, \dots, X_{k_n}) \ \text{in} \
+            $$(N_{t_1}, N_{t_2} - N_{t_1}, \dots, N_{t_n} - N_{t_{n-1}}, X_1, \dots, X_{k_n}) \quad \text{in} \quad
             (N_{t_{n+1}} - N_{t_n} X_{k_n + 1}, \dots),$$ z njima pa tudi vektor
             $(N_{t_1}, \dots, N_{t_n}, X_1, \dots, X_{k_n})$ in slu"cajna spremenljivka \newline
             $\sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i$. Torej je
@@ -913,13 +923,13 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \begin{align*}
                 &S_{t_{n+1}} - S_{t_n} \mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, X_1, \dots, X_{k_n} \\
                 &\sim \sum_{i = k_n + 1}^{k_n + N_{t_{n+1}} - N_{t_n}}X_i 
-                = \sum_{i = 1}^{N_{t_{n+1} - t_n}}X_i = S_{t_{n+1} - t_n}.
+                \sim \sum_{i = 1}^{N_{t_{n+1} - t_n}}X_i = S_{t_{n+1} - t_n}.
             \end{align*}
-            Potem pa je tudi
+            Potem pa je po trditvi \refPriloga{trd:pogojneLastnosti} tudi
             \begin{equation*}
-                S_{t_{n+1}} - S_{t_n}\mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, \sum_{i=1}^{k_1}X_i, \dots, \sum_{i=k_{n-1} + 1}^{k_n}X_i \sim S_{t_{n+1} - t_n}, 
+                S_{t_{n+1}} - S_{t_n}\mid N_{t_1} = k_1, \dots, N_{t_n} = k_n, \sum_{i=1}^{k_1}X_i, \dots, \sum_{i=k_{n-1} + 1}^{k_n}X_i \sim S_{t_{n+1} - t_n}.
             \end{equation*}
-            ker na dogodku $\{N_{t_1} = k_1, \dots, N_{t_n} = k_n\}$ velja 
+            Ker pa na dogodku $\{N_{t_1} = k_1, \dots, N_{t_n} = k_n\}$ velja 
             \begin{equation*}
                 \sum_{i=1}^{k_1}X_i = S_{t_1}, \dots, \sum_{i=k_{n-1} + 1}^{k_n}X_i = S_{t_n} - S_{t_{n-1}},
             \end{equation*}
@@ -931,19 +941,19 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \begin{equation*}
                 S_{t_{n+1}} - S_{t_n}\mid N_{t_1}, \dots, N_{t_n}, S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}
             \end{equation*}
-            in po trditvi \refPriloga{trd:pogojneLastnosti} velja
+            in spet po trditvi \refPriloga{trd:pogojneLastnosti} velja
             \begin{equation*}
                 S_{t_{n+1}} - S_{t_n}\mid S_{t_1}, \dots, S_{t_n} - S_{t_{n-1}} \sim S_{t_{n+1} - t_n}.
             \end{equation*}
         \end{proof}
 
-        \begin{opomba}
-            Podobno kot v opombi \ref{op:gneralCaseCOmpound} bomo od zdaj naprej za $t\geq0$  
-            pogojno porazdelitev $S_t \mid \{N_t = k\}$ ozna"cevali s
-            \begin{equation*}
-                S_{t, 0} = 0 \quad \text{in} \quad S_{t, k} = \sum_{i=1}^kX_i \quad \text{za} \ k\in\N.
-            \end{equation*}
-        \end{opomba}
+        %\begin{opomba}
+        %    Podobno kot v opombi \ref{op:gneralCaseCOmpound} bomo od zdaj naprej za $t\geq0$  
+        %    pogojno porazdelitev $S_t \mid \{N_t = k\}$ ozna"cevali s
+        %    \begin{equation*}
+        %        S_{t, 0} = 0 \quad \text{in} \quad S_{t, k} = \sum_{i=1}^kX_i \quad \text{za} \ k\in\N.
+        %    \end{equation*}
+        %\end{opomba}
 
         \begin{trditev}
             Naj bo $(S_t)_{t\geq 0}$ $\CPP$ in naj bosta $\mu = \E\left[X_i\right] < \infty$ 
@@ -960,19 +970,15 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
 
             Za $t\geq0$ in $k\in \N_0$ velja 
             \begin{align*}
-            \E\left[S_t\mid N_t = k\right] = \E\left[S_{t, k}\right] = k\mu \qquad \text{in} \qquad
-            \Var{S_t\mid N_t = k} = \Var{S_{t, k}} = k\sigma^2.
+            \E\left[S_t\mid N_t = k\right]  = k\mu \qquad \text{in} \qquad
+            \Var{S_t\mid N_t = k} = k\sigma^2.
             \end{align*} 
             Po formuli za popolno pri"cakovano vrednost velja 
-            $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej
-
+            $\E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right]$. Torej je
             \begin{align*}
                 \E\left[S_t\right] = \E\left[\E\left[S_t\mid N_t\right]\right] = \E\left[\mu N_t\right] = \mu\lambda t.
             \end{align*}
-
-            \noindent
             Prek formule $\Var{S_t} = \E\left[\Var{S_t\mid N_t}\right] + \Var{\E\left[S_t\mid N_t\right]}$ ra"cunamo 
-
             \begin{equation*}
                 \E\left[\Var{S_t\mid N_t}\right] = \E\left[\Var{X_i}N_t\right] = \sigma^2\lambda t
             \end{equation*}
@@ -980,7 +986,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \begin{equation*}
                 \Var{\E\left[S_t\mid N_t\right]} = \Var{\E\left[X_i\right]N_t} = \mu^2\lambda t.
             \end{equation*}
-            "Ce ena"cbi sestejemo, dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
+            "Ce ena"cbi se"stejemo, dobimo $\Var{S_t} = \lambda t\left(\sigma^2 + \mu^2\right)$.
         \end{proof}
     
     \begin{zgled}
@@ -993,7 +999,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
             \includegraphics[width=\textwidth]{
                 C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika6.pdf
                 }
-            \caption{Trajektorije CPP s funckijami $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$}
+            \caption{Trajektorije CPP s funkcijami $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$}
             \label{fig:slika6}
         \end{figure}
 
@@ -1146,39 +1152,40 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         prihoda. 
  
         \begin{izrek}(o markiranju)
-            Naj bo $(S_t)_{t\geq0}$ $CPP$. Naj bo $A_1, \dots, \ A_n$ disjunktna particija mno"zice 
+            Naj bo $(S_t)_{t\geq0}$ $\CPP$. Naj bodo $A_1, \dots, A_n$ disjunktne podmno"zice mno"zice 
             $[0, \infty) \times \R$. Potem so za fiksen $t\geq0$ slu"cajne spremenljivke
             \begin{equation}
-                S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right), \quad j = 1, \dots, n
+                S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right), \quad j = 1, \dots, n,
                 \label{eq:markedCPP}
             \end{equation}
-            med seboj neodvisne. "Se ve"c, za vsak $j = 1, \dots, n$ ima
+            kjer $V_i$ ozna"cuje "cas $i$-tega prihoda, med seboj neodvisne. "Se ve"c, za vsak $j = 1, \dots, n$ je
             \begin{equation*}
-                S_t^{(j)} \sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)
+                S_t^{(j)} \sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right),
             \end{equation*}
-            sestavljeno Poissonovo porazdelitev, kjer je $(U_i)_{i\in\N}$ zaporedje neodvisnih (med sabo, $N_t$ in $(X_i)_{i\in\N}$) in enako porazdeljenih slu"cajnih spremenljivk
-            kot $U_1\sim U\left([0, t]\right)$.
+            kjer je $(U_i)_{i\in\N}$ zaporedje neodvisnih (med sabo, ter "se od $N_t$ in $(X_i)_{i\in\N}$) 
+            slu"cajnih spremenljivk, porazdeljenih enakomerno $U\left([0, t]\right)$. Slu"cajna spremenljivka 
+            $S_t^{(j)}$ ima torej sestavljeno Poissonovo porazdelitev.
             \label{izr:MarkiranjeCPP}
         \end{izrek}
 
         \begin{proof}
-            Za splo"sen $\text{HPP}(\lambda)$ velja lasntost vrstilnih statistik \refPriloga{trd:VrstilneStatistikeHPP},
+            Za splo"sni $\text{HPP}(\lambda)$ velja lastnost vrstilnih statistik \refPriloga{trd:VrstilneStatistikeHPP},
             torej
             \begin{equation*}
                 \left(V_1, \dots, \ V_k \mid N_t = k\right)\sim \left(U_{(1)}, \dots, \ U_{(k)}\right), \quad k\in\N.
             \end{equation*}
-            Tako lahko za $j\in\{1, \dots, n\}$ vsoto (\ref{eq:markedCPP}), pogojno na dogodek $\{N_t = k\}$, zapi"semo kot
+            Tako lahko za $j\in\{1, \dots, n\}$ pogojno porazdelitev vsote (\ref{eq:markedCPP}) na dogodek $\{N_t = k\}$ zapi"semo kot
             \begin{equation*}
                 S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{(i)}, X_i\right).
             \end{equation*}
             Vrstni red sumandov je nepomemben. Z upo"stevanjem neodvisnosti in enake 
-            porazdeljenosti $X_i$, pogojno porazdelitev $S_t^{(j)}\mid \{N_t = k\} $ zapi"semo kot 
+            porazdeljenosti slu"cajnih spremenljivk $X_i$ lahko dano pogojno porazdelitev zapi"semo kot 
             \begin{equation*}
                 S_t^{(j)}\mid \{N_t = k\} \sim \sum_{i=1}^{k}X_i\mathbbm{1}_{A_j}\left(U_{i}, X_i\right).
             \end{equation*}
             (Bolj natan"cen argument bralec lahko najde v \cite{4} na strani 28.)
-            Sedaj si poglejmo skupno karakteristi"cno funkcijo slu"cajnega vektorja
-            $(S_t^{(1)}, \dots, \ S_t^{(n)})$.
+            Sedaj pa si poglejmo skupno karakteristi"cno funkcijo slu"cajnega vektorja \refPriloga{def:karakteristicnaSlucVektor}
+            $(S_t^{(1)}, \dots, \ S_t^{(n)})$:
             \begin{align*}
                 \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) 
                     &= \E\left[\exp\left[iu_1S_t^{(1)} + \dots + iu_nS_t^{(n)}\right]\right] \\
@@ -1188,22 +1195,23 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
                     &= \E\left[\exp\left[\sum_{i=1}^{N_t}\sum_{j=1}^niu_jX_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\right]\right]. 
             \end{align*}
             Opazimo, da imamo v eksponentu sestavljeno Poissonovo vsoto, za katero poznamo obliko karakteristi"cne 
-            funckcije iz posledice \ref{pos:RodovnaKarakteristicna}. Za namene berljivosti ozna"cimo 
-            eksponent karakterist"cne funkcije kot
+            funkcije iz posledice \ref{pos:RodovnaKarakteristicna}. Za namene berljivosti pi"simo
 
             \begin{align}
-                    \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) &= e^{g(u_1, \dots, \ u_n)}, \nonumber \\
+                    \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) &= e^{g(u_1, \dots, \ u_n)},
+            \end{align}
+            kjer je
+            \begin{align}
                     g(u_1, \dots, u_n) &= \lambda t \biggl(\underbrace{\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right]}_{(i)} - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
             \end{align}
-            Ker so mno"zice $A_j$ disjunktne, lahko $(i)$ izrazimo kot integral\footnote{V delu 
-            integral s tak"snim zapisom obmo"cja integracije ozna"cuje Lebesgueov integral po Lebesgueovi 
-            ali Lebesgue-Stieltjesovi meri porojeni z ustrezno porazdelitveno funkcijo.}, da dobimo
-
+            Ker so mno"zice $A_j$ disjunktne, velja identiteta
+            \begin{equation*}
+                \exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] - 1 
+                = \sum_{j=1}^n\left(\exp\left[iu_jX_1 - 1\right]\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right).
+            \end{equation*}
+            Torej 
             \begin{align*}
-                (i) &= \int_{[0, \infty)\times\R}e^{\sum_{j = 1}^niu_jx\mathbbm{1}_{A_j}(u, x)}dF_{U_1, X_1}(u, x)\\
-                    &= \int_{[0, \infty)\times\R}\prod_{j = 1}^ne^{iu_jx\mathbbm{1}_{A_j}(u, x)}dF_{U_1, X_1}(u, x)\\
-                    &= \sum_{j=1}^n\biggl(\int_{[0, \infty)\times\R}e^{iu_jx\mathbbm{1}_{A_j}(u, x)}dF_{U_1, X_1}(u, x)  \\
-                    & \qquad \qquad \qquad \qquad \qquad \qquad  - \int_{([0, \infty)\times\R) \setminus A_j}dF_{U_1, X_1}(u, x)\biggr).\\
+                
             \end{align*}
             Ena"cbo (\ref{eq:logKarakteristicnaFunkcija1}) tako poenostavimo
 
@@ -1217,7 +1225,9 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         \end{proof}
 
         Izrek o markiranju CPP ima vrsto uporabnih posledic. Direktno nam poda enostaven
-        alternativen dokaz za neodvisnost prirastkov.
+        alternativen dokaz za neodvisnost prirastkov.\footnote{V delu 
+        integral s tak"snim zapisom obmo"cja integracije ozna"cuje Lebesgueov integral po Lebesgueovi 
+        ali Lebesgue-Stieltjesovi meri porojeni z ustrezno porazdelitveno funkcijo.}, da dobimo
 
         \begin{posledica}
             CPP ima neodvisne prirastke.
@@ -2605,7 +2615,42 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
         na manj"so $\sigma$-algebro $\sigma(g(Z))$. Nadalje je $X$ neodvisna od $\sigma(Z)$, potem pa 
         mora biti neodvisna tudi od manj"se $\sigma$-algebre $\sigma(g(Z))$. Pri splo"snej"si razli"cici 
         uporabimo enak argument za $\sigma$-algebro $\sigma(h(g(Z)))$.
-        
+    \end{proof}
+
+    \begin{definicija}
+        Naj bo $X_1, X_2, \dots$ "stevno zaporedje slu"cajnih spremenljivk. Pravimo, da 
+        so slu"cajne spremenljivke $X_1, X_2, \dots$ \textit{izmenljive}, "ce za vsako kon"cno 
+        permutacijo $\pi$ velja, da je skupna porazdelitev slu"cajnih spremenljivk\newline $X_1, X_2, \dots$ enaka
+        skupni porazdelitvi slu"cajnih spremenljivk $X_{\pi(1)}, X_{\pi(2)}, \dots$.
+        \label{def:Izmenljivost}
+    \end{definicija}
+
+    \begin{trditev}
+        Naj bo $X_1, X_2, \dots$ "stevno zaporedje neodivsnih enako porazdeljenih slu"cajnih spremenljivk. 
+        Potem so slu"cajne spremenljivke $X_1, X_2, \dots$ izmenljive.
+    \end{trditev}
+
+    \begin{proof}
+        Izmenljivost neposredno sledi iz definicije neodvisnosti slu"cajnih spremenljivk, saj se 
+        skupna porazdelitev faktorzira na produkt posameznih porazdelitev.
+    \end{proof}
+
+    \begin{trditev}
+        Naj bodo $X_1, \dots, X_n$ izmenljive slu"cajne spremenljivke in $g: \R^n \rightarrow \R^k$
+        poljubna borelova simetri"cna funkcija. Potem so vsi slu"cajni vektorji 
+        $$
+            (X_i, g(X_1, \dots, X_n)),  \quad i = 1, \dots, n
+        $$
+        enako porazdeljeni. Sledi, da so tudi vse pogojne porazdelitve slu"cajnih spremenljivk
+        $$
+            X_i\mid g(X_1, \dots, X_n), \quad i = 1, \dots, n
+        $$
+        enake
+        \label{trd:izmenljivostSimetricnaFunkcija}
+    \end{trditev}
+
+    \begin{proof}
+        \textcolor{red}{dopi"si dokaz}
     \end{proof}
 
     \begin{definicija}
@@ -2693,7 +2738,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{7} na strani 192.
     \end{proof}
 
     \begin{izrek}(Izrek o enoli"cnosti)
@@ -2720,7 +2765,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{7} na strani 260.
     \end{proof}
 
     \begin{izrek}(Lebesgueov izrek o monotoni konvergenci)
@@ -2735,7 +2780,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{7} na strani 105.
     \end{proof}  
 
     \begin{izrek}(Lebesgueov izrek o dominirani konvergenci)
@@ -2751,7 +2796,7 @@ ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdeljeno
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{7} na strani 107.
     \end{proof}
 
     \begin{izrek}(Tonellijev izrek)
