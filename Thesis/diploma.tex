@@ -1197,9 +1197,9 @@ V nastajanju :)
             Opazimo, da imamo v eksponentu sestavljeno Poissonovo vsoto, za katero poznamo obliko karakteristi"cne 
             funkcije iz posledice \ref{pos:RodovnaKarakteristicna}. Za namene berljivosti pi"simo
 
-            \begin{align}
+            \begin{align*}
                     \varphi_{S_t^{(1)},\dots, S_t^{(n)}}(u_1, \dots, \ u_n) &= e^{g(u_1, \dots, \ u_n)},
-            \end{align}
+            \end{align*}
             kjer je
             \begin{align}
                     g(u_1, \dots, u_n) &= \lambda t \biggl(\underbrace{\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right]}_{(i)} - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
@@ -1211,7 +1211,9 @@ V nastajanju :)
             \end{equation*}
             Torej 
             \begin{align*}
-                
+                &\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] - 1 \right] \\
+                &= \sum_{j=1}^n\E\left[\exp\left[iu_jX_1 - 1\right]\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] \\
+                &= \sum_{j=1}^n\E\left[\exp\left[iu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right) - 1\right]\right]
             \end{align*}
             Ena"cbo (\ref{eq:logKarakteristicnaFunkcija1}) tako poenostavimo
 
