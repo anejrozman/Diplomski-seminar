@@ -337,7 +337,8 @@ V nastajanju :)
     \end{proof}
 
     V nadaljevanju bomo uporabljali predvsem karakteristi"cno funkcijo $\varphi_S$, saj je ta vedno definirana 
-    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_N$. 
+    za vsak $u\in\R$. Prav nam bo pri"sla tudi naslednja povezava med $\varphi_S$ in $G_N$, ki je 
+    poseben primer splo"snej"sega rezultata za sestavljene porazdelitve.
 
     \begin{trditev}
         Karakteristi"cno funkcijo $\varphi_S$ lahko izrazimo kot kompozitum rodovne funkcije $G_N$ in 
@@ -739,7 +740,7 @@ V nastajanju :)
 
     Sedaj se posvetimo "studiranju sestavljenega Poissonovega procesa. Bralec lahko najde 
     osnovne definicije in lastnosti splo"snih slu"cajnih procesov, ki nas zanimajo, 
-     med definicijama \refPriloga{def:slucProc} in \refPriloga{def:neodvisnostSP} v prilogi.
+     med definicijama \refPriloga{def:slucProc} in \refPriloga{def:neodvisnostProcesov} v prilogi.
     Najprej doka"zemo in izpeljemo nekaj osnovnih lastnosti procesa kot so neodvisnot in stacionarnost
     prirastov, pri"cakovana vrednost in varianca. Na koncu obravnavamo markiranje procesa glede "cas in 
     njegovo vrednost ter doka"zemo nekaj zanimivih posledic.
@@ -1202,7 +1203,7 @@ V nastajanju :)
             \end{align*}
             kjer je
             \begin{align}
-                    g(u_1, \dots, u_n) &= \lambda t \biggl(\underbrace{\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right]}_{(i)} - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
+                    g(u_1, \dots, u_n) &= \lambda t \biggl(\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right]\right] - 1\biggr). \label{eq:logKarakteristicnaFunkcija1}
             \end{align}
             Ker so mno"zice $A_j$ disjunktne, velja identiteta
             \begin{equation*}
@@ -1211,104 +1212,93 @@ V nastajanju :)
             \end{equation*}
             Torej 
             \begin{align*}
-                &\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] - 1 \right] \\
-                &= \sum_{j=1}^n\E\left[\exp\left[iu_jX_1 - 1\right]\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] \\
-                &= \sum_{j=1}^n\E\left[\exp\left[iu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right) - 1\right]\right]
+                g(u_1, \dots, u_n) &=
+                \lambda t\E\left[\exp\left[\sum_{j = 1}^niu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] - 1 \right] \\
+                &= \lambda t\sum_{j=1}^n\E\left[\exp\left[iu_jX_1 - 1\right]\mathbbm{1}_{A_j}\left(U_1, X_1\right)\right] \\
+                &= \lambda t\sum_{j=1}^n\E\left[\exp\left[iu_jX_1\mathbbm{1}_{A_j}\left(U_1, X_1\right) - 1\right]\right].
             \end{align*}
-            Ena"cbo (\ref{eq:logKarakteristicnaFunkcija1}) tako poenostavimo
-
-            \begin{align}
-                    &\lambda t \left(\left(\sum_{j=1}^n\left(\E\left[\exp\left(iu_j X_1 \mathbbm{1}_{A_j}(U_1, X_1)\right)\right] - \left( 1 - \Prob\left((U_1, X_1) \in A_j\right)\right)\right)\right) - 1\right)\nonumber \\
-                    &= \lambda t \sum_{j=1}^n\left(\E\left[\exp\left[iu_jX_1\mathbbm{1}_{A_j}(U_1, X_1)\right]\right] - 1\right) \label{eq:logKarakteristicnaFunkcija2}
-            \end{align} 
-            in vidimo, da je (\ref{eq:logKarakteristicnaFunkcija2}) ravno vsota eksponentov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
-            Tako sledi, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, S_t^{(n)}$ neodvisne in po obliki karakteristi"cne 
+            Vidimo, da je desna stran ena"cbe (\ref{eq:logKarakteristicnaFunkcija1}) ravno vsota 
+            eksponentov karakteristi"cnih funkcij $\varphi_{S_t^{(j)}}$. 
+            Po trditvi \refPriloga{trd:karakteristicnaNeodivsnost} sledi, da so slu"cajne 
+            spremenljivke $S_t^{(1)}, \dots, S_t^{(n)}$ neodvisne 
+            in po obliki karakteristi"cne 
             funckcije vidimo, da so res porazdeljene sestavljeno Poissonovo.
         \end{proof}
 
         Izrek o markiranju CPP ima vrsto uporabnih posledic. Direktno nam poda enostaven
-        alternativen dokaz za neodvisnost prirastkov.\footnote{V delu 
-        integral s tak"snim zapisom obmo"cja integracije ozna"cuje Lebesgueov integral po Lebesgueovi 
-        ali Lebesgue-Stieltjesovi meri porojeni z ustrezno porazdelitveno funkcijo.}, da dobimo
+        alternativen dokaz za neodvisnost in stacionarnost prirastkov.
 
         \begin{posledica}
-            CPP ima neodvisne prirastke.
+            CPP ima neodvisne in stacionarne prirastke.
         \end{posledica}
 
         \begin{proof}
-            Naj bo $A_1, \dots, \ A_n$ disjunktna particija 
-            mno"zice $[0, \infty) \times \R$ za realna "stevila $0=t_0\leq t_1 < \cdots < t_n < t < \infty$ defniriana kot
+            Naj bodo $0=t_0\leq t_1 < \cdots < t_n = t < \infty$
+            poljubna realna "stevila. Naj bodo $A_1, \dots, \ A_n$ neodivisne podmno"zice
+            mno"zice $[0, \infty) \times \R$ definirane kot
             \begin{equation*}
-                A_1 = [0, t_1)\times \R, \quad A_j = [t_{j-1}, t_j)\times \R, \quad \text{za} \ j = 2, \dots, n \quad \text{in} \quad A_{n + 1} = [t_{n}, \infty)\times \R.
+                A_1 = [0, t_1]\times \R, \quad A_j = (t_{j-1}, t_j]\times \R, \quad \text{za} \ j = 2, \dots, n.
             \end{equation*}
-            Potem so po izreku o markiranju slu"cajne spremenljivke $S_{t}^{(1)}, \dots, \ S_{t}^{(n)}$ neodvisne in enako
-            porazdeljene kot 
+            Potem so po izreku o markiranju slu"cajne spremenljivke $S_{t}^{(1)}, \dots, \ S_{t}^{(n)}$ neodvisne in 
+            po osnovni ekvivalenci $\{i\leq N_{t_j}\} \iff \{V_i \leq t_j\}$ velja 
             \begin{align*}
-                S^{(j)}_{t} \sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right)\sim
-                \sum_{i = N_{t_{j-1}}+ 1}^{N_{t_j}}X_i \sim S_{t_j} - S_{t_{j-1}} \quad \text{za} \ j = 1, \dots, n.
+                S^{(j)}_{t} = 
+                \sum_{i = N_{t_{j-1}}+ 1}^{N_{t_j}}X_i = S_{t_j} - S_{t_{j-1}} \quad \text{za} \ j = 1, \dots, n.
             \end{align*}
+            Ker je $U_i \sim U([0, t])$, je $\mathbbm{1}({t_{j-1}} < U_i\leq t_j) \sim \mathbbm{1}(U_i \leq t_j - t_{j-1})$, 
+            zaradi neodvistnoti $U_i$ in $X_i$ pa je tudi 
+            \begin{align*}
+                S_{t_j} - S_{t_{j-1}} = S_t^{(j)} &\sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right) \\
+                &\sim \sum_{i=1}^{N_t}X_i\mathbbm{1}({t_{j-1}} < U_i\leq t_j) \\
+                &\sim \sum_{i=1}^{N_t}X_i\mathbbm{1}(U_i \leq t_j - t_{j-1}).
+            \end{align*}
+            Torej je $S_{t_j} - S_{t_{j-1}} \sim S_{t_j - t_{j-1}}$.
         \end{proof}
 
         \begin{posledica}
             "Ce v predpostavkah izreka o markiranju CPP sprostimo $t\geq0$, so procesi $(S_t^{(j)})_{t\geq0}$ 
-            med seboj neodivisni in imajo neodvisne prirastke. 
+            med seboj neodvisni \refPriloga{def:neodvisnostProcesov} in imajo neodvisne prirastke. 
             \label{pos:neodvisnostCPPmedSabo}
         \end{posledica}
 
         \begin{proof}
-            Najprej fiksiramo $j=1, \dots, n$ in poka"zemo, da ima $(S_t^{(j)})_{t\geq0}$   neodivsne prirastke, z 
-            enakim argumentom kot v prej"snji posledici. 
-            Za realna "stevila $0 = t_0 < t_1 < \cdots < t_m < t \infty$ definiramo $\Delta_k = [t_{k-1}, t_k)$ in 
-            mno"zice 
-            \begin{equation*}
-                A_k^* = A_j \cap \left(\Delta_k \times \R\right), \quad k = 1, \dots, m.
-            \end{equation*}
-            Po izreku o markiranju so slu"cajne spremenljivke 
-            \begin{equation*}
-                \sum_{i = 1}^{N_{t}}X_i\mathbbm{1}_{A_k^*}\left(V_i, X_i\right) \sim \sum_{i = N_{t_{k-1}}+1}^{N_{t_k}}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right) = S_{t_k}^{(j)} - S_{t_{k-1}}^{(j)}
-            \end{equation*}
-            med seboj neodvisne.
-            Neodvisnost procesov $(S_t^{(1)})_{t\geq0}, \dots, \ (S_t^{(n)})_{t\geq0}$ poka"zemo po definiciji
-            \refPriloga{def:neodvisnostSP}. Za $j=1, \dots, n$ in $m_j\in\N$ naj bodo $0 = t_0^{(j)} < t_1^{(j)} < \cdots < t^{(j)}_{m_j} < \infty$ 
-            poljubni nabori realnih "stevil. Definiramo $\Delta^{(j)}_k = [t^{(j)}_{k-1}, t^{(j)}_k)$ in mno"zice
-            \begin{equation*}
-                A_k^{*(j)} = A_j \cap \left(\Delta_k^{(j)} \times \R\right), \quad j = 1, \dots, n, \quad k = 1, \dots, m_j,
-            \end{equation*}
-            ki so o"citno disjunktna particija mno"zice $[0, \infty)\times \R$ za vsak
-            $j = 1, \dots, n$. Naj bo $t = \max_{j = 1, \dots, n}t_{m_j}$. Po izreku o markiranju 
-            so prirastki porazdeljeni kot
-            \begin{equation*}
-                \sum_{i = 1}^{N_t} X_i\mathbbm{1}_{A_k^{*(j)}}(U_i, X_i) \sim 
-                S_{t_k^{(j)}}^{(j)} - S_{t_{k-1}^{(j)}}^{(j)}, \quad j = 1, \dots, n, \quad k = 1, \dots, m_j
-            \end{equation*}
-            in med seboj neodvisni. Podobno kot v trditvi \ref{trd:neodvisnostStacionarnostPrirastov} za 
-            $j=1, \dots, n$ lahko tvorimo 
-            borelovo funkcijo $g_j:\R^{m_j + 1}\to\R^{m_j + 1}$, da velja 
-            \begin{equation*}
-                g_j\left(S_{t_1^{(j)}}^{(j)} - S_{t_0^{(j)}}^{(j)}, \dots, \ S_{t_{m_j}^{(j)}}^{(j)} - S_{t_{m_j - 1}^{(j)}}^{(j)}\right) = 
-                \left(S_{t_0^{(j)}}^{(j)}, \dots, \ S_{t_{m_j}^{(j)}}^{(j)}\right).
-            \end{equation*}
-            in ker so prirastki med seboj neodivsni smo tako 
-            po definiciji pokazali neodvisnost 
-            procesov $(S_t^{(1)})_{t\geq0}, \dots, \ (S_t^{(n)})_{t\geq0}$.
+            Po definicij neodvisnoti procesov \refPriloga{def:neodvisnostProcesov} in neodvisnoti 
+            prirastkov \refPriloga{def:prirastek} je dovolj pokazati, da so za poljuna realna "stevila
+            $$
+                0 = t_0^{(j)} < t_1^{(j)} < \cdots < t_{m_j}^{(j)} < \infty; \quad j = 1, \dots, n
+            $$
+            vsi prirastki 
+            $$
+                S^{(j)}_{t_k^{(j)}} - S^{(j)}_{t_{k-1}^{(j)}}; \quad j = 1, \dots, n, \quad k = 1, \dots, m_j
+            $$
+            med seboj neodvisni. Velja 
+            $$
+                S^{(j)}_{t_k^{(j)}} - S^{(j)}_{t_{k-1}^{(j)}} = \sum_{i = N_{t_{k-1}^{(j)}}+1}^{N_{t_k^{(j)}}}X_i\mathbbm{1}_{A_{jk}}\left(V_i, X_i\right).
+            $$
+            Iz osnovne ekvivalence $\{i\leq N_{t_j}\} \iff \{V_i \leq t_j\}$ dobimo, da je tudi 
+            $$
+                S^{(j)}_{t_k^{(j)}} - S^{(j)}_{t_{k-1}^{(j)}} = \sum_{i = 1}^{N_t} X_i\mathbbm{1}_{A_{jk}}\left(V_i, X_i\right),
+            $$
+            kjer je $t = \max\{t_{m_1}^{(1)}, \dots, t_{m_n}^{(n)}\}$ in $A_{jk} = A_j \cap ((t_{k-1}^{(j)}, t_k^{(j)}]\times \R)$.
+            Neodvisnost prirastkov sledi iz disjunktnosti mno"zic $A_{jk}$ in izreka o markiranju.
         \end{proof}
     
         \begin{zgled}
             Markiranje je v praksi posebej uporabno pri analizi produktov 
             proporcionalnega pozavarovanja, kjer si zavarovalnica (cedent) in  
-            pozavarovalnica delita obveznosti in dobi"cek glede na velikost zahtevkov. Naj bo $(S_t)_{t\geq0}$ $\CPP$  
+            pozavarovalnica delita obveznosti in dobi"cek glede na velikost zahtevkov. Naj bo $(S_t)_{t\geq0}$ $\CPP$,  
             v katerem se"stevamo nenegativne slu"cajne spremenljivke $X_i$, ki predstavljajo zahtevke, 
             ki jih zavarovalnica prejema, in $ 0 = d_0 < d_1 < \cdots < d_n < \infty$ pozitivna realna "stevila. 
-            Za fiksen $t\geq0$ so mno"zice 
-            $A_1, \dots, \ A_{n + 1}$ in $B$ disjunktna particija mno"zice $[0, \infty)^2$ oblike 
+            Za fiksen $t\geq0$ definiramo 
+            $A_1, \dots, \ A_{n }$, ki so disjunktne podmno"zice  mno"zice $[0, \infty)^2$ oblike
             \begin{equation*}
-                A_j = [0, t)\times [d_{j-1}, d_j), \ j = 1, \dots, n, \ A_{n+1} = [0, t)\times [d_n, \infty) \ \text{in} \ B = [t, \infty)\times [0, \infty).
+                A_j = [0, t)\times [d_{j-1}, d_j), \ j = 1, \dots, n.
             \end{equation*}
             Po izreku o markiranju vemo, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, \ S_t^{(n)}$ 
             med seboj neodvisne in imajo sestavljeno Poissonovo porazdelitev. Tako lahko analiziramo 
             posamezen sloj kot produkt sam zase in ustrezno dolo"cimo dele"z premij, ki ga pozavarovalnica dobi 
-            za kritje zahtevkov dolo"cenega sloja. "Ce v pogodbi ne dolo"cimo kon"cenga "casa $t$ (seveda
-            to ni realno) nam posledica \ref{pos:neodvisnostCPPmedSabo} zagotavlja, da so procesi 
+            za kritje zahtevkov dolo"cenega sloja. "Ce v pogodbi ne dolo"cimo kon"cnega "casa $t$,
+             nam posledica \ref{pos:neodvisnostCPPmedSabo} zagotavlja, da so procesi 
             $(S_t^{(1)})_{t\geq0}, \dots, \ (S_t^{(n)})_{t\geq0}$ vselej medsebojno neodvisni.
         \end{zgled}
 
@@ -1476,9 +1466,7 @@ V nastajanju :)
             \begin{align*}
                 U_t = u + p(t) - S_t, \quad t\geq0,
             \end{align*}
-            kjer je $u \geq 0$ za"cetni kapital zavarovalnice\footnote{Proces tveganja vedno gledamo 
-            v odvisnoti od  za"cetnega kapitala $u$, zato za fiksen $u\geq0$ pripadajo"co verjentnost
-            ozna"cimo s $\Prob_u$.} in $p(t)$ funkcija prihodkov iz premij. 
+            kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $p(t)$ funkcija prihodkov iz premij. 
             \label{def:procesTveganja}
         \end{definicija}
 
@@ -1530,32 +1518,35 @@ V nastajanju :)
 
         \begin{definicija}
             \textit{Propad} definiramo kot dogodek, da proces tveganja $(U_t)_{t\geq0}$ kadarkoli pade pod $0$. 
-            Torej 
+            To je torej dogodek 
             \begin{align*}
-                \bigl\{U_t<0 \ \text{za} \ t\geq 0\bigr\}
+                \bigl\{U_t<0 \ \text{za neki} \ t\geq 0\bigr\}.
             \end{align*}
-            in "casu ustavljanja
+            "Casu ustavljanja
             \begin{align*}
-                T = \inf\{t\geq0 \mid U_t < 0\}, 
+                T = \inf\{t\geq0 \mid U_t < 0\}
             \end{align*}
-            pravimo \textit{"cas propada}. Seveda med dogodkoma velja enakost
+            pa pravimo \textit{"cas propada}. Seveda velja enakost
             \begin{align*}
-                \{U_t<0 \ \text{za} \ t\geq0\} = \{T<\infty\}.
+                \{U_t<0 \ \text{za neki} \ t\geq0\} = \{T<\infty\}.
             \end{align*}
             \label{def:PropadCasPropada} 
         \end{definicija}
 
         \begin{definicija}
-            \textit{Verjetnost propada} definiramo kot funkcijo $\psi(u): (0,\infty) \to [0,1]$ 
+            \textit{Verjetnost propada} definiramo kot funkcijo $\psi: (0,\infty) \to [0,1]$ 
             s predpisom
             \begin{align*}
-                \psi(u) = \Prob_u(T<\infty).
+                \psi(u) = \Prob_u(T<\infty); \quad u\geq0.
             \end{align*}
+            Ker proces tveganja vedno gledamo 
+            v odvisnosti od  za"cetnega kapitala, za fiksen $u\geq0$ pripadajo"co verjetnost
+            ozna"cimo s $\Prob_u$.
             \label{def:VerjetnostPropada}
         \end{definicija}
 
         \begin{definicija}
-            Po konstrukciji procesa tveganja $(U_t)_{t\geq0}$ je verjentnost propada mogo"ca le ob 
+            Po konstrukciji procesa tveganja $(U_t)_{t\geq0}$ je propad mogo"c le ob 
             prihodih zahtevkov. %, ki sledijo $HPP(\lambda)$
             Z $V_n$ ozna"cimo "cas, ob katerem prispe $n$-ti zahtevek, in definiramo 
             \textit{ogrodje procesa tveganja} kot $(U_{V_n})_{n\in\N}$.
@@ -1594,8 +1585,8 @@ V nastajanju :)
         sprehoda $(Z_n)_{n\in\N}$.
         
         Cilj obravnavanja verjetnosti propada v 
-        Cramér--Lundbergovem modelu je, da se izognemo skoraj gotovemu propadu oziroma, da je verjetnost, 
-        da kumulativna izguba $(Z_n)_{n\in\N}$ prese"ze $u$
+        Cramér--Lundbergovem modelu je, da se izognemo propadu oziroma da je verjetnost, 
+        da kumulativna izguba $(Z_n)_{n\in\N}$ prese"ze $u$,
         tako majhna, da lahko v praksi dogodek propada izklju"cimo. 
 
         \begin{trditev}
@@ -1613,15 +1604,16 @@ V nastajanju :)
             Zaporedje slu"cajnih spremenljivk $(Y_i)_{i\in\N}$ zado"s"ca predpostavkam krepkega zakona
             velikih "stevil \refPriloga{izr:KrepkiZakonVelikihStevil}. Velja
             \begin{equation*}
-                \frac{Y_1 + Y_2 + \cdots Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
+                \frac{Y_1 + Y_2 + \cdots + Y_n}{n} = \frac{Z_n}{n} \xrightarrow[n\to\infty]{s.g.} \E\left[Y_n\right].
             \end{equation*}
             Torej bo $Z_n$ v primeru, ko je $\E\left[Y_n\right]>0$, 
-             skoraj gotovo asimptoti"cno linearno nara"s"cal proti $\infty$ kot $\E\left[Y_n\right] n$ in 
-             bo za poljuben $u>0$ veljalo 
+             skoraj gotovo asimptoti"cno linearno nara"s"cal proti $\infty$ kot $n \E\left[Y_n\right]$, 
+            zato bo veljalo celo
             \begin{equation*}
-                \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
+                \Prob\left(\sup_{n\in\N}Z_n = \infty\right) = \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1,
             \end{equation*}
-            Dokaz za primer, ko je $\E\left[Y_n\right] = 0$ je precej bolj tehni"cen in ne preve"c informativen, zato 
+            za poljuben $u\geq 0$. Dokaz za primer, ko je $\E\left[Y_n\right] = 0$, pa
+            je precej bolj tehni"cen in ne preve"c informativen, zato 
             ga bomo izpustili. Izka"ze se, da vedno obstajata neki podzaporedji $(n_k)_{k\in\N}$ in $(m_k)_{k\in\N}$, 
             za kateri gre
             $Z_{n_k} \xrightarrow[k\to\infty]{s.g.}\infty$ in 
@@ -1676,7 +1668,7 @@ V nastajanju :)
                 c > \frac{\E\left[X_1\right]}{\E\left[T_1\right]}, \quad \text{oziroma} \quad 
                 c = (1 + \rho)\frac{\E\left[X_1\right]}{\E\left[T_1\right]} \quad \text{za $\rho > 0$}.
             \end{equation*}
-            Pogoj bomo v nadaljenvanju imenovali NPC.
+            Pogoj bomo v nadaljevanju imenovali NPC.
             \label{def:NPC}
         \end{definicija}
 
@@ -1687,13 +1679,15 @@ V nastajanju :)
     da je $(S_t)_{t\geq0}$ v procesu tveganja $(U_t)_{t\geq0}$ sestavljeni Poissonov proces. V nadaljevanju nas bo predvsem zanimalo asimptoti"cno 
         vedenje $\psi(u)$, ko gre $u\rightarrow\infty$. Verjetnost propada zelo redko lahko eksplicitno 
         izra"cunamo, ampak veliko lahko povemo o redu konvergence s tem, da jo izrazimo kot integralsko
-        ena"cbo. 
+        ena"cbo\footnote{V delu se dr"zimo konvencije, da Riemannov integral funkcije $f$ ozna"cimo kot
+        $\int_a^bf(x)dx$. Lebesgueov integral po Lebesgue-Stieltjesovi meri, porojeni s porazdelitveno
+        funkcijo $F$, pa $\int_{(a, b]}f(x)dF(x)$.}.
 
     \begin{definicija}
         Za lep"so notacijo v nadaljevanju definiramo funkcijo \textit{verjetnosti pre"zivetja} kot
-        $\theta(u):(0, \infty) \to [0, 1]$ s predpisom
+        $\theta:(0, \infty) \to [0, 1]$ s predpisom
         \begin{equation*}
-            \theta(u) = \Prob_u\left(T=\infty\right) = 1 - \psi(u).
+            \theta(u) = \Prob_u\left(T=\infty\right) = 1 - \psi(u); \quad u\geq 0.
         \end{equation*}
         \label{def:verjetnostPrezivetja}
     \end{definicija}
@@ -1741,7 +1735,7 @@ V nastajanju :)
         \end{align*}
         Ker ima porazdelitev $F_{X_1}$ gostoto in je $\theta$ zvezna omejena funkcija,
         sledi, da je funkcija $g$ zvezna in jo lahko (po osnovnem izreku analize)
-        odvajamo, da dobimo
+        odvajamo. Tako dobimo
 
         \begin{equation*}
             \theta'(u) = \frac{\lambda}{c}\theta(u) - \frac{\lambda}{c}\int_{(0, u)}\theta(u - x)dF_{X_1}(x).
@@ -1825,12 +1819,12 @@ V nastajanju :)
     $\lim_{x\to\infty}q\overline{F}_{X_1}(x) = q < 1$. Taki ena"cbi pravimo
     defektna prenovitvena ena"cba. V splo"snem defektne prenovitvene ena"cbe lahko re"sujemo s pomo"cjo 
     Banachovega izreka o negibni to"cki \refPriloga{izr:Banach}. Da funkcija $\theta$ re"si ena"cbo 
-    (\ref{eq:verjetnostPrezivetja3}) lahko povemo tako, da je negibna to"cka operatorja 
+    (\ref{eq:verjetnostPrezivetja3}), lahko povemo tako, da je negibna to"cka operatorja 
     \begin{equation}
         Ag(u) = (1 - q) + q\int_{(0, u]}g(u - x)d\overline{F}_{X_1}(x),
         \label{eq:operator}
     \end{equation}
-    saj je ta skr"citev na prostoru omejenih funkcij $B([0, \infty))$ opremljenim s supremum metriko
+    saj je ta skr"citev na prostoru omejenih funkcij $B([0, \infty))$, opremljene s supremum metriko
     \begin{equation*}
         d_\infty(f, g) = \sup_{u\in[0, \infty)}\big|f(u) - g(u)\big|,  \quad f, g\in B([0, \infty)).
     \end{equation*}
@@ -1843,6 +1837,35 @@ V nastajanju :)
                                 &\leq q\int_{(0, \infty)}d_\infty(f, g)d\overline{F}_{X_1}(x)\\
                                 &= qd_\infty(f, g).
     \end{align*}
+    Re"sitev $\theta = A\theta$ se tako izra"za kot limita $\theta = \lim_{n\to\infty}A^ng_0$ za 
+    poljubno funkcijo $g_0\in B([0, \infty)).$ Naj bodo $\overline{X}_1, \overline{X}_2, \dots $ 
+    neodvisne enako porazdeljene slu"cajne spremenljivke s porazdelitveno funkcijo $\overline{F}_{X_1}$, ki 
+    jo z $0$ raz"sirimo na celo realno os.
+    Potem $A$ izrazimo kot
+    \begin{equation*}
+        Ag(u) = (1 - q)\mathbbm{1}(u\geq0) + q\E\left[g(u - \overline{X}_1)\right]
+    \end{equation*}
+    in z indukcijo poka"zemo, da za $g_0 = (1 - q)\mathbbm{1}(u\geq0)$ za vsak $n\in\N$ velja
+    \begin{equation*}
+        A^ng_0(u) = (1 - q)\sum_{k = 0}^nq^k\Prob\left(\overline{W}_k \leq u\right),
+    \end{equation*}
+    pri "cemer je $\overline{W}_k = \overline{X}_1 + \cdots + \overline{X}_k$ in $\overline{W}_0 = 0$.
+    Enakost o"citno velja za $n=1$. Preostane "se indukcijski korak $n\mapsto n+1:$
+    \begin{align*}
+        A^{n+1}g_0(u) 
+            &= 1 - q + q\int_{[0, u]}A^ng_0(u - x)d\overline{F}_{X_1}(x) \\
+            &\stackrel{\text{\scalebox{0.8}{I.P.}}}{=} 1 - q + q(1 - q)\int_{[0, u]}\sum_{k = 0}^nq^k\int_{[0, u-x]}dF_{\overline{W}_k}(y)d\overline{F}_{X_1}(x) \\
+            &=  (1 - q)\left[1 + \sum_{k=0}^nq^{k+1}\int_{[0, u]}\int_{[0, u-x]}dF_{\overline{W}_k}(y)d\overline{F}_{X_1}(x)\right] \\
+            &= (1 - q)\left[1 + \sum_{k=0}^nq^{k+1}\Prob\left(\overline{W}_k \leq u - X_{k+1}, X_{k+1}\leq u\right)\right] \\
+            &= (1 - q)\left[1 + \sum_{k=0}^nq^{k+1}\Prob\left(\overline{W}_{k+1}\leq u\right)\right] \\
+            &= (1 - q)\left[1 + \sum_{k=1}^nq^k\Prob\left(\overline{W}_k\leq u\right)\right] \\
+            &= (1 - q)\sum_{k=0}^nq^k\Prob\left(\overline{W}_k\leq u\right).
+    \end{align*}
+    Sledi 
+    \begin{equation}
+        \theta(u) = \lim_{n\to\infty} A^ng_0 = (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right).
+        \label{eq:bodocaGeometrijska}
+    \end{equation}
     \label{op:OperatorPrenovitvena}
     \end{opomba}
 
@@ -1980,7 +2003,7 @@ V nastajanju :)
                 \begin{equation*}
                     (i) = \psi_1(u) \leq \frac{M_{Z_1}(\ell)}{e^{\ell u}} = \int_{(u, \infty)}e^{-\ell (u-x)}dF_{Y_1}(x).
                 \end{equation*}
-                "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo "zeljeno oceno
+                "Ce torej se"stejemo $(i)$ in $(ii)$ dobimo "zeleno oceno
 
                 \begin{align*}
                     \psi_{n+1}(u) &\leq \int_{\R}e^{-\ell (u - x)}dF_{Y_1}(x) \\
@@ -2030,7 +2053,7 @@ V nastajanju :)
                 \begin{equation*}
                     \frac{\E\left[X_1\right]}{\E\left[T_1\right]} = \frac{\lambda}{\mu} < c \iff \mu > \frac{\lambda}{c}.
                 \end{equation*}
-                "Ce uporabimo alternativno formulacijo NPC pogoja, dobimo
+                "Ce uporabimo alternativno formulacijo pogoja NPC, dobimo
                 \begin{equation}
                     c = (1 + \rho)\frac{\lambda}{\mu} \quad \Rightarrow \quad
                     \ell = \mu - \frac{\lambda}{(1 + \rho)\frac{\lambda}{\mu}} = \mu\left(\frac{\rho}{1 + \rho}\right).
@@ -2041,7 +2064,7 @@ V nastajanju :)
                     \psi(u) \leq e^{-\ell u} = e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)}
                 \end{equation*}
                 in vidimo, da pove"canje stopnje prihodkov premij "cez neko mejo ne bistveno 
-                vpliva na oceno, saj 
+                vpliva na oceno, saj je
                 \begin{equation*}
                     \lim_{\rho\to\infty}e^{-\mu u\left(\frac{\rho}{1 + \rho}\right)} = e^{-\mu u}.
                 \end{equation*}
@@ -2074,9 +2097,11 @@ V nastajanju :)
                     1 - \psi(u) &= (1 - q) + q\int_{(0, u]}\bigl(1 - \psi(u - x)\bigr)d\overline{F}_{X_1}(x), \nonumber \\
                     \psi(u) &= q\bigl(1 - \overline{F}_{X_1}(u)\bigr) + \int_{(0, u]}\psi(u - x)d\left(q\overline{F}_{X_1}(x)\right). \label{eq:verjetnostPropadaQ}
                 \end{align}
-                Vidimo, da je ena"cba (\ref{eq:verjetnostPropadaQ}) "se vedno defektna prenovitvena ena"cba.\ Iskanja re"sitve 
-                bi se lahko lotili na na"cin, ki ga opi"semo v opombi \ref{op:OperatorPrenovitvena}, ampak 
-                v primeru lahkorepih porazdelitev se izka"ze, da s trikom lahko ena"cbo (\ref{eq:verjetnostPropadaQ}) 
+                Vidimo, da je ena"cba (\ref{eq:verjetnostPropadaQ}) "se vedno defektna prenovitvena ena"cba.\ 
+                Lahko bi jo analizriali kot v opombi \ref{op:OperatorPrenovitvena}, ampak 
+                izra"zava re"sitve, ki jo dobimo iz Banachovega izreka o negibni to"cki, za "studij 
+                asimptotike ni najbolj"sa, "ceprav je dokaj eksplicitna. 
+                V primeru lahkorepih porazdelitev se izka"ze, da s trikom lahko ena"cbo (\ref{eq:verjetnostPropadaQ}) 
                 prevedemo na pravo prenovitveno ena"cbo. Za $x > 0$ 
                 definiramo funkcijo $F_\ell$ kot Esscherjevo transformacijo funkcije $q\overline{F}_{X_1}$.
                 \begin{equation}
@@ -2139,12 +2164,14 @@ V nastajanju :)
             \end{proof}
 
             \begin{zgled}(Nadaljevanje zgleda \ref{zgd:LundebrgovaNeenakostEksponentno})
-                Vemo, da re"sitve prenovitvene ena"cbe (\ref{eq:resitevCramerjevePrenovitveneEnacbe}) 
-                iz izreka \ref{izr:CramerjevaMeja} v splo"snem ne moremo eksplicitno izra"cuanti.
+                Vemo, da re"sitve 
+                prenovitvene ena"cbe (\ref{eq:resitevCramerjevePrenovitveneEnacbe}) iz izreka \ref{izr:CramerjevaMeja}
+                v splo"snem ne moremo eksplicitno izra"cunati.
                 V zgledu \ref{zgd:LundebrgovaNeenakostEksponentno} pa smo privzeli, da zahtevke modeliramo 
                 z eksponentno porazdelitvijo, torej $X_i\sim\text{Exp}(\mu)$. 
                 V tem primeru se izka"ze, da lahko eksplicitno izra"cunamo verjetnost propada.
-                "Ce si pogledamo ena"cbo (\ref{eq:resitevCramerjevePrenovitveneEnacbe}), vidimo, da moramo 
+                "Ce si pogledamo ena"cbo
+                (\ref{eq:resitevCramerjevePrenovitveneEnacbe}), vidimo, da moramo 
                 izra"cunati le porazdelitev integriranega repa $\overline{F}_{X_1}(u)$ in 
                 prenovitveno mero Esscherjeve transformacije $F_\ell$. Za eksponentno porazdelitev
                 velja
@@ -2314,7 +2341,7 @@ V nastajanju :)
                             & \quad + \sup_{x\geq M}\int_{(0, x]}\frac{1 - F_{X_1}^{*n}(x - y)}{1 - F_{X_1}(x - y)}\frac{1 - F_{X_1}(x - y)}{1 - F_{X_1}}(x) \, dF_{X_1}(y) \\
                         &\leq 1 + T + a_n\sup_{x\geq M}\frac{F_{X_1}(x) - F_{X_1}^{*2}(x)}{1 - F_{X_1}(x)},
             \end{align*}
-            kjer je $T = (1 - F_{X_1})^{-1}(M) < \infty$. Ker je $F_{X_1}$ subeksponentna lahko 
+            kjer je $T = (1 - F_{X_1})^{-1}(M) < \infty$. Ker je $F_{X_1}$ subeksponentna, lahko 
             za vsak $\varepsilon > 0$ izberemo tak $M$, da velja
             \begin{align*}
                 a_{n+1} \leq 1 + T + a_n(1 + \varepsilon)
@@ -2338,32 +2365,8 @@ V nastajanju :)
         \end{izrek}
 
         \begin{proof}
-            Dokaza se lotimo z iskanjem negibne to"cke 
-            operatorja (\ref{eq:operator}), ki smo ga definirali v opombi \ref{op:OperatorPrenovitvena}.
-            Re"sitev $\theta = A\theta$ se izra"za kot limita $\theta = \lim_{n\to\infty}A^ng_0$ za 
-            poljubno funkcijo $g_0\in B([0, \infty)).$ Naj bodo $\overline{X}_1, \overline{X}_2, \dots $ 
-            neodivnse enako porazdeljene slu"cajne spremenljivke s porazdelitveno funkcijo $\overline{F}_{X_1}$.
-            Potem $A$ izrazimo kot
-            \begin{equation*}
-                Ag(u) = (1 - q) + q\E\left[g(u - \overline{X}_1)\right]
-            \end{equation*}
-            in z indukcijo poka"zemo, da za $g_0 = (1 - q)\mathbbm{1}(u\geq0)$ za vsak $n\in\N$ velja
-            \begin{equation*}
-                A^ng_0(u) = (1 - q)\sum_{k = 0}^nq^k\Prob\left(\overline{W}_k \leq u\right),
-            \end{equation*}
-            pri "cemer je $\overline{W}_k = \overline{X}_1 + \cdots + \overline{X}_k$ in $\overline{W}_0 = 0$.
-            Enakost o"citno velja za $n=1$. Indukcijski korak pa poka"zemo...
-            \begin{center}
-                \textcolor{red}{indukcije mi ni uspelo izpeljati. Prav tako mi ni 
-                jasno zakaj moramo raz"siriti razred funkcij na realno os, saj so slu"cajne spremenljivke 
-                nenegativne.}
-            \end{center}
-            Sledi 
-            \begin{equation}
-                \theta(u) = \lim_{n\to\infty} A^ng_0 = (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right).
-                \label{eq:bodocaGeometrijska}
-            \end{equation}
-            Upo"stevamo enakost
+            V opombi \ref{op:OperatorPrenovitvena} smo izrazili verjetnost pre"zivetja kot negibno to"cko 
+            operatorja $A$. Preoblikujemo re"sitev (\ref{eq:bodocaGeometrijska}) da dobimo verjetnost propada. 
             \begin{align*}
                 \psi(u) &= 1 - \theta(u)\\
                         &= (1 - q)\sum_{k = 0}^\infty q^k - (1 - q)\sum_{k = 0}^\infty \Prob\left(\overline{W}_k \leq u\right) \\
@@ -2404,14 +2407,15 @@ V nastajanju :)
             \begin{align*}
                 \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)}   &= \lim_{u\to\infty}(1 - q)\sum_{n=1}^{\infty}q^n\frac{\Prob\left(\overline{W}_k > u\right)}{1 - \overline{F}_{X_1}(u)}.
             \end{align*}
-            "Ce vzamemo $\varepsilon < \frac{1}{q} - 1$, lahko po lemi \ref{lema:ocenaSubeksponentnePorazdelitve} zaporedje funkcij 
+            Ker je $\overline{F}_{X_1}$ subeksponentna, "ce vzamemo $\varepsilon < \frac{1}{q} - 1$, 
+            lahko po lemi \ref{lema:ocenaSubeksponentnePorazdelitve} zaporedje funkcij 
             \begin{equation*}
                 f_k(n) = \frac{\Prob\left(\overline{W}_k > u_k\right)}{1 - \overline{F}_{X_1}(u_k)}, \quad n\geq 2,\ k\in\N, 
             \end{equation*}
             omejimo z integrabilno funkcijo $K(\varepsilon)(1 + \varepsilon)^n$ za vsak $n\geq 2$ (glede na mero, ki "steje). Limito $u\to\infty$ po 
             realnih "stevilih nadomestimo z limito po zaporedjih pozitivnih "stevil $u_k\xrightarrow{k\to\infty}\infty$.
             Tako lahko po Lebesgueovem izreku o dominirani konvergenci \refPriloga{izr:dominiranaKonvergenca}
-            zamenjanmo vrstni red limite in vsote.
+            zamenjamo vrstni red limite in vsote.
             Ker je $\overline{F}_{X_1}$ subeksponentna, za vsak $n\in\N$ velja
             \begin{equation*}
                 \lim_{u\to\infty}\frac{\Prob\left(\overline{W}_k > u\right)}{1 - \overline{F}_{X_1}(u)} = n.
@@ -2492,31 +2496,68 @@ V nastajanju :)
         \newpage
 
 \section{Priloga}
-    Priloga je namenjena predvsem za dodatne definicije in trditve s katerimi naj bi bil bralec seznanjen in 
+    Priloga je namenjena predvsem za dodatne definicije in trditve, s katerimi naj bi bil bralec seznanjen in 
     so bile izpu"scene v glavnem za namene preglednosti besedila. V primeru, da bralec potrebuje osve"ziti dolo"cene pojme, ki 
     se pojavljajo v besedilu, jih ve"cino lahko najde v tem razdelku.
     \begin{definicija}
-        Naj bo $X$ slu"cajna spremenljivka. Potem so za $u\in\R$ njena \textit{rodovna funkcija}, 
-        \textit{momentno rodovna funkcija} in \textit{karakteristi"cna funkcija} definirane 
-        kot 
+        Naj bo $X$ diskretna slu"cajna spremenljivka z vrednostmi v $\N_0$. Potem za $u\in\mathbb{C}$ 
+        z $|u| < 1$ definiramo \textit{rodovno funkcijo} slu"cajne spremenljivke $X$ kot
         \begin{equation*}
-            G_X(u) = \E\left[u^X\right], \quad M_X(u) = \E\left[e^{uX}\right], \quad \varphi_X(u) = \E\left[e^{iuX}\right],
+            G_X(u) = \E\left[u^X\right] = \sum_{k = 0}^\infty u^k\Prob(X = k).
         \end{equation*}
-        "ce upanja obstajajo.
+        Naj bo $Y$ poljubna slu"cajna spremenljivka. Za $u\in\mathbb{C}$ definiramo
+         \textit{momentno-rodovno funkcijo} slu"cajne spremenljivke $Y$ kot 
+        \begin{equation*}
+            M_Y(u) = \E\left[e^{uY}\right].
+        \end{equation*} 
+        Za $u\in\R$ definiramo "se \textit{karakteristi"cno funkcijo} slu"cajne spremenljivke $Y$ kot
+        \begin{equation*}
+            \varphi_Y(u) = M_Y(iu) =  \E\left[e^{iuY}\right].
+        \end{equation*}
         \label{def:rodovneFunkcije}
     \end{definicija}
 
+    \begin{opomba}
+        Karakteristi"cno funkcijo bi lahko sicer definirali tudi za kompleksne argumente, vendar pa 
+        "ze vrednosti karakteristi"cne funkcije za vse realne argumente enoli"cno dolo"cajo porazdelitev 
+        slu"cajne spremenljivke. 
+    \end{opomba}
+
+    \begin{definicija}
+        Naj bo $\boldsymbol{X}$ $n$-razse"zni slu"cajni vektor. Potem ima za $u\in\R^n$ \textit{karakteristi"cna 
+        funkcija} slu"cajnega vektorja $\boldsymbol{X}$ obliko
+        \begin{equation*}
+            \varphi_{\boldsymbol{X}}(u) = \E\left[e^{i\boldsymbol{u}^T\boldsymbol{X}}\right].
+        \end{equation*}
+        \label{def:karakteristicnaSlucVektor}
+    \end{definicija}
+
+    \begin{trditev}
+        Naj bo $\boldsymbol{X}$ $n$-razse"zni slu"cajni vektor. Komponente $\boldsymbol{X}$ so neodvisne
+        slu"cajne spremenljivke, natanko tedaj ko ima karakteristi"cna funkcija slu"cajnega vektorja
+        $\boldsymbol{X}$ obliko
+        \begin{equation*}
+            \varphi_{\boldsymbol{X}}(u) = \prod_{i=1}^n\varphi_{X_i}(u_i), \quad u\in\R^n.
+        \end{equation*}
+        \label{trd:karakteristicnaNeodivsnost}
+    \end{trditev}
+
+    \begin{proof}
+        Trditev sledi iz lastnosti neodvisnih slu"cajnih spremenljivk in pri"cakovane vrednosti. Natan"cen 
+        dokaz lahko bralec najde v \cite{7} na strani 236. 
+    \end{proof}
+
     \begin{definicija}
         Naj bosta $F$ in $G$ porazdelitveni funkciji dveh neodvisnih nenegativnih slu"cajnih 
-        spremenljivk $X$ in $Y$. \textit{Konvoulicjo} funkcij $F$ in $G$ definiramo kot
-        Lebesgue-Stieltjesov integral
+        spremenljivk $X$ in $Y$. \textit{Konvolucijo} funkcij $F$ in $G$ definiramo kot
+        Lebesgue--Stieltjesov integral
         \begin{equation*}
             (F*G)(t) = \int_{[0, t]}F(t - x)\, dG(x) = \int_{[0, t]}G(t - x)\, dF(x).
         \end{equation*} 
         Konovlucija $(F*G)$ se ujema s porazdelitveno funkcijo vsote $X + Y$, kar lahko 
         enostavno poka"zemo z uporabo transformacijske formule.
         Za neodvisne in enako porazdeljene nenegativne slu"cajne spremenljivke $X_1, X_2, \dots, X_n$ 
-        s porazdelitveno funkcijo $F_{X_1}$ rekurzivno definiramo \textit{k-to konvoulicijo} kot
+        s porazdelitveno funkcijo $F_{X_1}$ rekurzivno definiramo \textit{k-to konvolucijo} kot
         \begin{equation*}
             F_{X_1}^{*k}(t) = (F_{X_1}*\cdots*F_{X_1})(t) = \int_{[0, t]}F_{X_1}^{*(k-1)}(t - x)\, dF_{X_1}(x),
         \end{equation*}
@@ -2571,14 +2612,12 @@ V nastajanju :)
     \end{definicija}
 
     \begin{definicija}
-        Naj bosta $(X_t)_{t\geq0}$ in $(Y_t)_{t\geq0}$ slu"cajna procesa ne nujno definirana na istem 
-        verjetnostnem prostoru. Pravimo, da sta $(X_t)_{t\geq0}$ in $(Y_t)_{t\geq0}$ \textit{neodvisna}, 
-        "ce sta za vsak par $k,j \in \N$ in kon"cen nabor realnih "stevil $0 \leq t_1 < t_2 < \ldots < t_{n_k} < \infty$ in 
-        $0 \leq t_1 < t_2 < \ldots < t_{n_j} < \infty$ slu"cajna 
-        vektorja $(X_{t_1}, X_{t_2}, \ldots, X_{t_{n_k}})$ in $(Y_{t_1}, Y_{t_2}, \ldots, Y_{t_{n_j}})$ neodvisna.
-        Po drugi strani, "ce velja $(X_{t_1}, X_{t_2}, \ldots, X_{t_{n_k}}) \sim (Y_{t_1}, Y_{t_2}, \ldots, Y_{t_{n_j}})$
-        sta procesa \textit{enako porazdeljena}.
-        \label{def:neodvisnostSP}
+        Naj bodo $(X_t^{(i)})_{t\geq0},$ $i=1, \dots, n,$ slu"cajni procesi definirani na 
+        $(\Omega, \F, \Prob)$. Pravimo, da so $(X_t^{(i)})_{t\geq0}$ \textit{neodvisni}, 
+        "ce so za poljubne kon"cne nabore realnih "stevil $0 \leq t_1^{(i)} < t_2^{(i)} < \ldots < t_{n_i}^{(i)} < \infty$, 
+        slu"cajni vektorji
+        $(X_{t_1^{(i)}}^{(i)}, X_{t_2^{(i)}}^{(i)}, \ldots, X_{t_{n_i}^{(i)}}^{(i)})$ med seboj neodivsni. 
+        \label{def:neodvisnostProcesov}
     \end{definicija}
 
     %\begin{definicija}
@@ -2606,17 +2645,14 @@ V nastajanju :)
 
     \begin{trditev}
         Naj bodo $X, Y$ in $Z$ slu"cajne spremenljivke ter $g$ in $h$ poljubni borelovi funkciji. 
-        "Ce velja $X\mid Z\sim Y$, velja tudi $X\mid Z\sim X\mid g(Z)\sim Y$. Splo"sneje, 
-        "ce je $X\mid Z \sim Y\mid h(g(Z))$, je tudi $X\mid Z\sim X\mid g(Z) \sim Y\mid h(g(Z)).$
+        "Ce velja $X\mid Z\sim Y$, velja tudi $X\mid Z\sim X\mid g(Z)\sim Y$.
         \label{trd:pogojneLastnosti}
     \end{trditev}
 
     \begin{proof}
-        $X\mid Z\sim Y$ pomeni, da ima $X$ pogojno na $\sigma(Z)$ vedno isto porazdelitev, potem pa mora
+        Da je $X\mid Z\sim Y$, pomeni, da ima $X$ pogojno na $\sigma(Z)$ vedno isto porazdelitev, potem pa mora
         biti to tudi brezpogojna porazdelitev, prav tako pa tudi pogojna porazdelitev glede
-        na manj"so $\sigma$-algebro $\sigma(g(Z))$. Nadalje je $X$ neodvisna od $\sigma(Z)$, potem pa 
-        mora biti neodvisna tudi od manj"se $\sigma$-algebre $\sigma(g(Z))$. Pri splo"snej"si razli"cici 
-        uporabimo enak argument za $\sigma$-algebro $\sigma(h(g(Z)))$.
+        na manj"so $\sigma$-algebro $\sigma(g(Z))$.
     \end{proof}
 
     \begin{definicija}
@@ -2722,7 +2758,7 @@ V nastajanju :)
         Naj bo $X_1, X_2, \dots$ zaporedje slu"cajnih spremenljivk s porazdelitvenimi funkcijami
         $F_{X_1}, F_{X_2}, \dots$ in naj bo $X$ slu"cajna spremenljivka s porazdelitveno funkcijo $F_X$.
         Pravimo da zaporedje $(X_n)_{n\in\N}$ \textit{konvergira v porazdelitvi} k slu"cajni spremenljivki $X$,
-        "ce za vsak $x\in\R$ v katerem je $F_X$ zvezna, velja
+        "ce za vsak $x\in\R$, v katerem je $F_X$ zvezna, velja
         \begin{equation*}
             \lim_{n\to\infty}F_{X_n}(x) = F_X(x).
         \end{equation*}
@@ -2870,7 +2906,7 @@ V nastajanju :)
         \begin{equation*}
             f(t) = g(t) + \int_{[0, t]}f(t - s)dF(s), \quad t\geq 0,
         \end{equation*}
-        kjer sta neznana funkcija $f$ in znana funckija $g$ definirani na $\R^+$, $F$ pa je 
+        kjer sta neznana funkcija $f$ in znana funkcija $g$ definirani na $\R^+$, $F$ pa je 
         porazdelitvna funkcija neke pozitivne slu"cajne spremenljivke $X$.
         \label{def:prenovitvenaEnacba}
     \end{definicija}
@@ -2916,9 +2952,9 @@ V nastajanju :)
         \end{equation*}
         enoli"cna re"sitev te ena"cbe. Funkcija $M$ je prenovitvena mera prenovitvenega procesa z medprihodno 
         porazdelitvijo $F$.
-        "Ce je dodatno funkcija $g$ direktno Riemannovo integrabilna velja 
-        \begin{equation*}
-            \lim_{t\to\infty}f(t) = \frac{1}{\E\left[X\right]}\int_{(0, \infty)}g(t)dt.
+        "Ce je dodatno funkcija $g$ direktno Riemannovo integrabilna, pa velja "se
+        \begin{equation*} 
+            \lim_{t\to\infty}f(t) = \frac{1}{\E\left[X\right]}\int_{[0, \infty)}g(t)dt.
         \end{equation*}
         \label{izr:Smith}
     \end{izrek}
@@ -2933,7 +2969,8 @@ V nastajanju :)
             f:(M, d) \to (M, d)
         $$
         skr"citev, torej obstaja tak $0 \leq k < 1$, da za vsak $x, y \in M$ velja 
-        $d(f(x), f(y)) \leq k d(x, y)$. Potem obstaja natanko en $x\in M$, da velja $f(x) = x$.
+        $d(f(x), f(y)) \leq k d(x, y)$. Potem obstaja natanko en $x^*\in M$, za katerega velja $f(x^*) = x^*$. 
+        "Se ve"c, $x^* = \lim_{n\to\infty}\underbrace{(f\circ \cdots \circ f)}_{n}(x)$ za vsak $x\in M$.
          \label{izr:Banach}
     \end{izrek}
 
@@ -2943,6 +2980,7 @@ V nastajanju :)
 
 %-----------------------------------------KONEC VSEBINE--------------------------------------------%
 
+\newpage
 \section*{Slovar strokovnih izrazov}
 
 \noindent
