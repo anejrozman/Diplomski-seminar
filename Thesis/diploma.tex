@@ -25,7 +25,7 @@
     linkcolor=propercyan,      
     citecolor=propercyan,    
     filecolor=magenta,      
-    urlcolor=orange,   
+    urlcolor=propercyan,   
 ]{hyperref}
 \usepackage{footnotebackref}
 %\usepackage{titlesec}
@@ -205,11 +205,11 @@ V nastajanju :)
 \section{Uvod}
     Na razli"cnih podro"cjih financ so se v zadnjem stoletju razvile raznovrstne verjetnostne tehnike, kako 
     modelirati spreminjanje vrednosti finan"cnih instrumentov s "casom. V delu se osredoto"cimo na zavarovalni"stvo, 
-    kjer "zelimo modelirati razli"cne produkte zavarovanja, ki jih zavarovalnice ponujajo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
+    kjer "zelimo modelirati razli"cne produkte, ki jih zavarovalnice ponujajo, da lahko ustrezno dolo"cimo vi"sino premije, ki jo
     bodo zavarovanci pla"cevali. Zadostiti "zelimo dolo"cenim zastavljenim merilom tveganja in dobiti verjetnostna zagotovila, 
     da lahko skozi "cas pri"cakujemo dobi"cek. 
     Standarden pristop k problemu je uporaba sestavljenih porazdelitev oziroma procesov, kjer skozi "cas se"stevamo naklju"cno "stevilo 
-    neodvisnih enako porazdeljenih slu"cajnih spremenljik, ki predstavljajo vi"sino posameznih zahtevkov zavarovancev.\ Prvi tak model za opis
+    neodvisnih enako porazdeljenih slu"cajnih spremenljivk, ki predstavljajo vi"sino posameznih zahtevkov zavarovancev.\ Prvi tak model za opis
     poslovanja zavarovalnice 
     je v za"cetku 20.\ stoletja razvil Filip Lundberg. Le-ta je danes eden izmed najbolj raziskanih in 
     uporabljenih modelov v teoriji tveganja. Model temelji na sestavljenem Poissonovem procesu, kjer predpostavimo, da ima "stevilo zahtevkov,
@@ -243,7 +243,7 @@ V nastajanju :)
 
     V "cetrtem poglavju se posvetimo Cramér--Lundbergovemu modelu, ki je prvi model, ki je bil uporabljen za
     modeliranje tveganja v zavarovalni"stvu. Osredoto"cimo se na verjetnost propada in zanjo izpeljemo prenovitveno
-    ena"cbo. Obravnavamo asimptotriko verjetnosti propada, ko zahtevke modeliramo z lahkorepimi in te"zkorepimi
+    ena"cbo. Obravnavamo asimptotiko verjetnosti propada, ko zahtevke modeliramo z lahkorepimi in te"zkorepimi
     porazdelitvami.
 
     V delu privzamemo, da je bralec seznanjen z osnovami verjetnosti, homogenega Poissonovega procesa in prenovitvenimi procesi.
@@ -258,13 +258,13 @@ V nastajanju :)
     Razdelek je prirejen po \cite{1}, \cite{2} in  \cite{4}.
 
     Sestavljena Poissonova porazdelitev je osnovni gradnik za sestavljeni Poissonov proces, ki ga obravnavamo 
-    v naslednjem razdelku. Lastnosti, ki jih doka"zemo, so direktno prenosljve na sam proces. Izpeljemo 
+    v naslednjem razdelku. Lastnosti, ki jih doka"zemo, so direktno prenosljive na sam proces. Izpeljemo 
     obliko rodovnih funkcij, porazdelitveno funkcijo, zanimive rezultate v povezavi s 
     splo"snimi slu"cajnimi spremenljivkami in Panjerjevo rekurzivno shemo, ki jo prika"zemo na 
     prakti"cnem zgledu.
 
     \begin{definicija}
-        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in $N$)
+        Naj bo $N\sim \Pois{\lambda}$  za $\lambda >0$ in $X_1, X_2, \dots$ zaporedje neodvisnih (med seboj in od $N$)
         enako porazdeljenih slučajnih spremenljivk. Potem pravimo, da ima slu"cajna spremenljivka
         \begin{equation*}
             S = \sum_{i=1}^NX_i
@@ -407,7 +407,7 @@ V nastajanju :)
     \begin{definicija}
         Naj bo $(\lambda_k)_{k=1}^n$ zaporedje pozitivnih realnih "stevil, za katerega velja 
         $\sum_{k=1}^n\lambda_k = 1$. Naj bodo $F_1, \dots, F_n$ porazdelitvene funkcije
-        realnih slu"cajnih spremenljivk $X_1, \dots, X_n$. Potem porazdelitvi s porazdelitveno 
+        slu"cajnih spremenljivk $X_1, \dots, X_n$. Potem porazdelitvi s porazdelitveno 
         funkcijo 
         \begin{equation*}
             F = \sum_{k=1}^n\lambda_kF_k
@@ -446,7 +446,7 @@ V nastajanju :)
             S = \sum_{k=1}^nS^{(k)} \sim \sum_{i=1}^{N}Y_i,
         \end{equation*}
         kjer je $N\sim\Pois{\lambda}$ s parametrom $\lambda = \sum_{k=1}^n\lambda_k$ in $(Y_i)_{i\in\N}$ zaporedje
-        neodvisnih enako porazdeljenih slu"cajnih spremenljivk z me"sano porazdelitvijo
+        neodvisnih enako porazdeljenih slu"cajnih spremenljivk z me"sano porazdelitveno funkcijo
         \begin{equation*}
         F_{Y_1} = \sum_{k=1}^n\frac{\lambda_k}{\lambda}F_{X_1^{(k)}}.
         \end{equation*}
@@ -598,7 +598,7 @@ V nastajanju :)
     \subsection{Panjerjeva rekurzivna shema}
     Poglejmo si popularno metodo za numeri"cno aproksimacijo sestavljene Poissonove porazdelitve v praksi. Kot
     smo videli v zgledu \ref{zgd:sestavljenaPoissonovaPorazdelitevGamma}, je izra"zava eksplicitne 
-    porazdelitve $S$ v zaklju"ceni obliki v splo"snem nemogo"ca. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
+    porazdelitvene funkcije $S$ v zaklju"ceni obliki v splo"snem nemogo"ca. Izka"ze pa se, da jo je v posebnih primerih vselej mogo"ce
     rekurzivno izraziti in ustrezno posplo"siti na "sir"si razred porazdelitev. 
 
     \begin{trditev}(Panjer)
@@ -613,7 +613,7 @@ V nastajanju :)
         \end{equation*}
         za $n\in\N$ pa velja
         \begin{equation}
-            \Prob\left(S = n\right) = \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
+            \Prob(S = n) = \frac{1}{1 - a\Prob(X_1 = 0)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\Prob(S = n - k).
             \label{eq:PanjerRecursionScheme}
         \end{equation}
         \label{tdr:PanjerRecursionScheme}
@@ -623,16 +623,16 @@ V nastajanju :)
         Po zakonu za popolno pri"cakovano vrednost velja
         \begin{align*}
             \Prob(S = 0) 
-                &= \sum_{j = 0}^\infty\Prob\left(S = 0\mid N = j\right)\Prob\left(N = j\right) \\
-                &= \sum_{j = 0}^\infty\Prob\left(S_j = 0\right)\Prob\left(N = j\right) \\
-                &= \sum_{j = 0}^\infty\Prob\left(X_1 = 0\right)^j\Prob\left(N = j\right) \\
-                &= \E\left[\Prob\left(X_1 = 0\right)^N\right].
+                &= \sum_{j = 0}^\infty\Prob(S = 0\mid N = j)\Prob(N = j) \\
+                &= \sum_{j = 0}^\infty\Prob(S_j = 0)\Prob(N = j) \\
+                &= \sum_{j = 0}^\infty\Prob(X_1 = 0)^j\,\Prob(N = j) \\
+                &= \E\left[\Prob(X_1 = 0)^N\right].
         \end{align*}
         Za $n\in\N$ pa velja
         \begin{align}
             \Prob(S = n) 
-                &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\Prob\left(N = j\right) \nonumber \\
-                &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\left(a + \frac{b}{j}\right)\Prob\left(N = j - 1\right). \label{eq:PanjerRecursionSchemeProof}
+                &= \sum_{j = 1}^\infty\Prob(S_j = n)\Prob(N = j) \nonumber \\
+                &= \sum_{j = 1}^\infty\Prob(S_j = n)\left(a + \frac{b}{j}\right)\Prob(N = j - 1). \label{eq:PanjerRecursionSchemeProof}
         \end{align}
         Ker so $X_1, X_2, \dots$ neodvisne in enako porazdeljene, so izmenljive \refPriloga{def:Izmenljivost} in tako po 
         trditvi \refPriloga{trd:izmenljivostSimetricnaFunkcija} velja
@@ -651,9 +651,9 @@ V nastajanju :)
         Nadalje velja  
         \begin{align}   
             & \E\left[a + \frac{bX_1}{n} \biggm|   S_j = n\right] \nonumber \\
-            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\mid S_j = n\right) \nonumber \\
-            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob\left(X_1 = k, S_j - X_1 = n - k\right)}{\Prob\left(S_j = n\right)} \nonumber \\
-            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob\left(X_1 = k\right)\Prob\left(S_{j- 1} = n - k\right)}{\Prob\left(S_j = n\right)} \label{eq:PanjerRecursionSchemeProof3} 
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k\mid S_j = n) \nonumber \\
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob(X_1 = k,\, S_j - X_1 = n - k)}{\Prob(S_j = n)} \nonumber \\
+            &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\frac{\Prob(X_1 = k)\,\Prob(S_{j- 1} = n - k)}{\Prob(S_j = n)} \label{eq:PanjerRecursionSchemeProof3} 
         \end{align}
 
         \pagebreak
@@ -662,20 +662,20 @@ V nastajanju :)
         in upo"stevamo (\ref{eq:PanjerRecursionSchemeProof3}), dobimo
         \begin{align*}
             \Prob(S = n)
-                = \sum_{j = 1}^\infty\sum_{k = 0}^n \left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S_{j - 1} = n - k\right)\Prob\left(N = j - 1\right).
+                = \sum_{j = 1}^\infty\sum_{k = 0}^n \left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\Prob(S_{j - 1} = n - k)\Prob(N = j - 1).
         \end{align*}
         Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} lahko zamenjamo vrstni red vsot, kar nam da
         \begin{align*}
             \Prob(S = n) 
-                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\sum_{j = 1}^\infty\Prob\left(S_{j - 1} = n - k\right)\Prob\left(N = j - 1\right)\\
-                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
+                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\sum_{j = 1}^\infty\Prob(S_{j - 1} = n - k)\Prob(N = j - 1)\\
+                &= \sum_{k = 0}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\Prob(S = n - k).
         \end{align*}
         Izpostavimo prvi "clen vsote in izraz preoblikujemo.
         \begin{align*}
             \Prob(S = n) 
-                &= a\Prob\left(X_1 = 0\right)\Prob\left(S = n\right) + \sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right), \\
+                &= a\Prob(X_1 = 0)\Prob(S = n) + \sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\,\Prob(S = n - k), \\
             \Prob(S = n)
-                &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
+                &= \frac{1}{1 - a\Prob(X_1 = 0)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob(X_1 = k)\,\Prob(S = n - k).
         \end{align*}
         S tem je trditev dokazana.
     \end{proof}
@@ -857,9 +857,9 @@ V nastajanju :)
             \begin{align*}
                 g(y_1, y_2, \dots, y_n) &= (g_1, g_2, \dots, g_n),\\
                                     g_1 &= y_1 + x_0, \\
-                                    g_2 &= y_2 + g_1, \\
+                                    g_2 &= y_2 + y_1 + x_0, \\
                                     &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
-                                    g_n &= y_n + g_{n-1}.
+                                    g_n &= y_n + y_{n-1} + \cdots + x_0.
             \end{align*}
             Funkcija $g$ je o"citno merljiva, saj jo definiramo le s se"stevanjem. Ker velja
             $g(X_{t_1} - x_0, \dots, X_{t_n} - X_{t_{n-1}}) = (X_{t_1}, \dots, X_{t_n})$, 
@@ -1245,8 +1245,8 @@ V nastajanju :)
                 S^{(j)}_{t} = 
                 \sum_{i = N_{t_{j-1}}+ 1}^{N_{t_j}}X_i = S_{t_j} - S_{t_{j-1}} \quad \text{za} \ j = 1, \dots, n.
             \end{align*}
-            Ker je $U_i \sim U([0, t])$, je $\mathbbm{1}({t_{j-1}} < U_i\leq t_j) \sim \mathbbm{1}(U_i \leq t_j - t_{j-1})$, 
-            zaradi neodvistnoti $U_i$ in $X_i$ pa je tudi 
+            Ker je $U_i \sim U([0, t])$, je $\mathbbm{1}({t_{j-1}} < U_i\leq t_j) \sim \mathbbm{1}(U_i \leq t_j - t_{j-1})$.
+            Zaradi neodvisnosti $U_i$ in $X_i$ pa je tudi 
             \begin{align*}
                 S_{t_j} - S_{t_{j-1}} = S_t^{(j)} &\sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right) \\
                 &\sim \sum_{i=1}^{N_t}X_i\mathbbm{1}({t_{j-1}} < U_i\leq t_j) \\
@@ -1294,6 +1294,8 @@ V nastajanju :)
             \begin{equation*}
                 A_j = [0, t]\times [d_{j-1}, d_j), \ j = 1, \dots, n.
             \end{equation*}
+            Mno"zice $A_1, \dots, A_n$ predstvaljajo razli"cne sloje zahtevkov, ki jih zavarovalnica prejema. 
+            Za vsak sloj lahko predpi"semo kolik"sen dele"z "skode bo pozavarovalnica krila.
             Po izreku o markiranju vemo, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, \ S_t^{(n)}$ 
             med seboj neodvisne in imajo sestavljeno Poissonovo porazdelitev. Tako lahko analiziramo 
             posamezen sloj kot produkt sam zase in ustrezno dolo"cimo dele"z premij, ki ga pozavarovalnica dobi 
@@ -1446,7 +1448,7 @@ V nastajanju :)
 
     V tem razdelku obravnavamo najbolj intenzivno raziskan model v teoriji propada, običajno imenovan 
     Cramér--Lundbergov model. V svoji najosnovnejši obliki 
-    ga je v zgodnjih 1900. letih izpeljal "svedski aktuar Filip Lundberg, da bi ocenil ranljivost 
+    ga je na za"cetku 20.\ stoletja izpeljal "svedski aktuar Filip Lundberg, da bi ocenil ranljivost 
     zavarovalnice za propad. Čeprav je model v svoji ideji dokaj preprost, 
      zajema bistvo povezave ravni rezerv zavarovalnice in njene izpostavljenosti tveganju, 
     kar je razlog, zakaj je postal temeljni merilni model v teoriji propada.
@@ -1569,7 +1571,7 @@ V nastajanju :)
 
             S pomo"cjo ogrodja procesa tveganja lahko dogodek propada zapi"semo kot
             \begin{align*}
-                \bigl\{U_t<0 \ \text{za} \ t\geq 0\bigr\} &= 
+                \bigl\{U_t<0 \ \text{za neki} \ t\geq 0\bigr\} &= 
                                 \biggl\{\inf_{t\geq0}U_t<0\biggr\} \\
                               &= \biggl\{\inf_{n\in\N}U_{V_n}<0\biggr\} \\
                               &= \biggl\{\inf_{n\in\N}\bigl\{u + p(V_n) - S_{V_n}\bigr\} < 0\biggr\} \\
@@ -1593,7 +1595,7 @@ V nastajanju :)
             Naj bo $(Z_n)_{n\in\N}$ zaporedje slu"cajnih spremenljivk, definirano kot 
             $Z_n = \sum_{i=1}^nY_i$ za neodvisne in enako porazdeljene slu"cajne spremenljivke 
             $Y_i$ z $\E\left[Y_i\right] < \infty$. 
-            "Ce velja $\E\left[Y_i\right] \geq 0$, za vsak $u>0$ velja
+            "Ce velja $\E\left[Y_i\right] \geq 0$, za vsak $u\geq0$ velja
             \begin{equation*}
                 \Prob\left(\sup_{n\in\N}Z_n > u\right) = 1.
             \end{equation*}
@@ -1725,51 +1727,51 @@ V nastajanju :)
 
         \begin{align*}
                 \theta(u)   &= \int_{(0, \infty)}\int_{(0, u + ct]}\Prob\biggl(\bigl\{Z_n \leq u - (x - ct)\mid n\in\N\bigr\}\biggr)dF_{X_1}(x)dF_{T_1}(t) \\
-                            &= \int_{(0, \infty)}\int_{(0, u + ct]}\theta(u - x + ct)dF_{X_1}(x)\lambda e^{-\lambda t}dt.
+                            &= \int_0^\infty\int_{(0, u + ct]}\theta(u - x + ct)dF_{X_1}(x)\lambda e^{-\lambda t}dt.
         \end{align*}
         Uvedemo novo spremenljivko $z = u + ct$ $\bigl( \text{torej} \ t = \tfrac{z - u}{c}$ in $dt = \tfrac{dz}{c} \bigr)$ 
         in dobimo
 
         \begin{align*}
-                    \theta(u) = \frac{\lambda}{c}e^{\frac{\lambda u}{c}}\int_{(u, \infty)}e^{-\frac{\lambda z}{c}}\underbrace{\int_{(0, z)}\theta(z - x)dF_{X_1}(x)}_{g(z)}dz.
+                    \theta(u) = \frac{\lambda}{c}e^{\frac{\lambda u}{c}}\int_u^\infty e^{-\frac{\lambda z}{c}}\underbrace{\int_{(0, z]}\theta(z - x)dF_{X_1}(x)}_{g(z)}dz.
         \end{align*}
         Ker ima porazdelitev $F_{X_1}$ gostoto in je $\theta$ zvezna omejena funkcija,
         sledi, da je funkcija $g$ zvezna in jo lahko (po osnovnem izreku analize)
         odvajamo. Tako dobimo
 
         \begin{equation*}
-            \theta'(u) = \frac{\lambda}{c}\theta(u) - \frac{\lambda}{c}\int_{(0, u)}\theta(u - x)dF_{X_1}(x).
+            \theta'(u) = \frac{\lambda}{c}\theta(u) - \frac{\lambda}{c}\int_{(0, u]}\theta(u - x)dF_{X_1}(x).
         \end{equation*}
         "Ce sedaj obe strani integriramo po $u$, dobimo
         
         \begin{equation}
-            \int_{(0, t]}\theta'(u)du = \frac{\lambda}{c}\int_{(0, t]}\theta(u)du - \overbrace{\frac{\lambda}{c}\int_{(0, t]}\underbrace{\int_{(0, u]}\theta(u - x)dF_{X_1}(x)}_{(i)}du.}^{(ii)} 
+            \int_0^t\theta'(u)du = \frac{\lambda}{c}\int_0^t\theta(u)du - \overbrace{\frac{\lambda}{c}\int_0^t\underbrace{\int_{(0, u]}\theta(u - x)dF_{X_1}(x)}_{(i)}du.}^{(ii)} 
             \label{eq:verjetnostPrezivetjaIntegral}
         \end{equation}
         Na integralu $(i)$ uporabimo per partes $\bigl(\alpha = \theta(u-x)$ in $d\beta = dF_{X_1}(x)\bigr)$ 
         ter upo"stevamo, da ima $F_{X_1}$ gostoto.
 
         \begin{align*}
-            (i)     &= \bigl(\theta(u - x)F_{X_1}(x)\bigr)\Big|_{0}^{u} + \int_{(0, u)}\theta'(u - x)F_{X_1}(x)dx \\
-                    &= \theta(0)F_{X_1}(u) - \int_{(0, u)}\theta'(u - x)F_{X_1}(x)dx.
+            (i)     &= \bigl(\theta(u - x)F_{X_1}(x)\bigr)\Big|_{0}^{u} + \int_0^u\theta'(u - x)F_{X_1}(x)dx \\
+                    &= \theta(0)F_{X_1}(u) - \int_0^u\theta'(u - x)F_{X_1}(x)dx.
         \end{align*}
         Upo"stevamo, da je $F_{X_1}(0) = 0$, saj je $X_1 > 0$ skoraj gotovo. Vstavimo $(i)$ 
         v $(ii)$ in dobimo
 
         \begin{equation*}
-            (ii) =  - \frac{\lambda}{c}\int_{(0, t]}\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_{(0, t]}\int_{(0, u]}\theta'(u - x)F_{X_1}(x)dxdu. 
+            (ii) =  - \frac{\lambda}{c}\int_0^t\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_0^t\int_0^u\theta'(u - x)F_{X_1}(x)dxdu. 
         \end{equation*}
         Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} lahko zamenjamo vrstni red integracije.
 
         \begin{align*}
-            (ii)    &=  - \frac{\lambda}{c}\int_{(0, t]}\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\int_{[x, t]}\theta'(u - x)dudx \\
-                    &= - \frac{\lambda}{c}\int_{(0, t]}\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\bigl(\theta(t-x) - \theta(0)\bigr)dx.\\
-                    &= - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\theta(t - x)dx.
+            (ii)    &=  - \frac{\lambda}{c}\int_0^t\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_0^tF_{X_1}(x)\int_x^t\theta'(u - x)dudx \\
+                    &= - \frac{\lambda}{c}\int_0^t\theta(0)F_{X_1}(u)du - \frac{\lambda}{c}\int_0^tF_{X_1}(x)\bigl(\theta(t-x) - \theta(0)\bigr)dx.\\
+                    &= - \frac{\lambda}{c}\int_0^tF_{X_1}(x)\theta(t - x)dx.
         \end{align*}
         Vstavimo $(ii)$ v ena"cbo (\ref{eq:verjetnostPrezivetjaIntegral}) in dobimo
         \begin{align*}
-            \theta(t) - \theta(0) &= \frac{\lambda}{c}\int_{(0, t]}\theta(u)du - \frac{\lambda}{c}\int_{(0, t]}F_{X_1}(x)\theta(t - x)dx,\\
-            \theta(t) &= \theta(0) + \frac{\lambda}{c}\int_{(0, t]}\bigl(1 - F_{X_1}(x)\bigr)\theta(t - x)dx \\
+            \theta(t) - \theta(0) &= \frac{\lambda}{c}\int_0^t\theta(u)du - \frac{\lambda}{c}\int_0^tF_{X_1}(x)\theta(t - x)dx,\\
+            \theta(t) &= \theta(0) + \frac{\lambda}{c}\int_0^t\bigl(1 - F_{X_1}(x)\bigr)\theta(t - x)dx \\
                     &= \theta(0) + \frac{1}{1 + \rho}\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x).
         \end{align*}
         Pri enakosti v zadnji vrstici smo upo"stevali  
@@ -1840,7 +1842,7 @@ V nastajanju :)
     Re"sitev $\theta = A\theta$ se tako izra"za kot limita $\theta = \lim_{n\to\infty}A^ng_0$ za 
     poljubno funkcijo $g_0\in B([0, \infty)).$ Naj bodo $\overline{X}_1, \overline{X}_2, \dots $ 
     neodvisne enako porazdeljene slu"cajne spremenljivke s porazdelitveno funkcijo $\overline{F}_{X_1}$, ki 
-    jo z $0$ raz"sirimo na celo realno os.
+    jo raz"sirimo na celo realno os, tako da velja $\overline{F}_{X_1}(x) = 0$ za $x < 0$.
     Potem $A$ izrazimo kot
     \begin{equation*}
         Ag(u) = (1 - q)\mathbbm{1}(u\geq0) + q\E\left[g(u - \overline{X}_1)\right]
@@ -1922,7 +1924,7 @@ V nastajanju :)
         \end{zgled}
 
             \begin{opomba}
-                V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjentosti ekstremnih 
+                V praksi z lahkorepnimi porazdelitvami modeliramo zahtevke, kjer verjetnost ekstremnih 
                 dogodkov (torej zelo velikih zahtevkov) eksponentno pada proti $0$. To neposredno sledi iz 
                 definicije \ref{def:lahkorepnaPorazdelitev} in neenakosti Markova \refPriloga{trd:neenakostMarkova}, 
                 saj za vsak 
@@ -1962,7 +1964,7 @@ V nastajanju :)
             \end{proof}
 
             \begin{izrek}(Lundbergova neenakost)
-                Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC in 
+                Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca pogoju NPC in 
                  zanj obstaja Lundbergov koeficient $\ell$. Potem za vsak $u>0$ velja
                 \begin{equation*}
                     \psi(u) \leq e^{-\ell u}.
@@ -2076,7 +2078,7 @@ V nastajanju :)
                 \label{zgd:LundebrgovaNeenakostEksponentno}
             \end{zgled}
 
-            Sedaj izplejemo enega temeljnih rezultatov v teoriji tveganja, ki ga je leta 1930 dokazal Harald 
+            Sedaj izpeljemo enega temeljnih rezultatov v teoriji tveganja, ki ga je leta 1930 dokazal Harald 
             Cramér. Za lahkorepe porazdleitve bomo dolo"cili to"cen red konvergence verjetnosti propada.
 
             \begin{izrek}(Asimptotika verjetnosti propada, lahkorepe porazdelitve)
@@ -2105,22 +2107,20 @@ V nastajanju :)
                 prevedemo na pravo prenovitveno ena"cbo. Za $x > 0$ 
                 definiramo funkcijo $F_\ell$ kot Esscherjevo transformacijo funkcije $q\overline{F}_{X_1}$.
                 \begin{equation}
-                    F_\ell(x) = \int_{(0, x]}e^{\ell y}d\bigl(q\overline{F}_{X_1}(y)\bigr) = \frac{q}{\E\left[X_1\right]}\int_{(0, x]}e^{\ell y}\bigl(1 - F_{X_1}(y)\bigr)dy, 
+                    F_\ell(x) = \int_{(0, x]}e^{\ell y}d\bigl(q\overline{F}_{X_1}(y)\bigr) = \frac{q}{\E\left[X_1\right]}\int_0^xe^{\ell y}\bigl(1 - F_{X_1}(y)\bigr)dy, 
                     \label{eq:EsscherjevaTransformacija}
                 \end{equation}
                 Poka"zimo, da je $F_\ell$ porazdelitvena funkcija. O"citno je nara"s"cajo"ca in velja
-
                 \begin{align*}
-                    \lim_{x\to\infty}F_\ell(x) &= \frac{q}{\E\left[X_1\right]}\int_{(0, \infty)}e^{\ell y} \bigl(1 - F_{X_1}(y)\bigr)dy \qquad \bigl(\alpha = 1 - F_{X_1}(y), \ d\beta = e^{\ell y}dy\bigr)\\
-                                               &= \frac{q}{\E\left[X_1\right]}\biggl(\biggl(\frac{\bigl(1 - F_{X_1}(y)\bigr)e^{\ell y}}{\ell}\biggr)\Big|_{0}^{\infty} + \frac{1}{\ell}\int_{(0, \infty)}e^{\ell y}f_{X_1}(y)dy\biggr) \\
+                    \lim_{x\to\infty}F_\ell(x) &= \frac{q}{\E\left[X_1\right]}\int_0^\infty e^{\ell y} \bigl(1 - F_{X_1}(y)\bigr)dy \qquad \bigl(\alpha = 1 - F_{X_1}(y), \ d\beta = e^{\ell y}dy\bigr)\\
+                                               &= \frac{q}{\E\left[X_1\right]}\biggl(\biggl(\frac{\bigl(1 - F_{X_1}(y)\bigr)e^{\ell y}}{\ell}\biggr)\Big|_{0}^{\infty} + \frac{1}{\ell}\int_0^\infty e^{\ell y}f_{X_1}(y)dy\biggr) \\
                                                &= \frac{q}{\E\left[X_1\right]}\frac{1}{\ell}\biggl(\E\left[e^{\ell X_1}\right] - 1\biggr).
                 \end{align*}
                 Sedaj upo"stevamo, da je $q = \frac{1}{1 + \rho} = \frac{\E\left[X_1\right]}{c\E\left[T_1\right]}$, 
                 definicijo Lundbergovega koeficienta ter dejstvo, da je $T_1\sim\text{Exp}(\lambda)$ medprihodni "cas v $\text{HPP}(\lambda)$, da dobimo
-
                 \begin{align*}
-                    \lim_{x\to\infty}F_\ell(x)  &= \frac{\E\left[e^{\ell X_1}\right] - 1}{c\ell\ \E\left[T_1\right]}\\
-                                                &= \frac{\frac{\lambda + c\ell}{\lambda} - 1}{c\ell \frac{1}{\lambda}} = 1.
+                    \lim_{x\to\infty}F_\ell(x)  &= \frac{\E\left[e^{\ell X_1}\right] - 1}{c\,\ell\ \E\left[T_1\right]}\\
+                                                &= \frac{\frac{\lambda + c\,\ell}{\lambda} - 1}{c\,\ell \frac{1}{\lambda}} = 1.
                 \end{align*}
                 "Ce torej ena"cbo (\ref{eq:verjetnostPropadaQ}) pomno"zimo z $e^{\ell u}$, dobimo
                 \begin{align}
@@ -2131,31 +2131,64 @@ V nastajanju :)
                 in ker je funkcija $u\mapsto qe^{\ell u}\bigl(1 - \overline{F}_{X_1}(u)\bigr)$ omejena na kon"cnih 
                 intervalih in $F_\ell$ nearitmeti"cna, lahko uporabimo Smithov klju"cni prenovitveni izrek \refPriloga{izr:Smith}, da dobimo
                 re"sitev
-                
                 \begin{equation}
                     e^{\ell u}\psi(u) =qe^{\ell u}\bigl(1 - \overline{F}_{X_1}(u)\bigr) +  q\int_{(0, u]}e^{\ell(u - x)}\bigl(1 - \overline{F}_{X_1}(u - x)\bigr)dM^{\ell}(x),
                     \label{eq:resitevCramerjevePrenovitveneEnacbe}
                 \end{equation}
                 kjer je $M^{\ell}$ prenovitvena mera prenovitvenega procesa z medprihodnimi "casi, 
                 ki imajo porazdelitveno funkcijo $F_\ell$. V splo"snem $M^{\ell}$ te"zko dolo"cimo. 
-                "Ce pa je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ direktno Riemannovo integrabilna
+                "Ce pa je funkcija $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ direktno Riemannovo integrabilna
                 \refPriloga{def:direktnaRieamnovaIntegrabilnost}, nam 
                 Smithov izrek da asimptoti"cno vedenje re"sitve (\ref{eq:resitevCramerjevePrenovitveneEnacbe}),
                 ko gre $u\to\infty$.
-                Direktno Riemannovo integrabilnost preverimo tako, da upo"stevamo 
+
+                \pagebreak 
+                \noindent
+                Ozna"cimo 
                 \begin{equation*}
-                    \int_{(0, \infty)}xe^{\ell x}(1 - \overline{F}_{X_1}(x))dx < \infty, 
+                    f(u) := qe^{\ell u}(1 - \overline{F}_{X_1}(u)).
                 \end{equation*}
-                in funkcijo $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ zapi"semo kot
+                Direktno Riemannovo integrabilnost $f$ bomo pokazali z uporabo trditve \refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}. 
+                Pokazati moramo, da je $f$ posplo"seno Riemannovo integrabilna in da ima omejeno totalno variacijo \refPriloga{def:totVariacija}. 
+                %$\lim_{u\to\infty}f(u) = 0$ ter da obstaja Riemannov integral 
+                %$\int_0^\infty f(u)du$. Za ta namen ocenimo funkcijo $f$
+                %\begin{equation*}
+                %    f(u) = \frac{e^{\ell u}}{\E\left[X_1\right]}\int_{(u, \infty)}dF_{X_1}(x) \leq \frac{1}{\E\left[X_1\right]}\int_{(u, \infty)}e^{\ell x}dF_{X_1}(x).
+                %\end{equation*}
+                %Ker velja 
+                %\begin{equation*}
+                %    \int_{(0, \infty)}e^{\ell x}dF_{X_1}(x) = \E\left[e^{\ell X_1}\right] < \infty, 
+                %\end{equation*}
+                %mora biti $\lim_{u\to\infty}f(u) = 0$.
+                \noindent
+                Da obstaja posplo"seni Riemannov integral $\int_0^\infty f(u)du$, poka"zemo preko Lebesgueovega integrala. 
+                Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} velja
                 \begin{align*}
-                    qe^{\ell u}(1 - \overline{F}_{X_1}(u))
-                     &= q\int_{(u, \infty)}e^{\ell x}\, d\overline{F}_{X_1}(x) 
-                        - q\ell \int_{(u, \infty)}(1 - \overline{F}_{X_1}(x))e^{\ell x}\, dx. \\                                  
+                    \int_{(0, \infty)}f(x)dx &= \frac{1}{\E\left[X_1\right]}\int_{(0, \infty)}e^{\ell u}\int_{(u, \infty)}dF_{X_1}(x)\,du \\
+                    &= \frac{1}{\E\left[X_1\right]}\int_{(0, \infty)}\int_0^xe^{\ell u}du\, dF_{X_1}(x) \\
+                    &= \frac{1}{\ell\, \E\left[X_1\right]} \int_{(0, \infty)}\left(e^{\ell x} - 1\right)dF_{X_1}(x) \\
+                    &= \frac{\E\left[e^{\ell X_1} - 1\right]}{\E\left[X_1\right]} < \infty.
                 \end{align*}
-                \textcolor{red}{dopi"si}
-                Tako vidimo, da je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
-                Riemannovo integrabilnih funkcij in je zato po kriteriju \refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost} 
-                direktno Riemannovo integrabilna. Dobimo 
+                Ker je $f$ zvezna ($\overline{F}_{X_1}$ je zvezna) mora obstajati tudi posplo"seni Riemannov integral $\int_0^\infty f(u)du$.
+                Da poka"zemo, da ima $f$ omejeno totalno variacijo, jo izrazimo kot razliko 
+                dveh nenara"s"cajo"cih funkcij. Ponovno uporabimo Tonellijev izrek, da poka"zemo naslednjo enakost
+                \begin{align*}
+                    \int_u^\infty f(x) dx 
+                    &= \int_{[u, \infty)}e^{\ell x}\int_{(x, \infty)}d\overline{F}_{X_1}(y)\,dx \\
+                    &= \int_{[u, \infty)}\int_{(u, y)}e^{\ell x}dx\,d\overline{F}_{X_1}(y) \\
+                    &= \frac{1}{\ell}\int_{[u, \infty)}\left(e^{\ell y} - e^{\ell u}\right)d\overline{F}_{X_1}(y) \\
+                    &= \frac{1}{\ell}\left[\frac{1}{\E\left[X_1\right]}\int_u^\infty e^{\ell y}\left(1 - F_{X_1}(y)\right)dy - f(u)\right].
+                \end{align*}
+                Enakost velja, ker obstaja $\int_0^\infty f(x)dx$.
+                Z malo preurejanja dobimo 
+                \begin{equation*}
+                    f(u) = \underbrace{\frac{1}{\ell\,\E\left[X_1\right]}\int_u^\infty e^{\ell y}\left(1 - F_{X_1}(y)\right)dy}_{g(u)} - \underbrace{\ell\int_u^\infty f(x) dx}_{h(u)}. 
+                \end{equation*}
+                Tako izrazimo $f$ kot razliko funkcij $g$ in $h$, ki sta o"citno nenara"s"cajo"ci in ker velja 
+                $\lim_{u\to\infty}g(u) = \lim_{u\to\infty}h(u) = 0$, imata omejeno totalno variacijo.
+                Funkcija $f$ torej zado"s"ca predpostavkam trditve \refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost} in 
+                je direktno Riemannovo integrabilna. 
+                Tako po Smithovem klju"cnem prenovitvenem izreku velja
                 \begin{equation}
                     C = \lim_{u\to\infty}e^{\ell u}\psi(u) =  \frac{q}{\alpha} \int_0^\infty e^{\ell x}(1 - \overline{F}_{X_1}(x))dx,
                     \label{eq:CramerBoundConstant}
@@ -2195,7 +2228,7 @@ V nastajanju :)
                 "Ce vstavimo rezultata v ena"cbo (\ref{eq:resitevCramerjevePrenovitveneEnacbe}), dobimo
                 \begin{align*}
                     e^{\ell u}\psi(u)   &= qe^{\ell u}e^{-\mu u} + q\int_{(0, u]}e^{\ell(u - x)}e^{-\mu(u - x)}dM^\ell(x)\\
-                                        &= qe^{-u(\mu - \ell)} + \mu q^2\int_{(0, u]}e^{-(\mu - \ell)(u - x)}dx \\
+                                        &= qe^{-u(\mu - \ell)} + \mu q^2\int_0^u e^{-(\mu - \ell)(u - x)}dx \\
                                         &= qe^{-u(\mu - \ell)} + \mu q^2 \frac{1}{\mu - \ell}\biggl(1 - e^{-u(\mu - \ell)}\biggr)\\
                                         &= qe^{-u(\mu - \ell)} + \frac{\mu}{(1 + \rho)^2}\frac{1 + \rho}{\mu}\biggl(1 - e^{-u(\mu - \ell)}\biggr) \\
                                         &= qe^{-u(\mu - \ell)} + q\biggl(1 - e^{-u(\mu - \ell)}\biggr) \\
@@ -2249,7 +2282,7 @@ V nastajanju :)
                 \end{figure}
 
                 \noindent
-                Kot vidimo, se pribli"zki z nara"s"cajocim "stevilom simulacij pribli"zujejo funckciji $\psi(u)$, ampak, za 
+                Kot vidimo, se pribli"zki z nara"s"cajocim "stevilom simulacij pribli"zujejo funkciji $\psi(u)$, ampak, za 
                 res dobro aproksimacijo, bi morali to "stevilo krepko pove"cati, saj na primer
                 za vrednost $u = 16000$ pride $\psi(16000) \approx 0{,}0032186334$, kar je pribli"zno
                 $0.3\%$ in v praksi ni zanemarljivo, ampak v na"si simulaciji nobena realizacija procesa 
@@ -2354,8 +2387,8 @@ V nastajanju :)
         
         \begin{izrek}(Asimptotika verjetnosti propada, te"zkorepe porazdelitve)
             Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC in 
-            naj bodo zahtevki $(X_i)_{i\in\N}$ neodvisni in enako porazdeljeni z gostoto $f_X$, 
-            pri"cakovano vrednostjo $\E\left[X\right] < \infty$ in naj bo $\overline{F}_{X_1}$ subeksponentna.
+            naj bodo zahtevki $(X_i)_{i\in\N}$ neodvisni in enako porazdeljeni z gostoto, 
+            pri"cakovano vrednostjo\newline $\E\left[X\right] < \infty$ in naj bo $\overline{F}_{X_1}$ subeksponentna.
             Potem za verjetnost propada $\psi(u)$ velja
             \begin{equation}
                 \lim_{u\to\infty}\frac{\psi(u)}{1 - \overline{F}_{X_1}(u)} = \frac{1}{\rho}.
@@ -2427,6 +2460,14 @@ V nastajanju :)
             \end{align*}
         \end{proof}
 
+        Izreka \ref{izr:CramerjevaMeja} in \ref{izr:tezkorepnePorazdelitveAsimptotika} poka"zeta klju"cno 
+        razliko med lahkorepimi in te"zkorepimi porazdelitvami. Limita (\ref{eq:tezkorepnePorazdelitveAsimptotika})
+        nam pove, da je konvergenca verjetnosti propada $\psi$ enakega reda kot $(1 - \overline{F}_{X_1})$, ki pa 
+        ni zanemarljiva tudi za velike vrednosti $u$. To pomeni, da so zavarovalni"ski produkti, za katere 
+        verjamemo, da so zahtevki subeksponentno porazdeljneni, nevarni, saj imajo najve"cji zahtevki velik 
+        vpliv na celoten proces tveganja in se propad lahko zgodi zaradi enega samega velikega
+        zahtevka kot v zgledu \ref{zgd:weibullProcesTveganja}.
+
         \begin{opomba}
             "Ce tako kot v definiciji sestavljene geometrijske porazdelitve \refPriloga{def:CompoundGeometricDistribution} 
             vzamemo $G\sim\text{Geom}(1 - q)$, ki je neodvisna od $\overline{X}_1, \overline{X}_2, \dots,$ ima
@@ -2436,17 +2477,10 @@ V nastajanju :)
                     &= \sum_{k = 0}^\infty\Prob\left(G = k\right)\Prob\left(\overline{W}_k \leq u\right) \nonumber\\
                     &= (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right) = \theta(u).
             \end{align*}
-            Torej je $C\sim \theta$ in posledi"cno $\psi(u) = \Prob\left(C > u\right) = (1-q)\sum_{k=0}^\infty q^k\Prob\left(\overline{W}_k > u\right)$.
+            Verjetnost pre"zivetja $\theta$ je torej porazdelitvena funkcija sestavljene geometrijske porazdelitve in posledi"cno 
+            velja $\psi(u) = \Prob\left(C > u\right) = (1-q)\sum_{k=0}^\infty q^k\Prob\left(\overline{W}_k > u\right)$.
             \label{op:tezkorepnePorazdelitveAsimptotika}
         \end{opomba}
-
-        Izreka \ref{izr:CramerjevaMeja} in \ref{izr:tezkorepnePorazdelitveAsimptotika} poka"zeta klju"cno 
-        razliko med lahkorepimi in te"zkorepimi porazdelitvami. Limita (\ref{eq:tezkorepnePorazdelitveAsimptotika})
-        nam pove, da je konvergenca verjetnosti propada $\psi$ enakega reda kot $(1 - \overline{F}_{X_1})$, ki pa 
-        ni zanemarljiva tudi za velike vrednosti $u$. To pomeni, da so zavarovalni"ski produkti, za katere 
-        verjamemo, da so zahtevki subexponentno porazdeljneni, nevarni, saj imajo najve"cji zahtevki velik 
-        vpliv na celoten proces tveganja in se propad lahko zgodi zaradi enega samega velikega
-        zahtevka kot v zgledu \ref{zgd:weibullProcesTveganja}.
 
         \begin{zgled}
         Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC.\ Naj 
@@ -2573,7 +2607,7 @@ V nastajanju :)
     \end{definicija}
 
     \begin{opomba}
-        V delu se bomo omejili na primer, ko $T$ predstavlja "cas, torej $T = [0, \infty)$ in da slu"cajne
+        V delu se omejimo na primer, ko $T$ predstavlja "cas, torej $T = [0, \infty)$ in da slu"cajne
         spremenljivke 
         zavzemajo vrednosti v realnih "stevilih, torej $(E, \Sigma) = (\R, \B_{\R})$, kjer $\B_\R$ 
         predstavlja Borelovo $\sigma$-algebro na $\R$.
@@ -2643,7 +2677,7 @@ V nastajanju :)
     %\end{proof}
 
     \begin{trditev}
-        Naj bodo $X, Y$ in $Z$ slu"cajne spremenljivke ter $g$ in $h$ poljubni borelovi funkciji. 
+        Naj bodo $X, Y$ in $Z$ slu"cajne spremenljivke ter $g$ in $h$ poljubni Borelovi funkciji. 
         "Ce velja $X\mid Z\sim Y$, velja tudi $X\mid Z\sim X\mid g(Z)\sim Y$.
         \label{trd:pogojneLastnosti}
     \end{trditev}
@@ -2663,18 +2697,18 @@ V nastajanju :)
     \end{definicija}
 
     \begin{trditev}
-        Naj bo $X_1, X_2, \dots$ "stevno zaporedje neodivsnih enako porazdeljenih slu"cajnih spremenljivk. 
+        Naj bo $X_1, X_2, \dots$ "stevno zaporedje neodvisnih enako porazdeljenih slu"cajnih spremenljivk. 
         Potem so slu"cajne spremenljivke $X_1, X_2, \dots$ izmenljive.
     \end{trditev}
 
     \begin{proof}
         Izmenljivost neposredno sledi iz definicije neodvisnosti slu"cajnih spremenljivk, saj se 
-        skupna porazdelitev faktorzira na produkt posameznih porazdelitev.
+        skupna porazdelitev faktorizira na produkt posameznih porazdelitev.
     \end{proof}
 
     \begin{trditev}
         Naj bodo $X_1, \dots, X_n$ izmenljive slu"cajne spremenljivke in $g: \R^n \rightarrow \R^k$
-        poljubna borelova simetri"cna funkcija. Potem so vsi slu"cajni vektorji 
+        poljubna Borelova simetri"cna funkcija. Potem so vsi slu"cajni vektorji 
         $$
             (X_i, g(X_1, \dots, X_n)),  \quad i = 1, \dots, n
         $$
@@ -2682,12 +2716,17 @@ V nastajanju :)
         $$
             X_i\mid g(X_1, \dots, X_n), \quad i = 1, \dots, n
         $$
-        enake
+        enake.
         \label{trd:izmenljivostSimetricnaFunkcija}
     \end{trditev}
 
     \begin{proof}
-        \textcolor{red}{dopi"si dokaz}
+        \textcolor{red}{
+        Ozna"cimo s $F_{X_1, \dots, X_n}$ skupno porazdelitveno funkcijo slu"cajnih spremenljivk
+        $X_1, \dots, X_n$. Ker so slu"cajne spremenljivke $X_1, \dots, X_n$ izmenljive, za poljubno permutacijo
+        $\pi$ velja $F_{X_1, \dots, X_n} = F_{X_{\pi(1)}, \dots, X_{\pi(n)}}$.
+        ...
+        }
     \end{proof}
 
     \begin{definicija}
@@ -2719,7 +2758,7 @@ V nastajanju :)
         Naj bo $X$ nenegativna slu"cajna spremenljivka na verjetnostnem prostoru $(\Omega, \mathcal{F}, \Prob)$, 
         ki ima prvi moment. Potem velja 
         \begin{equation*}
-            \E\left[X\right] = \int_{(0, \infty)}\bigl(1 - F_X(x)\bigr)\,dx.
+            \E\left[X\right] = \int_0^\infty\bigl(1 - F_X(x)\bigr)\,dx.
         \end{equation*}
         \label{trd:PricakovanaVrednostZPrezivetveno}
     \end{trditev}
@@ -2727,13 +2766,13 @@ V nastajanju :)
     \begin{proof}
         Vsako "stevilo $X\geq 0$ lahko zapi"semo kot 
         \begin{equation*}
-            X = \int_{(0, \infty)}\mathbbm{1}_{\{x < X\}}dx = \int_{(0, \infty)}\mathbbm{1}_{\{X < x\}}dx.
+            X = \int_0^\infty\mathbbm{1}_{\{x < X\}}dx = \int_0^\infty\mathbbm{1}_{\{X < x\}}dx.
         \end{equation*}
         "Ce sedaj uporabimo Fubinijev izrek, dobimo
         \begin{align*}
-            \E\left[X\right] &= \E\left[\int_{(0, \infty)}\mathbbm{1}_{\{X < x\}}dx\right] \\
-                             &= \int_{(0, \infty)}\E\left[\mathbbm{1}_{\{X < x\}}\right]dx \\
-                             &= \int_{(0, \infty)}\bigl(1 - \Prob\left(X > x\right)\bigr)dx \\
+            \E\left[X\right] &= \E\left[\int_0^\infty\mathbbm{1}_{\{X < x\}}dx\right] \\
+                             &= \int_0^\infty\E\left[\mathbbm{1}_{\{X < x\}}\right]dx \\
+                             &= \int_0^\infty\bigl(1 - \Prob\left(X > x\right)\bigr)dx \\
         \end{align*}
     \end{proof}
 
@@ -2753,16 +2792,16 @@ V nastajanju :)
         \end{equation*}
     \end{proof}
 
-    \begin{definicija}
-        Naj bo $X_1, X_2, \dots$ zaporedje slu"cajnih spremenljivk s porazdelitvenimi funkcijami
-        $F_{X_1}, F_{X_2}, \dots$ in naj bo $X$ slu"cajna spremenljivka s porazdelitveno funkcijo $F_X$.
-        Pravimo da zaporedje $(X_n)_{n\in\N}$ \textit{konvergira v porazdelitvi} k slu"cajni spremenljivki $X$,
-        "ce za vsak $x\in\R$, v katerem je $F_X$ zvezna, velja
-        \begin{equation*}
-            \lim_{n\to\infty}F_{X_n}(x) = F_X(x).
-        \end{equation*}
-        \label{def:KonvergencaVPorazdelitvi}
-    \end{definicija}
+    %\begin{definicija}
+    %    Naj bo $X_1, X_2, \dots$ zaporedje slu"cajnih spremenljivk s porazdelitvenimi funkcijami
+    %    $F_{X_1}, F_{X_2}, \dots$ in naj bo $X$ slu"cajna spremenljivka s porazdelitveno funkcijo $F_X$.
+    %    Pravimo da zaporedje $(X_n)_{n\in\N}$ \textit{konvergira v porazdelitvi} k slu"cajni spremenljivki $X$,
+    %    "ce za vsak $x\in\R$, v katerem je $F_X$ zvezna, velja
+    %    \begin{equation*}
+    %        \lim_{n\to\infty}F_{X_n}(x) = F_X(x).
+    %    \end{equation*}
+    %    \label{def:KonvergencaVPorazdelitvi}
+    %\end{definicija}
 
     \begin{izrek}(Krepki zakon velikih "stevil)
         Naj bo $(X_n)_{n\in\N}$ zaporedje neodvisnih enako porazdeljenih
@@ -2932,15 +2971,49 @@ V nastajanju :)
         \label{def:direktnaRieamnovaIntegrabilnost}
     \end{definicija}
 
-    \begin{trditev}(Kriterij za direktno Riemannovo integrabilnost)
-        Naj bo $f \geq 0$ nenara"s"cajo"ca funkcija. Potem je $f$ direktno Riemannovo integrabilna natanko tedaj, ko je
-        posplo"seno Riemannovo integrabilna. Tedaj je njen direktni Riemannov integral enak posplo"senemu.
+    %\begin{trditev}(Kriterij za direktno Riemannovo integrabilnost)
+    %    Naj bo $f \geq 0$ nenara"s"cajo"ca funkcija. Potem je $f$ direktno Riemannovo integrabilna natanko tedaj, ko je
+    %    posplo"seno Riemannovo integrabilna. Tedaj je njen direktni Riemannov integral enak posplo"senemu.
+    %    \label{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}
+    %\end{trditev}
+%
+    %\begin{proof}
+    %    Dokaz trditve lahko bralec najde v \cite{8} na strani 235. 
+    %\end{proof} 
+
+    \begin{definicija}
+        \textit{Totalna variacija} funkcije $f$ na intervalu $I$ je definirana kot 
+        $$
+            V(f;\> I):= \sup\limits_{\substack{x_0, x_1, \dots, x_n \in I \\ x_0 \leq x_1 \leq \cdots \leq x_n}}\sum_{k=1}^{n}|f(x_k) - f(x_{k-1})|, 
+        $$
+        lahko je kon"cna ali neskon"cna. Za $a\leq b$ definiramo "se $V(f;\> a, b) := V(f;\> [a, b])$ in 
+        $V(f;\> a, \infty) := V(f;\> [0, \infty))$.
+        
+        \label{def:totVariacija}
+    \end{definicija}
+
+    \begin{trditev}
+        Vsaka funkcija $f:[0, \infty) \to [0, \infty)$ za katero obstaja posplo"seni Riemannov integral
+        $\int_0^\infty f(t)dt$ in ima omejeno totalno variacijo na $[0, \infty)$, je direktno Riemannovo integrabilna.
         \label{trd:kriterijZaDirektnoRiemannovoIntegrabilnost}
     \end{trditev}
 
     \begin{proof}
-        Dokaz trditve lahko bralec najde v \cite{8} na strani 235. 
-    \end{proof} 
+        Za $\delta > 0$ ocenimo: 
+        \begin{align*}
+            \sum_{k=0}^\infty\left(\sup_{t\in[k\delta, (k+1)\delta)}f(t)\right) 
+            &\leq \sum_{k=0}^\infty \left[\frac{1}{\delta}\int_{k\delta}^{(k+1)\delta}f(t)dt = V(f;\>k\delta, (k+1)\delta)\right] \\
+            &\leq \frac{1}{\delta}\int_0^\infty f(t)dt + V(f;\>0, \infty) < \infty
+        \end{align*}
+        in 
+        \begin{align*}
+            &\delta\sum_{k=0}^\infty\sup_{t\in[k\delta, (k+1)\delta)}f(t) - \delta\sum_{k=0}^\infty\inf_{t\in[k\delta, (k+1)\delta)}f(t) \\
+            &= \delta\sum_{k=0}^\infty\left(\sup_{t\in[k\delta, (k+1)\delta)}f(t) - \inf_{t\in[k\delta, (k+1)\delta)}f(t)\right) \\
+            &\leq \delta\sum_{k=0}^\infty V(f;\>k\delta, (k+1)\delta) \\
+            &= \delta V(f;\>0, \infty);
+        \end{align*}
+        Slednje gre proti ni"c, ko gre $\delta$ proti ni"c.
+    \end{proof}
 
     \begin{izrek}(Smithov klju"cni prenovitveni izrek)
         "Ce je funkcija $g$ iz prenovitvene ena"cbe $(g, F)$ (definicija \ref{def:prenovitvenaEnacba})
@@ -2978,7 +3051,6 @@ V nastajanju :)
     \end{proof}
 
 %-----------------------------------------KONEC VSEBINE--------------------------------------------%
-
 \newpage
 \section*{Slovar strokovnih izrazov}
 
