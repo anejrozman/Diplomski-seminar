@@ -143,7 +143,7 @@ Ljubljana, \letnica}
 %--------------------------------------POVZETEK V SLOVENSCINI--------------------------------------%
 
 V prvem delu diplome najprej definiramo sestavljeno Poissonovo porazdelitev in izpeljemo obliko njenih rodovnih 
-funkcij, obravnavamo njeno povezavo s splo"snimi porazdelitvami in izpeljemo Panjerejevo rekurzivno shemo. 
+funkcij, obravnavamo njeno povezavo s splo"snimi porazdelitvami in izpeljemo Panjerjevo rekurzivno shemo. 
 Nato definiramo sestavljeni Poissonov proces in poka"zemo nekaj osnovnih lastnosti kot je neodvisnost 
 in stacionarnost prirastkov. Izpeljemo nekaj rezultatov, ki jih dobimo, ko 
 sestavljeni Poissonov proces markiramo.
@@ -211,7 +211,7 @@ V nastajanju :)
     Standarden pristop k problemu je uporaba sestavljenih porazdelitev oziroma procesov, kjer skozi "cas se"stevamo naklju"cno "stevilo 
     neodvisnih enako porazdeljenih slu"cajnih spremenljik, ki predstavljajo vi"sino posameznih zahtevkov zavarovancev.\ Prvi tak model za opis
     poslovanja zavarovalnice 
-    je v za"cetku 20. stoletja razvil Filip Lundberg. Le-ta danes eden izmed najbolj raziskanih in 
+    je v za"cetku 20.\ stoletja razvil Filip Lundberg. Le-ta je danes eden izmed najbolj raziskanih in 
     uporabljenih modelov v teoriji tveganja. Model temelji na sestavljenem Poissonovem procesu, kjer predpostavimo, da ima "stevilo zahtevkov,
     ki jih zavarovalnica prejme v nekem "casovnem intervalu, Poissonovo porazdelitev.
 
@@ -415,7 +415,7 @@ V nastajanju :)
         pravimo \textit{me"sanica porazdelitev} teh slu"cajnih spremenljivk z ute"zmi $(\lambda_k)_{k=1}^n$.
     \end{definicija}
     \noindent
-    O"citno je $F$ porazdelitvena funkcija. "Ce definiramo slu"cajno spremenljivko 
+    Poka"zimo, da je $F$ res porazdelitvena funkcija. "Ce definiramo slu"cajno spremenljivko 
     $$
     I \sim 
     \begin{pmatrix}
@@ -456,7 +456,7 @@ V nastajanju :)
     \begin{proof}
         Karakteristi"cna funkcija slu"cajne spremenljivke $S^{(k)}$ ima obliko
         \begin{equation*}
-            \varphi_{S^{(k)}}(u) = \exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right].
+            \varphi_{S^{(k)}}(u) = \exp\left[\lambda_k\left(\varphi_{X_1^{(k)}}(u) - 1\right)\right], \quad k=1, \dots, n.
         \end{equation*}
         Ker so $S^{(1)}, \dots, S^{(n)}$ neodvisne, velja
         \begin{align*}
@@ -607,7 +607,7 @@ V nastajanju :)
             \Prob(N = n) = \left(a + \frac{b}{n}\right)\Prob\left(N = n-1\right) \quad \text{za} \ n\in\N \ \text{in} \ a, b \in \R.
         \end{equation*}
         Naj bo $X_1, X_2, \dots$ zaporedje neodvisnih in enako porazdeljenih slu"cajnih spremenljivk, ki 
-        zavzemajo vrednosti v $\N_0$. Potem za $S = \sum_{i=1}^NX_i$ od dogovoru, da je $0^0:=1$, velja
+        zavzemajo vrednosti v $\N_0$. Potem za $S = \sum_{i=1}^NX_i$ ob dogovoru, da je $0^0:=1$, velja
         \begin{equation*}
         \Prob\left(S = 0\right) =  \E\left[\Prob\left(X_1 = 0\right)^N\right],
         \end{equation*}
@@ -622,7 +622,7 @@ V nastajanju :)
     \begin{proof}
         Po zakonu za popolno pri"cakovano vrednost velja
         \begin{align*}
-            \Prob\left(S = 0\right) 
+            \Prob(S = 0) 
                 &= \sum_{j = 0}^\infty\Prob\left(S = 0\mid N = j\right)\Prob\left(N = j\right) \\
                 &= \sum_{j = 0}^\infty\Prob\left(S_j = 0\right)\Prob\left(N = j\right) \\
                 &= \sum_{j = 0}^\infty\Prob\left(X_1 = 0\right)^j\Prob\left(N = j\right) \\
@@ -630,7 +630,7 @@ V nastajanju :)
         \end{align*}
         Za $n\in\N$ pa velja
         \begin{align}
-            \Prob\left(S = n\right) 
+            \Prob(S = n) 
                 &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\Prob\left(N = j\right) \nonumber \\
                 &= \sum_{j = 1}^\infty\Prob\left(S_j = n\right)\left(a + \frac{b}{j}\right)\Prob\left(N = j - 1\right). \label{eq:PanjerRecursionSchemeProof}
         \end{align}
@@ -661,7 +661,7 @@ V nastajanju :)
         "Ce sedaj vstavimo enakost (\ref{eq:PanjerRecursionSchemeProof2}) v (\ref{eq:PanjerRecursionSchemeProof}) 
         in upo"stevamo (\ref{eq:PanjerRecursionSchemeProof3}), dobimo
         \begin{align*}
-            \Prob\left(S = n\right) 
+            \Prob(S = n)
                 = \sum_{j = 1}^\infty\sum_{k = 0}^n \left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S_{j - 1} = n - k\right)\Prob\left(N = j - 1\right).
         \end{align*}
         Po Tonellijevem izreku \refPriloga{izr:TonellijevIzrek} lahko zamenjamo vrstni red vsot, kar nam da
@@ -672,9 +672,9 @@ V nastajanju :)
         \end{align*}
         Izpostavimo prvi "clen vsote in izraz preoblikujemo.
         \begin{align*}
-            \Prob\left(S = n\right) 
+            \Prob(S = n) 
                 &= a\Prob\left(X_1 = 0\right)\Prob\left(S = n\right) + \sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right), \\
-            \Prob\left(S = n\right)
+            \Prob(S = n)
                 &= \frac{1}{1 - a\Prob\left(X_1 = 0\right)}\sum_{k = 1}^n\left(a + \frac{bk}{n}\right)\Prob\left(X_1 = k\right)\Prob\left(S = n - k\right).
         \end{align*}
         S tem je trditev dokazana.
@@ -683,7 +683,7 @@ V nastajanju :)
     \begin{opomba}
         Izka"ze se, da le tri porazdelitve 
         ustrezajo rekurzivni izra"zavi iz trditve \ref{tdr:PanjerRecursionScheme}. Te so $\Pois{\lambda}$, $\text{Bin}(p)$ in
-        $\text{NegBin}(r, p)$ ob dogovoru, da ima zalogo vrednosti $\N_0$ in $r\geq0$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. 
+        $\text{NegBin}(r, p)$ ob dogovoru, da ima slednja zalogo vrednosti $\N_0$ in $r\geq0$. Pravimo jim \textit{porazdelitve Panjerjevega razreda}. 
         V primeru $N\sim\Pois{\lambda}$ za $n\in\N_0$, $a = 0$ in $b = \lambda$ velja $\Prob\left(N = n\right) = \frac{\lambda^n}{n!}e^{-\lambda} = 
         \left(0 + \frac{\lambda}{n}\right)\Prob\left(N = n - 1\right)$. 
         Tudi v ostalih primerih (argument je podan v \cite{4} na strani 122) se izka"ze, da je $a < 1$, tako da je 
@@ -743,10 +743,10 @@ V nastajanju :)
      med definicijama \refPriloga{def:slucProc} in \refPriloga{def:neodvisnostProcesov} v prilogi.
     Najprej doka"zemo in izpeljemo nekaj osnovnih lastnosti procesa kot so neodvisnot in stacionarnost
     prirastov, pri"cakovana vrednost in varianca. Na koncu obravnavamo markiranje procesa glede "cas in 
-    njegovo vrednost ter doka"zemo nekaj zanimivih posledic.
+    njegovo vrednost ter doka"zemo nekaj zanimivih in uporabnih posledic.
 
     Sestavljeni Poissonov proces temelji na homogenenem Poissonovem procesu, zato najprej podamo definicijo 
-    s katero bomo delali, saj ima homogeni Poissonov proces ve"c karakterizacij. 
+    s katero bomo delali, saj ima homogeni Poissonov proces ve"c ekvivalentnih karakterizacij. 
 
     \begin{definicija}
         Naj bo $\lambda > 0$. Dru"zini slu"cajnih spremenljivk $(N_t)_{t\geq 0}$, definiranimi na verjetnostnem 
@@ -853,7 +853,7 @@ V nastajanju :)
             \begin{equation*}
                 X_{t_{n+1}} - X_{t_n}\mid g(X_{t_1} - x_0 \dots, X_{t_n} - X_{t_{n-1}}) \sim X_{t_{n+1} - t_n}.
             \end{equation*}
-            "Ce definiramo 
+            Definiramo 
             \begin{align*}
                 g(y_1, y_2, \dots, y_n) &= (g_1, g_2, \dots, g_n),\\
                                     g_1 &= y_1 + x_0, \\
@@ -870,9 +870,9 @@ V nastajanju :)
             \begin{align*}
                 h(y_1, y_2, \dots, y_n) &= (h_1, h_2, \dots, h_n),\\
                                     h_1 &= y_1 - x_0, \\
-                                    h_2 &= y_2 + y_1, \\
+                                    h_2 &= y_2 - y_1, \\
                                     &\mathrel{\makebox[\widthof{=}]{\vdots}} \\
-                                    h_n &= y_n + y_{n-1}. 
+                                    h_n &= y_n - y_{n-1}. 
             \end{align*}  
             Po trditvi \refPriloga{trd:pogojneLastnosti} je potem $X_{t_{n+1}} - X_{t_n}$ neodvisna od
             $(X_{t_1} - X_0, \dots, X_{t_n} - X_{t_{n-1}})$ in enako porazdeljena kot $X_{t_{n+1} - t_n}$.
@@ -881,7 +881,7 @@ V nastajanju :)
         \end{proof}
 
         \begin{trditev}
-            $CPP$ ima neodvisne in stacionarne prirastke.
+            $\CPP$ ima neodvisne in stacionarne prirastke.
             \label{trd:neodvPrirCPP}
         \end{trditev}
 
@@ -991,7 +991,7 @@ V nastajanju :)
         \end{proof}
     
     \begin{zgled}
-        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim N(2, 42)$ 
+        Poglejmo si primer ko je zaporedje $(X_i)_{i\in\N}$ porazdeljeno kot $X_1\sim N(2, 42)$. 
         Tedaj za $t\geq 0 $ velja $\E\left[S_t\right] = 2t$ in 
         $\Var{S_t} = t(2^2 + 42^2) = 1768t$ ter $\sigma_{S_t} = \sqrt{1768t}$. Simuliramo 10 realizacij CPP do "casa $T=1000$, 
         ki jih prika"zemo na sliki \ref{fig:slika6} skupaj s funkcijami $t \mapsto \E\left[S_t\right]$ in $t \mapsto \E\left[S_t\right] \pm 3\sigma_{S_t}$. 
@@ -1159,7 +1159,7 @@ V nastajanju :)
                 S_t^{(j)} = \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(V_i, X_i\right), \quad j = 1, \dots, n,
                 \label{eq:markedCPP}
             \end{equation}
-            kjer $V_i$ ozna"cuje "cas $i$-tega prihoda, med seboj neodvisne. "Se ve"c, za vsak $j = 1, \dots, n$ je
+            med seboj neodvisne ($V_i$ ozna"cuje "cas $i$-tega prihoda). "Se ve"c, za vsak $j = 1, \dots, n$ je
             \begin{equation*}
                 S_t^{(j)} \sim \sum_{i=1}^{N_t}X_i\mathbbm{1}_{A_j}\left(U_i, X_i\right),
             \end{equation*}
@@ -1229,12 +1229,12 @@ V nastajanju :)
         alternativen dokaz za neodvisnost in stacionarnost prirastkov.
 
         \begin{posledica}
-            CPP ima neodvisne in stacionarne prirastke.
+            $\CPP$ ima neodvisne in stacionarne prirastke.
         \end{posledica}
 
         \begin{proof}
             Naj bodo $0=t_0\leq t_1 < \cdots < t_n = t < \infty$
-            poljubna realna "stevila. Naj bodo $A_1, \dots, \ A_n$ neodivisne podmno"zice
+            poljubna realna "stevila. Naj bodo $A_1, \dots, \ A_n$ neodvisne podmno"zice
             mno"zice $[0, \infty) \times \R$ definirane kot
             \begin{equation*}
                 A_1 = [0, t_1]\times \R, \quad A_j = (t_{j-1}, t_j]\times \R, \quad \text{za} \ j = 2, \dots, n.
@@ -1256,13 +1256,13 @@ V nastajanju :)
         \end{proof}
 
         \begin{posledica}
-            "Ce v predpostavkah izreka o markiranju CPP sprostimo $t\geq0$, so procesi $(S_t^{(j)})_{t\geq0}$ 
+            "Ce v predpostavkah izreka o markiranju $\CPP$ sprostimo $t\geq0$, so procesi $(S_t^{(j)})_{t\geq0}$ 
             med seboj neodvisni \refPriloga{def:neodvisnostProcesov} in imajo neodvisne prirastke. 
             \label{pos:neodvisnostCPPmedSabo}
         \end{posledica}
 
         \begin{proof}
-            Po definicij neodvisnoti procesov \refPriloga{def:neodvisnostProcesov} in neodvisnoti 
+            Po definiciji neodvisnosti slu"cajnih procesov \refPriloga{def:neodvisnostProcesov} in definiciji neodvisnoti 
             prirastkov \refPriloga{def:prirastek} je dovolj pokazati, da so za poljuna realna "stevila
             $$
                 0 = t_0^{(j)} < t_1^{(j)} < \cdots < t_{m_j}^{(j)} < \infty; \quad j = 1, \dots, n
@@ -1285,14 +1285,14 @@ V nastajanju :)
     
         \begin{zgled}
             Markiranje je v praksi posebej uporabno pri analizi produktov 
-            proporcionalnega pozavarovanja, kjer si zavarovalnica (cedent) in  
+            proporcionalnega pozavarovanja, kjer si zavarovalnica in  
             pozavarovalnica delita obveznosti in dobi"cek glede na velikost zahtevkov. Naj bo $(S_t)_{t\geq0}$ $\CPP$,  
             v katerem se"stevamo nenegativne slu"cajne spremenljivke $X_i$, ki predstavljajo zahtevke, 
             ki jih zavarovalnica prejema, in $ 0 = d_0 < d_1 < \cdots < d_n < \infty$ pozitivna realna "stevila. 
             Za fiksen $t\geq0$ definiramo 
             $A_1, \dots, \ A_{n }$, ki so disjunktne podmno"zice  mno"zice $[0, \infty)^2$ oblike
             \begin{equation*}
-                A_j = [0, t)\times [d_{j-1}, d_j), \ j = 1, \dots, n.
+                A_j = [0, t]\times [d_{j-1}, d_j), \ j = 1, \dots, n.
             \end{equation*}
             Po izreku o markiranju vemo, da so slu"cajne spremenljivke $S_t^{(1)}, \dots, \ S_t^{(n)}$ 
             med seboj neodvisne in imajo sestavljeno Poissonovo porazdelitev. Tako lahko analiziramo 
@@ -2152,12 +2152,12 @@ V nastajanju :)
                      &= q\int_{(u, \infty)}e^{\ell x}\, d\overline{F}_{X_1}(x) 
                         - q\ell \int_{(u, \infty)}(1 - \overline{F}_{X_1}(x))e^{\ell x}\, dx. \\                                  
                 \end{align*}
-                \textcolor{red}{Tu ne vem kako lepo argumentirati rezultatov. Lahko napis"sem samo pravilo za odvajanje produkta?}
+                \textcolor{red}{dopi"si}
                 Tako vidimo, da je $u\mapsto qe^{\ell u}(1 - \overline{F}_{X_1}(u))$ razlika dveh nenara"s"cajo"cih
                 Riemannovo integrabilnih funkcij in je zato po kriteriju \refPriloga{trd:kriterijZaDirektnoRiemannovoIntegrabilnost} 
                 direktno Riemannovo integrabilna. Dobimo 
                 \begin{equation}
-                    C = \lim_{u\to\infty}e^{\ell u}\psi(u) =  \frac{q}{\alpha} \int_{(0, \infty)}e^{\ell x}(1 - \overline{F}_{X_1}(x))dx,
+                    C = \lim_{u\to\infty}e^{\ell u}\psi(u) =  \frac{q}{\alpha} \int_0^\infty e^{\ell x}(1 - \overline{F}_{X_1}(x))dx,
                     \label{eq:CramerBoundConstant}
                 \end{equation}
                 kjer je $\alpha = \int_{(0, \infty)}x dF_\ell(x)$. S tem je izrek dokazan.
@@ -2176,16 +2176,16 @@ V nastajanju :)
                 prenovitveno mero Esscherjeve transformacije $F_\ell$. Za eksponentno porazdelitev
                 velja
                 \begin{align*}
-                    \overline{F}_{X_1}(u)   &= \frac{1}{\E\left[X_1\right]}\int_{(0, u)}\bigl(1 - F_{X_1}(t)\bigr)dt \\
-                                            &= \mu\int_{(0, u)}e^{-\mu t}dt \\
+                    \overline{F}_{X_1}(u)   &= \frac{1}{\E\left[X_1\right]}\int_0^u\bigl(1 - F_{X_1}(t)\bigr)dt \\
+                                            &= \mu\int_0^ue^{-\mu t}dt \\
                                             &= F_{X_1}(u),
                 \end{align*}
                 saj je pozabljiva. Prenovitveno mero Esscherjeve transformacije pa dobimo tako, 
                 da najprej izra"cunamo porazdelitveno funkcijo $F_\ell$ podano v ena"cbi (\ref{eq:EsscherjevaTransformacija}). 
 
                 \begin{align*}
-                    F_\ell(u)  &= \frac{q}{\E\left[X_1\right]}\int_{(0, u]}e^{\ell x}\bigl(1 - F_{X_1}(x)\bigr)dx \\
-                            &= \frac{\mu}{1 + \rho}\int_{(0, u]}e^{-x(\mu - \ell)}dx. \\
+                    F_\ell(u)  &= \frac{q}{\E\left[X_1\right]}\int_0^ue^{\ell x}\bigl(1 - F_{X_1}(x)\bigr)dx \\
+                            &= \frac{\mu}{1 + \rho}\int_0^ue^{-x(\mu - \ell)}dx. \\
                 \end{align*}
                 Upo"stevamo rezultat (\ref{eq:LundbergovKoeficientExp}), torej 
                 $\ell = \mu\left(\tfrac{\rho}{1 - \rho}\right)$ in vidimo, da je $F_\ell$ porazdelitvena 
@@ -2543,8 +2543,7 @@ V nastajanju :)
     \end{trditev}
 
     \begin{proof}
-        Trditev sledi iz lastnosti neodvisnih slu"cajnih spremenljivk in pri"cakovane vrednosti. Natan"cen 
-        dokaz lahko bralec najde v \cite{7} na strani 236. 
+        Dokaz trditve lahko bralec najde v \cite{7} na strani 236. 
     \end{proof}
 
     \begin{definicija}
