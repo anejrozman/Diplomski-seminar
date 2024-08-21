@@ -2721,12 +2721,24 @@ V nastajanju :)
     \end{trditev}
 
     \begin{proof}
-        \textcolor{red}{
-        Ozna"cimo s $F_{X_1, \dots, X_n}$ skupno porazdelitveno funkcijo slu"cajnih spremenljivk
-        $X_1, \dots, X_n$. Ker so slu"cajne spremenljivke $X_1, \dots, X_n$ izmenljive, za poljubno permutacijo
-        $\pi$ velja $F_{X_1, \dots, X_n} = F_{X_{\pi(1)}, \dots, X_{\pi(n)}}$.
-        ...
-        }
+        Ozna"cimo $\boldsymbol{X} = (X_1, \dots, X_n)$ in $\boldsymbol{Y} = (X_{\pi(1)}, \dots, X_{\pi(n)})$, za 
+        permutacijo
+        \begin{equation*}
+            \pi = \begin{pmatrix}
+                1 & 2 & \cdots & n \\
+                2 & 3 & \cdots & 1
+            \end{pmatrix}.
+        \end{equation*}
+        Naj bo $P:\R^n \to \R^n$ permutacijska matrika, za katero velja $P\boldsymbol{X} = \boldsymbol{Y}$.
+        Po simetri"cnosti $g$ velja $g(\boldsymbol{X}) = g(P\boldsymbol{X}) = g(\boldsymbol{Y})$.
+        Prav tako lahko za vsak $i = 1, \dots, n$ zapi"semo $X_i = e^T_i\boldsymbol{X} = e^T_iP^T\boldsymbol{Y} = X_{\pi(i)}$.
+        Tako za poljubni mno"zici $A\in\B_{\R}$ in $B\in\B_{\R^k}$ velja
+        \begin{align*}
+            \Prob(X_i \in A,\, g(\boldsymbol{X}) \in B) 
+            &= \Prob(X_{\pi(i)} \in A,\, g(\boldsymbol{X}) \in B).
+        \end{align*}
+        Drugi del trditve sledi iz dejstva, da je pogojna porazdelitev $X_i\mid g(\boldsymbol{X})$ 
+        popolnoma dolo"cena s porazdelitvijo slu"cajnega vektorja $(X_i, g(\boldsymbol{X}))$.
     \end{proof}
 
     \begin{definicija}
@@ -2824,7 +2836,7 @@ V nastajanju :)
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{13} na strani 346.
     \end{proof}
 
     \begin{izrek}(Lévijev izrek o kontinuiteti)
@@ -2887,7 +2899,7 @@ V nastajanju :)
     \end{izrek}
 
     \begin{proof}
-        Dokaz izreka lahko bralec najde v \cite{7} na strani \textcolor{red}{stran}.
+        Dokaz izreka lahko bralec najde v \cite{12} na strani 201.
     \end{proof} 
 
     \begin{trditev}(Lastnost vrstilnih statistik)
@@ -3077,12 +3089,14 @@ V nastajanju :)
 \bibitem{3}P. Embrechts, C. Klüppelberg, T. Mikosch, Modelling Extremal Events: For Insurance and Finance, Springer, (1997).
 \bibitem{4}T. Mikosch, Non-Life Insurance Mathematics: An Introduction with the Poisson Process, Second Edition, Springer, (2009).
 \bibitem{5}M. Mandjes, O. Boxma, The Cramér--Lundberg model and its variants, Springer, (2023).
-\bibitem{6}F. Spitzer, Principles of Random Walk. Second Edition, Springer, (1976).
+\bibitem{6}F. Spitzer, Principles of Random Walk, Second Edition, Springer, (1976).
 \bibitem{7}B. Fristedt, L. Gray, A Modern Approach to Probability Theory, Springer, (1996).
 \bibitem{8}S.I. Resnick, Adventures in Stochastic Processes, Birkhäuser, (1992).
 \bibitem{9}R.J. Adler, R.E. Feldman, A practical guide to heavy tails: statistical techniques and applications, Birkhäuser, (1998).
 \bibitem{10}K. Sato, Lévy Processes and Infinitely Divisible Distributions, Cambridge University Press, (1999).
 \bibitem{11}J. Globevnik, M. Brojan, Analiza 1, DMFA--založništvo, (2016).
+\bibitem{12}T. Tao, An introduction to measure theroy, American Mathematical Society, (2011).
+\bibitem{13}P. Billingsley, Probability and Measure, Third edition, Wiley, (1995).
 \end{thebibliography}
 
 \end{document}
