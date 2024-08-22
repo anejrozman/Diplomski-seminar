@@ -8,13 +8,13 @@ library(actuar)
 library(gridExtra) 
 library(tidyr)
 library(latex2exp)
-library(glue) # f-string from python
+library(glue) # f-string implementation
 
-# To save files to a specific location, change filePath string. 
+# To save files to a specific location, add FILEPATH, and uncomment relevant code
 # Above every simulation there is a section "PARAMETERS" that can be 
 # changed if so desired. 
 
-FILEPATH = "C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/"
+FILEPATH = NULL
 
 #-------------------------------------------------------------------------------#
 
@@ -69,11 +69,11 @@ g1 = ggplot() +
 g1
 
 # Save graph to pdf
-ggsave(glue("{FILEPATH}slika1.pdf"),
-       g1,
-       device = "pdf",
-       width = 8,
-       height = 5)
+#ggsave(glue("{FILEPATH}slika1.pdf"),
+#       g1,
+#       device = "pdf",
+#       width = 8,
+#       height = 5)
 
 #-------------------------------------------------------------------------------#
 
@@ -149,9 +149,9 @@ while (t <= T) {
   arrivalTimesHeavy = c(arrivalTimesHeavy, t, t)
 }
 
-# Remove the last arrival time exceeding T and add T
+# Remove the last arrival time exceeding T 
 arrivalTimesHeavy = arrivalTimesHeavy[arrivalTimesHeavy < T]
-#arrivalTimesHeavy = c(arrivalTimesHeavy, T)
+arrivalTimesHeavy = c(arrivalTimesHeavy, T)
 
 # Generate claims
 heavyClaims = rweibull(length(arrivalTimesHeavy)/2-1, aHeavy, bHeavy)
@@ -242,11 +242,11 @@ g2 = grid.arrange(g2, g2riskProcess, heights = c(3.5, 6.5))
 g2
 
 # Save graph to pdf
-ggsave(glue("{FILEPATH}slika2.pdf"),
-       g2,
-       device = "pdf",
-       width = 8,
-       height = 6)
+#ggsave(glue("{FILEPATH}slika2.pdf"),
+#       g2,
+#       device = "pdf",
+#       width = 8,
+#       height = 6)
 
 #-------------------------------------------------------------------------------#
 #Slika 3 (Monte Carlo simulation for approximating ruin proability)
@@ -365,11 +365,11 @@ g3 = g3 + geom_line(data = pOfRuinLong,
 g3
           
 # Save graph to pdf
-ggsave(glue("{FILEPATH}slika3.pdf"),
-       g3,
-       device = cairo_pdf,
-       width = 8,
-       height = 5)
+#ggsave(glue("{FILEPATH}slika3.pdf"),
+#       g3,
+#       device = cairo_pdf,
+#       width = 8,
+#       height = 5)
 
 #------------------------------------------------------------------------------#
 #Slika 5 (Asymptotics for large claim case, Weibull distributed claims)
@@ -409,8 +409,6 @@ for (sim in N){
         t = t + interarrivalTime
         arrivalTimes = c(arrivalTimes, t, t)
       }
-      
-      # Remove the last arrival time exceeding T and add T
       arrivalTimes = arrivalTimes[arrivalTimes < T]
       arrivalTimes = c(arrivalTimes, T)
       
@@ -499,11 +497,11 @@ g5 = g5 + geom_line(data = asymptoticLong,
 g5
 
 #Save graph to pdf
-ggsave(glue("{FILEPATH}slika5.pdf"),
-       g5,
-       device = cairo_pdf,
-       width = 8,
-       height = 5)
+#ggsave(glue("{FILEPATH}slika5.pdf"),
+#       g5,
+#       device = cairo_pdf,
+#       width = 8,
+#       height = 5)
 
 #------------------------------------------------------------------------------#
 #Slika 6 (CPP standard simulation)
@@ -571,11 +569,11 @@ g6 = g6 + geom_line(data = sim,
 g6
 
 # save graph to pdf
-ggsave(glue("{FILEPATH}slika6.pdf"),
-       g6,
-       device = cairo_pdf,
-       width = 8,
-       height = 5)
+#ggsave(glue("{FILEPATH}slika6.pdf"),
+#       g6,
+#       device = cairo_pdf,
+#       width = 8,
+#       height = 5)
 
 #------------------------------------------------------------------------------#
 #Slika 7 (Panjer recursion)
@@ -701,9 +699,9 @@ g7 = grid.arrange(g7approx, g7panjer, heights = c(4, 6))
 g7
 
 # Save graph to pdf
-ggsave(glue("{FILEPATH}slika7.pdf"),
-       g7,
-       device = cairo_pdf,
-       width = 12,
-       height = 10)
+#ggsave(glue("{FILEPATH}slika7.pdf"),
+#       g7,
+#       device = cairo_pdf,
+#       width = 12,
+#       height = 10)
 

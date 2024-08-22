@@ -151,7 +151,7 @@ V drugem delu diplome obravnavamo aplikacijo sestavljenega Poissonovega procesa 
 verjetnost propada in pre"zivetja ter slednjo izrazimo z defektno prenovitveno ena"cbo. Doka"zemo 
 Lundbergovo neenakost in obravnavamo asimptoti"cno obna"sanje verjetnosti propada, ko zahtevke modeliramo z 
 lahkorepimi in te"zkorepimi porazdelitvami. Obna"sanje verjetnosti propada na koncu prakti"cno prika"zemo 
-z ve"ckratkim simuliranjem procesa tveganja.
+z ve"ckratnim simuliranjem procesa tveganja.
 %--------------------------------------------------------------------------------------------------%
 
 \vfill
@@ -191,7 +191,7 @@ Cramér--Lundberg model, probability of ruin, light-tailed distribution, heavy-t
 Zahvaljujem se doc.\ dr.\ Martinu Raiču za 
 njegovo mentorstvo. S svojim znanjem in izkušnjami mi 
 je pomagal ne le pri razumevanju snovi, predstavljene v delu, 
-ampak tudi naprednejših tem v teoriji slučajnih procesov, ki se 
+ampak tudi pri razumevanju naprednejših tem v teoriji slučajnih procesov, ki se 
 v diplomi ne pojavijo. Hvaležen sem mu za njegovo izjemno pripravljenost, 
 večkratne (dolge) diskusije, svetovanje pri dokazovanju izrekov, oblikovanju 
 in natančnost pri pregledovanju besedila.
@@ -334,7 +334,7 @@ in natančnost pri pregledovanju besedila.
 
     \begin{proof}
     V splo"snem velja, da je karakteristi"cna funkcija neke slu"cajne spremenljivke $X$ v to"cki $u\in\R$ enaka
-    njeni momentno-rodovni funkciji, izvrednoteni v $iu$ za $u\in\R$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
+    njeni momentno-rodovni funkciji, izvrednoteni v $iu$, torej $\varphi_X(u) = M_X(iu)$. Rodovna funkcija
     v to"cki $u>0$ pa je enaka momentno-rodovni funkciji, izvrednoteni v $\ln(u)$, torej 
     $G_X(u) = M_X\left(\ln(u)\right)$, "ce slednja vrednost obstaja. 
     \end{proof}
@@ -447,7 +447,7 @@ in natančnost pri pregledovanju besedila.
         \end{equation*}
         kjer je $N_k\sim \Pois{\lambda_k}$ za $\lambda_k > 0$ in kjer je $(X_i^{(k)})_{i\in\N}$ za vsak 
         $k=1, \dots, n$
-        zaporedje neodvisnih enako porazdeljenih slu"cajnih spremenljivk, ki so neodvisne tako med seboj
+        zaporedje enako porazdeljenih slu"cajnih spremenljivk, ki so neodvisne tako med seboj
         kot tudi od $N_k$. Potem velja   
         \begin{equation*}
             S = \sum_{k=1}^nS^{(k)} \sim \sum_{i=1}^{N}Y_i,
@@ -1731,7 +1731,7 @@ in natančnost pri pregledovanju besedila.
         enak dogodku $\{X_1 \leq u + cT_1\}$. Poleg tega velja, da je 
         $(Z_n - Y_1\mid Y_1)_{n\geq2} \sim (Z_n)_{n\in\N}$, saj so $Y_i$ neodvisne in enako porazdeljene
         slu"cajne spremenljivke.
-        Upo"stevamo "se, da je  $T_1$ medprihodni "cas v $\HPP(\lambda)$, in dobimo
+        Upo"stevamo "se, da je  $T_1$ medprihodni "cas v $\HPP(\lambda)$ in dobimo
 
         \begin{align*}
                 \theta(u)   &= \int_{(0, \infty)}\int_{(0, u + ct]}\Prob\biggl(\bigl\{Z_n \leq u - (x - ct) \ \text{za vse} \ n\in\N\bigr\}\biggr)dF_{X_1}(x)\,dF_{T_1}(t) \\
@@ -2283,21 +2283,22 @@ in natančnost pri pregledovanju besedila.
                 (\ref{eq:LundbergovKoeficientExp}), in $\ell$ po (\ref{eq:LundbergovKoeficientExpPrva}), torej
                 \begin{align*}
                     \rho &= \frac{c\mu}{\lambda} - 1\\
-                         &= \frac{1500\cdot\tfrac{1}{1000}}{1} - 1 = \frac{1}{2},
-                \end{align*}
-                \begin{align*}
+                         &= \frac{1500\cdot\tfrac{1}{1000}}{1} - 1 \\
+                         &= \frac{1}{2}, \\
                     \ell &= \mu - \frac{\lambda}{c} \\
-                         &= \frac{1}{1000} - \frac{1}{1500} = \frac{1}{3000}.
+                         &= \frac{1}{1000} - \frac{1}{1500}\\
+                         &=  \frac{1}{3000}.
                 \end{align*}
-                Vsatvimo vrednosti v (\ref{eq:eksplicitnaVerjetnostPropadaExp}) in dobimo
+                Vstavimo vrednosti v (\ref{eq:eksplicitnaVerjetnostPropadaExp}) in dobimo
                 \begin{equation*}
                     \psi(u) = \tfrac{2}{3}e^{-\frac{u}{3000}}.
                 \end{equation*}
                 Sedaj definiramo zaporedje $(u_n)_{n = 1}^{50}$ s predpisom $u_n = 500n$ in za vsak $n$
-                simuliramo $10, 50$ in $100$ realizacij procesa tveganja, bodisi do "casa $T = 1000$ bodisi dokler
+                simuliramo $10, 50$ in $100$ neodvisnih realizacij procesa tveganja, bodisi do "casa $T = 1000$ bodisi dokler
                 ne propade in za vsak $n$ izra"cunamo pribli"zek za verjetnost propada kot dele"z propadlih 
                 realizacij z vsemi. Aproksimacijo $\psi(u)$ prika"zemo na sliki \ref{fig:slika4}.
 
+                \newpage
                 \begin{figure}[H]
                     \centering
                     \includegraphics[width=\textwidth]{
