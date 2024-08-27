@@ -1,4 +1,4 @@
-\documentclass[handout]{beamer} %zaradi [handout] \pause ne dela
+\documentclass[]{beamer} %zaradi [handout] \pause ne dela
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[slovene]{babel}
@@ -111,7 +111,7 @@
 
 %-----------------------------------------FRAME 2--------------------------------------------------%
 \begin{frame}
-  \frametitle{Sestavljena Poissonova porazdelitev}
+  \frametitle{Karakteristi"cna funkcija}
   \begin{trditev}
     Karakteristi"cna funkcija slu"cajne vsote $S=\sum_{i = 1}^{N}X_i$ ima obliko 
     \begin{equation*}
@@ -142,7 +142,7 @@
   \begin{zgled}
         Naj bodo $X_1, X_2, \dots$ porazdeljene kot
         \begin{equation*}
-            X_1\sim\text{Exp}(\mu),\quad \text{torej z gostoto} \quad  f_{X_1}(x) = \mu e^{-\mu x}; \quad x>0.,
+            X_1\sim\text{Exp}(\mu),\quad \text{torej z gostoto} \quad  f_{X_1}(x) = \mu e^{-\mu x}; \quad x>0, \mu > 0,
         \end{equation*}
         $k$-ta 
         konvolucija porazdelitve $X_1$ je porazdelitev $\text{Gamma}(k, \mu)$.
@@ -160,11 +160,11 @@
 %-----------------------------------------FRAME --------------------------------------------------%
 
 \begin{frame}
-  \frametitle{Poissonov proces}
+  \frametitle{Homogeni Poissonov proces ($\HPP$)}
   \begin{definicija}
     Naj bo $\lambda > 0$. Slučajnemu procesu $(N_t)_{t\geq 0}$, definiranem na verjetnostnem 
     prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ in z vrednostmi v $\mathbb{N}_0$, pravimo 
-    \textit{Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
+    \textit{homogeni Poissonov proces} z intenzivnostjo $\lambda$, če zadošča naslednjim pogojem:
     \begin{itemize}
         \item $N_0 = 0$ \ $\Prob$-skoraj gotovo.
         \item $(N_t)_{t\geq 0}$ ima neodvisne in stacionarne prirastke,
@@ -175,7 +175,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Sestavljeni Poissonov proces}
+  \frametitle{Sestavljeni Poissonov proces ($\CPP$)}
   \begin{definicija}
     Naj bo $(N_t)_{t\geq0}$ homogeni Poissonov proces z intenzivnostjo $\lambda$. 
     Naj bo $(X_i)_{i\geq1}$ zaporedje neodvisnih (med sabo in od procesa $(N_t)_{t\geq0}$) in enako 
@@ -234,11 +234,7 @@
     kjer je $u \geq 0$ za"cetni kapital zavarovalnice in $p$ funkcija prihodkov iz premij. 
     \label{def:procesTveganja}
   \end{definicija}
-\end{frame}
-
-%-----------------------------------------FRAME --------------------------------------------------%
-\begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \pause
   \begin{zgled}
     Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu z za"cetnim kapitalom
     $u = 1000$ in $p(t) = 200t$ ter intenzivnostjo prihodov zahtevkov $\lambda=1$. % v $CPP$. 
@@ -263,7 +259,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Verjetnost propada}
   \begin{definicija}
     \textit{Propad} definiramo kot dogodek, da proces tveganja $(U_t)_{t\geq0}$ kadarkoli pade pod $0$. 
     To je torej dogodek 
@@ -288,7 +284,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Prevedba na diskretni slu"cajni sprehod}
   \begin{definicija}
     Po konstrukciji procesa tveganja $(U_t)_{t\geq0}$ je propad mogo"c le ob 
     prihodih zahtevkov. %, ki sledijo $HPP(\lambda)$
@@ -312,7 +308,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Pogoj neto zaslu"zka (NPC)}
   \begin{equation*}
     \E\left[Y_1\right] = \E\left[X_1\right] - c\E\left[T_1\right]
   \end{equation*}
@@ -330,7 +326,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Verjetnost pre"zivetja}
   \begin{definicija}
     Za lep"so notacijo v nadaljevanju definiramo "se funkcijo \textit{verjetnosti pre"zivetja} kot
     $\theta:(0, \infty) \to [0, 1]$ s predpisom
@@ -355,7 +351,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Defektna prenovitvena ena"cba}
   \begin{equation*}
     \theta(u) = (1 - q) + q\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x).
   \end{equation*}
@@ -378,7 +374,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Lahkorepe porazdelitve}
   \begin{definicija}
     Naj velja, da ima slu"cajna spremenljivka $Y_1 = X_1 - cT_1$ iz trditve \ref{trd:verjetnostPropadaZOgrodjem} 
     lahek rep. "Ce obstaja enoli"cen $\ell > 0$, za katerega velja
@@ -401,7 +397,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Lahkorepe porazdelitve}
   \begin{izrek}[Asimptotika verjetnosti propada, lahkorepe porazdelitve]
     Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC in 
     naj zanj obstaja Lundbergov koeficient $\ell$. Naj imajo slu"cajne spremenljivke 
@@ -424,7 +420,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Lahkorepe porazdelitve}
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{
@@ -437,7 +433,7 @@
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
-  \frametitle{Cramér--Lundbergov model}
+  \frametitle{Subeksponentne porazdelitve}
   \begin{definicija}
     Verjetnostna porazdelitev $F$ na $[0, \infty)$ je \textit{subeksponentna}, "ce za vsak $n\geq2$ in 
     neodvisne slu"cajne spremenljivke $X_1, \dots, X_n$ s to porazdelitvijo velja 
@@ -447,7 +443,10 @@
     in $F(x) < 1$ za vsak $x > 0$.
     \label{def:subeksponentnaPorazdelitev}
   \end{definicija}
-  \pause
+\end{frame}
+
+%-----------------------------------------FRAME --------------------------------------------------%
+\begin{frame}
   \begin{izrek}[Asimptotika verjetnosti propada, subeksponentne porazdelitve]
     Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC in 
     naj bodo zahtevki $(X_i)_{i\in\N}$ neodvisni in enako porazdeljeni z gostoto, 
