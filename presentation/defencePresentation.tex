@@ -325,58 +325,69 @@
 \end{frame}
 
 %-----------------------------------------FRAME --------------------------------------------------%
-\begin{frame}
-  \frametitle{Verjetnost pre"zivetja}
-  \begin{definicija}
-    Za lep"so notacijo v nadaljevanju definiramo "se funkcijo \textit{verjetnosti pre"zivetja} kot
-    $\theta:(0, \infty) \to [0, 1]$ s predpisom
-    \begin{equation*}
-        \theta(u) = \Prob_u\left(T=\infty\right) = 1 - \psi(u); \quad u\geq 0.
-    \end{equation*}
-    \label{def:verjetnostPrezivetja}
-  \end{definicija}
-  \pause
-  \begin{lema}[Integralska ena"cba za verjetnost pre"zivetja]
-    Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC, ter naj 
-    velja $\E\left[X_1\right]<\infty$ in da imajo slu"cajne spremenljivke $(X_i)_{i\in\N}$ 
-    gostoto. Potem $\theta$ zado"s"ca  enakosti
-    \begin{equation*}
-        \theta(u) = \theta(0) + \frac{1}{(1+\rho)} \int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x),
-    \end{equation*}
-    kjer je $\overline{F}_{X_1}$ porazdelitev integriranega repa  
-    slu"cajne spremenljivke $X_1$.
-    \label{lema:verjetnostPrezivetja}
-  \end{lema}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Verjetnost pre"zivetja}
+%  \begin{definicija}
+%    Za lep"so notacijo v nadaljevanju definiramo "se funkcijo \textit{verjetnosti pre"zivetja} kot
+%    $\theta:(0, \infty) \to [0, 1]$ s predpisom
+%    \begin{equation*}
+%        \theta(u) = \Prob_u\left(T=\infty\right) = 1 - \psi(u); \quad u\geq 0.
+%    \end{equation*}
+%    \label{def:verjetnostPrezivetja}
+%  \end{definicija}
+%  \pause
+%  \begin{lema}[Integralska ena"cba za verjetnost pre"zivetja]
+%    Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca NPC, ter naj 
+%    velja $\E\left[X_1\right]<\infty$ in da imajo slu"cajne spremenljivke $(X_i)_{i\in\N}$ 
+%    gostoto. Potem $\theta$ zado"s"ca  enakosti
+%    \begin{equation*}
+%        \theta(u) = \theta(0) + \frac{1}{(1+\rho)} \int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x),
+%    \end{equation*}
+%    kjer je $\overline{F}_{X_1}$ porazdelitev integriranega repa  
+%    slu"cajne spremenljivke $X_1$.
+%    \label{lema:verjetnostPrezivetja}
+%  \end{lema}
+%\end{frame}
 
 %-----------------------------------------FRAME --------------------------------------------------%
-\begin{frame}
-  \frametitle{Defektna prenovitvena ena"cba}
-  \begin{equation*}
-    \theta(u) = (1 - q) + q\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x).
-  \end{equation*}
-  \pause
-  \begin{equation*}
-    Ag(u) = (1 - q) + q\int_{(0, u]}g(u - x)d\overline{F}_{X_1}(x),
-    \label{eq:operator}
-  \end{equation*}
-  \pause
-  $A$ je skr"citev na prostoru omejenih funkcij $B([0, \infty))$, opremljene s supremum metriko
-  \begin{equation*}
-    d_\infty(f, g) = \sup_{u\in[0, \infty)}\big|f(u) - g(u)\big|,  \quad f, g\in B([0, \infty)).
-  \end{equation*}
-  \pause
-  Izka"ze se, da z ustrezno izbiro funkcije $g_0\in B([0, \infty))$ lahko poka"zemo, da je 
-  \begin{equation*}
-    \theta(u) = \lim_{n\to\infty} A^ng_0 = (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right).
-  \end{equation*}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Defektna prenovitvena ena"cba}
+%  \begin{equation*}
+%    \theta(u) = (1 - q) + q\int_{(0, u]}\theta(u - x)d\overline{F}_{X_1}(x).
+%  \end{equation*}
+%  \pause
+%  \begin{equation*}
+%    Ag(u) = (1 - q) + q\int_{(0, u]}g(u - x)d\overline{F}_{X_1}(x),
+%    \label{eq:operator}
+%  \end{equation*}
+%  \pause
+%  $A$ je skr"citev na prostoru omejenih funkcij $B([0, \infty))$, opremljene s supremum metriko
+%  \begin{equation*}
+%    d_\infty(f, g) = \sup_{u\in[0, \infty)}\big|f(u) - g(u)\big|,  \quad f, g\in B([0, \infty)).
+%  \end{equation*}
+%  \pause
+%  Izka"ze se, da z ustrezno izbiro funkcije $g_0\in B([0, \infty))$ lahko poka"zemo, da je 
+%  \begin{equation*}
+%    \theta(u) = \lim_{n\to\infty} A^ng_0 = (1 - q)\sum_{k = 0}^\infty q^k\Prob\left(\overline{W}_k \leq u\right).
+%  \end{equation*}
+%\end{frame}
 
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
   \frametitle{Lahkorepe porazdelitve}
   \begin{definicija}
-    Naj velja, da ima slu"cajna spremenljivka $Y_1 = X_1 - cT_1$ iz trditve \ref{trd:verjetnostPropadaZOgrodjem} 
+    Pravimo, da ima slu"cajna spremenljivka $X$ \textit{lahkorepo porazdelitev}, "ce za 
+    nek $\varepsilon > 0$ velja
+  \begin{equation*}
+      \E\left[e^{uX}\right] = M_X(u) < \infty \quad \text{za} \ u \in (-\varepsilon, \varepsilon).
+  \end{equation*}
+  Sicer pravimo, 
+  da ima $X$ \textit{te"zkorepo porazdelitev}.
+  \label{def:lahkorepnaPorazdelitev}
+  \end{definicija}
+  \pause
+  \begin{definicija}
+    Naj velja, da ima slu"cajna spremenljivka $Y_1 = X_1 - cT_1$
     lahek rep. "Ce obstaja enoli"cen $\ell > 0$, za katerega velja
     \begin{equation*}
         M_{Y_1}(\ell)  = 1,
@@ -384,17 +395,18 @@
     temu "stevilu pravimo \textit{Lundbergov koeficient}.
     \label{def:LundbergovKoeficient}
   \end{definicija}
-  \pause
-  \begin{izrek}[Lundbergova neenakost]
-    Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca pogoju NPC in 
-     zanj obstaja Lundbergov koeficient $\ell$. Potem za vsak $u>0$ velja
-    \begin{equation*}
-        \psi(u) \leq e^{-\ell u}.
-    \end{equation*}
-    \label{izr:LundbergovaNeenakost}
-  \end{izrek}
 \end{frame}
 
+%  \begin{izrek}[Lundbergova neenakost]
+%    Naj bo $(U_t)_{t\geq0}$ proces tveganja v Cramér--Lundbergovem modelu, ki zado"s"ca pogoju NPC in 
+%     zanj obstaja Lundbergov koeficient $\ell$. Potem za vsak $u>0$ velja
+%    \begin{equation*}
+%        \psi(u) \leq e^{-\ell u}.
+%    \end{equation*}
+%    \label{izr:LundbergovaNeenakost}
+%  \end{izrek}
+%\end{frame}
+%
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
   \frametitle{Lahkorepe porazdelitve}
@@ -407,30 +419,30 @@
     \end{equation*}
     \label{izr:CramerjevaMeja}
 \end{izrek}
-\pause
-\begin{zgled}
-  V primeru ko zahtevke $X_1, X_2, \dots$ modeliramo z eksponentno porazdelitvijo, torej $X_i\sim\text{Exp}(\mu)$,
-  lahko eksplicitno izra"cunamo verjetnost propada
-  \begin{equation*}
-    \psi(u) =  \frac{1}{1+\rho}\,e^{-\ell u}.
-    \label{eq:eksplicitnaVerjetnostPropadaExp}
-\end{equation*}
-\end{zgled}
+%\pause
+%\begin{zgled}
+%  V primeru ko zahtevke $X_1, X_2, \dots$ modeliramo z eksponentno porazdelitvijo, torej $X_i\sim\text{Exp}(\mu)$,
+%  lahko eksplicitno izra"cunamo verjetnost propada
+%  \begin{equation*}
+%    \psi(u) =  \frac{1}{1+\rho}\,e^{-\ell u}.
+%    \label{eq:eksplicitnaVerjetnostPropadaExp}
+%\end{equation*}
+%\end{zgled}
+%\end{frame}
+%
+%%-----------------------------------------FRAME --------------------------------------------------%
+%\begin{frame}
+%  \frametitle{Lahkorepe porazdelitve}
+%  \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{
+%        C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika3.pdf
+%        }
+%    \caption{Aproksimacija verjetnosti propada $\psi(u)$ z Monte Carlo simulacijami.}
+%    \label{fig:slika4}
+%\end{figure}
+%\end{frame}
 \end{frame}
-
-%-----------------------------------------FRAME --------------------------------------------------%
-\begin{frame}
-  \frametitle{Lahkorepe porazdelitve}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{
-        C:/Users/38651/OneDrive - Univerza v Ljubljani/Desktop/Diploma/Diplomski-seminar/GraphsAndPhotos/slika3.pdf
-        }
-    \caption{Aproksimacija verjetnosti propada $\psi(u)$ z Monte Carlo simulacijami.}
-    \label{fig:slika4}
-\end{figure}
-\end{frame}
-
 %-----------------------------------------FRAME --------------------------------------------------%
 \begin{frame}
   \frametitle{Subeksponentne porazdelitve}
